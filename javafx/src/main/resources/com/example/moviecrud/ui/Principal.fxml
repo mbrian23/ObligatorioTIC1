@@ -14,6 +14,8 @@
 <?import javafx.scene.layout.VBox?>
 
 
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.Principal">
    <children>
       <VBox layoutX="220.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -45,9 +47,16 @@
                   <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Button alignment="TOP_LEFT" mnemonicParsing="false" text="Registrar" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                   <Button fx:id="mItemAgregarPelicula" alignment="TOP_LEFT" mnemonicParsing="false" text="Registrar"
+                           onAction="#agregarPeliculaAction" GridPane.columnIndex="1" GridPane.halignment="RIGHT"
+                           GridPane.rowIndex="5"/>
                   <Label text="Label" GridPane.rowIndex="4" />
-                  <ComboBox prefHeight="27.0" prefWidth="195.0" promptText="Elija el genero" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <ComboBox prefHeight="27.0" prefWidth="195.0" promptText="Elija el genero" GridPane.columnIndex="1" GridPane.rowIndex="4">   <items>
+                   <FXCollections fx:factory="observableArrayList">
+                       <String fx:id="1" fx:value="Accion" />
+                       <String fx:id="2" fx:value="Drama" />
+                   </FXCollections>
+               </items> </ComboBox>
                </children>
             </GridPane>
          </children>

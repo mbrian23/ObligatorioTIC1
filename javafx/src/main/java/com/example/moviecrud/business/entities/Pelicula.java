@@ -4,6 +4,7 @@ package com.example.moviecrud.business.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+
 @Entity
 @Table
 public class Pelicula {
@@ -33,6 +34,14 @@ public class Pelicula {
     private String descripcion;
 
     public Pelicula() {
+    }
+
+    public Pelicula(@NotBlank String titulo, @NotBlank String genero, @NotBlank String actores, @NotBlank String duracion, @NotBlank String descripcion) {
+        this.titulo = titulo;
+        this.genero = genero;
+        this.actores = actores;
+        this.duracion = duracion;
+        this.descripcion = descripcion;
     }
 
     public Long getId() {

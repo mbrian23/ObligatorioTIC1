@@ -1,11 +1,14 @@
 package com.example.moviecrud.business;
 
 import com.example.moviecrud.business.entities.Pelicula;
+import com.example.moviecrud.business.exceptions.InformacionPeliculaInvalida;
+import com.example.moviecrud.business.exceptions.PeliculaYaExiste;
 import com.example.moviecrud.persistence.PeliculaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Id;
 import java.util.List;
 
 @RestController
@@ -46,4 +49,22 @@ public class PeliculaMgr {
         peliculaRepository.delete(pelicula);
         return ResponseEntity.ok().build();
     }
+
+    public void addPelicula (String titulo, String genero, String actores, String duracion,  String descripcion) throws InformacionPeliculaInvalida, PeliculaYaExiste {
+        if(titulo == null || "".equals(titulo) || genero == null || "".equals(genero) || actores == null || "".equals(actores) || duracion ==null || "".equals(duracion) || descripcion == null || "".equals(descripcion)){
+
+            throw new InformacionPeliculaInvalida("Algun dato ingresado no es correcto");
+
+        }
+
+        // Ahora hay que ver si la pelicula existe ya
+        // if (peliculaRepository.findById(peliculaI)
+        // problema para hacer el get de un id que se autogenera
+
+        Pelicula pelicula = new Pelicula(titulo,genero,actores,duracion ,descripcion);
+        peliculaRepository.save(pelicula);
+    }
+
+
+
 }

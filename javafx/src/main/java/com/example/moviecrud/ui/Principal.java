@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
@@ -15,10 +16,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class Principal {
     @FXML
-    private Pelicula ItemAgregarPelicula;
+    private Button mItemAgregarPelicula;
 
     @FXML
-    void agregarClientAction(ActionEvent event) throws Exception {
+    void agregarPeliculaAction(ActionEvent event) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
