@@ -50,7 +50,7 @@
                   <TextArea fx:id="descripcion" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                    <Button fx:id="btnAdd" alignment="TOP_LEFT" mnemonicParsing="false" text="Registrar"
                            onAction="#agregarPeliculaAction" GridPane.columnIndex="1" GridPane.halignment="RIGHT"
-                           GridPane.rowIndex="5"/>afsdfefew
+                           GridPane.rowIndex="5"/>
                   <Label text="Label" GridPane.rowIndex="4" />
                   <ComboBox prefHeight="27.0" prefWidth="195.0" promptText="Elija el genero" GridPane.columnIndex="1" GridPane.rowIndex="4">   <items>
                    <FXCollections fx:factory="observableArrayList">
