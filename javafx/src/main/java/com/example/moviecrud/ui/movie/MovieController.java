@@ -48,7 +48,7 @@ public class MovieController {
     }
 
     @FXML
-    void addClient(ActionEvent event) {
+    void addPelicula(ActionEvent event) {
             if (titulo.getText() == null || titulo.getText().equals("") || actores.getText() == null || actores.getText().equals("")
             || duracion.getText() == null || duracion.getText().equals("") || descripcion.getText() == null || descripcion.getText().equals("")){
 

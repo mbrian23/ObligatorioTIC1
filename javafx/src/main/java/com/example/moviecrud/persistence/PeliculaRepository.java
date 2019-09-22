@@ -7,5 +7,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PeliculaRepository extends CrudRepository<Pelicula, Long> {
- //   Pelicula findOneByDocument(long document);
 }
