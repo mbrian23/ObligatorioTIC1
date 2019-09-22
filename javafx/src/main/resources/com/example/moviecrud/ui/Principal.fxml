@@ -43,10 +43,10 @@
                   <Label text="Descripcion" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" />
                   <Label prefHeight="17.0" prefWidth="67.0" text="Duracion" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
                   <Label text="Titulo" />
-                  <TextField GridPane.columnIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="titulo" GridPane.columnIndex="1" />
+                  <TextField fx:id="actores" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id= "duracion" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextArea fx:id="descripcion" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                    <Button fx:id="mItemAgregarPelicula" alignment="TOP_LEFT" mnemonicParsing="false" text="Registrar"
                            onAction="#agregarPeliculaAction" GridPane.columnIndex="1" GridPane.halignment="RIGHT"
                            GridPane.rowIndex="5"/>

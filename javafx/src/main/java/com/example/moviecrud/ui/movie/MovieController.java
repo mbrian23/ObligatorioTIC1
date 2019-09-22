@@ -20,7 +20,7 @@ public class MovieController {
     private PeliculaMgr peliculaMgr;
 
     @FXML
-    private Button btnAdd;
+    private Button mItemAgregarCliente;
 
     @FXML
     private Button btnClose;
