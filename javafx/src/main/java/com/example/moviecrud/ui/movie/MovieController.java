@@ -3,14 +3,15 @@ package com.example.moviecrud.ui.movie;
 import com.example.moviecrud.business.PeliculaMgr;
 import com.example.moviecrud.business.exceptions.InformacionPeliculaInvalida;
 import com.example.moviecrud.business.exceptions.PeliculaYaExiste;
-//import javafx.event.ActionEvent;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import javafx.event.*;
+
 
 
 @Component
