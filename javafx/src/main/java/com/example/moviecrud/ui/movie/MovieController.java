@@ -6,16 +6,19 @@ import com.example.moviecrud.business.exceptions.PeliculaYaExiste;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
 @Component
-public class MovieController {
+public class MovieController implements Initializable {
 
     @Autowired
     private PeliculaMgr peliculaMgr;
@@ -61,7 +64,7 @@ public class MovieController {
                 try {
 
                 String tituloAgregar = titulo.getText();
-                String generoAgregar = genero.getEditor().getText();
+               // String generoAgregar = genero.getEditor().getText();
                 String actoresAgregar = actores.getText();
                 String duracionAgregar = duracion.getText();
                 String descripcionAgregar = descripcion.getText();
@@ -69,9 +72,9 @@ public class MovieController {
 
                 try {
 
-                    peliculaMgr.addPelicula(tituloAgregar,generoAgregar,actoresAgregar,duracionAgregar,descripcionAgregar);
+                    peliculaMgr.addPelicula(tituloAgregar/*,generoAgregar*/,actoresAgregar,duracionAgregar,descripcionAgregar);
 
-                    showAlert("Cliente agregado", "Se agrego con exito el cliente!");
+                    showAlert("Pelicula agregada", "Se agrego con exito la Pelicula!");
 
                     close(event);
                 } catch (InformacionPeliculaInvalida informacionPeliculaInvalida) {
@@ -112,4 +115,8 @@ public class MovieController {
     }
 
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
 }
