@@ -3,6 +3,7 @@ package com.example.moviecrud;
 
 
 import com.example.moviecrud.ui.Principal;
+import com.example.moviecrud.ui.movie.MovieController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,7 +31,7 @@ public class MovieCrudApplication extends Application {
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
 
-        root = fxmlLoader.load(Principal.class.getResourceAsStream("Principal.fxml"));
+        root = fxmlLoader.load(Principal.class.getResourceAsStream("Cartelera.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
@@ -48,5 +49,7 @@ public class MovieCrudApplication extends Application {
     public static ConfigurableApplicationContext getContext() {
         return context;
     }
+
+
 }
 

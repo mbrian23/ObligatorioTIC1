@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.Principal">
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
@@ -17,16 +19,34 @@
          <children>
             <HBox prefHeight="31.0" prefWidth="580.0">
                <children>
-                  <Label text="Cartelera" />
+                  <MenuBar>
+                    <menus>
+                      <Menu mnemonicParsing="false" text="Agregar">
+                        <items>
+                          <MenuItem fx:id="mItemAgregarPelicula" mnemonicParsing="false" onAction="#agregarPeliculaAction" text="Nueva Pelicula" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Editar">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="Delete" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Ayuda">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="About" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
                </children>
             </HBox>
-            <TableView prefHeight="365.0" prefWidth="580.0">
+            <TableView fx:id="tabla" prefHeight="365.0" prefWidth="580.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Titulo" />
+                <TableColumn fx:id="titulo" prefWidth="75.0" text="Titulo" />
                 <TableColumn prefWidth="79.0" text="Genero" />
-                  <TableColumn prefWidth="78.0" text="Actores" />
-                  <TableColumn prefWidth="91.0" text="Duracion" />
-                  <TableColumn prefWidth="249.0" text="Descrpcion" />
+                  <TableColumn fx:id="actores" prefWidth="78.0" text="Actores" />
+                  <TableColumn fx:id="duracion" prefWidth="91.0" text="Duracion" />
+                  <TableColumn fx:id="descripcion" prefWidth="249.0" text="Descrpcion" />
               </columns>
             </TableView>
          </children>

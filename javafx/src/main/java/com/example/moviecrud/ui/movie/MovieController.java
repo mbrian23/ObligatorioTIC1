@@ -18,13 +18,13 @@ import java.util.ResourceBundle;
 
 
 @Component
-public class MovieController implements Initializable {
+public class MovieController {
 
     @Autowired
     private PeliculaMgr peliculaMgr;
 
     @FXML
-    private Button mItemAgregarCliente;
+    private Button btnAdd;
 
     @FXML
     private Button btnClose;
@@ -114,9 +114,4 @@ public class MovieController implements Initializable {
         alert.showAndWait();
     }
 
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
 }
