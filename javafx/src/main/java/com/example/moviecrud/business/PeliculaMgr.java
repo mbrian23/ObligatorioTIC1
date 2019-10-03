@@ -2,6 +2,7 @@ package com.example.moviecrud.business;
 
 import com.example.moviecrud.business.entities.Pelicula;
 import com.example.moviecrud.business.exceptions.InformacionPeliculaInvalida;
+import com.example.moviecrud.business.exceptions.PeliculaNoExiste;
 import com.example.moviecrud.business.exceptions.PeliculaYaExiste;
 import com.example.moviecrud.persistence.PeliculaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,16 @@ public class PeliculaMgr {
 
         Pelicula pelicula = new Pelicula(titulo/*,genero*/,actores,duracion ,descripcion);
         peliculaRepository.save(pelicula);
+    }
+    
+    public void eliminarPelicula (String titulo)  throws InformacionPeliculaInvalida, PeliculaNoExiste {
+        for (Pelicula pelicula: getAllPeliculas()) {
+            if (pelicula.getTitulo().equals(titulo)){
+               Long id = pelicula.getId();
+               deletePelicula(id);
+            }
+        }
+        
     }
 
 

@@ -2,6 +2,7 @@ package com.example.moviecrud.ui.movie;
 
 import com.example.moviecrud.business.PeliculaMgr;
 import com.example.moviecrud.business.exceptions.InformacionPeliculaInvalida;
+import com.example.moviecrud.business.exceptions.PeliculaNoExiste;
 import com.example.moviecrud.business.exceptions.PeliculaYaExiste;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,6 +44,14 @@ public class MovieController {
 
     @FXML
     private TextArea descripcion;
+
+
+    //eliminar
+    @FXML
+    private Button btnDelete;
+
+    @FXML
+    private TextField tituloAEliminar;
 
     @FXML
     void close(ActionEvent actionEvent) {
@@ -95,6 +104,50 @@ public class MovieController {
 
                  }
              }
+        }
+
+
+
+        @FXML
+        void eliminarPelicula (ActionEvent event){
+            if (tituloAEliminar.getText() == null || tituloAEliminar.equals("")){
+
+                showAlert(
+                        "Datos faltantes!",
+                        "No se ingresaron los datos necesarios para completar el ingreso.");
+
+            } else {
+                try {
+
+                    String tituloEliminar = tituloAEliminar.getText();
+
+
+                    try {
+
+                        peliculaMgr.eliminarPelicula(tituloEliminar);
+
+                        showAlert("Pelicula eliminada", "Se elimino con exito la Pelicula!");
+
+                        close(event);
+                    } catch (InformacionPeliculaInvalida informacionPeliculaInvalida) {
+                        showAlert(
+                                "Informacion invalida !",
+                                "Se encontro un error en los datos ingresados.");
+                    } catch (PeliculaNoExiste peliculaNoExiste) {
+                        showAlert(
+                                "Pelicula no registrada !",
+                                "La pelicula no esta registrada en el sistema.");
+                    }
+
+                } catch (NumberFormatException e) {
+
+                    showAlert(
+                            "Datos incorrectos !",
+                            "El documento no tiene el formato esperado (numerico).");
+
+                }
+            }
+
         }
 
 
