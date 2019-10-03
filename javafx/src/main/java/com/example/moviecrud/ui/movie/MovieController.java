@@ -189,6 +189,7 @@ public class MovieController {
         } else {
             try {
 
+                String tituloAEdi = tituloAEditar.getText();
                 String tituloEditado = tituloNew.getText();
                 // String generoAgregar = genero.getEditor().getText();
                 String actoresEditado = actoresNew.getText();
@@ -198,7 +199,7 @@ public class MovieController {
 
                 try {
 
-                    peliculaMgr.editarPelicula(tituloEditado/*,generoAgregar*/,actoresEditado,duracionEditado,descripcionEditado);
+                    peliculaMgr.editarPelicula(tituloAEdi, tituloEditado/*,generoAgregar*/,actoresEditado,duracionEditado,descripcionEditado);
 
                     showAlert("Pelicula agregada", "Se agrego con exito la Pelicula!");
 
