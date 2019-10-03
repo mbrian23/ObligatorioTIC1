@@ -37,6 +37,8 @@ public class Principal implements Initializable {
     private MenuItem mItemEliminarPelicula;
 
     @FXML
+    private MenuItem mItemEditarPelicula;
+    @FXML
     private TableView<Pelicula> tabla;
 
     @FXML
@@ -70,6 +72,18 @@ public class Principal implements Initializable {
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(MovieController.class.getResourceAsStream("EliminarPelicula.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+
+    }
+
+    @FXML
+    void editarPeliculaAction(ActionEvent event) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(MovieController.class.getResourceAsStream("EditarPelicula.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
