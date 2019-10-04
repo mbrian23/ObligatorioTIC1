@@ -5,6 +5,7 @@ import com.example.moviecrud.business.exceptions.InformacionPeliculaInvalida;
 import com.example.moviecrud.business.exceptions.PeliculaNoExiste;
 import com.example.moviecrud.business.exceptions.PeliculaYaExiste;
 import com.example.moviecrud.persistence.PeliculaRepository;
+import com.example.moviecrud.ui.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,8 @@ import java.util.List;
 
 @RestController
 public class PeliculaMgr {
+
+
 
     @Autowired
     PeliculaRepository peliculaRepository;
@@ -57,6 +60,8 @@ public class PeliculaMgr {
             throw new InformacionPeliculaInvalida("Algun dato ingresado no es correcto");
 
         }
+
+
 
         // Ahora hay que ver si la pelicula existe ya
         // if (peliculaRepository.findById(peliculaI)

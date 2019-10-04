@@ -100,13 +100,13 @@ public class Principal implements Initializable {
 
         actualizaCart();
 
-        tabla.setItems(movieList);
+
 
     }
 
     public void actualizaCart(){
         movieList.clear();
         movieList.addAll(peliculaMgr.getAllPeliculas());
-
+        tabla.setItems(movieList);
     }
 }

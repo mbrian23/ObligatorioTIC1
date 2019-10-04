@@ -5,6 +5,7 @@ import com.example.moviecrud.business.PeliculaMgr;
 import com.example.moviecrud.business.exceptions.InformacionPeliculaInvalida;
 import com.example.moviecrud.business.exceptions.PeliculaNoExiste;
 import com.example.moviecrud.business.exceptions.PeliculaYaExiste;
+import com.example.moviecrud.ui.Principal;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +24,13 @@ import java.util.ResourceBundle;
 
 @Component
 public class MovieController {
+
+    Principal principal;
+
+    @Autowired
+    public MovieController(Principal principal){
+        this.principal=principal;
+    }
 
     @Autowired
     private PeliculaMgr peliculaMgr;
@@ -113,6 +121,8 @@ public class MovieController {
 
 
                     close(event);
+                    principal.actualizaCart();
+
                 } catch (InformacionPeliculaInvalida informacionPeliculaInvalida) {
                     showAlert(
                             "Informacion invalida !",
@@ -125,12 +135,12 @@ public class MovieController {
 
                 } catch (NumberFormatException e) {
 
-                showAlert(
+                    showAlert(
                         "Datos incorrectos !",
                         "El documento no tiene el formato esperado (numerico).");
 
-                 }
-             }
+                }
+            }
         }
 
 
@@ -154,6 +164,7 @@ public class MovieController {
                         peliculaMgr.eliminarPelicula(tituloEliminar);
 
                         showAlert("Pelicula eliminada", "Se elimino con exito la Pelicula!");
+                        principal.actualizaCart();
 
                         close(event);
                     } catch (InformacionPeliculaInvalida informacionPeliculaInvalida) {
@@ -203,6 +214,7 @@ public class MovieController {
                     peliculaMgr.editarPelicula(tituloAEdi, tituloEditado/*,generoAgregar*/,actoresEditado,duracionEditado,descripcionEditado);
 
                     showAlert("Pelicula agregada", "Se agrego con exito la Pelicula!");
+                    principal.actualizaCart();
 
                     close(event);
                 } catch (InformacionPeliculaInvalida informacionPeliculaInvalida) {

@@ -3,6 +3,7 @@ package com.example.moviecrud.business.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.sql.Blob;
 
 
 @Entity
@@ -32,6 +33,10 @@ public class Pelicula {
     @NotBlank
     @Column(nullable = false, length = 45)
     private String descripcion;
+
+//    @NotBlank
+//    @Column(nullable = false)
+//    private Blob img;
 
     public Pelicula() {
     }
@@ -66,6 +71,15 @@ public class Pelicula {
 //
 //    public void setGenero(String genero) {
 //        this.genero = genero;
+//    }
+
+
+//    public Blob getImg() {
+//        return img;
+//    }
+//
+//    public void setImg(Blob img) {
+//        this.img = img;
 //    }
 
     public String getActores() {
