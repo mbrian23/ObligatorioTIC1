@@ -28,7 +28,7 @@
             <Text fill="#971066" fontSmoothingType="LCD" layoutX="33.0" layoutY="230.0" smooth="false" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="0.0" text="Nombre pelicula" textAlignment="JUSTIFY" />
             <AnchorPane layoutY="266.0" prefHeight="335.0" prefWidth="900.0" style="-fx-background-color: #971066;">
                <children>
-                  <TextField layoutX="14.0" layoutY="14.0" />
+                  <TextField layoutX="14.0" layoutY="14.0" promptText="Genero" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
                   <TextField layoutX="14.0" layoutY="55.0" />
                   <TextField layoutX="14.0" layoutY="95.0" />
                   <TextArea layoutX="358.0" layoutY="15.0" prefHeight="105.0" prefWidth="513.0" />
