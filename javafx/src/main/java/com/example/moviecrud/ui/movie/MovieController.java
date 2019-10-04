@@ -111,6 +111,7 @@ public class MovieController {
 
                     showAlert("Pelicula agregada", "Se agrego con exito la Pelicula!");
 
+
                     close(event);
                 } catch (InformacionPeliculaInvalida informacionPeliculaInvalida) {
                     showAlert(

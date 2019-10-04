@@ -28,7 +28,7 @@ import java.util.ResourceBundle;
 @Controller
 public class Principal implements Initializable {
     @Autowired
-    private PeliculaMgr peliculaMgr;
+    PeliculaMgr peliculaMgr;
 
     @FXML
     private MenuItem mItemAgregarPelicula;
@@ -98,10 +98,15 @@ public class Principal implements Initializable {
         duracion.setCellValueFactory(new PropertyValueFactory<>("duracion"));
         descripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
 
-        movieList.clear();
-        movieList.addAll(peliculaMgr.getAllPeliculas());
+        actualizaCart();
 
         tabla.setItems(movieList);
+
+    }
+
+    public void actualizaCart(){
+        movieList.clear();
+        movieList.addAll(peliculaMgr.getAllPeliculas());
 
     }
 }
