@@ -15,7 +15,7 @@ public class InfoPelicula {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(MovieController.class.getResourceAsStream("AddPelicula.fxml"));
+        Parent root = fxmlLoader.load(MovieController.class.getResourceAsStream("InfoPelicula.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
