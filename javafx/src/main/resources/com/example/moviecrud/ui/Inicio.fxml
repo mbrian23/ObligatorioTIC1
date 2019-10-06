@@ -22,7 +22,7 @@
          <children>
             <ImageView fitHeight="42.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../../../Downloads/free_horizontal_on_white_by_logaster.png" />
+                  <Image url="@movie/images/logo2.png" />
                </image>
             </ImageView>
             <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="67.0" style="-fx-background-color: #303030; -fx-text-fill: #f0f0f0;" text="Inicio" textFill="#a14343" />
