@@ -2,7 +2,11 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -45,35 +49,97 @@
    <center>
       <AnchorPane prefHeight="390.0" prefWidth="800.0" style="-fx-background-color: #971066;" BorderPane.alignment="CENTER">
          <children>
-            <VBox layoutX="29.0" layoutY="236.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Genero" wrappingWidth="161.13671875">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duracion" wrappingWidth="159.13671875">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </Text>
-                  <Text layoutX="10.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Actores" wrappingWidth="159.13671875">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </Text>
-               </children>
-            </VBox>
             <BorderPane layoutX="309.0" layoutY="59.0" prefHeight="442.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <top>
-                  <Pane prefHeight="229.0" prefWidth="800.0" styleClass="bodybg" stylesheets="@InfoPelicula.css" BorderPane.alignment="CENTER" />
-               </top>
+               <center>
+                  <Pane prefHeight="155.0" prefWidth="800.0" styleClass="bodybg" stylesheets="@InfoPelicula.css" BorderPane.alignment="CENTER">
+                     <children>
+                        <VBox alignment="TOP_RIGHT" layoutX="20.0" layoutY="128.7060546875" styleClass="vbox" stylesheets="@InfoPelicula.css" />
+                     </children>
+                  </Pane>
+               </center>
+               <bottom>
+                  <HBox prefHeight="274.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <VBox prefHeight="274.0" prefWidth="260.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Genero" wrappingWidth="239.13671875">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="15.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duracion" wrappingWidth="235.13671875">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="15.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <Text layoutX="10.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Actores" wrappingWidth="237.13671875">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="15.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Compra">
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="15.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </Text>
+                              <ComboBox prefHeight="25.0" prefWidth="165.0" promptText="Localidad">
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="10.0" />
+                                 </VBox.margin>
+                              </ComboBox>
+                              <ComboBox layoutX="30.0" layoutY="192.0" prefHeight="25.0" prefWidth="165.0" promptText="Horario">
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="10.0" />
+                                 </VBox.margin>
+                              </ComboBox>
+                           </children>
+                        </VBox>
+                        <VBox layoutX="10.0" layoutY="10.0" prefHeight="259.0" prefWidth="501.0">
+                           <children>
+                              <TextArea prefHeight="109.0" prefWidth="369.0" />
+                              <HBox prefHeight="137.0" prefWidth="501.0">
+                                 <children>
+                                    <VBox prefHeight="137.0" prefWidth="171.0">
+                                       <children>
+                                          <TextField prefHeight="25.0" prefWidth="163.0" promptText="Cantidad" />
+                                          <DatePicker promptText="Fecha">
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </DatePicker>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets top="58.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="154.0" text="Comprar">
+                                       <HBox.margin>
+                                          <Insets left="70.0" top="58.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="15.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </bottom>
             </BorderPane>
-            <Text layoutX="29.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre pelicula" wrappingWidth="201.13671875">
-               <font>
-                  <Font name="System Bold" size="23.0" />
-               </font>
-            </Text>
          </children>
       </AnchorPane>
    </center>
