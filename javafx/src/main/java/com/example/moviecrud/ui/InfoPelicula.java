@@ -7,9 +7,36 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class InfoPelicula {
+
+    @FXML
+    private Button inicio;
+
+    @FXML
+    private Button cine;
+
+    @FXML
+    private Button teatro;
+
+    @FXML
+    private Button estrenos;
+
+    @FXML
+    private Button precios;
+
+    @FXML
+    private Button contacto;
+
+    @FXML
+    private Button registrarse;
+
+    @FXML
+    private Button iniciarSesion;
+
+
     @FXML
     void infoPelicula(ActionEvent event) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
