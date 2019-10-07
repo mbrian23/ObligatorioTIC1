@@ -13,6 +13,29 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import java.io.File;
+import java.net.URI;
+import java.util.stream.Stream;
+
+import javafx.animation.TranslateTransition;
+import javafx.application.Application;
+import javafx.application.HostServices;
+import javafx.geometry.Point3D;
+import javafx.scene.Group;
+import javafx.scene.PerspectiveCamera;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
+import javafx.scene.effect.Reflection;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.transform.Rotate;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Duration;
+import javafx.scene.image.Image;
+
 @SpringBootApplication
 public class MovieCrudApplication extends Application {
 
@@ -25,15 +48,38 @@ public class MovieCrudApplication extends Application {
         MovieCrudApplication.context = SpringApplication.run(MovieCrudApplication.class);
     }
 
+    private static final double WIDTH = 450, HEIGHT = 480;
+   // private Timeline animation;
+
+    public Parent createContent() {
+        // load images
+        Image[] images = new Image[3];
+        images[0] = new Image(MovieCrudApplication.class.getResource("/com/example/moviecrud/ui/images/termi.jpg").toExternalForm(), false);
+        images[1] = new Image(MovieCrudApplication.class.getResource("/com/example/moviecrud/ui/images/termi2.jpg").toExternalForm(), false);
+        images[2] = new Image(MovieCrudApplication.class.getResource("/com/example/moviecrud/ui/images/logo2.png").toExternalForm(), false);
+
+        // create display shelf
+        DisplayShelf displayShelf = new DisplayShelf(images);
+        displayShelf.setPrefSize(WIDTH, HEIGHT);
+
+        return displayShelf;
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
 
-        root = fxmlLoader.load(Principal.class.getResourceAsStream("Cartelera.fxml"));
+       root = fxmlLoader.load(Principal.class.getResourceAsStream("Inicio.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+
+//        primaryStage.setResizable(true);
+//        primaryStage.setScene(new Scene(createContent()));
+//        primaryStage.show();
+
+
     }
 
 
