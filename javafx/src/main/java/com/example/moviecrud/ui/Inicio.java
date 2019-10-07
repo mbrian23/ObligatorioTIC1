@@ -1,5 +1,6 @@
 package com.example.moviecrud.ui;
 
+import com.example.moviecrud.MovieCrudApplication;
 import com.example.moviecrud.business.PeliculaMgr;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,6 +14,12 @@ import java.util.ResourceBundle;
 
 @Controller
 public class Inicio implements Initializable {
+
+   MovieCrudApplication movieCrudApplication;
+
+    @Autowired
+    public Inicio (MovieCrudApplication movieCrudApplication){ this.movieCrudApplication=movieCrudApplication;}
+
     @Autowired
     PeliculaMgr peliculaMgr;
 
@@ -21,8 +28,14 @@ public class Inicio implements Initializable {
     private Pane pane;
 
 
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+     try {
+      pane.getChildren().add(movieCrudApplication.createContent());
+     } catch (Exception e) {
+      e.printStackTrace();
+     }
     }
 }

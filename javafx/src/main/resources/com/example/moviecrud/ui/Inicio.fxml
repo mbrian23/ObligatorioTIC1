@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.InnerShadow?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -52,29 +46,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <ButtonBar layoutX="172.0" layoutY="336.0" prefHeight="50.0" prefWidth="282.0">
-        <buttons>
-          <Button alignment="CENTER" mnemonicParsing="false" text="Twitter">
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
-               <effect>
-                  <InnerShadow />
-               </effect>
-            </Button>
-        </buttons>
-      </ButtonBar>
-      <TableView layoutX="57.0" layoutY="291.0" prefHeight="33.0" prefWidth="567.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="Titulo" />
-          <TableColumn prefWidth="75.0" text="Genero" />
-            <TableColumn prefWidth="75.0" text="Actores" />
-            <TableColumn prefWidth="75.0" text="Duracion" />
-            <TableColumn prefWidth="127.34182739257812" text="Descripcion" />
-            <TableColumn prefWidth="138.65817260742188" text="Imagen" />
-        </columns>
-      </TableView>
       <TextField layoutX="57.0" layoutY="72.0" prefHeight="30.0" prefWidth="376.0" text="Buscar..." />
-      <Pane fx:id="pane" layoutX="225.0" layoutY="119.0" prefHeight="150.0" prefWidth="200.0" />
+      <Pane fx:id="pane" layoutX="225.0" layoutY="119.0" prefHeight="401.0" prefWidth="694.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="120.0" />
    </children>
 </AnchorPane>

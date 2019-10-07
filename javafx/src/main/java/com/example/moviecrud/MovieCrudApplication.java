@@ -7,6 +7,9 @@ import com.example.moviecrud.ui.Inicio;
 import com.example.moviecrud.ui.Principal;
 import com.example.moviecrud.ui.movie.MovieController;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,6 +20,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.util.stream.Stream;
 
@@ -54,7 +58,7 @@ public class MovieCrudApplication extends Application {
     private static final double WIDTH = 450, HEIGHT = 480;
    // private Timeline animation;
 
-    public Parent createContent() {
+    public Parent createContent()throws Exception {
         // load images
         Image[] images = new Image[3];
         images[0] = new Image(MovieCrudApplication.class.getResource("/com/example/moviecrud/ui/images/termi.jpg").toExternalForm(), false);
@@ -64,23 +68,48 @@ public class MovieCrudApplication extends Application {
         // create display shelf
         DisplayShelf displayShelf = new DisplayShelf(images);
         displayShelf.setPrefSize(WIDTH, HEIGHT);
+        displayShelf.getItems()[0].setOnMouseClicked(abrirPaginaPelicula());
 
         return displayShelf;
     }
+
+    EventHandler abrirPaginaPelicula() throws Exception {
+        EventHandler handler = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+                Parent root = null;
+                try {
+                    root = fxmlLoader.load(MovieController.class.getResourceAsStream("InfoPelicula.fxml"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+            }
+        };
+        return handler;
+    }
+
+
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
-//        root = fxmlLoader.load(Inicio.class.getResourceAsStream("Inicio.fxml"));
-//        primaryStage.setScene(new Scene(root));
-//        primaryStage.show();
-    //    root.getChildrenUnmodifiable().set(5,createContent());
-
-        primaryStage.setResizable(true);
-        primaryStage.setScene(new Scene(createContent()));
+        root = fxmlLoader.load(Principal.class.getResourceAsStream("Cartelera.fxml"));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
+        //primaryStage.setResizable(true);
+
+
+//        primaryStage.setResizable(true);
+//        primaryStage.setScene(new Scene(createContent()));
+//        primaryStage.show();
 
 
     }

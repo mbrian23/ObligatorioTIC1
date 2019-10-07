@@ -202,4 +202,8 @@ public class DisplayShelf extends Pane   {
         centerIndex -= shiftAmount;
         update();
     }
+
+    public PerspectiveImage[] getItems() {
+        return items;
+    }
 }
