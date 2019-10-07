@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -24,7 +25,7 @@ import javafx.util.Duration;
 /**
  * A ui control which displays a browsable display shelf of images
  */
-public class DisplayShelf extends Region {
+public class DisplayShelf extends Pane   {
 
     private final Duration DURATION = Duration.millis(500);
     private final Interpolator INTERPOLATOR = Interpolator.EASE_BOTH;

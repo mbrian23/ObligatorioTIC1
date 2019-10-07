@@ -1,6 +1,7 @@
 package com.example.moviecrud.ui;
 
 import com.example.moviecrud.MovieCrudApplication;
+import com.example.moviecrud.business.PeliculaMgr;
 import com.example.moviecrud.ui.movie.MovieController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,8 +10,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class InfoPelicula {
+
+    @Autowired
+    PeliculaMgr peliculaMgr;
+
 
     @FXML
     private Button inicio;
@@ -42,7 +50,7 @@ public class InfoPelicula {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(MovieController.class.getResourceAsStream("InfoPelicula.fxml"));
+        Parent root = fxmlLoader.load(MovieCrudApplication.class.getResourceAsStream("InfoPelicula.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();

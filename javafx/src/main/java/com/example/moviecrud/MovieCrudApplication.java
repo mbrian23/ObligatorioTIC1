@@ -2,9 +2,12 @@ package com.example.moviecrud;
 
 
 
+import com.example.moviecrud.ui.InfoPelicula;
+import com.example.moviecrud.ui.Inicio;
 import com.example.moviecrud.ui.Principal;
 import com.example.moviecrud.ui.movie.MovieController;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -70,14 +73,14 @@ public class MovieCrudApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
-
-       root = fxmlLoader.load(Principal.class.getResourceAsStream("Inicio.fxml"));
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
-
-//        primaryStage.setResizable(true);
-//        primaryStage.setScene(new Scene(createContent()));
+//        root = fxmlLoader.load(Inicio.class.getResourceAsStream("Inicio.fxml"));
+//        primaryStage.setScene(new Scene(root));
 //        primaryStage.show();
+    //    root.getChildrenUnmodifiable().set(5,createContent());
+
+        primaryStage.setResizable(true);
+        primaryStage.setScene(new Scene(createContent()));
+        primaryStage.show();
 
 
     }

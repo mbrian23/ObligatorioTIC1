@@ -15,14 +15,14 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="694.0" style="-fx-background-color: yellow;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="694.0" style="-fx-background-color: yellow;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.Inicio">
    <children>
       <HBox layoutX="64.0" layoutY="55.0" prefHeight="50.0" prefWidth="694.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="351.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="42.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/logo2.png" />
                </image>
             </ImageView>
             <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="67.0" style="-fx-background-color: #303030; -fx-text-fill: #f0f0f0;" text="Inicio" textFill="#a14343" />
@@ -64,7 +64,7 @@
             </Button>
         </buttons>
       </ButtonBar>
-      <TableView layoutX="57.0" layoutY="101.0" prefHeight="223.0" prefWidth="567.0">
+      <TableView layoutX="57.0" layoutY="291.0" prefHeight="33.0" prefWidth="567.0">
         <columns>
           <TableColumn prefWidth="75.0" text="Titulo" />
           <TableColumn prefWidth="75.0" text="Genero" />
@@ -74,6 +74,7 @@
             <TableColumn prefWidth="138.65817260742188" text="Imagen" />
         </columns>
       </TableView>
-      <TextField layoutX="56.0" layoutY="71.0" prefHeight="30.0" prefWidth="376.0" text="Buscar..." />
+      <TextField layoutX="57.0" layoutY="72.0" prefHeight="30.0" prefWidth="376.0" text="Buscar..." />
+      <Pane fx:id="pane" layoutX="225.0" layoutY="119.0" prefHeight="150.0" prefWidth="200.0" />
    </children>
 </AnchorPane>
