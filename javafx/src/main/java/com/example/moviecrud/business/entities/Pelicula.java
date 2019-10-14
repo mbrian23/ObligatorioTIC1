@@ -35,10 +35,13 @@ public class Pelicula {
     private String descripcion;
 
 //    @NotBlank
+//    @Lob
 //    @Column(nullable = false)
-//    private Blob img;
+//    private byte[] movieImage;
 
-    public Pelicula() {
+
+    public Pelicula(){
+
     }
 
     public Pelicula(@NotBlank String titulo, @NotBlank String genero, @NotBlank String actores, @NotBlank String duracion, @NotBlank String descripcion) {
@@ -73,13 +76,12 @@ public class Pelicula {
         this.genero = genero;
     }
 
-
-//    public Blob getImg() {
-//        return img;
+//    public byte[] getMovieImage() {
+//        return movieImage;
 //    }
 //
-//    public void setImg(Blob img) {
-//        this.img = img;
+//    public void setMovieImage(byte[] movieImage) {
+//        this.movieImage = movieImage;
 //    }
 
     public String getActores() {

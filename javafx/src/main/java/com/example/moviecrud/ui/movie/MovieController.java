@@ -19,10 +19,19 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.management.LockInfo;
 import java.net.URL;
 import java.util.List;
@@ -44,6 +53,9 @@ public class MovieController implements Initializable {
 
     @FXML
     private Button btnAdd;
+
+    @FXML
+    private AnchorPane anchorPane;
 
     @FXML
     private Button btnClose;
@@ -90,7 +102,24 @@ public class MovieController implements Initializable {
     @FXML
     private TextArea descripcionNew;
 
+    @FXML
+    private Button addImage;
 
+
+    @FXML
+    private File img;
+
+
+//    @FXML
+//    public String  saveImage(){
+//        FileChooser fileChooser = new FileChooser();
+//        fileChooser.setTitle("Elija Imagen");
+//        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files",
+//                        "*.bmp", "*.png", "*.jpg"));
+//        Stage stage = (Stage)anchorPane.getScene().getWindow();
+//        img = fileChooser.showOpenDialog(stage);
+//        return img.getPath();
+//    }
 
     //parte del editar
     private boolean editando = false;
@@ -124,7 +153,7 @@ public class MovieController implements Initializable {
     }
 
     @FXML
-    void addPelicula(ActionEvent event) {
+    void addPelicula(ActionEvent event) throws IOException {
             if (titulo.getText() == null || titulo.getText().equals("") || actores.getText() == null || actores.getText().equals("")
             || duracion.getText() == null || duracion.getText().equals("") || descripcion.getText() == null || descripcion.getText().equals("")){
 
@@ -140,6 +169,9 @@ public class MovieController implements Initializable {
                 String actoresAgregar = actores.getText();
                 String duracionAgregar = duracion.getText();
                 String descripcionAgregar = descripcion.getText();
+
+
+
 
 
                 try {

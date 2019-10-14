@@ -12,6 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.Id;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -21,6 +25,7 @@ public class PeliculaMgr {
 
     @Autowired
     PeliculaRepository peliculaRepository;
+
 
     // Create pelicula
    // @PostMapping("/pelicula")
@@ -55,8 +60,8 @@ public class PeliculaMgr {
         return ResponseEntity.ok().build();
     }
 
-    public void addPelicula (String titulo, String genero, String actores, String duracion,  String descripcion) throws InformacionPeliculaInvalida, PeliculaYaExiste {
-        if(titulo == null || "".equals(titulo) || genero == null || "".equals(genero) || actores == null || "".equals(actores) || duracion ==null || "".equals(duracion) || descripcion == null || "".equals(descripcion)){
+    public void addPelicula(String titulo, String genero, String actores, String duracion, String descripcion) throws InformacionPeliculaInvalida, PeliculaYaExiste, IOException {
+        if(titulo == null || "".equals(titulo) || genero == null || "".equals(genero) || actores == null || "".equals(actores) || duracion ==null || "".equals(duracion) || descripcion == null || "".equals(descripcion) ){
 
             throw new InformacionPeliculaInvalida("Algun dato ingresado no es correcto");
 
@@ -83,7 +88,7 @@ public class PeliculaMgr {
     }
 
     public void editarPelicula (String tituloViejo, String tituloNuevo, String genero, String actores, String duracion,  String descripcion) throws InformacionPeliculaInvalida, PeliculaNoExiste {
-        if(tituloNuevo == null || "".equals(tituloNuevo) || tituloViejo == null || "".equals(tituloViejo)  || genero == null || "".equals(genero) || actores == null || "".equals(actores) || duracion ==null || "".equals(duracion) || descripcion == null || "".equals(descripcion)){
+        if(tituloNuevo == null || "".equals(tituloNuevo) || tituloViejo == null || "".equals(tituloViejo)  || genero == null || "".equals(genero) || actores == null || "".equals(actores) || duracion ==null || "".equals(duracion) || descripcion == null || "".equals(descripcion) ){
 
             throw new InformacionPeliculaInvalida("Algun dato ingresado no es correcto");
 
