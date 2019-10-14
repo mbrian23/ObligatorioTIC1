@@ -9,10 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
+import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-@Controller
+@Component
 public class Inicio implements Initializable {
 
    MovieCrudApplication movieCrudApplication;
@@ -26,6 +27,9 @@ public class Inicio implements Initializable {
 
     @FXML
     private Pane pane;
+
+    @FXML
+    private TextField buscadorInicio;
 
 
 

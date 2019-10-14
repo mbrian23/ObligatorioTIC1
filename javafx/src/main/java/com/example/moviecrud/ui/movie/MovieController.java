@@ -92,6 +92,14 @@ public class MovieController {
     private Long idTemp;
 
 
+    //Filtrado
+    @FXML
+    private ListView<Pelicula> listaBusqueda;
+
+    @FXML
+    private TextField buscador;
+
+
 
 
 
