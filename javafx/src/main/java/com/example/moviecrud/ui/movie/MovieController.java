@@ -7,6 +7,8 @@ import com.example.moviecrud.business.exceptions.InformacionPeliculaInvalida;
 import com.example.moviecrud.business.exceptions.PeliculaNoExiste;
 import com.example.moviecrud.business.exceptions.PeliculaYaExiste;
 import com.example.moviecrud.ui.Principal;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +27,7 @@ import java.util.ResourceBundle;
 
 
 @Component
-public class MovieController {
+public class MovieController implements Initializable {
 
     Principal principal;
 
@@ -94,10 +96,16 @@ public class MovieController {
 
     //Filtrado
     @FXML
-    private ListView<Pelicula> listaBusqueda;
+    private ListView<String> listaBusqueda;
+
+    private ObservableList<Pelicula> movieLista = FXCollections.observableArrayList();
+
+    private ObservableList<String> movieListaString = FXCollections.observableArrayList();
 
     @FXML
     private TextField buscador;
+
+
 
 
 
@@ -313,7 +321,21 @@ public class MovieController {
         editando = true;
     }
 
+    public void actualizarLista (){
+        movieLista.clear();
+        movieLista.addAll(peliculaMgr.getAllPeliculas());
+        //listaBusqueda.setItems(movieLista);
+        for (Pelicula pelicula: movieLista
+             ) {
+            movieListaString.add(pelicula.getTitulo());
+        }
+
+        listaBusqueda.setItems(movieListaString);
+    }
 
 
-
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+       actualizarLista();
+    }
 }
