@@ -45,6 +45,9 @@ public class Principal implements Initializable {
     private TableColumn<Pelicula, String> titulo;
 
     @FXML
+    private TableColumn<Pelicula, String> genero;
+
+    @FXML
     private TableColumn<Pelicula, String> actores;
 
     @FXML
@@ -94,6 +97,7 @@ public class Principal implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         titulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
+        genero.setCellValueFactory(new PropertyValueFactory<>("genero"));
         actores.setCellValueFactory(new PropertyValueFactory<>("actores"));
         duracion.setCellValueFactory(new PropertyValueFactory<>("duracion"));
         descripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));

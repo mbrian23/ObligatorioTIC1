@@ -18,9 +18,9 @@ public class Pelicula {
     @Column(nullable = false, length = 45)
     private String titulo;
 
-//    @NotBlank
-//    @Column(nullable = false, length = 45)
-//    private String genero;
+    @NotBlank
+    @Column(nullable = false, length = 45)
+    private String genero;
 
     @NotBlank
     @Column(nullable = false)
@@ -41,9 +41,9 @@ public class Pelicula {
     public Pelicula() {
     }
 
-    public Pelicula(@NotBlank String titulo/*, @NotBlank String genero*/, @NotBlank String actores, @NotBlank String duracion, @NotBlank String descripcion) {
+    public Pelicula(@NotBlank String titulo, @NotBlank String genero, @NotBlank String actores, @NotBlank String duracion, @NotBlank String descripcion) {
         this.titulo = titulo;
-       // this.genero = genero;
+        this.genero = genero;
         this.actores = actores;
         this.duracion = duracion;
         this.descripcion = descripcion;
@@ -65,13 +65,13 @@ public class Pelicula {
         this.titulo = titulo;
     }
 
-//    public String getGenero() {
-//        return genero;
-//    }
-//
-//    public void setGenero(String genero) {
-//        this.genero = genero;
-//    }
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
 
 
 //    public Blob getImg() {

@@ -54,8 +54,8 @@ public class PeliculaMgr {
         return ResponseEntity.ok().build();
     }
 
-    public void addPelicula (String titulo/*, String genero*/, String actores, String duracion,  String descripcion) throws InformacionPeliculaInvalida, PeliculaYaExiste {
-        if(titulo == null || "".equals(titulo) /*|| genero == null || "".equals(genero)*/ || actores == null || "".equals(actores) || duracion ==null || "".equals(duracion) || descripcion == null || "".equals(descripcion)){
+    public void addPelicula (String titulo, String genero, String actores, String duracion,  String descripcion) throws InformacionPeliculaInvalida, PeliculaYaExiste {
+        if(titulo == null || "".equals(titulo) || genero == null || "".equals(genero) || actores == null || "".equals(actores) || duracion ==null || "".equals(duracion) || descripcion == null || "".equals(descripcion)){
 
             throw new InformacionPeliculaInvalida("Algun dato ingresado no es correcto");
 
@@ -67,7 +67,7 @@ public class PeliculaMgr {
         // if (peliculaRepository.findById(peliculaI)
         // problema para hacer el get de un id que se autogenera
 
-        Pelicula pelicula = new Pelicula(titulo/*,genero*/,actores,duracion ,descripcion);
+        Pelicula pelicula = new Pelicula(titulo,genero,actores,duracion ,descripcion);
         peliculaRepository.save(pelicula);
     }
     
@@ -81,8 +81,8 @@ public class PeliculaMgr {
         
     }
 
-    public void editarPelicula (String tituloViejo, String tituloNuevo/*, String genero*/, String actores, String duracion,  String descripcion) throws InformacionPeliculaInvalida, PeliculaNoExiste {
-        if(tituloNuevo == null || "".equals(tituloNuevo) || tituloViejo == null || "".equals(tituloViejo)  /*|| genero == null || "".equals(genero)*/ || actores == null || "".equals(actores) || duracion ==null || "".equals(duracion) || descripcion == null || "".equals(descripcion)){
+    public void editarPelicula (String tituloViejo, String tituloNuevo, String genero, String actores, String duracion,  String descripcion) throws InformacionPeliculaInvalida, PeliculaNoExiste {
+        if(tituloNuevo == null || "".equals(tituloNuevo) || tituloViejo == null || "".equals(tituloViejo)  || genero == null || "".equals(genero) || actores == null || "".equals(actores) || duracion ==null || "".equals(duracion) || descripcion == null || "".equals(descripcion)){
 
             throw new InformacionPeliculaInvalida("Algun dato ingresado no es correcto");
 
@@ -91,7 +91,7 @@ public class PeliculaMgr {
         for (Pelicula pelicula: getAllPeliculas()) {
             if (pelicula.getTitulo().equals(tituloViejo)){
                 Long id = pelicula.getId();
-                Pelicula peliculaActualizada = new Pelicula(tituloNuevo/*,genero*/,actores,duracion ,descripcion);
+                Pelicula peliculaActualizada = new Pelicula(tituloNuevo,genero ,actores,duracion ,descripcion);
                 update(id,peliculaActualizada);
             }
         }

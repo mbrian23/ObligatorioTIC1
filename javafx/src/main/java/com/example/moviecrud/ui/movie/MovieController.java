@@ -107,7 +107,7 @@ public class MovieController {
                 try {
 
                 String tituloAgregar = titulo.getText();
-               // String generoAgregar = genero.getEditor().getText();
+                String generoAgregar = genero.getValue();
                 String actoresAgregar = actores.getText();
                 String duracionAgregar = duracion.getText();
                 String descripcionAgregar = descripcion.getText();
@@ -115,7 +115,7 @@ public class MovieController {
 
                 try {
 
-                    peliculaMgr.addPelicula(tituloAgregar/*,generoAgregar*/,actoresAgregar,duracionAgregar,descripcionAgregar);
+                    peliculaMgr.addPelicula(tituloAgregar,generoAgregar,actoresAgregar,duracionAgregar,descripcionAgregar);
 
                     showAlert("Pelicula agregada", "Se agrego con exito la Pelicula!");
 
@@ -203,7 +203,7 @@ public class MovieController {
 
                 String tituloAEdi = tituloAEditar.getText();
                 String tituloEditado = tituloNew.getText();
-                // String generoAgregar = genero.getEditor().getText();
+                String generoAgregar = genero.getValue();
                 String actoresEditado = actoresNew.getText();
                 String duracionEditado = duracionNew.getText();
                 String descripcionEditado = descripcionNew.getText();
@@ -211,7 +211,7 @@ public class MovieController {
 
                 try {
 
-                    peliculaMgr.editarPelicula(tituloAEdi, tituloEditado/*,generoAgregar*/,actoresEditado,duracionEditado,descripcionEditado);
+                    peliculaMgr.editarPelicula(tituloAEdi, tituloEditado,generoAgregar ,actoresEditado,duracionEditado,descripcionEditado);
 
                     showAlert("Pelicula agregada", "Se agrego con exito la Pelicula!");
                     principal.actualizaCart();

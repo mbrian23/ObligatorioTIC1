@@ -43,7 +43,7 @@
             <TableView fx:id="tabla" prefHeight="365.0" prefWidth="580.0">
               <columns>
                 <TableColumn fx:id="titulo" prefWidth="75.0" text="Titulo" />
-                <TableColumn prefWidth="79.0" text="Genero" />
+                <TableColumn fx:id="genero" prefWidth="79.0" text="Genero" />
                   <TableColumn fx:id="actores" prefWidth="78.0" text="Actores" />
                   <TableColumn fx:id="duracion" prefWidth="91.0" text="Duracion" />
                   <TableColumn fx:id="descripcion" prefWidth="249.0" text="Descrpcion" />
