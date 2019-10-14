@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -48,6 +49,14 @@
                   <TableColumn fx:id="duracion" prefWidth="91.0" text="Duracion" />
                   <TableColumn fx:id="descripcion" prefWidth="249.0" text="Descrpcion" />
               </columns>
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Editar" onAction="#editarPeliculaAction" />
+                        <MenuItem mnemonicParsing="false" text="Eliminar" onAction="#eliminarPeliculaAction" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu>
             </TableView>
          </children>
       </VBox>

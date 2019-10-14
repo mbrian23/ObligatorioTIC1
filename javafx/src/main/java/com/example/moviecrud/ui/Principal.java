@@ -6,6 +6,7 @@ import com.example.moviecrud.business.entities.Pelicula;
 import com.example.moviecrud.ui.movie.MovieController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -58,6 +59,8 @@ public class Principal implements Initializable {
 
     private ObservableList<Pelicula> movieList = FXCollections.observableArrayList();
 
+    private FilteredList<Pelicula> filteredList = new FilteredList<>(movieList, s -> true);
+
     @FXML
     void agregarPeliculaAction(ActionEvent event) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -83,13 +86,20 @@ public class Principal implements Initializable {
 
     @FXML
     void editarPeliculaAction(ActionEvent event) throws Exception {
+       Pelicula pelicula = tabla.getSelectionModel().getSelectedItem();
+
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(MovieController.class.getResourceAsStream("EditarPelicula.fxml"));
+        Parent root = fxmlLoader.load(MovieController.class.getResourceAsStream("AddPelicula.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
+
+
+
+        MovieController movieController = fxmlLoader.getController();
+        movieController.loadMovieData(pelicula);
 
     }
 
@@ -113,4 +123,5 @@ public class Principal implements Initializable {
         movieList.addAll(peliculaMgr.getAllPeliculas());
         tabla.setItems(movieList);
     }
+
 }

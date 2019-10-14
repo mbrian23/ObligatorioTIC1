@@ -6,6 +6,7 @@ import com.example.moviecrud.business.exceptions.PeliculaNoExiste;
 import com.example.moviecrud.business.exceptions.PeliculaYaExiste;
 import com.example.moviecrud.persistence.PeliculaRepository;
 import com.example.moviecrud.ui.Principal;
+import com.example.moviecrud.ui.movie.MovieController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -88,7 +89,7 @@ public class PeliculaMgr {
 
         }
 
-        for (Pelicula pelicula: getAllPeliculas()) {
+       for (Pelicula pelicula: getAllPeliculas()) {
             if (pelicula.getTitulo().equals(tituloViejo)){
                 Long id = pelicula.getId();
                 Pelicula peliculaActualizada = new Pelicula(tituloNuevo,genero ,actores,duracion ,descripcion);
@@ -96,6 +97,8 @@ public class PeliculaMgr {
             }
         }
     }
+
+
 
 
 

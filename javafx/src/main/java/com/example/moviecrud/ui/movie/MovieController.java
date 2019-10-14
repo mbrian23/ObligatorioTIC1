@@ -2,6 +2,7 @@ package com.example.moviecrud.ui.movie;
 
 import com.example.moviecrud.MovieCrudApplication;
 import com.example.moviecrud.business.PeliculaMgr;
+import com.example.moviecrud.business.entities.Pelicula;
 import com.example.moviecrud.business.exceptions.InformacionPeliculaInvalida;
 import com.example.moviecrud.business.exceptions.PeliculaNoExiste;
 import com.example.moviecrud.business.exceptions.PeliculaYaExiste;
@@ -239,13 +240,20 @@ public class MovieController {
 
     @FXML
     void editarPeliculaFinalAction(ActionEvent event) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
-
-        Parent root = fxmlLoader.load(MovieController.class.getResourceAsStream("EditarFinal.fxml"));
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+//
+//
+//        FXMLLoader fxmlLoader = new FXMLLoader();
+//        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+//
+//        Parent root = fxmlLoader.load(MovieController.class.getResourceAsStream("AddPelicula.fxml"));
+//        Stage stage = new Stage();
+//        stage.setScene(new Scene(root));
+//        stage.show();
+//
+//
+//
+//        MovieController movieController = fxmlLoader.getController();
+//        //movieController.loadMovieData();
 
     }
 
@@ -265,5 +273,18 @@ public class MovieController {
         alert.setContentText(contextText);
         alert.showAndWait();
     }
+
+    public void loadMovieData (Pelicula pelicula){
+        try {
+            titulo.setText(pelicula.getTitulo());
+            actores.setText(pelicula.getActores());
+            descripcion.setText(pelicula.getDescripcion());
+            duracion.setText(pelicula.getDuracion());
+        } catch (NumberFormatException e){
+            e.printStackTrace();
+        }
+
+    }
+
 
 }
