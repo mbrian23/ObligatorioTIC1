@@ -101,7 +101,7 @@ public class MovieCrudApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
-        root = fxmlLoader.load(Inicio.class.getResourceAsStream("Inicio.fxml"));
+        root = fxmlLoader.load(Principal.class.getResourceAsStream("Cartelera.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
         //primaryStage.setResizable(true);
