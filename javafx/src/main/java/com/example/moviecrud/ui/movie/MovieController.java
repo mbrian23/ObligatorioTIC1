@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.lang.management.LockInfo;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -86,6 +87,12 @@ public class MovieController {
 
 
 
+    //parte del editar
+    private boolean editando = false;
+    private Long idTemp;
+
+
+
 
 
     @FXML
@@ -115,15 +122,26 @@ public class MovieController {
 
 
                 try {
+                    if(!editando) {
+                        peliculaMgr.addPelicula(tituloAgregar, generoAgregar, actoresAgregar, duracionAgregar, descripcionAgregar);
 
-                    peliculaMgr.addPelicula(tituloAgregar,generoAgregar,actoresAgregar,duracionAgregar,descripcionAgregar);
-
-                    showAlert("Pelicula agregada", "Se agrego con exito la Pelicula!");
+                        showAlert("Pelicula agregada", "Se agrego con exito la Pelicula!");
 
 
-                    close(event);
-                    principal.actualizaCart();
+                        close(event);
+                        principal.actualizaCart();
+                    } else {
 
+
+                            Pelicula peliculaActualizada = new Pelicula(tituloAgregar,generoAgregar ,actoresAgregar,duracionAgregar ,descripcionAgregar);
+                            peliculaMgr.update(idTemp,peliculaActualizada);
+
+                            showAlert("Pelicula Editada", "Se edito con exito la Pelicula!");
+                            close(event);
+                            principal.actualizaCart();
+
+
+                    }
                 } catch (InformacionPeliculaInvalida informacionPeliculaInvalida) {
                     showAlert(
                             "Informacion invalida !",
@@ -283,8 +301,11 @@ public class MovieController {
         } catch (NumberFormatException e){
             e.printStackTrace();
         }
-
+        idTemp = pelicula.getId();
+        editando = true;
     }
+
+
 
 
 }
