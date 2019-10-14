@@ -9,6 +9,8 @@ import com.example.moviecrud.business.exceptions.PeliculaYaExiste;
 import com.example.moviecrud.ui.Principal;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +25,7 @@ import org.springframework.stereotype.Component;
 
 import java.lang.management.LockInfo;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -104,6 +107,8 @@ public class MovieController implements Initializable {
 
     @FXML
     private TextField buscador;
+
+    FilteredList<Pelicula> filteredData = new FilteredList<>(movieLista, s -> true);
 
 
 
@@ -337,5 +342,40 @@ public class MovieController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
        actualizarLista();
+       buscador.textProperty().addListener((observable, oldValue, newValue) -> {
+           filteredData.setPredicate(pelicula -> {
+               // If filter text is empty, display all persons.
+               if (newValue == null || newValue.isEmpty()) {
+                   return true;
+               }
+
+               // Compare first name and last name of every person with filter text.
+               String lowerCaseFilter = newValue.toLowerCase();
+
+               if (pelicula.getTitulo().toLowerCase().contains(lowerCaseFilter)) {
+                   return true; // Filter matches first name.
+               } else if (pelicula.getGenero().toLowerCase().contains(lowerCaseFilter)) {
+                   return true; // Filter matches last name.
+               }
+               return false; // Does not match.
+           });
+       });
+
+        // 3. Wrap the FilteredList in a SortedList.
+        ObservableList<Pelicula> sortedData = new FilteredList<>(filteredData);
+        movieListaString.clear();
+        for (Pelicula pelicula: sortedData
+             ) {
+            movieListaString.add(pelicula.getTitulo());
+        }
+
+        // 4. Bind the SortedList comparator to the TableView comparator.
+      //  sortedData.comparatorProperty().bind(listaBusqueda.comparatorProperty());
+
+        // 5. Add sorted (and filtered) data to the table.
+        listaBusqueda.setItems(movieListaString);
     }
+
+
+
 }
