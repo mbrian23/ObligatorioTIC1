@@ -12,6 +12,7 @@ public class Pelicula {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idPelicula")
     private Long id;
 
     @NotBlank
