@@ -14,7 +14,11 @@ public class Sala {
 
     @NotBlank
     @Column(nullable = false, length = 30)
-    private String nombre;
+    private String tipo;
+
+    @NotBlank
+    @Column(nullable = false)
+    private int nLugares;
 
     @ManyToOne
     @JoinColumn(name = "idCine")
