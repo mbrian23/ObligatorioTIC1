@@ -37,7 +37,7 @@
           <Menu mnemonicParsing="false" text="Iniciar Sesion" >
             <items>
                 <MenuItem mnemonicParsing="false" text="Administrador" onAction="#adminEmpresa" />
-                <MenuItem mnemonicParsing="false" text="Usuario" />
+                <MenuItem mnemonicParsing="false" text="Usuario" onAction="#iniciarSesion" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Registrarse">

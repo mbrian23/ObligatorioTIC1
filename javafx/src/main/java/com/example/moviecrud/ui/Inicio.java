@@ -80,4 +80,15 @@ public class Inicio implements Initializable {
   stage.show();
  }
 
+ @FXML
+ public void iniciarSesion () throws Exception{
+  FXMLLoader fxmlLoader = new FXMLLoader();
+  fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+  Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("iniciarSesion.fxml"));
+  Stage stage = new Stage();
+  stage.setScene(new Scene(root));
+  stage.show();
+ }
+
 }
