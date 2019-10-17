@@ -69,4 +69,15 @@ public class Inicio implements Initializable {
 
     }
 
+ @FXML
+ public void adminEmpresa () throws Exception{
+  FXMLLoader fxmlLoader = new FXMLLoader();
+  fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+  Parent root = fxmlLoader.load(Principal.class.getResourceAsStream("Cartelera.fxml"));
+  Stage stage = new Stage();
+  stage.setScene(new Scene(root));
+  stage.show();
+ }
+
 }

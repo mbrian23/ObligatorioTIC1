@@ -192,7 +192,7 @@ public class MovieController implements Initializable {
                             showAlert("Pelicula Editada", "Se edito con exito la Pelicula!");
                             close(event);
                             principal.actualizaCart();
-
+                            editando = false;
 
                     }
                 } catch (InformacionPeliculaInvalida informacionPeliculaInvalida) {

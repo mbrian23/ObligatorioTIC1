@@ -34,9 +34,10 @@
       </HBox>
       <MenuBar layoutX="450.0" layoutY="47.0" prefHeight="31.0" prefWidth="218.0" style="-fx-background-color: grey; -fx-border-color: black;">
         <menus>
-          <Menu mnemonicParsing="false" text="Iniciar Sesion">
+          <Menu mnemonicParsing="false" text="Iniciar Sesion" >
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+                <MenuItem mnemonicParsing="false" text="Administrador" onAction="#adminEmpresa" />
+                <MenuItem mnemonicParsing="false" text="Usuario" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Registrarse">

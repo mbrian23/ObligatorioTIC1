@@ -124,4 +124,5 @@ public class Principal implements Initializable {
         tabla.setItems(movieList);
     }
 
+
 }
