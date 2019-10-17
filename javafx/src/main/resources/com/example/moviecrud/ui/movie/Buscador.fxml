@@ -40,6 +40,6 @@
         </menus>
       </MenuBar>
       <ListView fx:id="listaBusqueda" layoutX="60.0" layoutY="138.0" prefHeight="219.0" prefWidth="485.0" />
-      <TextField fx:id="bucador" layoutX="47.0" layoutY="78.0" prefHeight="27.0" prefWidth="338.0" promptText="Buscar ..." />
+      <TextField fx:id="buscador" layoutX="47.0" layoutY="78.0" prefHeight="27.0" prefWidth="338.0" promptText="Buscar ..." />
    </children>
 </AnchorPane>

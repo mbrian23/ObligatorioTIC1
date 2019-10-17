@@ -36,7 +36,7 @@ public class Inicio implements Initializable {
     private Pane pane;
 
     @FXML
-    private Button btnSearch;
+    private Button buscador;
 
 
     @FXML
