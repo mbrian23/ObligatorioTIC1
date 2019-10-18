@@ -1,6 +1,5 @@
 package com.example.moviecrud.ui.movie;
 
-import com.example.moviecrud.MovieCrudApplication;
 import com.example.moviecrud.business.PeliculaMgr;
 import com.example.moviecrud.business.entities.Pelicula;
 import com.example.moviecrud.business.exceptions.InformacionPeliculaInvalida;
@@ -9,32 +8,20 @@ import com.example.moviecrud.business.exceptions.PeliculaYaExiste;
 import com.example.moviecrud.ui.Principal;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.management.LockInfo;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -111,15 +98,19 @@ public class MovieController implements Initializable {
 
 
     @FXML
-    public String  saveImage(){
+    public byte[] saveImage(){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Elija Imagen");
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files",
                         "*.bmp", "*.png", "*.jpg"));
-        Stage stage = (Stage)anchorPane.getScene().getWindow();
-        img = fileChooser.showOpenDialog(stage);
-        return img.getPath();
+//        Stage stage = (Stage)anchorPane.getScene().getWindow();
+        img = fileChooser.showOpenDialog(null);
+        File file = new File(img.getPath());
+        byte[] picInBytes = new byte[(int) file.length()];
+        return picInBytes;
     }
+
+
 
     //parte del editar
     private boolean editando = false;
@@ -152,6 +143,7 @@ public class MovieController implements Initializable {
                 String actoresAgregar = actores.getText();
                 String duracionAgregar = duracion.getText();
                 String descripcionAgregar = descripcion.getText();
+                byte[] movieImage = saveImage();
 
 
 
@@ -159,7 +151,7 @@ public class MovieController implements Initializable {
 
                 try {
                     if(!editando) {
-                        peliculaMgr.addPelicula(tituloAgregar, generoAgregar, actoresAgregar, duracionAgregar, descripcionAgregar);
+                        peliculaMgr.addPelicula(tituloAgregar, generoAgregar, actoresAgregar, duracionAgregar, descripcionAgregar, movieImage);
 
                         showAlert("Pelicula agregada", "Se agrego con exito la Pelicula!");
 

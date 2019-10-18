@@ -60,7 +60,7 @@ public class PeliculaMgr {
         return ResponseEntity.ok().build();
     }
 
-    public void addPelicula(String titulo, String genero, String actores, String duracion, String descripcion) throws InformacionPeliculaInvalida, PeliculaYaExiste, IOException {
+    public void addPelicula(String titulo, String genero, String actores, String duracion, String descripcion, byte[] movieImage) throws InformacionPeliculaInvalida, PeliculaYaExiste, IOException {
         if(titulo == null || "".equals(titulo) || genero == null || "".equals(genero) || actores == null || "".equals(actores) || duracion ==null || "".equals(duracion) || descripcion == null || "".equals(descripcion) ){
 
             throw new InformacionPeliculaInvalida("Algun dato ingresado no es correcto");
@@ -74,6 +74,7 @@ public class PeliculaMgr {
         // problema para hacer el get de un id que se autogenera
 
         Pelicula pelicula = new Pelicula(titulo,genero,actores,duracion ,descripcion);
+        pelicula.setMovieImage(movieImage);
         peliculaRepository.save(pelicula);
     }
     
