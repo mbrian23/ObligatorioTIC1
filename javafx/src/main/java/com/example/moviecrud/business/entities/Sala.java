@@ -18,10 +18,18 @@ public class Sala {
 
     @NotBlank
     @Column(nullable = false)
-    private int nLugares;
+    private String nLugares;
 
     @ManyToOne
     @JoinColumn(name = "idCine")
     private Cine cine;
 
+    public Sala(Long id, @NotBlank String tipo, @NotBlank String nLugares) {
+        this.id = id;
+        this.tipo = tipo;
+        this.nLugares = nLugares;
+    }
+
+    public Sala() {
+    }
 }

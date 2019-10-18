@@ -357,46 +357,46 @@ public class MovieController implements Initializable {
 
 
     public void actualizarLista (){
-        movieLista.clear();
-        movieLista.addAll(peliculaMgr.getAllPeliculas());
-        //listaBusqueda.setItems(movieLista);
-        for (Pelicula pelicula: movieLista
-             ) {
-            movieListaString.add(pelicula.getTitulo());
-        }
-
-        listaBusqueda.setItems(movieListaString);
+//        movieLista.clear();
+//        movieLista.addAll(peliculaMgr.getAllPeliculas());
+//        //listaBusqueda.setItems(movieLista);
+//        for (Pelicula pelicula: movieLista
+//             ) {
+//            movieListaString.add(pelicula.getTitulo());
+//        }
+//
+//        listaBusqueda.setItems(movieListaString);
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        actualizarLista();
-        FilteredList<String> filteredData = new FilteredList<>(listaBusqueda.getItems(), s -> true);
-       buscador.textProperty().addListener(obs->{
-           String filter = buscador.getText();
-           if(filter == null || filter.length() == 0) {
-               filteredData.setPredicate(s -> true);
-           }
-           else {
-               filteredData.setPredicate(s -> s.contains(filter));
-           }
-       });
-
-
-        // 3. Wrap the FilteredList in a SortedList.
-      ObservableList<String> sortedData = new FilteredList<>(filteredData);
-        movieListaString.clear();
-        for (String pelicula: sortedData
-             ) {
-            movieListaString.add(pelicula);
-        }
-
-     //    4. Bind the SortedList comparator to the TableView comparator.
-       // sortedData.comparatorProperty().bind(listaBusqueda.comparatorProperty());
-  listaBusqueda.setItems(filteredData);
-   //      5. Add sorted (and filtered) data to the table.
-       // listaBusqueda = new ListView<>(filteredData);
+//        actualizarLista();
+//        FilteredList<String> filteredData = new FilteredList<>(listaBusqueda.getItems(), s -> true);
+//       buscador.textProperty().addListener(obs->{
+//           String filter = buscador.getText();
+//           if(filter == null || filter.length() == 0) {
+//               filteredData.setPredicate(s -> true);
+//           }
+//           else {
+//               filteredData.setPredicate(s -> s.contains(filter));
+//           }
+//       });
+//
+//
+//        // 3. Wrap the FilteredList in a SortedList.
+//      ObservableList<String> sortedData = new FilteredList<>(filteredData);
+//        movieListaString.clear();
+//        for (String pelicula: sortedData
+//             ) {
+//            movieListaString.add(pelicula);
+//        }
+//
+//     //    4. Bind the SortedList comparator to the TableView comparator.
+//       // sortedData.comparatorProperty().bind(listaBusqueda.comparatorProperty());
+//  listaBusqueda.setItems(filteredData);
+//   //      5. Add sorted (and filtered) data to the table.
+//       // listaBusqueda = new ListView<>(filteredData);
     }
 
 
