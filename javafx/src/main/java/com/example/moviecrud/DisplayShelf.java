@@ -19,6 +19,8 @@ import javafx.scene.layout.Region;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
+import java.awt.image.BufferedImage;
+
 /**
  * Simple 7 segment LED style digit. It supports the numbers 0 through 9.
  */
@@ -105,6 +107,8 @@ public class DisplayShelf extends Pane   {
         // update
         update();
     }
+
+
 
     @Override
     protected void layoutChildren() {

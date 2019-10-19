@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -98,7 +99,7 @@ public class MovieController implements Initializable {
 
 
     @FXML
-    public byte[] saveImage(){
+    public byte[] saveImage() throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Elija Imagen");
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files",
@@ -107,6 +108,9 @@ public class MovieController implements Initializable {
         img = fileChooser.showOpenDialog(null);
         File file = new File(img.getPath());
         byte[] picInBytes = new byte[(int) file.length()];
+        FileInputStream fileInputStream = new FileInputStream(file);
+        fileInputStream.read(picInBytes);
+        fileInputStream.close();
         return picInBytes;
     }
 

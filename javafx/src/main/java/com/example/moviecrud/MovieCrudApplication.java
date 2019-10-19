@@ -2,11 +2,13 @@ package com.example.moviecrud;
 
 
 
+import com.example.moviecrud.business.PeliculaMgr;
 import com.example.moviecrud.ui.InfoPelicula;
 import com.example.moviecrud.ui.Inicio;
 import com.example.moviecrud.ui.Principal;
 import com.example.moviecrud.ui.movie.MovieController;
 import javafx.application.Application;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -15,13 +17,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.stream.Stream;
 
 import javafx.animation.TranslateTransition;
@@ -43,8 +49,15 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import javafx.scene.image.Image;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
 @SpringBootApplication
 public class MovieCrudApplication extends Application {
+
+    @Autowired
+    PeliculaMgr peliculaMgr;
+
 
     private static ConfigurableApplicationContext context;
 
@@ -60,10 +73,18 @@ public class MovieCrudApplication extends Application {
 
     public Parent createContent()throws Exception {
         // load images
-        Image[] images = new Image[3];
-        images[0] = new Image(MovieCrudApplication.class.getResource("/com/example/moviecrud/ui/images/termi.jpg").toExternalForm(), false);
-        images[1] = new Image(MovieCrudApplication.class.getResource("/com/example/moviecrud/ui/images/termi2.jpg").toExternalForm(), false);
-        images[2] = new Image(MovieCrudApplication.class.getResource("/com/example/moviecrud/ui/images/logo2.png").toExternalForm(), false);
+        int z = peliculaMgr.getAllPeliculas().size();
+        Image[] images = new Image[z+1];
+
+        for (int i = 0; i < z ; i++) {
+
+            byte [] img = peliculaMgr.getAllPeliculas().get(i).getMovieImage();
+            ByteArrayInputStream bis = new ByteArrayInputStream(img);
+            BufferedImage bImage = ImageIO.read(bis);
+            Image image = SwingFXUtils.toFXImage(bImage, null);
+            images[i] = image;
+        }
+
 
         // create display shelf
         DisplayShelf displayShelf = new DisplayShelf(images);
