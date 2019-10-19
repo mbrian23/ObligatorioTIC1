@@ -51,7 +51,7 @@ public class DisplayShelf extends Pane   {
         setClip(clip);
         // set background gradient using css
         setStyle("-fx-background-color: linear-gradient(to bottom,"
-                + " black 60, #141414 60.1%, black 100%);");
+                + " black 60, #141414 60.1%, white 100%);");
         // style scroll bar color
         scrollBar.setStyle("-fx-base: #202020; -fx-background: #202020;");
         // create items
@@ -104,7 +104,6 @@ public class DisplayShelf extends Pane   {
                 }
             }
         });
-        // update
         update();
     }
 

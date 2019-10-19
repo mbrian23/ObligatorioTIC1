@@ -54,7 +54,6 @@
                        <String fx:id="2" fx:value="Drama" />
                    </FXCollections>
                </items> </ComboBox>
-                  <Button fx:id="addImage" mnemonicParsing="false" text="Imagen" GridPane.columnIndex="1" GridPane.rowIndex="5" onAction="#saveImage" />
                </children>
             </GridPane>
          </children>

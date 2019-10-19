@@ -68,13 +68,13 @@ public class MovieCrudApplication extends Application {
         MovieCrudApplication.context = SpringApplication.run(MovieCrudApplication.class);
     }
 
-    private static final double WIDTH = 450, HEIGHT = 480;
+    private static final double WIDTH = 700, HEIGHT = 400;
    // private Timeline animation;
 
     public Parent createContent()throws Exception {
         // load images
         int z = peliculaMgr.getAllPeliculas().size();
-        Image[] images = new Image[z+1];
+        Image[] images = new Image[z];
 
         for (int i = 0; i < z ; i++) {
 
@@ -125,7 +125,7 @@ public class MovieCrudApplication extends Application {
         root = fxmlLoader.load(Inicio.class.getResourceAsStream("Inicio.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-        //primaryStage.setResizable(true);
+
 
 
 //        primaryStage.setResizable(true);
