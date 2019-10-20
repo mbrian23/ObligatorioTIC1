@@ -16,7 +16,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javafx.scene.text.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -89,8 +91,10 @@ public class MovieCrudApplication extends Application {
         // create display shelf
         DisplayShelf displayShelf = new DisplayShelf(images);
         displayShelf.setPrefSize(WIDTH, HEIGHT);
-        displayShelf.getItems()[0].setOnMouseClicked(abrirPaginaPelicula());
-
+        for (int i = 0; i <z ; i++) {
+            displayShelf.getItems()[i].setOnMouseClicked(abrirPaginaPelicula());
+            displayShelf.getItems()[i].setId(String.valueOf(i));
+        }
         return displayShelf;
     }
 
@@ -107,8 +111,23 @@ public class MovieCrudApplication extends Application {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+                PerspectiveImage pp = (PerspectiveImage) event.getSource();
+                int clave = Integer.valueOf(pp.getId());
                 Stage stage = new Stage();
-                stage.setScene(new Scene(root));
+                Scene sc = new Scene(root);
+
+                Text dur = (Text) sc.lookup("#Duracion");
+                Text gen = (Text) sc.lookup("#Genero");
+                Text act = (Text) sc.lookup("#Actores");
+                Text tit = (Text) sc.lookup("#titulo");
+
+                tit.setText(peliculaMgr.getAllPeliculas().get(clave).getTitulo());
+                dur.setText(peliculaMgr.getAllPeliculas().get(clave).getDuracion());
+                gen.setText(peliculaMgr.getAllPeliculas().get(clave).getGenero());
+                act.setText(peliculaMgr.getAllPeliculas().get(clave).getActores());
+
+                stage.setScene(sc);
                 stage.show();
             }
         };
