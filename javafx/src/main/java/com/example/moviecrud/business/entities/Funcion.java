@@ -9,6 +9,7 @@ import java.util.Date;
 public class Funcion {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
