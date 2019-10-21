@@ -32,4 +32,36 @@ public class Sala {
 
     public Sala() {
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getnLugares() {
+        return nLugares;
+    }
+
+    public void setnLugares(String nLugares) {
+        this.nLugares = nLugares;
+    }
+
+    public Cine getCine() {
+        return cine;
+    }
+
+    public void setCine(Cine cine) {
+        this.cine = cine;
+    }
 }

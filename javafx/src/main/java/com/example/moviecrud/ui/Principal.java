@@ -141,7 +141,7 @@ public class Principal implements Initializable {
         SortedList sortedList = new SortedList(filteredList);
         sortedList.comparatorProperty().bind(tabla.comparatorProperty());
         tabla.setItems(sortedList);
-        
+
 
     }
 

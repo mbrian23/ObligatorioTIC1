@@ -5,6 +5,7 @@ import com.example.moviecrud.business.exceptions.InformacionPeliculaInvalida;
 import com.example.moviecrud.business.exceptions.InformacionSalaInvalida;
 import com.example.moviecrud.business.exceptions.PeliculaYaExiste;
 import com.example.moviecrud.business.exceptions.SalaYaExiste;
+import com.example.moviecrud.ui.CarteleraSalas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,6 +28,9 @@ public class SalaController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
     }
+
+    @Autowired
+    CarteleraSalas carteleraSalas;
 
     @Autowired
     SalaManager salaManager;
@@ -78,7 +82,7 @@ public class SalaController implements Initializable {
 
                     showAlert("Sala agregada", "Se agrego con exito la Sala!");
 
-
+                    carteleraSalas.actualizaCartSala();
                     close(event);
                 } catch (InformacionSalaInvalida informacionSalaInvalida) {
                 showAlert(

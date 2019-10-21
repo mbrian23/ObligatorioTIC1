@@ -74,7 +74,7 @@ public class Inicio implements Initializable {
   FXMLLoader fxmlLoader = new FXMLLoader();
   fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
-  Parent root = fxmlLoader.load(Principal.class.getResourceAsStream("Cartelera.fxml"));
+  Parent root = fxmlLoader.load(CarteleraSalas.class.getResourceAsStream("CarteleraSalas.fxml"));
   Stage stage = new Stage();
   stage.setScene(new Scene(root));
   stage.show();
