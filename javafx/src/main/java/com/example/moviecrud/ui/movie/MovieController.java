@@ -216,7 +216,6 @@ public class MovieController implements Initializable {
 
                         showAlert("Pelicula eliminada", "Se elimino con exito la Pelicula!");
                         principal.actualizaCart();
-
                         close(event);
                     } catch (InformacionPeliculaInvalida informacionPeliculaInvalida) {
                         showAlert(
@@ -288,27 +287,6 @@ public class MovieController implements Initializable {
         }
     }
 
-    @FXML
-    void editarPeliculaFinalAction(ActionEvent event) throws Exception {
-//
-//
-//        FXMLLoader fxmlLoader = new FXMLLoader();
-//        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
-//
-//        Parent root = fxmlLoader.load(MovieController.class.getResourceAsStream("AddPelicula.fxml"));
-//        Stage stage = new Stage();
-//        stage.setScene(new Scene(root));
-//        stage.show();
-//
-//
-//
-//        MovieController movieController = fxmlLoader.getController();
-//        //movieController.loadMovieData();
-
-    }
-
-
-
     private void clean (){
         titulo.setText(null);
         actores.setText(null);
@@ -349,50 +327,9 @@ public class MovieController implements Initializable {
     private TextField buscador;
 
 
-
-
-
-    public void actualizarLista (){
-        movieLista.clear();
-        movieLista.addAll(peliculaMgr.getAllPeliculas());
-        //listaBusqueda.setItems(movieLista);
-        for (Pelicula pelicula: movieLista
-             ) {
-            movieListaString.add(pelicula.getTitulo());
-        }
-
-        listaBusqueda.setItems(movieListaString);
-    }
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        actualizarLista();
-//        FilteredList<String> filteredData = new FilteredList<>(listaBusqueda.getItems(), s -> true);
-//       buscador.textProperty().addListener(obs->{
-//           String filter = buscador.getText();
-//           if(filter == null || filter.length() == 0) {
-//               filteredData.setPredicate(s -> true);
-//           }
-//           else {
-//               filteredData.setPredicate(s -> s.contains(filter));
-//           }
-//       });
-//
-//
-//        // 3. Wrap the FilteredList in a SortedList.
-//      ObservableList<String> sortedData = new FilteredList<>(filteredData);
-//        movieListaString.clear();
-//        for (String pelicula: sortedData
-//             ) {
-//            movieListaString.add(pelicula);
-//        }
-//
-//     //    4. Bind the SortedList comparator to the TableView comparator.
-//       // sortedData.comparatorProperty().bind(listaBusqueda.comparatorProperty());
-//  listaBusqueda.setItems(filteredData);
-//   //      5. Add sorted (and filtered) data to the table.
-//       // listaBusqueda = new ListView<>(filteredData);
+
     }
 
 

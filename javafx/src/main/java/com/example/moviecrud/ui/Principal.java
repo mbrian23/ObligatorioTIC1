@@ -117,9 +117,10 @@ public class Principal implements Initializable {
 
         actualizaCart();
 
-       FilteredList<Pelicula> filteredList = new FilteredList<>(movieList, s -> true);
+
 
        buscador.textProperty().addListener((((observable, oldValue, newValue) -> {
+           FilteredList<Pelicula> filteredList = new FilteredList<>(movieList, s -> true);
            filteredList.setPredicate((Predicate<? super Pelicula>) (Pelicula pelicula) ->{
                if (newValue.isEmpty() || newValue==null){
                    return true;
@@ -130,15 +131,17 @@ public class Principal implements Initializable {
                }
                return false;
            });
-       })));
 
+           SortedList sortedList = new SortedList(filteredList);
+           sortedList.comparatorProperty().bind(tabla.comparatorProperty());
+           tabla.setItems(sortedList);
+
+       })));
+        FilteredList<Pelicula> filteredList = new FilteredList<>(movieList, s -> true);
         SortedList sortedList = new SortedList(filteredList);
         sortedList.comparatorProperty().bind(tabla.comparatorProperty());
         tabla.setItems(sortedList);
-
-       // actualizaCart();
-
-
+        
 
     }
 

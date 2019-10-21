@@ -10,6 +10,6 @@
    <children>
       <Label layoutX="79.0" layoutY="72.0" prefHeight="34.0" prefWidth="326.0" text="Introduzca el titulo de la pelicula a editar:" />
       <TextField fx:id="tituloAEditar" layoutX="58.0" layoutY="106.0" prefHeight="27.0" prefWidth="317.0" />
-      <Button fx:id="btnEdit" onAction="#editarPeliculaFinalAction" layoutX="173.0" layoutY="150.0" mnemonicParsing="false" text="Editar " />
+      <Button fx:id="btnEdit" onAction="#editarPeliculaAction" layoutX="173.0" layoutY="150.0" mnemonicParsing="false" text="Editar " />
    </children>
 </AnchorPane>
