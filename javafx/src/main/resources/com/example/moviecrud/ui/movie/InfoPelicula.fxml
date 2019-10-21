@@ -46,7 +46,7 @@
     </BorderPane>
 </top>
    <bottom>
-      <Pane prefHeight="28.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
+      <Pane fx:id="pane" prefHeight="28.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
       <AnchorPane prefHeight="390.0" prefWidth="800.0" style="-fx-background-color: #971066;" BorderPane.alignment="CENTER">

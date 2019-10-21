@@ -30,8 +30,6 @@ public class SalaManager {
 
         }
 
-
-
         // Ahora hay que ver si la sala existe ya
 
         Sala sala = new Sala(nroSala, tipo, nroLugares);
