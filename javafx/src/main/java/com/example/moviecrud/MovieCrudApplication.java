@@ -153,6 +153,10 @@ public class MovieCrudApplication extends Application {
 
 
     }
+    static {
+
+        System.setProperty("java.awt.headless", "false");
+    }
 
 
     @Override

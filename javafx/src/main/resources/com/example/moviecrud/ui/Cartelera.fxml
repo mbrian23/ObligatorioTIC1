@@ -7,6 +7,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -39,6 +40,11 @@
                       </Menu>
                     </menus>
                   </MenuBar>
+                  <TextField fx:id="buscador" alignment="TOP_LEFT" prefHeight="11.0" prefWidth="167.0">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="160.0" top="10.0" />
+                     </HBox.margin>
+                  </TextField>
                </children>
             </HBox>
             <TableView fx:id="tabla" prefHeight="365.0" prefWidth="580.0">
@@ -52,8 +58,8 @@
                <contextMenu>
                   <ContextMenu>
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Editar" onAction="#editarPeliculaAction" />
-                        <MenuItem mnemonicParsing="false" text="Eliminar" onAction="#eliminarPeliculaAction" />
+                      <MenuItem mnemonicParsing="false" onAction="#editarPeliculaAction" text="Editar" />
+                        <MenuItem mnemonicParsing="false" onAction="#eliminarPeliculaAction" text="Eliminar" />
                     </items>
                   </ContextMenu>
                </contextMenu>

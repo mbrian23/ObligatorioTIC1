@@ -7,16 +7,14 @@ import com.example.moviecrud.ui.movie.MovieController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -26,6 +24,7 @@ import org.springframework.stereotype.Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 @Controller
 public class Principal implements Initializable {
@@ -60,7 +59,10 @@ public class Principal implements Initializable {
 
     private ObservableList<Pelicula> movieList = FXCollections.observableArrayList();
 
-    private FilteredList<Pelicula> filteredList = new FilteredList<>(movieList, s -> true);
+
+    @FXML
+    private TextField buscador;
+
 
     @FXML
     void agregarPeliculaAction(ActionEvent event) throws Exception {
@@ -115,6 +117,27 @@ public class Principal implements Initializable {
 
         actualizaCart();
 
+       FilteredList<Pelicula> filteredList = new FilteredList<>(movieList, s -> true);
+
+       buscador.textProperty().addListener((((observable, oldValue, newValue) -> {
+           filteredList.setPredicate((Predicate<? super Pelicula>) (Pelicula pelicula) ->{
+               if (newValue.isEmpty() || newValue==null){
+                   return true;
+               } else if (pelicula.getTitulo().contains(newValue)){
+                   return true;
+               } else if (pelicula.getGenero().contains(newValue)){
+                   return true;
+               }
+               return false;
+           });
+       })));
+
+        SortedList sortedList = new SortedList(filteredList);
+        sortedList.comparatorProperty().bind(tabla.comparatorProperty());
+        tabla.setItems(sortedList);
+
+       // actualizaCart();
+
 
 
     }
@@ -127,4 +150,7 @@ public class Principal implements Initializable {
 
     @FXML
     private AnchorPane root;
+
+
+
 }

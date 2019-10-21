@@ -353,21 +353,21 @@ public class MovieController implements Initializable {
 
 
     public void actualizarLista (){
-//        movieLista.clear();
-//        movieLista.addAll(peliculaMgr.getAllPeliculas());
-//        //listaBusqueda.setItems(movieLista);
-//        for (Pelicula pelicula: movieLista
-//             ) {
-//            movieListaString.add(pelicula.getTitulo());
-//        }
-//
-//        listaBusqueda.setItems(movieListaString);
+        movieLista.clear();
+        movieLista.addAll(peliculaMgr.getAllPeliculas());
+        //listaBusqueda.setItems(movieLista);
+        for (Pelicula pelicula: movieLista
+             ) {
+            movieListaString.add(pelicula.getTitulo());
+        }
+
+        listaBusqueda.setItems(movieListaString);
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        actualizarLista();
+        actualizarLista();
 //        FilteredList<String> filteredData = new FilteredList<>(listaBusqueda.getItems(), s -> true);
 //       buscador.textProperty().addListener(obs->{
 //           String filter = buscador.getText();
