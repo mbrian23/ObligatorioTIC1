@@ -5,14 +5,18 @@ import com.example.moviecrud.business.entities.Pelicula;
 import com.example.moviecrud.business.exceptions.InformacionPeliculaInvalida;
 import com.example.moviecrud.business.exceptions.PeliculaNoExiste;
 import com.example.moviecrud.business.exceptions.PeliculaYaExiste;
+import com.example.moviecrud.ui.Inicio;
 import com.example.moviecrud.ui.Principal;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -24,6 +28,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 
 @Component
@@ -35,6 +40,9 @@ public class MovieController implements Initializable {
     public MovieController(Principal principal){
         this.principal=principal;
     }
+
+    @Autowired
+    Inicio inicio;
 
     @Autowired
     private PeliculaMgr peliculaMgr;
@@ -317,18 +325,63 @@ public class MovieController implements Initializable {
 
     //Filtrado
     @FXML
-    private ListView<String> listaBusqueda;
+    private TableView<Pelicula> listaBusqueda;
 
-    private ObservableList<Pelicula> movieLista = FXCollections.observableArrayList();
+    @FXML
+    private TableColumn<Pelicula, String> tituloPel;
 
-    private ObservableList<String> movieListaString = FXCollections.observableArrayList();
+    @FXML
+    private TableColumn<Pelicula, String> generoPel;
+
+
+
+    private ObservableList<Pelicula> listaPeliculas = FXCollections.observableArrayList();
+
+
+
 
     @FXML
     private TextField buscador;
 
+    public void actualizaCart(){
+        listaPeliculas.clear();
+        listaPeliculas.addAll(peliculaMgr.getAllPeliculas());
+        listaBusqueda.setItems(listaPeliculas);
+    }
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        tituloPel.setCellValueFactory(new PropertyValueFactory<>("titulo"));
+        generoPel.setCellValueFactory(new PropertyValueFactory<>("genero"));
+
+        actualizaCart();
+
+        buscador.textProperty().addListener((((observable, oldValue, newValue) -> {
+            FilteredList<Pelicula> filteredList = new FilteredList<>(listaPeliculas, s -> true);
+            filteredList.setPredicate((Predicate<? super Pelicula>) (Pelicula pelicula) ->{
+                if (newValue.isEmpty() || newValue==null){
+                    return true;
+                } else if (pelicula.getTitulo().contains(newValue)){
+                    return true;
+                } else if (pelicula.getGenero().contains(newValue)){
+                    return true;
+                }
+                return false;
+            });
+
+            SortedList sortedList = new SortedList(filteredList);
+            sortedList.comparatorProperty().bind(listaBusqueda.comparatorProperty());
+            listaBusqueda.setItems(sortedList);
+
+        })));
+        FilteredList<Pelicula> filteredList = new FilteredList<>(listaPeliculas, s -> true);
+        SortedList sortedList = new SortedList(filteredList);
+        sortedList.comparatorProperty().bind(listaBusqueda.comparatorProperty());
+        listaBusqueda.setItems(sortedList);
+
+
 
     }
 

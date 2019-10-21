@@ -2,10 +2,11 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -39,7 +40,12 @@
           </Menu>
         </menus>
       </MenuBar>
-      <ListView fx:id="listaBusqueda" layoutX="60.0" layoutY="138.0" prefHeight="219.0" prefWidth="485.0" />
       <TextField fx:id="buscador" layoutX="47.0" layoutY="78.0" prefHeight="27.0" prefWidth="338.0" promptText="Buscar ..." />
+      <TableView fx:id="listaBusqueda" layoutX="60.0" layoutY="148.0" prefHeight="200.0" prefWidth="453.0">
+        <columns>
+          <TableColumn prefWidth="213.0" text="Titulo" />
+          <TableColumn prefWidth="236.0" text="Genero" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

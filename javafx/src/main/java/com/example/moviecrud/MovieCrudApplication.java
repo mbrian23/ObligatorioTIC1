@@ -3,11 +3,14 @@ package com.example.moviecrud;
 
 
 import com.example.moviecrud.business.PeliculaMgr;
+import com.example.moviecrud.business.entities.Pelicula;
 import com.example.moviecrud.ui.InfoPelicula;
 import com.example.moviecrud.ui.Inicio;
 import com.example.moviecrud.ui.Principal;
 import com.example.moviecrud.ui.movie.MovieController;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -67,6 +70,7 @@ public class MovieCrudApplication extends Application {
         }
 
 
+
         // create display shelf
         DisplayShelf displayShelf = new DisplayShelf(images);
         displayShelf.setPrefSize(WIDTH, HEIGHT);
@@ -77,7 +81,8 @@ public class MovieCrudApplication extends Application {
         return displayShelf;
     }
 
-    EventHandler abrirPaginaPelicula() throws Exception {
+
+    public EventHandler abrirPaginaPelicula() throws Exception {
         EventHandler handler = new EventHandler() {
             @Override
             public void handle(Event event) {
