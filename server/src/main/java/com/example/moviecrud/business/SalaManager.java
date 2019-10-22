@@ -6,20 +6,20 @@ import com.example.moviecrud.business.exceptions.InformacionPeliculaInvalida;
 import com.example.moviecrud.business.exceptions.InformacionSalaInvalida;
 import com.example.moviecrud.business.exceptions.PeliculaYaExiste;
 import com.example.moviecrud.business.exceptions.SalaYaExiste;
+import com.example.moviecrud.persistence.SalaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 
-@Service
+@RestController
 public class SalaManager {
-    RestTemplate rest = new RestTemplate();
 
+    @Autowired
+    SalaRepository salaRepository;
 
     public void save( Sala sala){
-        save(rest.postForObject("http://localhost:8080/sala", sala, Sala.class));;
+        salaRepository.save(sala);
     }
 
     public void addSala(String tipo, Long nroSala, String nroLugares) throws  SalaYaExiste, IOException, InformacionSalaInvalida {
@@ -34,6 +34,6 @@ public class SalaManager {
         // Ahora hay que ver si la sala existe ya
 
         Sala sala = new Sala(nroSala, tipo, nroLugares);
-        save(sala);
+        salaRepository.save(sala);
     }
 }

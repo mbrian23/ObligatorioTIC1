@@ -4,59 +4,57 @@ import com.example.moviecrud.business.entities.Pelicula;
 import com.example.moviecrud.business.exceptions.InformacionPeliculaInvalida;
 import com.example.moviecrud.business.exceptions.PeliculaNoExiste;
 import com.example.moviecrud.business.exceptions.PeliculaYaExiste;
-import com.example.moviecrud.persistence.PeliculaRepository;
 import com.example.moviecrud.ui.Principal;
 import com.example.moviecrud.ui.movie.MovieController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
-import javax.persistence.Id;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-@RestController
+@Service
 public class PeliculaMgr {
+    RestTemplate rest = new RestTemplate();
 
 
-
-    @Autowired
-    PeliculaRepository peliculaRepository;
 
 
     // Create pelicula
-   // @PostMapping("/pelicula")
+    //@PostMapping("/pelicula")
     public void save( Pelicula pelicula){
-        peliculaRepository.save(pelicula);
+        save(rest.postForObject("http://localhost:8080/pelicula", pelicula, Pelicula.class));
     }
 
     //Edit pelicula by id
    // @PutMapping("/pelicula/{id}")
     public void update (@PathVariable("id") Long id, Pelicula pelicula){
         pelicula.setId(id);
-        peliculaRepository.save(pelicula);
+        save(rest.postForObject("http://localhost:8080/pelicula", pelicula, Pelicula.class));
     }
 
     //Get all peliculas
-   // @GetMapping("/peliculas")
-    public List<Pelicula> getAllPeliculas(){
-        return (List<Pelicula>) peliculaRepository.findAll();
+    //@GetMapping("/peliculas")
+    public ArrayList<Pelicula> getAllPeliculas(){
+        return (ArrayList<Pelicula>) rest.getForObject("http://localhost:8080/peliculas", ArrayList.class);
     }
 
     // Get a Single pelicula by id
-   // @GetMapping("/pelicula/{id}")
+    //@GetMapping("/pelicula/{id}")
     public Pelicula getPeliculaById(@PathVariable(value = "id") Long peliculaId) {
-        return peliculaRepository.findById(peliculaId).get();
+        return rest.getForObject("http://localhost:8080/pelicula/{id}", Pelicula.class);
     }
 
     // Delete a Pelicula by id
-  //  @DeleteMapping("/pelicula/{id}")
+    //@DeleteMapping("/pelicula/{id}")
     public ResponseEntity<?> deletePelicula(@PathVariable(value = "id") Long peliculaId) {
-        Pelicula pelicula= peliculaRepository.findById(peliculaId).get();
-        peliculaRepository.delete(pelicula);
+        rest.delete("http://localhost:8080/pelicula/{id}");
         return ResponseEntity.ok().build();
     }
 
@@ -75,7 +73,7 @@ public class PeliculaMgr {
 
         Pelicula pelicula = new Pelicula(titulo,genero,actores,duracion ,descripcion);
         pelicula.setMovieImage(movieImage);
-        peliculaRepository.save(pelicula);
+        save(pelicula);
     }
     
     public void eliminarPelicula (String titulo)  throws InformacionPeliculaInvalida, PeliculaNoExiste {

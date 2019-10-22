@@ -1,8 +1,10 @@
-package com.server.server.entities;
+package com.example.moviecrud.business.entities;
 
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.sql.Blob;
 
 
 @Entity
@@ -34,10 +36,11 @@ public class Pelicula {
     @Column(nullable = false, length = 45)
     private String descripcion;
 
-//    @NotBlank
-//    @Lob
-//    @Column(nullable = false)
-//    private byte[] movieImage;
+
+    @Lob
+    @Column(nullable = false)
+    @NotNull
+    private byte[] movieImage;
 
 
     public Pelicula(){
@@ -76,13 +79,13 @@ public class Pelicula {
         this.genero = genero;
     }
 
-//    public byte[] getMovieImage() {
-//        return movieImage;
-//    }
-//
-//    public void setMovieImage(byte[] movieImage) {
-//        this.movieImage = movieImage;
-//    }
+    public byte[] getMovieImage() {
+        return movieImage;
+    }
+
+    public void setMovieImage(byte[] movieImage) {
+        this.movieImage = movieImage;
+    }
 
     public String getActores() {
         return actores;

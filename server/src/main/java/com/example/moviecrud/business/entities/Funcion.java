@@ -1,4 +1,4 @@
-package com.server.server.entities;
+package com.example.moviecrud.business.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

@@ -1,4 +1,4 @@
-package com.server.server.exceptions;
+package com.example.moviecrud.business.exceptions;
 
 public class PeliculaYaExiste extends Exception {
     public PeliculaYaExiste (String arg0){
