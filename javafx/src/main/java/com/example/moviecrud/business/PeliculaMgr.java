@@ -7,6 +7,8 @@ import com.example.moviecrud.business.exceptions.PeliculaYaExiste;
 import com.example.moviecrud.ui.Principal;
 import com.example.moviecrud.ui.movie.MovieController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
@@ -41,8 +43,8 @@ public class PeliculaMgr {
 
     //Get all peliculas
     //@GetMapping("/peliculas")
-    public ArrayList<Pelicula> getAllPeliculas(){
-        return (ArrayList<Pelicula>) rest.getForObject("http://localhost:8080/peliculas", ArrayList.class);
+    public List<Pelicula> getAllPeliculas(){
+        return (List<Pelicula>) rest.exchange("http://localhost:8080/peliculas", HttpMethod.GET, null, new ParameterizedTypeReference<List<Pelicula>>() {}).getBody();
     }
 
     // Get a Single pelicula by id
