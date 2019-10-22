@@ -75,8 +75,8 @@ public class MovieCrudApplication extends Application {
         DisplayShelf displayShelf = new DisplayShelf(images);
         displayShelf.setPrefSize(WIDTH, HEIGHT);
         for (int i = 0; i <z ; i++) {
-            displayShelf.getItems()[i].setOnMouseClicked(abrirPaginaPelicula());
             displayShelf.getItems()[i].setId(String.valueOf(i));
+            displayShelf.getItems()[i].setOnMouseClicked(abrirPaginaPelicula());
         }
         return displayShelf;
     }

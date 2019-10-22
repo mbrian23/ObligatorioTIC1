@@ -29,6 +29,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
@@ -110,56 +111,49 @@ public class Inicio implements Initializable {
   listaPeliculas.addAll(peliculaMgr.getAllPeliculas());
 
   Image[] aPeliculas = new Image[z];
-  DisplayShelf displayShelf = new DisplayShelf(aPeliculas);
-  int contador = 0;
- if (buscadorInicio.getText() != null) {
-  for (int i = 0; i < z; i++) {
-   if (listaPeliculas.get(i).getTitulo().contains(buscadorInicio.getText())) {
-    byte [] img = listaPeliculas.get(i).getMovieImage();
-    ByteArrayInputStream bis = new ByteArrayInputStream(img);
-    BufferedImage bImage = ImageIO.read(bis);
-    Image image = SwingFXUtils.toFXImage(bImage, null);
-    aPeliculas[i] = image;
-   } else if (listaPeliculas.get(i).getGenero().contains(buscadorInicio.getText())){
-    byte [] img = listaPeliculas.get(i).getMovieImage();
-    ByteArrayInputStream bis = new ByteArrayInputStream(img);
-    BufferedImage bImage = ImageIO.read(bis);
-    Image image = SwingFXUtils.toFXImage(bImage, null);
-    aPeliculas[i] = image;
-   }
-  }
-  final double WIDTH = 700, HEIGHT = 400;
-  displayShelf.setPrefSize(WIDTH, HEIGHT);
-  for (int i = 0; i <z ; i++) {
-   displayShelf.getItems()[i].setOnMouseClicked(movieCrudApplication.abrirPaginaPelicula());
-   displayShelf.getItems()[i].setId(String.valueOf(i));
-  }
-  try {
-   pane.getChildren().add(displayShelf);
-  } catch (Exception e) {
-   e.printStackTrace();
-  }
+  DisplayShelf displayShelf = null;
+  int posFin=0;
+  ArrayList<Integer> claves = new ArrayList<>();
 
- } else {
-  for (int i = 0; i < z; i++) {
-    byte [] img = listaPeliculas.get(i).getMovieImage();
-    ByteArrayInputStream bis = new ByteArrayInputStream(img);
-    BufferedImage bImage = ImageIO.read(bis);
-    Image image = SwingFXUtils.toFXImage(bImage, null);
-    todas[i] = image;
+
+  if (buscadorInicio.getText() != null) {
+   for (int i = 0; i < z; i++) {
+    if (listaPeliculas.get(i).getTitulo().contains(buscadorInicio.getText())) {
+     claves.add(i);
+     byte [] img = listaPeliculas.get(i).getMovieImage();
+     ByteArrayInputStream bis = new ByteArrayInputStream(img);
+     BufferedImage bImage = ImageIO.read(bis);
+     Image image = SwingFXUtils.toFXImage(bImage, null);
+     aPeliculas[posFin] = image;
+     posFin++;
+     displayShelf = new DisplayShelf(aPeliculas);
+     final double WIDTH = 700, HEIGHT = 400;
+     displayShelf.setPrefSize(WIDTH, HEIGHT);
+
+    }else if (listaPeliculas.get(i).getGenero().contains(buscadorInicio.getText())){
+       claves.add(i);
+       byte [] img = listaPeliculas.get(i).getMovieImage();
+       ByteArrayInputStream bis = new ByteArrayInputStream(img);
+       BufferedImage bImage = ImageIO.read(bis);
+       Image image = SwingFXUtils.toFXImage(bImage, null);
+       aPeliculas[posFin] = image;
+       posFin++;
+       displayShelf = new DisplayShelf(aPeliculas);
+       final double WIDTH = 700, HEIGHT = 400;
+       displayShelf.setPrefSize(WIDTH, HEIGHT);
+    }
    }
-  DisplayShelf displayShelf2 = new DisplayShelf(todas);
-  final double WIDTH = 700, HEIGHT = 400;
-  displayShelf.setPrefSize(WIDTH, HEIGHT);
-  for (int i = 0; i <z ; i++) {
-   displayShelf.getItems()[i].setOnMouseClicked(movieCrudApplication.abrirPaginaPelicula());
-   displayShelf.getItems()[i].setId(String.valueOf(i));
-  }
-  try {
-   pane.getChildren().add(displayShelf);
-  } catch (Exception e) {
-   e.printStackTrace();
-  }
+   for (int j = 0; j <claves.size() ; j++) {
+    int key = claves.get(j);
+    displayShelf.getItems()[j].setId(String.valueOf(key));
+    displayShelf.getItems()[j].setOnMouseClicked(movieCrudApplication.abrirPaginaPelicula());
+   }
+   claves.clear();
+   try {
+    pane.getChildren().add(displayShelf);
+   } catch (Exception e) {
+    e.printStackTrace();
+   }
  }
 
  }
