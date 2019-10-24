@@ -353,36 +353,37 @@ public class MovieController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tituloPel.setCellValueFactory(new PropertyValueFactory<>("titulo"));
-        generoPel.setCellValueFactory(new PropertyValueFactory<>("genero"));
+       if (tituloPel!=null && generoPel!= null) {
+           tituloPel.setCellValueFactory(new PropertyValueFactory<>("titulo"));
+           generoPel.setCellValueFactory(new PropertyValueFactory<>("genero"));
 
-        actualizaCart();
+           actualizaCart();
 
-        buscador.textProperty().addListener((((observable, oldValue, newValue) -> {
-            FilteredList<Pelicula> filteredList = new FilteredList<>(listaPeliculas, s -> true);
-            filteredList.setPredicate((Predicate<? super Pelicula>) (Pelicula pelicula) ->{
-                if (newValue.isEmpty() || newValue==null){
-                    return true;
-                } else if (pelicula.getTitulo().contains(newValue)){
-                    return true;
-                } else if (pelicula.getGenero().contains(newValue)){
-                    return true;
-                }
-                return false;
-            });
+           buscador.textProperty().addListener((((observable, oldValue, newValue) -> {
+               FilteredList<Pelicula> filteredList = new FilteredList<>(listaPeliculas, s -> true);
+               filteredList.setPredicate((Predicate<? super Pelicula>) (Pelicula pelicula) -> {
+                   if (newValue.isEmpty() || newValue == null) {
+                       return true;
+                   } else if (pelicula.getTitulo().contains(newValue)) {
+                       return true;
+                   } else if (pelicula.getGenero().contains(newValue)) {
+                       return true;
+                   }
+                   return false;
+               });
 
-            SortedList sortedList = new SortedList(filteredList);
-            sortedList.comparatorProperty().bind(listaBusqueda.comparatorProperty());
-            listaBusqueda.setItems(sortedList);
+               SortedList sortedList = new SortedList(filteredList);
+               sortedList.comparatorProperty().bind(listaBusqueda.comparatorProperty());
+               listaBusqueda.setItems(sortedList);
 
-        })));
-        FilteredList<Pelicula> filteredList = new FilteredList<>(listaPeliculas, s -> true);
-        SortedList sortedList = new SortedList(filteredList);
-        sortedList.comparatorProperty().bind(listaBusqueda.comparatorProperty());
-        listaBusqueda.setItems(sortedList);
+           })));
+           FilteredList<Pelicula> filteredList = new FilteredList<>(listaPeliculas, s -> true);
+           SortedList sortedList = new SortedList(filteredList);
+           sortedList.comparatorProperty().bind(listaBusqueda.comparatorProperty());
+           listaBusqueda.setItems(sortedList);
 
 
-
+       }
     }
 
 

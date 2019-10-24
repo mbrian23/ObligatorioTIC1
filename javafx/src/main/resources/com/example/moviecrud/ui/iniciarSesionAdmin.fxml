@@ -8,18 +8,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="741.0" style="-fx-background-color: grey; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" stylesheets="/com/example/moviecrud/ui/iniciarSesion.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.Inicio">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="741.0" style="-fx-background-color: grey; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" stylesheets="/com/example/moviecrud/ui/iniciarSesion.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.InicioAdmiController">
    <children>
       <HBox alignment="CENTER" layoutX="32.0" layoutY="23.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bolder; -fx-font-size: 2.4em;" text="MovieCorp" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bolder; -fx-font-size: 2.4em;" text="MovieCorp Administracion" />
             <HBox alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="673.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Button mnemonicParsing="false" style="-fx-border-width: 0px 0px 2px 0px 0px 0px 2px 0px; -fx-font-size: 1.4em; -fx-border-color: black; -fx-font-weight: bold; -fx-background-color: tranparent;" text="Registrarse" />
-                  <Button mnemonicParsing="false" onAction="#iniciarSesionAdmin" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black; -fx-font-size: 1.4em; -fx-font-weight: bold;" text="Administracion">
+                  <Button fx:id="registrarse" mnemonicParsing="false" style="-fx-border-width: 0px 0px 2px 0px 0px 0px 2px 0px; -fx-font-size: 1.4em; -fx-border-color: black; -fx-font-weight: bold; -fx-background-color: tranparent;" text="Registrarse" />
+                  <Button fx:id="user" mnemonicParsing="false" onAction="#iniciarSesion" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black; -fx-font-size: 1.4em; -fx-font-weight: bold;" text="Usuario">
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
@@ -32,15 +32,15 @@
          <children>
             <HBox alignment="CENTER" style="-fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;">
                <children>
-                  <TextField prefHeight="0.0" promptText="Username" style="-fx-background-color: transparent; -fx-prompt-text-fill: black;" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="adminID" prefHeight="0.0" promptText="Username" style="-fx-background-color: transparent; -fx-prompt-text-fill: black;" text="Admin ID" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="23.0" prefWidth="250.0" style="-fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;">
                <children>
-                  <TextField prefHeight="0.0" promptText="Password" style="-fx-background-color: transparent; -fx-prompt-text-fill: black;" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="password" prefHeight="0.0" promptText="Password" style="-fx-background-color: transparent; -fx-prompt-text-fill: black;" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#cargaInicio" prefHeight="35.0" prefWidth="250.0" style="-fx-background-color: #2f2f2fa3; -fx-background-radius: 100; -fx-text-fill: black; -fx-font-family: Quicksand; -fx-font-weight: bold;" text="Enter" textAlignment="CENTER">
+            <Button fx:id="enter" alignment="CENTER" mnemonicParsing="false" onAction="#adminEmpresa" prefHeight="35.0" prefWidth="250.0" style="-fx-background-color: #2f2f2fa3; -fx-background-radius: 100; -fx-text-fill: black; -fx-font-family: Quicksand; -fx-font-weight: bold;" text="Enter" textAlignment="CENTER">
                <VBox.margin>
                   <Insets top="40.0" />
                </VBox.margin></Button>
