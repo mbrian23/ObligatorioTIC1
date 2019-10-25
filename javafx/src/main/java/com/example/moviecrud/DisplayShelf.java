@@ -54,8 +54,6 @@ public class DisplayShelf extends Pane   {
                 + " black 60, #141414 60.1%, white 100%);");
         // style scroll bar color
         scrollBar.setStyle("-fx-base: #202020; -fx-background: #202020;");
-        if(images.length != 0){
-        }
         // create items
         items = new PerspectiveImage[images.length];
         for (int i = 0; i < images.length; i++) {

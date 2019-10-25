@@ -57,6 +57,9 @@ public class Inicio implements Initializable {
     @FXML
     private TextField buscadorInicio;
 
+    private boolean bool1 = false;
+    private boolean bool2 = false;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -129,6 +132,8 @@ public class Inicio implements Initializable {
 
         if (buscadorInicio.getText() != null) {
             for (int i = 0; i < z; i++) {
+                bool1 = false;
+                bool2 = false;
                 if (listaPeliculas.get(i).getTitulo().contains(buscadorInicio.getText())) {
                     claves.add(i);
                     byte [] img = listaPeliculas.get(i).getMovieImage();
@@ -140,6 +145,7 @@ public class Inicio implements Initializable {
                     displayShelf = new DisplayShelf(aPeliculas);
                     final double WIDTH = 700, HEIGHT = 400;
                     displayShelf.setPrefSize(WIDTH, HEIGHT);
+                    bool1 = true;
 
                 }else if (listaPeliculas.get(i).getGenero().contains(buscadorInicio.getText())){
                     claves.add(i);
@@ -152,21 +158,31 @@ public class Inicio implements Initializable {
                     displayShelf = new DisplayShelf(aPeliculas);
                     final double WIDTH = 700, HEIGHT = 400;
                     displayShelf.setPrefSize(WIDTH, HEIGHT);
-                }else if (!listaPeliculas.get(i).getGenero().contains(buscadorInicio.getText()) && !listaPeliculas.get(i).getTitulo().contains(buscadorInicio.getText())){
-                    Image[] todasImg = new Image[z];
-                    for (int j = 0; j <z ; j++) {
-                        byte [] bi = listaPeliculas.get(j).getMovieImage();
-                        ByteArrayInputStream bais = new ByteArrayInputStream(bi);
-                        BufferedImage bImage = ImageIO.read(bais);
-                        Image image = SwingFXUtils.toFXImage(bImage, null);
-                        todasImg[i] = image;
-                        showAlert("No hay coincidencias", "No se ha encontrado una pelicula con esas especificaciones");
-                    }
-                    displayShelf = new DisplayShelf(todasImg);
-                    final double WIDTH = 700, HEIGHT = 400;
-                    displayShelf.setPrefSize(WIDTH, HEIGHT);
+                    bool2 = true;
                 }
+            }
 
+            if (!bool1 && !bool2){
+                Image[] todasImg = new Image[z];
+                listaPeliculas.clear();
+                listaPeliculas.addAll(peliculaMgr.getAllPeliculas());
+                for (int j = 0; j <z ; j++) {
+                    byte [] bi = listaPeliculas.get(j).getMovieImage();
+                    ByteArrayInputStream bais = new ByteArrayInputStream(bi);
+                    BufferedImage bImage = ImageIO.read(bais);
+                    Image image = SwingFXUtils.toFXImage(bImage, null);
+                    todasImg[j] = image;
+                }
+                showAlert("No hay coincidencias", "No se ha encontrado una pelicula con esas especificaciones");
+                displayShelf = new DisplayShelf(todasImg);
+                final double WIDTH = 700, HEIGHT = 400;
+                displayShelf.setPrefSize(WIDTH, HEIGHT);
+                for (int i = 0; i <z ; i++) {
+                    displayShelf.getItems()[i].setId(String.valueOf(i));
+                    displayShelf.getItems()[i].setOnMouseClicked(movieCrudApplication.abrirPaginaPelicula());
+                }
+                bool1=false;
+                bool2=false;
             }
             for (int j = 0; j <claves.size() ; j++) {
                 int key = claves.get(j);

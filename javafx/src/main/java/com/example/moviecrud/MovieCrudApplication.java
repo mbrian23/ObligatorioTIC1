@@ -79,7 +79,8 @@ public class MovieCrudApplication extends Application {
                 displayShelf.getItems()[i].setOnMouseClicked(abrirPaginaPelicula());
             }
 
-        }else{
+        }
+        else{
             Image[] inicio = new Image[1];
             inicio[0] = new Image(MovieCrudApplication.class.getResource("/com/example/moviecrud/ui/images/logo2.png").toExternalForm(), false);
             displayShelf = new DisplayShelf(inicio);
