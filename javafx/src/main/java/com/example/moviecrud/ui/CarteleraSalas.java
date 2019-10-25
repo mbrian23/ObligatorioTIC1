@@ -99,7 +99,7 @@ public class CarteleraSalas implements Initializable {
                     return true;
                 } else if (sala.getTipo().contains(newValue)){
                     return true;
-                } else if (sala.getCine().getNombre().contains(newValue)){
+                } else if (sala.getLocal().getCine().getNombre().contains(newValue)){
                     return true;
                 }
                 return false;

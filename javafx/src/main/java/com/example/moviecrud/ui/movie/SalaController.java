@@ -75,7 +75,7 @@ public class SalaController implements Initializable {
 
                 Long numeroSala = Long.parseLong(nroSala.getText());
                 String tipoSalaValue = tipoSala.getValue();
-                String numeroLugares = nroLugares.getText();
+                Long numeroLugares = Long.parseLong(nroLugares.getText());
 
                 try {
                     salaManager.addSala(tipoSalaValue, numeroSala, numeroLugares);

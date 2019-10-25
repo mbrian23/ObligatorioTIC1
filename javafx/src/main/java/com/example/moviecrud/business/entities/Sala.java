@@ -3,29 +3,35 @@ package com.example.moviecrud.business.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table
 public class Sala {
 
     @Id()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idSala")
     private Long id;
+
+    @NotNull
+    @Column(nullable = false, length = 30)
+    private Long numeroSala;
 
     @NotBlank
     @Column(nullable = false, length = 30)
     private String tipo;
 
-    @NotBlank
+    @NotNull
     @Column(nullable = false)
-    private String nLugares;
+    private Long nLugares;
 
     @ManyToOne
-    @JoinColumn(name = "idCine")
-    private Cine cine;
+    @JoinColumn(name = "nombre_local")
+    private Locales local;
 
-    public Sala(Long id, @NotBlank String tipo, @NotBlank String nLugares) {
-        this.id = id;
+    public Sala(Long numeroSala, @NotBlank String tipo, @NotNull Long nLugares) {
+        this.numeroSala = numeroSala;
         this.tipo = tipo;
         this.nLugares = nLugares;
     }
@@ -49,19 +55,27 @@ public class Sala {
         this.tipo = tipo;
     }
 
-    public String getnLugares() {
+    public Long getnLugares() {
         return nLugares;
     }
 
-    public void setnLugares(String nLugares) {
+    public void setnLugares(Long nLugares) {
         this.nLugares = nLugares;
     }
 
-    public Cine getCine() {
-        return cine;
+    public Locales getLocal() {
+        return local;
     }
 
-    public void setCine(Cine cine) {
-        this.cine = cine;
+    public void setLocal(Locales local) {
+        this.local = local;
+    }
+
+    public Long getNumeroSala() {
+        return numeroSala;
+    }
+
+    public void setNumeroSala(Long numeroSala) {
+        this.numeroSala = numeroSala;
     }
 }

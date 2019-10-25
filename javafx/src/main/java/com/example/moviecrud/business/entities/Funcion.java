@@ -1,5 +1,7 @@
 package com.example.moviecrud.business.entities;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
@@ -16,11 +18,11 @@ public class Funcion {
     @Column(nullable = false)
     private Date fechaHora;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idSala")
     private Sala sala;
 
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idPelicula")
     private Pelicula pelicula;
 
