@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -37,7 +38,7 @@ import java.util.function.Predicate;
 @Component
 public class Inicio implements Initializable {
 
-   MovieCrudApplication movieCrudApplication;
+    MovieCrudApplication movieCrudApplication;
 
     @Autowired
     public Inicio (MovieCrudApplication movieCrudApplication){ this.movieCrudApplication=movieCrudApplication;}
@@ -57,20 +58,20 @@ public class Inicio implements Initializable {
     private TextField buscadorInicio;
 
 
- @Override
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
-     try {
-      pane.getChildren().add(movieCrudApplication.createContent());
-     } catch (Exception e) {
-      e.printStackTrace();
-     }
+        try {
+            pane.getChildren().add(movieCrudApplication.createContent());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
     @FXML
- void cargaInicio (ActionEvent event) throws Exception {
+    void cargaInicio (ActionEvent event) throws Exception {
 
-       FXMLLoader fxmlLoader = new FXMLLoader();
+        FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("Inicio.fxml"));
@@ -79,98 +80,119 @@ public class Inicio implements Initializable {
         stage.show();
     }
 
- @FXML
- public void adminEmpresa () throws Exception{
-  FXMLLoader fxmlLoader = new FXMLLoader();
-  fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+    @FXML
+    public void adminEmpresa () throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
-  Parent root = fxmlLoader.load(Principal.class.getResourceAsStream("menuAdmin.fxml"));
-  Stage stage = new Stage();
-  stage.setScene(new Scene(root));
-  stage.show();
- }
-
- @FXML
- public void iniciarSesion () throws Exception{
-  FXMLLoader fxmlLoader = new FXMLLoader();
-  fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
-
-  Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("iniciarSesion.fxml"));
-  Stage stage = new Stage();
-  stage.setScene(new Scene(root));
-  stage.show();
- }
-
- @FXML
- public void iniciarSesionAdmin (ActionEvent event) throws Exception{
-  FXMLLoader fxmlLoader = new FXMLLoader();
-  fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
-
-  Parent root = fxmlLoader.load(InicioAdmiController.class.getResourceAsStream("iniciarSesionAdmin.fxml"));
-  Scene inicioScene = new Scene(root, 600,500);
-  Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-  window.setScene(inicioScene);
-  window.show();
- }
-
- @FXML
- public void filtrado() throws Exception{
-  int z = peliculaMgr.getAllPeliculas().size();
-  Image [] todas = new Image[z];
-  ObservableList<Pelicula> listaPeliculas = FXCollections.observableArrayList();
-  listaPeliculas.clear();
-  listaPeliculas.addAll(peliculaMgr.getAllPeliculas());
-
-  Image[] aPeliculas = new Image[z];
-  DisplayShelf displayShelf = null;
-  int posFin=0;
-  ArrayList<Integer> claves = new ArrayList<>();
-
-
-  if (buscadorInicio.getText() != null) {
-   for (int i = 0; i < z; i++) {
-    if (listaPeliculas.get(i).getTitulo().contains(buscadorInicio.getText())) {
-     claves.add(i);
-     byte [] img = listaPeliculas.get(i).getMovieImage();
-     ByteArrayInputStream bis = new ByteArrayInputStream(img);
-     BufferedImage bImage = ImageIO.read(bis);
-     Image image = SwingFXUtils.toFXImage(bImage, null);
-     aPeliculas[posFin] = image;
-     posFin++;
-     displayShelf = new DisplayShelf(aPeliculas);
-     final double WIDTH = 700, HEIGHT = 400;
-     displayShelf.setPrefSize(WIDTH, HEIGHT);
-
-    }else if (listaPeliculas.get(i).getGenero().contains(buscadorInicio.getText())){
-       claves.add(i);
-       byte [] img = listaPeliculas.get(i).getMovieImage();
-       ByteArrayInputStream bis = new ByteArrayInputStream(img);
-       BufferedImage bImage = ImageIO.read(bis);
-       Image image = SwingFXUtils.toFXImage(bImage, null);
-       aPeliculas[posFin] = image;
-       posFin++;
-       displayShelf = new DisplayShelf(aPeliculas);
-       final double WIDTH = 700, HEIGHT = 400;
-       displayShelf.setPrefSize(WIDTH, HEIGHT);
+        Parent root = fxmlLoader.load(Principal.class.getResourceAsStream("menuAdmin.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
-   }
-   for (int j = 0; j <claves.size() ; j++) {
-    int key = claves.get(j);
-    displayShelf.getItems()[j].setId(String.valueOf(key));
-    displayShelf.getItems()[j].setOnMouseClicked(movieCrudApplication.abrirPaginaPelicula());
-   }
-   claves.clear();
-   try {
-    pane.getChildren().add(displayShelf);
-   } catch (Exception e) {
-    e.printStackTrace();
-   }
- }
 
- }
+    @FXML
+    public void iniciarSesion () throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
- private boolean sesionIniciada;
- // Si hay una sesion debemos hacer desaparecer el iniciar sesion por un salir y poner por algun lado el username
+        Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("iniciarSesion.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
+    public void iniciarSesionAdmin (ActionEvent event) throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(InicioAdmiController.class.getResourceAsStream("iniciarSesionAdmin.fxml"));
+        Scene inicioScene = new Scene(root, 600,500);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(inicioScene);
+        window.show();
+    }
+
+    @FXML
+    public void filtrado() throws Exception{
+        int z = peliculaMgr.getAllPeliculas().size();
+        ObservableList<Pelicula> listaPeliculas = FXCollections.observableArrayList();
+        listaPeliculas.clear();
+        listaPeliculas.addAll(peliculaMgr.getAllPeliculas());
+
+        Image[] aPeliculas = new Image[z];
+        DisplayShelf displayShelf = null;
+        int posFin=0;
+        ArrayList<Integer> claves = new ArrayList<>();
+
+
+        if (buscadorInicio.getText() != null) {
+            for (int i = 0; i < z; i++) {
+                if (listaPeliculas.get(i).getTitulo().contains(buscadorInicio.getText())) {
+                    claves.add(i);
+                    byte [] img = listaPeliculas.get(i).getMovieImage();
+                    ByteArrayInputStream bis = new ByteArrayInputStream(img);
+                    BufferedImage bImage = ImageIO.read(bis);
+                    Image image = SwingFXUtils.toFXImage(bImage, null);
+                    aPeliculas[posFin] = image;
+                    posFin++;
+                    displayShelf = new DisplayShelf(aPeliculas);
+                    final double WIDTH = 700, HEIGHT = 400;
+                    displayShelf.setPrefSize(WIDTH, HEIGHT);
+
+                }else if (listaPeliculas.get(i).getGenero().contains(buscadorInicio.getText())){
+                    claves.add(i);
+                    byte [] img = listaPeliculas.get(i).getMovieImage();
+                    ByteArrayInputStream bis = new ByteArrayInputStream(img);
+                    BufferedImage bImage = ImageIO.read(bis);
+                    Image image = SwingFXUtils.toFXImage(bImage, null);
+                    aPeliculas[posFin] = image;
+                    posFin++;
+                    displayShelf = new DisplayShelf(aPeliculas);
+                    final double WIDTH = 700, HEIGHT = 400;
+                    displayShelf.setPrefSize(WIDTH, HEIGHT);
+                }else if (!listaPeliculas.get(i).getGenero().contains(buscadorInicio.getText()) && !listaPeliculas.get(i).getTitulo().contains(buscadorInicio.getText())){
+                    Image[] todasImg = new Image[z];
+                    for (int j = 0; j <z ; j++) {
+                        byte [] bi = listaPeliculas.get(j).getMovieImage();
+                        ByteArrayInputStream bais = new ByteArrayInputStream(bi);
+                        BufferedImage bImage = ImageIO.read(bais);
+                        Image image = SwingFXUtils.toFXImage(bImage, null);
+                        todasImg[i] = image;
+                        showAlert("No hay coincidencias", "No se ha encontrado una pelicula con esas especificaciones");
+                    }
+                    displayShelf = new DisplayShelf(todasImg);
+                    final double WIDTH = 700, HEIGHT = 400;
+                    displayShelf.setPrefSize(WIDTH, HEIGHT);
+                }
+
+            }
+            for (int j = 0; j <claves.size() ; j++) {
+                int key = claves.get(j);
+                displayShelf.getItems()[j].setId(String.valueOf(key));
+                displayShelf.getItems()[j].setOnMouseClicked(movieCrudApplication.abrirPaginaPelicula());
+            }
+            claves.clear();
+            try {
+                pane.getChildren().add(displayShelf);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    private void showAlert(String title, String contextText) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(contextText);
+        alert.showAndWait();
+    }
+
+    private boolean sesionIniciada;
+    // Si hay una sesion debemos hacer desaparecer el iniciar sesion por un salir y poner por algun lado el username
 
 
 }
