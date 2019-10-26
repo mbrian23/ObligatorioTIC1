@@ -17,11 +17,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -117,6 +115,57 @@ public class CarteleraSalas implements Initializable {
         sortedList.comparatorProperty().bind(tabla.comparatorProperty());
         tabla.setItems(sortedList);
 
-
     }
+
+    @FXML
+    private AnchorPane root;
+
+
+    @FXML
+    private Button btnpeliculas;
+
+    @FXML
+    private Button btnsalas;
+
+    @FXML
+    private Button btnfunciones;
+
+
+    @FXML
+    public void cargaCartPeliculas (ActionEvent event) throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(Principal.class.getResourceAsStream("Cartelera.fxml"));
+        Scene inicioScene = new Scene(root, 600,500);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(inicioScene);
+        window.show();
+    }
+
+    @FXML
+    public void cargaCartSalas (ActionEvent event) throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(CarteleraSalas.class.getResourceAsStream("CarteleraSalas.fxml"));
+        Scene inicioScene = new Scene(root, 600,500);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(inicioScene);
+        window.show();
+    }
+
+//    @FXML
+//    public void cargaCartFunciones (ActionEvent event) throws Exception{
+//        FXMLLoader fxmlLoader = new FXMLLoader();
+//        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+//
+//        Parent root = fxmlLoader.load(Principal.class.getResourceAsStream("Cartelera.fxml"));
+//        Scene inicioScene = new Scene(root, 600,500);
+//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        window.setScene(inicioScene);
+//        window.show();
+//    }
+
+
 }

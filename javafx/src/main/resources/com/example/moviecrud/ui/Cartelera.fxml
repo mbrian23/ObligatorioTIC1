@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="704.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.Principal">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="984.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.Principal">
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
@@ -49,7 +49,7 @@
                   </TextField>
                </children>
             </HBox>
-            <TableView fx:id="tabla" prefHeight="453.0" prefWidth="433.0" VBox.vgrow="NEVER">
+            <TableView fx:id="tabla" prefHeight="453.0" prefWidth="433.0" VBox.vgrow="ALWAYS">
               <columns>
                 <TableColumn fx:id="titulo" prefWidth="75.0" text="Titulo" />
                 <TableColumn fx:id="genero" prefWidth="79.0" text="Genero" />
@@ -71,20 +71,20 @@
             </TableView>
          </children>
       </VBox>
-      <Separator layoutX="188.0" layoutY="-3.0" orientation="VERTICAL" prefHeight="515.0" prefWidth="0.0" />
+      <Separator layoutX="188.0" layoutY="-3.0" maxHeight="1.7976931348623157E308" orientation="VERTICAL" prefHeight="759.0" prefWidth="4.0" />
       <VBox alignment="CENTER" layoutX="1.0" layoutY="69.0" prefHeight="409.0" prefWidth="189.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="165.0" style="-fx-border-radius: 50px;" text="PELICULAS">
+            <Button fx:id="btnpeliculas" mnemonicParsing="false" onAction="#cargaCartPeliculas" prefHeight="27.0" prefWidth="165.0" style="-fx-border-radius: 50px;" text="PELICULAS">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="210.0" text="SALAS">
+            <Button fx:id="btnsalas" mnemonicParsing="false" onAction="#cargaCartSalas" prefHeight="27.0" prefWidth="210.0" text="SALAS">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="271.0" text="FUNCIONES">
+            <Button fx:id="btnfunciones" mnemonicParsing="false" prefHeight="27.0" prefWidth="271.0" text="FUNCIONES">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
