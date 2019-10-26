@@ -67,10 +67,9 @@ public class CarteleraSalas implements Initializable {
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(SalaController.class.getResourceAsStream("AddSala.fxml"));
-        Scene inicioScene = new Scene(root, 600,500);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(inicioScene);
-        window.show();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     public void actualizaCartSala(){

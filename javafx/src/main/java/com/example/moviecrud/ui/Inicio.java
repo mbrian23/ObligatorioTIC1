@@ -217,8 +217,6 @@ public class Inicio implements Initializable {
     // Si hay una sesion debemos hacer desaparecer el iniciar sesion por un salir y poner por algun lado el username
 
     @FXML
-    private Button prueba;
-
-
+    Button prueba;
 
 }

@@ -71,10 +71,9 @@ public class Principal implements Initializable {
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(MovieController.class.getResourceAsStream("AddPelicula.fxml"));
-        Scene inicioScene = new Scene(root, 600, 500);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(inicioScene);
-        window.show();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     @FXML
@@ -83,10 +82,9 @@ public class Principal implements Initializable {
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(MovieController.class.getResourceAsStream("EliminarPelicula.fxml"));
-        Scene inicioScene = new Scene(root, 600, 500);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(inicioScene);
-        window.show();;
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
 
     }
 
@@ -98,11 +96,9 @@ public class Principal implements Initializable {
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(MovieController.class.getResourceAsStream("AddPelicula.fxml"));
-        Scene inicioScene = new Scene(root, 600, 500);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(inicioScene);
-        window.show();
-
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
 
         MovieController movieController = fxmlLoader.getController();
         movieController.loadMovieData(pelicula);
