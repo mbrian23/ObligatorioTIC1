@@ -2,7 +2,6 @@
 
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -51,12 +50,12 @@
                <font>
                   <Font name="System Bold" size="17.0" />
                </font></Label>
-            <Button mnemonicParsing="false" text="Imagen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="10">
-               <GridPane.margin>
-                  <Insets right="65.0" />
-               </GridPane.margin></Button>
             <Label layoutX="10.0" layoutY="84.0" text="Numero filas" GridPane.rowIndex="3" />
             <TextField fx:id="nroFilas" layoutX="290.0" layoutY="80.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Cine" GridPane.rowIndex="5" />
+            <Label text="Local" GridPane.rowIndex="6" />
+            <ComboBox prefWidth="150.0" promptText="Cadena de cine" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ComboBox prefWidth="150.0" promptText="Localidad" GridPane.columnIndex="1" GridPane.rowIndex="6" />
          </children>
       </GridPane>
    </children>
