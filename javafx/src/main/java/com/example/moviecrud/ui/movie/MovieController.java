@@ -51,7 +51,7 @@ public class MovieController implements Initializable {
     private Button btnAdd;
 
     @FXML
-    private AnchorPane anchorPane;
+    private AnchorPane root;
 
     @FXML
     private Button btnClose;

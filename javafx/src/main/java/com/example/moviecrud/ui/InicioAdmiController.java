@@ -42,9 +42,10 @@ public class InicioAdmiController {
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("Inicio.fxml"));
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        Scene inicioScene = new Scene(root, 600, 500);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(inicioScene);
+        window.show();
     }
 
     @FXML
@@ -52,7 +53,7 @@ public class InicioAdmiController {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(Principal.class.getResourceAsStream("menuAdmin.fxml"));
+        Parent root = fxmlLoader.load(Principal.class.getResourceAsStream("Cartelera.fxml"));
         Scene inicioScene = new Scene(root, 600,500);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(inicioScene);
@@ -60,13 +61,15 @@ public class InicioAdmiController {
     }
 
     @FXML
-    public void iniciarSesion () throws Exception{
+    public void iniciarSesion (ActionEvent event) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("iniciarSesion.fxml"));
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        Scene inicioScene = new Scene(root, 600, 500);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(inicioScene);
+        window.show();
     }
+
 }

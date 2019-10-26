@@ -21,6 +21,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,8 @@ public class Inicio implements Initializable {
     @Autowired
     PeliculaMgr peliculaMgr;
 
+    @FXML
+    private AnchorPane root;
 
     @FXML
     private Pane pane;
@@ -78,31 +81,34 @@ public class Inicio implements Initializable {
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("Inicio.fxml"));
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        Scene inicioScene = new Scene(root, 600, 500);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(inicioScene);
+        window.show();
     }
 
     @FXML
-    public void adminEmpresa () throws Exception{
+    public void adminEmpresa (ActionEvent event) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(Principal.class.getResourceAsStream("menuAdmin.fxml"));
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        Parent root = fxmlLoader.load(Principal.class.getResourceAsStream("Cartelera.fxml"));
+        Scene inicioScene = new Scene(root, 600, 500);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(inicioScene);
+        window.show();
     }
 
     @FXML
-    public void iniciarSesion () throws Exception{
+    public void iniciarSesion (ActionEvent event) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("iniciarSesion.fxml"));
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        Scene inicioScene = new Scene(root, 600, 500);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(inicioScene);
+        window.show();
     }
 
     @FXML
@@ -209,6 +215,10 @@ public class Inicio implements Initializable {
 
     private boolean sesionIniciada;
     // Si hay una sesion debemos hacer desaparecer el iniciar sesion por un salir y poner por algun lado el username
+
+    @FXML
+    private Button prueba;
+
 
 
 }
