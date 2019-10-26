@@ -156,6 +156,12 @@ public class MovieCrudApplication extends Application {
         return context;
     }
 
+    public Parent getRoot() {
+        return root;
+    }
 
+    public void setRoot(Parent root) {
+        this.root = root;
+    }
 }
 
