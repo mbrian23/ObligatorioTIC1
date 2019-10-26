@@ -52,8 +52,10 @@
             <TableView fx:id="tabla" prefHeight="365.0" prefWidth="580.0" VBox.vgrow="ALWAYS">
               <columns>
                 <TableColumn fx:id="tipo" prefWidth="180.0" text="Tipo" />
-                <TableColumn fx:id="lugares" prefWidth="191.0" text="Lugares" />
+                <TableColumn fx:id="local" prefWidth="191.0" text="Local" />
                   <TableColumn fx:id="cine" prefWidth="201.0" text="Cine" />
+                  <TableColumn fx:id="columnas" prefWidth="75.0" text="Columnas" />
+                  <TableColumn fx:id="filas" prefWidth="75.0" text="Filas" />
               </columns>
                <contextMenu>
                   <ContextMenu>

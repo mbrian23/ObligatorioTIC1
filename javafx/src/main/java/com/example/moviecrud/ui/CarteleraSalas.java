@@ -2,6 +2,7 @@ package com.example.moviecrud.ui;
 
 import com.example.moviecrud.MovieCrudApplication;
 import com.example.moviecrud.business.SalaManager;
+import com.example.moviecrud.business.entities.Cine;
 import com.example.moviecrud.business.entities.Pelicula;
 import com.example.moviecrud.business.entities.Sala;
 import com.example.moviecrud.ui.movie.MovieController;
@@ -53,10 +54,19 @@ public class CarteleraSalas implements Initializable {
     private TableColumn<Sala, String> tipo;
 
     @FXML
-    private TableColumn<Sala, String> lugares;
+    private TableColumn<Sala, String> local;
 
     @FXML
-    private TableColumn<Sala, String> cine;
+    private TableColumn<Sala, Long> columnas;
+
+    @FXML
+    private TableColumn<Sala, Long> filas;
+
+
+
+
+    @FXML
+    private TableColumn<Sala, Cine> cine;
 
     private ObservableList<Sala> salaList = FXCollections.observableArrayList();
 
@@ -83,9 +93,10 @@ public class CarteleraSalas implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         tipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-        lugares.setCellValueFactory(new PropertyValueFactory<>("lugares"));
         cine.setCellValueFactory(new PropertyValueFactory<>("cine"));
-
+        local.setCellValueFactory(new PropertyValueFactory<>("locales"));
+        columnas.setCellValueFactory(new PropertyValueFactory<>("columnas"));
+        filas.setCellValueFactory(new PropertyValueFactory<>("filas"));
 
         actualizaCartSala();
 
