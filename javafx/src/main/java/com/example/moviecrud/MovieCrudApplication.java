@@ -42,7 +42,6 @@ public class MovieCrudApplication extends Application {
     @Autowired
     PeliculaMgr peliculaMgr;
 
-
     private static ConfigurableApplicationContext context;
 
     private Parent root;
@@ -69,15 +68,24 @@ public class MovieCrudApplication extends Application {
             images[i] = image;
         }
 
+        DisplayShelf displayShelf = null;
 
+        if(z != 0){
+            displayShelf = new DisplayShelf(images);
+            displayShelf.setPrefSize(WIDTH, HEIGHT);
+            for (int i = 0; i <z ; i++) {
+                displayShelf.getItems()[i].setId(String.valueOf(i));
+                displayShelf.getItems()[i].setOnMouseClicked(abrirPaginaPelicula());
+            }
 
-        // create display shelf
-        DisplayShelf displayShelf = new DisplayShelf(images);
-        displayShelf.setPrefSize(WIDTH, HEIGHT);
-        for (int i = 0; i <z ; i++) {
-            displayShelf.getItems()[i].setId(String.valueOf(i));
-            displayShelf.getItems()[i].setOnMouseClicked(abrirPaginaPelicula());
         }
+        else{
+            Image[] inicio = new Image[1];
+            inicio[0] = new Image(MovieCrudApplication.class.getResource("/com/example/moviecrud/ui/images/logo2.png").toExternalForm(), false);
+            displayShelf = new DisplayShelf(inicio);
+            displayShelf.setPrefSize(WIDTH, HEIGHT);
+        }
+        // create display shelf
         return displayShelf;
     }
 
@@ -110,6 +118,9 @@ public class MovieCrudApplication extends Application {
                 dur.setText(peliculaMgr.getAllPeliculas().get(clave).getDuracion());
                 gen.setText(peliculaMgr.getAllPeliculas().get(clave).getGenero());
                 act.setText(peliculaMgr.getAllPeliculas().get(clave).getActores());
+
+//                Text genero = (Text) sc.lookup("#Duracion");
+//                genero.setText(peliculaMgr.getAllPeliculas().get(clave).getGenero());
 
                 stage.setScene(sc);
                 stage.show();

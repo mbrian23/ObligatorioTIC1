@@ -23,7 +23,7 @@ public class SalaManager {
         salaRepository.save(sala);
     }
 
-    public void addSala(String tipo, Long nroSala, String nroLugares) throws  SalaYaExiste, IOException, InformacionSalaInvalida {
+    public void addSala(String tipo, Long nroSala, Long nroLugares) throws  SalaYaExiste, IOException, InformacionSalaInvalida {
         if(tipo == null || "".equals(tipo) || nroSala == null || "".equals(nroSala) || nroLugares == null || "".equals(nroLugares) ){
 
             throw new InformacionSalaInvalida("Algun dato ingresado no es correcto");
