@@ -42,7 +42,6 @@ public class MovieCrudApplication extends Application {
     @Autowired
     PeliculaMgr peliculaMgr;
 
-
     private static ConfigurableApplicationContext context;
 
     private Parent root;
@@ -119,6 +118,9 @@ public class MovieCrudApplication extends Application {
                 dur.setText(peliculaMgr.getAllPeliculas().get(clave).getDuracion());
                 gen.setText(peliculaMgr.getAllPeliculas().get(clave).getGenero());
                 act.setText(peliculaMgr.getAllPeliculas().get(clave).getActores());
+
+//                Text genero = (Text) sc.lookup("#Duracion");
+//                genero.setText(peliculaMgr.getAllPeliculas().get(clave).getGenero());
 
                 stage.setScene(sc);
                 stage.show();
