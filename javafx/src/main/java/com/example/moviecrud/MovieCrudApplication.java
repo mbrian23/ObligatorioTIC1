@@ -99,7 +99,7 @@ public class MovieCrudApplication extends Application {
 
                 Parent root = null;
                 try {
-                    root = fxmlLoader.load(MovieController.class.getResourceAsStream("InfoPelicula.fxml"));
+                    root = fxmlLoader.load(MovieController.class.getResourceAsStream("InfoPelicula2.fxml"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -109,18 +109,18 @@ public class MovieCrudApplication extends Application {
                 Stage stage = new Stage();
                 Scene sc = new Scene(root);
 
-                Text dur = (Text) sc.lookup("#Duracion");
-                Text gen = (Text) sc.lookup("#Genero");
-                Text act = (Text) sc.lookup("#Actores");
-                Text tit = (Text) sc.lookup("#titulo");
+//                Text dur = (Text) sc.lookup("#Duracion");
+//                Text gen = (Text) sc.lookup("#Genero");
+//                Text act = (Text) sc.lookup("#Actores");
+//                Text tit = (Text) sc.lookup("#titulo");
+//
+//                tit.setText(peliculaMgr.getAllPeliculas().get(clave).getTitulo());
+//                dur.setText(peliculaMgr.getAllPeliculas().get(clave).getDuracion());
+//                gen.setText(peliculaMgr.getAllPeliculas().get(clave).getGenero());
+//                act.setText(peliculaMgr.getAllPeliculas().get(clave).getActores());
 
-                tit.setText(peliculaMgr.getAllPeliculas().get(clave).getTitulo());
-                dur.setText(peliculaMgr.getAllPeliculas().get(clave).getDuracion());
-                gen.setText(peliculaMgr.getAllPeliculas().get(clave).getGenero());
-                act.setText(peliculaMgr.getAllPeliculas().get(clave).getActores());
-
-//                Text genero = (Text) sc.lookup("#Duracion");
-//                genero.setText(peliculaMgr.getAllPeliculas().get(clave).getGenero());
+                Text genero = (Text) sc.lookup("#Genero");
+                genero.setText(peliculaMgr.getAllPeliculas().get(clave).getGenero());
 
                 stage.setScene(sc);
                 stage.show();
