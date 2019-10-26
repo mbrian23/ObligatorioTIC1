@@ -44,15 +44,5 @@ public class InfoPelicula {
     @FXML
     private Button iniciarSesion;
 
-
-//    @FXML
-//    void infoPelicula(ActionEvent event) throws Exception {
-//        FXMLLoader fxmlLoader = new FXMLLoader();
-//        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
-//
-//        Parent root = fxmlLoader.load(MovieCrudApplication.class.getResourceAsStream("InfoPelicula.fxml"));
-//        Stage stage = new Stage();
-//        stage.setScene(new Scene(root));
-//        stage.show();
-//    }
+    
 }

@@ -137,31 +137,6 @@ public class MovieCrudApplication extends Application {
                 } catch (IOException ex) {
                     Logger.getLogger(MovieController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-//                FXMLLoader fxmlLoader = new FXMLLoader();
-//                fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
-//
-//                Parent root = null;
-//                try {
-//                    root = fxmlLoader.load(MovieController.class.getResourceAsStream("InfoPelicula.fxml"));
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//
-//
-//
-
-//
-//                Text dur = (Text) sc.lookup("#Duracion");
-//                Text gen = (Text) sc.lookup("#Genero");
-//                Text act = (Text) sc.lookup("#Actores");
-//                Text tit = (Text) sc.lookup("#titulo");
-//
-//                tit.setText(peliculaMgr.getAllPeliculas().get(clave).getTitulo());
-//                dur.setText(peliculaMgr.getAllPeliculas().get(clave).getDuracion());
-//                gen.setText(peliculaMgr.getAllPeliculas().get(clave).getGenero());
-//                act.setText(peliculaMgr.getAllPeliculas().get(clave).getActores());
-
-//                Text genero = (Text) sc.getWindow().getScene().lookup("#Genero");
 
                 stage.setScene(sc);
                 stage.show();
