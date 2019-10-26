@@ -1,6 +1,7 @@
 package com.example.moviecrud.business.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -13,7 +14,8 @@ public class Locales {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "nombre_cine")
+    @NotBlank
+    @JoinColumn(nullable = false, name = "nombre_cine")
     private Cine cine;
 
     public Locales(@NotNull String name) {

@@ -44,5 +44,4 @@ public class InfoPelicula {
     @FXML
     private Button iniciarSesion;
 
-    
 }

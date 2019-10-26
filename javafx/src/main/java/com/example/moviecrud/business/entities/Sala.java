@@ -16,7 +16,11 @@ public class Sala {
 
     @NotNull
     @Column(nullable = false, length = 30)
-    private Long numeroSala;
+    private Long filas;
+
+    @NotNull
+    @Column(nullable = false, length = 30)
+    private Long columnas;
 
     @NotBlank
     @Column(nullable = false, length = 30)
@@ -24,16 +28,17 @@ public class Sala {
 
     @NotNull
     @Column(nullable = false)
-    private Long nLugares;
+    private Long numeroSala;
 
     @ManyToOne
     @JoinColumn(name = "nombre_local")
     private Locales local;
 
-    public Sala(Long numeroSala, @NotBlank String tipo, @NotNull Long nLugares) {
-        this.numeroSala = numeroSala;
+    public Sala(@NotNull Long filas, @NotNull Long columnas, @NotBlank String tipo, @NotNull Long numeroSala) {
+        this.filas = filas;
+        this.columnas = columnas;
         this.tipo = tipo;
-        this.nLugares = nLugares;
+        this.numeroSala = numeroSala;
     }
 
     public Sala() {
@@ -55,14 +60,6 @@ public class Sala {
         this.tipo = tipo;
     }
 
-    public Long getnLugares() {
-        return nLugares;
-    }
-
-    public void setnLugares(Long nLugares) {
-        this.nLugares = nLugares;
-    }
-
     public Locales getLocal() {
         return local;
     }
@@ -77,5 +74,21 @@ public class Sala {
 
     public void setNumeroSala(Long numeroSala) {
         this.numeroSala = numeroSala;
+    }
+
+    public Long getFilas() {
+        return filas;
+    }
+
+    public void setFilas(Long filas) {
+        this.filas = filas;
+    }
+
+    public Long getColumnas() {
+        return columnas;
+    }
+
+    public void setColumnas(Long columnas) {
+        this.columnas = columnas;
     }
 }

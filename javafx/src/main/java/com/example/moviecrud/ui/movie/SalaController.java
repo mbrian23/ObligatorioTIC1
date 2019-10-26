@@ -43,7 +43,10 @@ public class SalaController implements Initializable {
     private Button addBtn;
 
     @FXML
-    private TextField nroLugares;
+    private TextField nroColumnas;
+
+    @FXML
+    private TextField nroFilas;
 
     @FXML
     private TextField nroSala;
@@ -68,7 +71,7 @@ public class SalaController implements Initializable {
 
     @FXML
     void addSala(ActionEvent event) throws IOException{
-        if (nroLugares.getText() == null || nroLugares.getText().equals("") || nroSala.getText() == null || nroSala.getText().equals("")){
+        if (nroFilas.getText() == null || nroFilas.getText().equals("") || nroColumnas.getText() == null || nroColumnas.getText().equals("") || nroSala.getText() == null || nroSala.getText().equals("")){
 
             showAlert(
                     "Datos faltantes!",
@@ -79,10 +82,11 @@ public class SalaController implements Initializable {
 
                 Long numeroSala = Long.parseLong(nroSala.getText());
                 String tipoSalaValue = tipoSala.getValue();
-                Long numeroLugares = Long.parseLong(nroLugares.getText());
+                Long numeroColumnas = Long.parseLong(nroColumnas.getText());
+                Long numeroFilas = Long.parseLong(nroFilas.getText());
 
                 try {
-                    salaManager.addSala(tipoSalaValue, numeroSala, numeroLugares);
+                    salaManager.addSala(tipoSalaValue, numeroSala, numeroFilas, numeroColumnas);
 
                     showAlert("Sala agregada", "Se agrego con exito la Sala!");
 

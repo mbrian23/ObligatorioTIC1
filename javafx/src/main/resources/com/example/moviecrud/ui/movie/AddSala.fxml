@@ -24,8 +24,8 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -35,11 +35,11 @@
         </rowConstraints>
          <children>
             <Label text="Numero de sala" GridPane.rowIndex="1" />
-            <Label text="Tipo" GridPane.rowIndex="3" />
-            <Label text="Numero de lugares" GridPane.rowIndex="2" />
+            <Label text="Tipo" GridPane.rowIndex="4" />
+            <Label text="Numero columnas" GridPane.rowIndex="2" />
             <TextField fx:id="nroSala" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="nroLugares" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <ComboBox fx:id="tipoSala" prefWidth="150.0" promptText="Tipo de sala" GridPane.columnIndex="1" GridPane.rowIndex="3"> <items>
+            <TextField fx:id="nroColumnas" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="tipoSala" prefWidth="150.0" promptText="Tipo de sala" GridPane.columnIndex="1" GridPane.rowIndex="4"> <items>
              <FXCollections fx:factory="observableArrayList">
                  <String fx:id="1" fx:value="2D" />
                  <String fx:id="2" fx:value="3D" />
@@ -55,6 +55,8 @@
                <GridPane.margin>
                   <Insets right="65.0" />
                </GridPane.margin></Button>
+            <Label layoutX="10.0" layoutY="84.0" text="Numero filas" GridPane.rowIndex="3" />
+            <TextField fx:id="nroFilas" layoutX="290.0" layoutY="80.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
    </children>
