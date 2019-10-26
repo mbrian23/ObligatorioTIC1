@@ -19,8 +19,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.text.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +35,9 @@ import org.springframework.context.ConfigurableApplicationContext;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javafx.scene.image.Image;
 
 import javax.imageio.ImageIO;
@@ -94,21 +101,56 @@ public class MovieCrudApplication extends Application {
         EventHandler handler = new EventHandler() {
             @Override
             public void handle(Event event) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
-                Parent root = null;
-                try {
-                    root = fxmlLoader.load(MovieController.class.getResourceAsStream("InfoPelicula2.fxml"));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
+                Parent parent=null;
+                FXMLLoader fxmlLoader=new FXMLLoader();
                 PerspectiveImage pp = (PerspectiveImage) event.getSource();
                 int clave = Integer.valueOf(pp.getId());
-                Stage stage = new Stage();
-                Scene sc = new Scene(root);
+                Stage stage = null;
+                Scene sc = null;
+                try {
+                    parent = (Parent)fxmlLoader.load(MovieController.class.getResourceAsStream("InfoPelicula2.fxml"));
+                    stage = new Stage();
+                    sc = new Scene(parent);
+                    VBox vb = (VBox) fxmlLoader.getNamespace().get("vb");
+                    Text gen = (Text) fxmlLoader.getNamespace().get("genero");
+                    Text dur = (Text) fxmlLoader.getNamespace().get("Duracion");
+                    Text act = (Text) fxmlLoader.getNamespace().get("Actores");
+                    Text desc = (Text) fxmlLoader.getNamespace().get("Descripcion");
+                    Text tit = (Text) fxmlLoader.getNamespace().get("titulo");
+                    ImageView imagen = (ImageView) fxmlLoader.getNamespace().get("img");
+                    imagen.fitWidthProperty().bind(vb.widthProperty());
+                    imagen.fitHeightProperty().bind(vb.heightProperty());
 
+                    byte [] img = peliculaMgr.getAllPeliculas().get(clave).getMovieImage();
+                    ByteArrayInputStream bis = new ByteArrayInputStream(img);
+                    BufferedImage bImage = ImageIO.read(bis);
+                    Image image = SwingFXUtils.toFXImage(bImage, null);
+
+                    imagen.setImage(image);
+                    gen.setText(peliculaMgr.getAllPeliculas().get(clave).getGenero());
+                    dur.setText(peliculaMgr.getAllPeliculas().get(clave).getDuracion());
+                    act.setText(peliculaMgr.getAllPeliculas().get(clave).getActores());
+                    desc.setText(peliculaMgr.getAllPeliculas().get(clave).getDescripcion());
+                    tit.setText(peliculaMgr.getAllPeliculas().get(clave).getTitulo());
+
+                } catch (IOException ex) {
+                    Logger.getLogger(MovieController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+//                FXMLLoader fxmlLoader = new FXMLLoader();
+//                fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+//
+//                Parent root = null;
+//                try {
+//                    root = fxmlLoader.load(MovieController.class.getResourceAsStream("InfoPelicula.fxml"));
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//
+//
+//
+
+//
 //                Text dur = (Text) sc.lookup("#Duracion");
 //                Text gen = (Text) sc.lookup("#Genero");
 //                Text act = (Text) sc.lookup("#Actores");
@@ -119,8 +161,7 @@ public class MovieCrudApplication extends Application {
 //                gen.setText(peliculaMgr.getAllPeliculas().get(clave).getGenero());
 //                act.setText(peliculaMgr.getAllPeliculas().get(clave).getActores());
 
-                Text genero = (Text) sc.lookup("#Genero");
-                genero.setText(peliculaMgr.getAllPeliculas().get(clave).getGenero());
+//                Text genero = (Text) sc.getWindow().getScene().lookup("#Genero");
 
                 stage.setScene(sc);
                 stage.show();
