@@ -2,21 +2,17 @@ package com.example.moviecrud.ui.movie;
 
 import com.example.moviecrud.business.PeliculaMgr;
 import com.example.moviecrud.business.entities.Pelicula;
-import com.example.moviecrud.business.exceptions.InformacionInvalida;
-import com.example.moviecrud.business.exceptions.NoExiste;
-import com.example.moviecrud.business.exceptions.YaExiste;
-import com.example.moviecrud.ui.Inicio;
+import com.example.moviecrud.business.exceptions.InformacionPeliculaInvalida;
+import com.example.moviecrud.business.exceptions.PeliculaNoExiste;
+import com.example.moviecrud.business.exceptions.PeliculaYaExiste;
 import com.example.moviecrud.ui.Principal;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -28,7 +24,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.function.Predicate;
 
 
 @Component
@@ -42,16 +37,13 @@ public class MovieController implements Initializable {
     }
 
     @Autowired
-    Inicio inicio;
-
-    @Autowired
     private PeliculaMgr peliculaMgr;
 
     @FXML
     private Button btnAdd;
 
     @FXML
-    private AnchorPane root;
+    private AnchorPane anchorPane;
 
     @FXML
     private Button btnClose;
@@ -182,11 +174,11 @@ public class MovieController implements Initializable {
                             editando = false;
 
                     }
-                } catch (InformacionInvalida informacionInvalida) {
+                } catch (InformacionPeliculaInvalida informacionPeliculaInvalida) {
                     showAlert(
                             "Informacion invalida !",
                             "Se encontro un error en los datos ingresados.");
-                } catch (YaExiste yaExiste) {
+                } catch (PeliculaYaExiste peliculaYaExiste) {
                     showAlert(
                             "Documento ya registrado !",
                             "El documento indicado ya ha sido registrado en el sistema).");
@@ -225,11 +217,11 @@ public class MovieController implements Initializable {
                         showAlert("Pelicula eliminada", "Se elimino con exito la Pelicula!");
                         principal.actualizaCart();
                         close(event);
-                    } catch (InformacionInvalida informacionInvalida) {
+                    } catch (InformacionPeliculaInvalida informacionPeliculaInvalida) {
                         showAlert(
                                 "Informacion invalida !",
                                 "Se encontro un error en los datos ingresados.");
-                    } catch (NoExiste noExiste) {
+                    } catch (PeliculaNoExiste peliculaNoExiste) {
                         showAlert(
                                 "Pelicula no registrada !",
                                 "La pelicula no esta registrada en el sistema.");
@@ -275,11 +267,11 @@ public class MovieController implements Initializable {
                     principal.actualizaCart();
 
                     close(event);
-                } catch (InformacionInvalida informacionInvalida) {
+                } catch (InformacionPeliculaInvalida informacionPeliculaInvalida) {
                     showAlert(
                             "Informacion invalida !",
                             "Se encontro un error en los datos ingresados.");
-                } catch (NoExiste noExiste) {
+                } catch (PeliculaNoExiste peliculaNoExiste) {
                     showAlert(
                             "La pelicula no existe !",
                             "El documento indicado no ha sido registrado en el sistema).");
@@ -325,65 +317,19 @@ public class MovieController implements Initializable {
 
     //Filtrado
     @FXML
-    private TableView<Pelicula> listaBusqueda;
+    private ListView<String> listaBusqueda;
 
-    @FXML
-    private TableColumn<Pelicula, String> tituloPel;
+    private ObservableList<Pelicula> movieLista = FXCollections.observableArrayList();
 
-    @FXML
-    private TableColumn<Pelicula, String> generoPel;
-
-
-
-    private ObservableList<Pelicula> listaPeliculas = FXCollections.observableArrayList();
-
-
-
+    private ObservableList<String> movieListaString = FXCollections.observableArrayList();
 
     @FXML
     private TextField buscador;
 
-    public void actualizaCart(){
-        listaPeliculas.clear();
-        listaPeliculas.addAll(peliculaMgr.getAllPeliculas());
-        listaBusqueda.setItems(listaPeliculas);
-    }
-
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-       if (tituloPel!=null && generoPel!= null) {
-           tituloPel.setCellValueFactory(new PropertyValueFactory<>("titulo"));
-           generoPel.setCellValueFactory(new PropertyValueFactory<>("genero"));
 
-           actualizaCart();
-
-           buscador.textProperty().addListener((((observable, oldValue, newValue) -> {
-               FilteredList<Pelicula> filteredList = new FilteredList<>(listaPeliculas, s -> true);
-               filteredList.setPredicate((Predicate<? super Pelicula>) (Pelicula pelicula) -> {
-                   if (newValue.isEmpty() || newValue == null) {
-                       return true;
-                   } else if (pelicula.getTitulo().contains(newValue)) {
-                       return true;
-                   } else if (pelicula.getGenero().contains(newValue)) {
-                       return true;
-                   }
-                   return false;
-               });
-
-               SortedList sortedList = new SortedList(filteredList);
-               sortedList.comparatorProperty().bind(listaBusqueda.comparatorProperty());
-               listaBusqueda.setItems(sortedList);
-
-           })));
-           FilteredList<Pelicula> filteredList = new FilteredList<>(listaPeliculas, s -> true);
-           SortedList sortedList = new SortedList(filteredList);
-           sortedList.comparatorProperty().bind(listaBusqueda.comparatorProperty());
-           listaBusqueda.setItems(sortedList);
-
-
-       }
     }
 
 

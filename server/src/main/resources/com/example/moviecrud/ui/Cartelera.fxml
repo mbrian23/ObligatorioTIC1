@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.Principal">
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+   <children>
+      <VBox layoutX="224.0" layoutY="83.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="31.0" prefWidth="580.0">
+               <children>
+                  <MenuBar>
+                    <menus>
+                      <Menu mnemonicParsing="false" text="Agregar">
+                        <items>
+                          <MenuItem fx:id="mItemAgregarPelicula" mnemonicParsing="false" onAction="#agregarPeliculaAction" text="Nueva Pelicula" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Eliminar">
+                        <items>
+                          <MenuItem fx:id="mItemEliminarPelicula" mnemonicParsing="false" onAction="#eliminarPeliculaAction" text="Delete" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Editar">
+                        <items>
+                          <MenuItem fx:id="mItemEditarPelicula" mnemonicParsing="false" onAction="#editarPeliculaAction" text="Modificar" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+                  <TextField fx:id="buscador" alignment="TOP_LEFT" prefHeight="11.0" prefWidth="167.0">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="160.0" top="10.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <TableView fx:id="tabla" prefHeight="365.0" prefWidth="580.0">
+              <columns>
+                <TableColumn fx:id="titulo" prefWidth="75.0" text="Titulo" />
+                <TableColumn fx:id="genero" prefWidth="79.0" text="Genero" />
+                  <TableColumn fx:id="actores" prefWidth="78.0" text="Actores" />
+                  <TableColumn fx:id="duracion" prefWidth="91.0" text="Duracion" />
+                  <TableColumn fx:id="descripcion" prefWidth="249.0" text="Descrpcion" />
+              </columns>
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#editarPeliculaAction" text="Editar" />
+                        <MenuItem mnemonicParsing="false" onAction="#eliminarPeliculaAction" text="Eliminar" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu>
+            </TableView>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

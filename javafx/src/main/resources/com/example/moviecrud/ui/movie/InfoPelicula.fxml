@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<top>
+    <BorderPane layoutX="-1.0" prefHeight="25.0" prefWidth="800.0">
+        <right>
+            <HBox prefHeight="27.0" prefWidth="197.0" BorderPane.alignment="CENTER">
+                <children>
+                    <Button contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="27.0" prefWidth="99.0" style="-fx-border-width: 0px 2px 0px 0px; -fx-border-color: white; -fx-background-color: transparent;" text="Registrarse" textFill="WHITE" />
+                    <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="112.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="Iniciar Sesion" textFill="WHITE" />
+                </children>
+            </HBox>
+        </right>
+        <left>
+            <HBox prefHeight="10.0" prefWidth="554.0" BorderPane.alignment="CENTER">
+                <children>
+                    <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="76.0" style="-fx-background-color: dd43a2; -fx-border-color: white;" text="Inicio" />
+                    <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="77.0" style="-fx-background-color: dd43a2; -fx-border-color: white;" text="Cine" />
+                    <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="84.0" style="-fx-background-color: dd43a2; -fx-border-color: white;" text="Teatro" />
+                    <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="79.0" style="-fx-background-color: dd43a2; -fx-border-color: white;" text="Estrenos" />
+                    <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="74.0" style="-fx-background-color: dd43a2; -fx-border-color: white;" text="Precios" />
+                    <Button mnemonicParsing="false" style="-fx-background-color: dd43a2; -fx-border-color: white;" text="Contacto" />
+                </children>
+            </HBox>
+        </left>
+         <bottom>
+            <Separator prefWidth="200.0" style="-fx-background-color: dd43a2;" BorderPane.alignment="CENTER" />
+         </bottom>
+    </BorderPane>
+</top>
+   <bottom>
+      <Pane fx:id="pane" prefHeight="28.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <center>
+      <AnchorPane prefHeight="390.0" prefWidth="800.0" style="-fx-background-color: #971066;" BorderPane.alignment="CENTER">
+         <children>
+            <BorderPane layoutX="309.0" layoutY="59.0" prefHeight="442.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <center>
+                  <Pane prefHeight="155.0" prefWidth="800.0" styleClass="bodybg" stylesheets="/com/example/moviecrud/ui/movie/InfoPelicula.css" BorderPane.alignment="CENTER">
+                     <children>
+                        <VBox alignment="TOP_RIGHT" layoutX="20.0" layoutY="128.7060546875" styleClass="vbox" stylesheets="/com/example/moviecrud/ui/movie/InfoPelicula.css" />
+                        <Text fx:id="titulo" layoutX="35.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                     </children>
+                  </Pane>
+               </center>
+               <bottom>
+                  <HBox prefHeight="274.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <VBox prefHeight="274.0" prefWidth="260.0">
+                           <children>
+                              <Text fx:id="Genero" strokeType="OUTSIDE" strokeWidth="0.0" text="Genero" wrappingWidth="239.13671875">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="15.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <Text fx:id="Duracion" layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duracion" wrappingWidth="235.13671875">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="15.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <Text fx:id="Actores" layoutX="10.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Actores" wrappingWidth="237.13671875">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="15.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Compra">
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="15.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </Text>
+                              <ComboBox prefHeight="25.0" prefWidth="165.0" promptText="Localidad">
+                                 <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                       <String fx:id="1" fx:value="Movie Center" />
+                                       <String fx:id="2" fx:value="Grupocine" />
+                                    </FXCollections>
+                                 </items>
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="10.0" />
+                                 </VBox.margin>
+                              </ComboBox>
+                              <ComboBox layoutX="30.0" layoutY="192.0" prefHeight="25.0" prefWidth="165.0" promptText="Horario">
+                                 <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                       <String fx:id="3" fx:value="14:00" />
+                                       <String fx:id="4" fx:value="20:30" />
+                                    </FXCollections>
+                                 </items>
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="10.0" />
+                                 </VBox.margin>
+                              </ComboBox>
+                           </children>
+                        </VBox>
+                        <VBox layoutX="10.0" layoutY="10.0">
+                           <children>
+                              <TextArea prefHeight="109.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </TextArea>
+                              <HBox prefHeight="137.0" prefWidth="501.0">
+                                 <children>
+                                    <VBox prefHeight="137.0" prefWidth="171.0">
+                                       <children>
+                                          <TextField prefHeight="25.0" prefWidth="163.0" promptText="Cantidad" />
+                                          <DatePicker promptText="Fecha">
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </DatePicker>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets top="58.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="154.0" text="Comprar">
+                                       <HBox.margin>
+                                          <Insets left="70.0" top="58.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="15.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </bottom>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

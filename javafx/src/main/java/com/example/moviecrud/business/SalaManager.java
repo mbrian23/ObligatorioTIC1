@@ -1,11 +1,8 @@
 package com.example.moviecrud.business;
 
-import com.example.moviecrud.business.entities.Pelicula;
 import com.example.moviecrud.business.entities.Sala;
-import com.example.moviecrud.business.exceptions.InformacionPeliculaInvalida;
-import com.example.moviecrud.business.exceptions.InformacionSalaInvalida;
-import com.example.moviecrud.business.exceptions.PeliculaYaExiste;
-import com.example.moviecrud.business.exceptions.SalaYaExiste;
+import com.example.moviecrud.business.exceptions.InformacionInvalida;
+import com.example.moviecrud.business.exceptions.YaExiste;
 import com.example.moviecrud.persistence.SalaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,10 +20,10 @@ public class SalaManager {
         salaRepository.save(sala);
     }
 
-    public void addSala(String tipo, Long nroSala, Long columnas, Long filas) throws  SalaYaExiste, IOException, InformacionSalaInvalida {
+    public void addSala(String tipo, Long nroSala, Long columnas, Long filas) throws YaExiste, IOException, InformacionInvalida {
         if(tipo == null || "".equals(tipo) || nroSala == null || "".equals(nroSala) || columnas == null || "".equals(columnas) || filas == null || "".equals(filas) ){
 
-            throw new InformacionSalaInvalida("Algun dato ingresado no es correcto");
+            throw new InformacionInvalida("Algun dato ingresado no es correcto");
 
         }
 

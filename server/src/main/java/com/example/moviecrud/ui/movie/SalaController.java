@@ -1,9 +1,10 @@
 package com.example.moviecrud.ui.movie;
 
 import com.example.moviecrud.business.SalaManager;
-import com.example.moviecrud.business.exceptions.InformacionInvalida;
-import com.example.moviecrud.business.exceptions.YaExiste;
-import com.example.moviecrud.ui.CarteleraSalas;
+import com.example.moviecrud.business.exceptions.InformacionPeliculaInvalida;
+import com.example.moviecrud.business.exceptions.InformacionSalaInvalida;
+import com.example.moviecrud.business.exceptions.PeliculaYaExiste;
+import com.example.moviecrud.business.exceptions.SalaYaExiste;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,7 +13,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,22 +29,13 @@ public class SalaController implements Initializable {
     }
 
     @Autowired
-    CarteleraSalas carteleraSalas;
-
-    @Autowired
     SalaManager salaManager;
-
-    @FXML
-    private AnchorPane root;
 
     @FXML
     private Button addBtn;
 
     @FXML
-    private TextField nroColumnas;
-
-    @FXML
-    private TextField nroFilas;
+    private TextField nroLugares;
 
     @FXML
     private TextField nroSala;
@@ -69,7 +60,7 @@ public class SalaController implements Initializable {
 
     @FXML
     void addSala(ActionEvent event) throws IOException{
-        if (nroFilas.getText() == null || nroFilas.getText().equals("") || nroColumnas.getText() == null || nroColumnas.getText().equals("") || nroSala.getText() == null || nroSala.getText().equals("")){
+        if (nroLugares.getText() == null || nroLugares.getText().equals("") || nroSala.getText() == null || nroSala.getText().equals("")){
 
             showAlert(
                     "Datos faltantes!",
@@ -80,23 +71,22 @@ public class SalaController implements Initializable {
 
                 Long numeroSala = Long.parseLong(nroSala.getText());
                 String tipoSalaValue = tipoSala.getValue();
-                Long numeroColumnas = Long.parseLong(nroColumnas.getText());
-                Long numeroFilas = Long.parseLong(nroFilas.getText());
+                String numeroLugares = nroLugares.getText();
 
                 try {
-                    salaManager.addSala(tipoSalaValue, numeroSala, numeroFilas, numeroColumnas);
+                    salaManager.addSala(tipoSalaValue, numeroSala, numeroLugares);
 
                     showAlert("Sala agregada", "Se agrego con exito la Sala!");
 
-                    carteleraSalas.actualizaCartSala();
+
                     close(event);
-                } catch (InformacionInvalida informacionInvalida) {
+                } catch (InformacionSalaInvalida informacionSalaInvalida) {
                 showAlert(
                         "Informacion invalida !",
                         "Se encontro un error en los datos ingresados.");
-            } catch (YaExiste salaYaExiste) {
+            } catch (SalaYaExiste salaYaExiste) {
                 showAlert(
-                        "Numero de sala ya registrado !",
+                        "Numero de sla ya registrado !",
                         "El numero de sala indicado ya ha sido registrado en el sistema).");
             }
 

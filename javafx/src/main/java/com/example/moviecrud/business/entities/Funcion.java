@@ -36,4 +36,20 @@ public class Funcion {
     @JoinColumn(name = "idPelicula")
     private Pelicula pelicula;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Funcion(@NotBlank LocalDate fechaInicio, @NotBlank LocalDate fechaFinal, @NotBlank Time horaFuncion, Sala sala, Pelicula pelicula) {
+        this.id = id;
+        this.fechaInicio = fechaInicio;
+        this.fechaFinal = fechaFinal;
+        this.horaFuncion = horaFuncion;
+        this.sala = sala;
+        this.pelicula = pelicula;
+    }
 }
