@@ -64,6 +64,10 @@ public class Principal implements Initializable {
     @FXML
     private TextField buscador;
 
+    @FXML
+    private Button btnfunciones;
+
+
 
     @FXML
     void agregarPeliculaAction(ActionEvent event) throws Exception {
@@ -161,7 +165,7 @@ public class Principal implements Initializable {
     private Button btnsalas;
 
     @FXML
-    private Button btnfunciones;
+    private Button btnlocales;
 
 
     @FXML
@@ -187,6 +191,31 @@ public class Principal implements Initializable {
         window.setScene(inicioScene);
         window.show();
     }
+
+    @FXML
+    public void cargaCartLocales (ActionEvent event) throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(CarteleraLocales.class.getResourceAsStream("CarteleraLocales.fxml"));
+        Scene inicioScene = new Scene(root, 600,500);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(inicioScene);
+        window.show();
+    }
+
+    @FXML
+    public void cargaCartCines (ActionEvent event) throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(CarteleraCines.class.getResourceAsStream("CarteleraCines.fxml"));
+        Scene inicioScene = new Scene(root, 600,500);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(inicioScene);
+        window.show();
+    }
+
 
 //    @FXML
 //    public void cargaCartFunciones (ActionEvent event) throws Exception{

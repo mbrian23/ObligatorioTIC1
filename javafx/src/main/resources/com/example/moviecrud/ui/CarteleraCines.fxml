@@ -84,12 +84,12 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnlocales" mnemonicParsing="false" prefHeight="27.0" prefWidth="206.0" text="LOCALES">
+            <Button fx:id="btnlocales" mnemonicParsing="false" onAction="#cargaCartLocales" prefHeight="27.0" prefWidth="206.0" text="LOCALES">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btncines" mnemonicParsing="false" prefHeight="27.0" prefWidth="250.0" text="CINES">
+            <Button fx:id="btncines" mnemonicParsing="false" onAction="#cargaCartCines" prefHeight="27.0" prefWidth="250.0" text="CINES">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
