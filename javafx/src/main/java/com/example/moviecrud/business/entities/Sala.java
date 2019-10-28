@@ -41,6 +41,16 @@ public class Sala {
         this.numeroSala = numeroSala;
     }
 
+//    private boolean [][] asientos = new boolean [Integer.valueOf(Math.toIntExact(filas))] [Integer.valueOf(Math.toIntExact(columnas))] ;
+
+//    public boolean[][] getAsientos() {
+//        return asientos;
+//    }
+//
+//    public void setAsientos(boolean[][] asientos) {
+//        this.asientos = asientos;
+//    }
+
     public Sala() {
     }
 
@@ -91,4 +101,9 @@ public class Sala {
     public void setColumnas(Long columnas) {
         this.columnas = columnas;
     }
+
+
+
+
+
 }

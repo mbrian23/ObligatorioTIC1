@@ -137,9 +137,9 @@ public class Inicio implements Initializable {
 
 
         if (buscadorInicio.getText() != null) {
+            bool1 = false;
+            bool2 = false;
             for (int i = 0; i < z; i++) {
-                bool1 = false;
-                bool2 = false;
                 if (listaPeliculas.get(i).getTitulo().contains(buscadorInicio.getText())) {
                     claves.add(i);
                     byte [] img = listaPeliculas.get(i).getMovieImage();
