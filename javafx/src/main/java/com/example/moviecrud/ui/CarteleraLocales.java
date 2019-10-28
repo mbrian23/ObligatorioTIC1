@@ -90,7 +90,7 @@ public class CarteleraLocales implements Initializable {
         cines.setCellValueFactory(new PropertyValueFactory<>("cines"));
 
 
-        actualizaCartSala();
+        actualizaCartLocales();
 
 
 
@@ -118,9 +118,9 @@ public class CarteleraLocales implements Initializable {
         tabla.setItems(sortedList);
     }
 
-    public void actualizaCartSala(){
+    public void actualizaCartLocales(){
         localList.clear();
-        localList.addAll(localMgr.getAllSalas());
+        localList.addAll(localMgr.getAllLocales());
         tabla.setItems(localList);
     }
 

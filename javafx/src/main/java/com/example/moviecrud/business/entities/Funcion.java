@@ -38,7 +38,7 @@ public class Funcion {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "nombre_Local")
-    private Locales local;
+    private Local local;
 
     public Long getId() {
         return id;

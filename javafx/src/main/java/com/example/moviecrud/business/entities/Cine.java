@@ -20,4 +20,8 @@ public class Cine {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public Cine(@NotBlank String nombre) {
+        this.nombre = nombre;
+    }
 }

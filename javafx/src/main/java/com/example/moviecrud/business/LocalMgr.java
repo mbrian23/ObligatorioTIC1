@@ -70,7 +70,7 @@ public class LocalMgr {
 
     }
 
-    public void editarPelicula (String nameViejo, String nameNuevo, Cine cine) throws InformacionInvalida, NoExiste {
+    public void editarLocal (String nameViejo, String nameNuevo, Cine cine) throws InformacionInvalida, NoExiste {
         if(nameNuevo == null || "".equals(nameNuevo) || nameViejo == null || "".equals(nameViejo)  || cine == null || "".equals(cine) ){
 
             throw new InformacionInvalida("Algun dato ingresado no es correcto");
@@ -87,5 +87,4 @@ public class LocalMgr {
     }
 
 
-    //Falta editar y eliminar por nombre
 }

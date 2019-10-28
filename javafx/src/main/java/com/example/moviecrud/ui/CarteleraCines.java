@@ -117,7 +117,7 @@ public class CarteleraCines implements Initializable {
 
 
 
-        actualizaCartSala();
+        actualizaCartCine();
 
 
 
@@ -143,9 +143,9 @@ public class CarteleraCines implements Initializable {
         tabla.setItems(sortedList);
     }
 
-    public void actualizaCartSala(){
+    public void actualizaCartCine(){
         cineList.clear();
-        cineList.addAll(cineMgr.getAllSalas());
+        cineList.addAll(cineMgr.getAllCine());
         tabla.setItems(cineList);
     }
 
