@@ -124,6 +124,18 @@ public class Inicio implements Initializable {
     }
 
     @FXML
+    public void cargaRegistroUsuario (ActionEvent event) throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("RegistroUsuario.fxml"));
+        Scene inicioScene = new Scene(root, 600,500);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(inicioScene);
+        window.show();
+    }
+
+    @FXML
     public void filtrado() throws Exception{
         int z = peliculaMgr.getAllPeliculas().size();
         ObservableList<Pelicula> listaPeliculas = FXCollections.observableArrayList();
@@ -218,5 +230,7 @@ public class Inicio implements Initializable {
 
     @FXML
     Button prueba;
+
+
 
 }

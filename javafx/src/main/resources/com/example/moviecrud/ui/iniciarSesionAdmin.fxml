@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="741.0" style="-fx-background-color: grey; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" stylesheets="/com/example/moviecrud/ui/iniciarSesion.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.InicioAdmiController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: grey; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" stylesheets="/com/example/moviecrud/ui/iniciarSesion.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.InicioAdmiController">
    <children>
       <HBox alignment="CENTER" layoutX="32.0" layoutY="23.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <padding>
@@ -30,11 +30,7 @@
       </HBox>
       <VBox layoutX="221.0" layoutY="191.0" prefHeight="200.0" prefWidth="250.0">
          <children>
-            <HBox alignment="CENTER" style="-fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;">
-               <children>
-                  <TextField fx:id="adminID" prefHeight="0.0" promptText="Username" style="-fx-background-color: transparent; -fx-prompt-text-fill: black;" text="Admin ID" HBox.hgrow="ALWAYS" />
-               </children>
-            </HBox>
+            <HBox alignment="CENTER" style="-fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;" />
             <HBox alignment="CENTER" prefHeight="23.0" prefWidth="250.0" style="-fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;">
                <children>
                   <TextField fx:id="password" prefHeight="0.0" promptText="Password" style="-fx-background-color: transparent; -fx-prompt-text-fill: black;" HBox.hgrow="ALWAYS" />
@@ -56,5 +52,6 @@
             </VBox>
          </children>
       </HBox>
+      <TextField fx:id="adminID" layoutX="221.0" layoutY="175.0" prefHeight="16.0" prefWidth="250.0" promptText="Username" style="-fx-background-color: transparent; -fx-prompt-text-fill: black;" text="Admin ID" />
    </children>
 </AnchorPane>
