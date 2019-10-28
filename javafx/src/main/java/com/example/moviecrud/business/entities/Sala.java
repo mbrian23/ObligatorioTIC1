@@ -39,17 +39,13 @@ public class Sala {
         this.columnas = columnas;
         this.tipo = tipo;
         this.numeroSala = numeroSala;
+        this.matriz = matriz(filas.intValue(), columnas.intValue());
     }
+    private boolean [][] matriz;
 
-//    private boolean [][] asientos = new boolean [Integer.valueOf(Math.toIntExact(filas))] [Integer.valueOf(Math.toIntExact(columnas))] ;
-
-//    public boolean[][] getAsientos() {
-//        return asientos;
-//    }
-//
-//    public void setAsientos(boolean[][] asientos) {
-//        this.asientos = asientos;
-//    }
+    public boolean[][] matriz(int fila,int columna){
+        return new boolean[fila][columna];
+    }
 
     public Sala() {
     }
