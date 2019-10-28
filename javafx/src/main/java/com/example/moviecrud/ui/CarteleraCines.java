@@ -149,4 +149,14 @@ public class CarteleraCines implements Initializable {
         cineList.addAll(cineMgr.getAllSalas());
         tabla.setItems(cineList);
     }
+
+    //EDICION DE CINES
+    @FXML
+    private TextField nombrecine;
+
+    @FXML
+    private Button btnagregar;
+
+
+
 }

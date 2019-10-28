@@ -163,4 +163,21 @@ public class CarteleraLocales implements Initializable {
 //        window.setScene(inicioScene);
 //        window.show();
 //    }
+
+
+    //EDICION DE LOCALES
+
+
+    @FXML
+    private TextField nombrelocal;
+
+    @FXML
+    private TextField cinelocal;
+
+    @FXML
+    private Button btnaddlocal;
+
+
+
+
 }
