@@ -140,7 +140,7 @@ public class Inicio implements Initializable {
             bool1 = false;
             bool2 = false;
             for (int i = 0; i < z; i++) {
-                if (listaPeliculas.get(i).getTitulo().contains(buscadorInicio.getText())) {
+                if (listaPeliculas.get(i).getTitulo().toLowerCase().contains(buscadorInicio.getText().toLowerCase())) {
                     claves.add(i);
                     byte [] img = listaPeliculas.get(i).getMovieImage();
                     ByteArrayInputStream bis = new ByteArrayInputStream(img);
@@ -153,7 +153,7 @@ public class Inicio implements Initializable {
                     displayShelf.setPrefSize(WIDTH, HEIGHT);
                     bool1 = true;
 
-                }else if (listaPeliculas.get(i).getGenero().contains(buscadorInicio.getText())){
+                }else if (listaPeliculas.get(i).getGenero().toLowerCase().contains(buscadorInicio.getText().toLowerCase())){
                     claves.add(i);
                     byte [] img = listaPeliculas.get(i).getMovieImage();
                     ByteArrayInputStream bis = new ByteArrayInputStream(img);
