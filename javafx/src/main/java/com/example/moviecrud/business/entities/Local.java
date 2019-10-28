@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table
-public class Locales {
+public class Local {
 
     @Id
     @Column(nullable = false, name = "nombre_local")
@@ -18,11 +18,11 @@ public class Locales {
     @JoinColumn(nullable = false, name = "nombre_cine")
     private Cine cine;
 
-    public Locales(@NotNull String name) {
+    public Local(@NotNull String name) {
         this.name = name;
     }
 
-    public Locales() {
+    public Local() {
     }
 
     public String getName() {
@@ -38,6 +38,11 @@ public class Locales {
     }
 
     public void setCine(Cine cine) {
+        this.cine = cine;
+    }
+
+    public Local(@NotNull String name, @NotBlank Cine cine) {
+        this.name = name;
         this.cine = cine;
     }
 }

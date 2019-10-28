@@ -50,7 +50,7 @@ public class FuncionMgr {
         return ResponseEntity.ok().build();
     }
 
-    public void addPelicula(LocalDate fechaInicio, LocalDate fechaFinal, Time horaFuncion, Sala sala, Pelicula pelicula) throws InformacionInvalida, YaExiste, IOException {
+    public void addFuncion(LocalDate fechaInicio, LocalDate fechaFinal, Time horaFuncion, Sala sala, Pelicula pelicula) throws InformacionInvalida, YaExiste, IOException {
         if(fechaFinal== null || "".equals(fechaFinal) || fechaInicio == null || "".equals(fechaInicio) || horaFuncion == null || "".equals(horaFuncion) || sala ==null || "".equals(sala) || pelicula == null || "".equals(pelicula) ){
 
             throw new InformacionInvalida("Algun dato ingresado no es correcto");

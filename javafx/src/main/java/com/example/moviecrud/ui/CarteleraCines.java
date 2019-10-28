@@ -3,7 +3,6 @@ package com.example.moviecrud.ui;
 import com.example.moviecrud.MovieCrudApplication;
 import com.example.moviecrud.business.CineMgr;
 import com.example.moviecrud.business.entities.Cine;
-import com.example.moviecrud.business.entities.Locales;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;

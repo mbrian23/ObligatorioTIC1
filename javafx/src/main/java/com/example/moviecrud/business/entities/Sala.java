@@ -32,7 +32,7 @@ public class Sala {
 
     @ManyToOne
     @JoinColumn(name = "nombre_local")
-    private Locales local;
+    private Local local;
 
     public Sala(@NotNull Long filas, @NotNull Long columnas, @NotBlank String tipo, @NotNull Long numeroSala) {
         this.filas = filas;
@@ -60,11 +60,11 @@ public class Sala {
         this.tipo = tipo;
     }
 
-    public Locales getLocal() {
+    public Local getLocal() {
         return local;
     }
 
-    public void setLocal(Locales local) {
+    public void setLocal(Local local) {
         this.local = local;
     }
 

@@ -2,11 +2,8 @@ package com.example.moviecrud.ui;
 
 import com.example.moviecrud.MovieCrudApplication;
 import com.example.moviecrud.business.LocalMgr;
-import com.example.moviecrud.business.SalaManager;
 import com.example.moviecrud.business.entities.Cine;
-import com.example.moviecrud.business.entities.Locales;
-import com.example.moviecrud.business.entities.Sala;
-import com.example.moviecrud.ui.movie.SalaController;
+import com.example.moviecrud.business.entities.Local;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -51,13 +48,13 @@ public class CarteleraLocales implements Initializable {
     private TextField buscador;
 
     @FXML
-    private TableView<Locales> tabla;
+    private TableView<Local> tabla;
 
     @FXML
-    private TableColumn<Locales, String> locales;
+    private TableColumn<Local, String> locales;
 
     @FXML
-    private TableColumn<Locales, Cine> cines;
+    private TableColumn<Local, Cine> cines;
 
     @FXML
     private Button btnpeliculas;
@@ -74,7 +71,7 @@ public class CarteleraLocales implements Initializable {
     @FXML
     private Button btncines;
 
-    private ObservableList<Locales> localList = FXCollections.observableArrayList();
+    private ObservableList<Local> localList = FXCollections.observableArrayList();
 
     @FXML
     void agregarLocalAction(ActionEvent event) throws Exception {
@@ -98,8 +95,8 @@ public class CarteleraLocales implements Initializable {
 
 
         buscador.textProperty().addListener((((observable, oldValue, newValue) -> {
-            FilteredList<Locales> filteredList = new FilteredList<>(localList, s -> true);
-            filteredList.setPredicate((Predicate<? super Locales>) (Locales local) ->{
+            FilteredList<Local> filteredList = new FilteredList<>(localList, s -> true);
+            filteredList.setPredicate((Predicate<? super Local>) (Local local) ->{
                 if (newValue.isEmpty() || newValue==null){
                     return true;
                 } else if (local.getName().contains(newValue)){
@@ -115,7 +112,7 @@ public class CarteleraLocales implements Initializable {
             tabla.setItems(sortedList);
 
         })));
-        FilteredList<Locales> filteredList = new FilteredList<>(localList, s -> true);
+        FilteredList<Local> filteredList = new FilteredList<>(localList, s -> true);
         SortedList sortedList = new SortedList(filteredList);
         sortedList.comparatorProperty().bind(tabla.comparatorProperty());
         tabla.setItems(sortedList);
