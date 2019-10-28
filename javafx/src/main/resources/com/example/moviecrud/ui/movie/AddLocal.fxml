@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.CarteleraLocales">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.movie.LocalController">
    <children>
       <VBox alignment="CENTER" layoutX="231.0" layoutY="106.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -52,7 +52,7 @@
                   </TextField>
                </children>
             </GridPane>
-            <Button fx:id="btnaddlocal" mnemonicParsing="false" text="Agregar" />
+            <Button fx:id="btnaddlocal" mnemonicParsing="false" text="Agregar" onAction="#addLocal" />
          </children>
       </VBox>
    </children>

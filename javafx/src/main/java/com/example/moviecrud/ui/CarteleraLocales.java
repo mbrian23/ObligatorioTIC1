@@ -4,6 +4,7 @@ import com.example.moviecrud.MovieCrudApplication;
 import com.example.moviecrud.business.LocalMgr;
 import com.example.moviecrud.business.entities.Cine;
 import com.example.moviecrud.business.entities.Local;
+import com.example.moviecrud.ui.movie.LocalController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -75,13 +76,13 @@ public class CarteleraLocales implements Initializable {
 
     @FXML
     void agregarLocalAction(ActionEvent event) throws Exception {
-//        FXMLLoader fxmlLoader = new FXMLLoader();
-//        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
-//
-//        Parent root = fxmlLoader.load(SalaController.class.getResourceAsStream("AddSala.fxml"));
-//        Stage stage = new Stage();
-//        stage.setScene(new Scene(root));
-//        stage.show();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(LocalController.class.getResourceAsStream("AddLocal.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     @Override
