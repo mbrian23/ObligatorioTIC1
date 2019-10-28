@@ -106,7 +106,7 @@ public class SalaController implements Initializable {
                     "Datos incorrectos !",
                     "El numero de sala o el numero de lugares no tienen el formato esperado (numerico).");
 
+            }
         }
     }
-}
 }
