@@ -36,6 +36,10 @@ public class Funcion {
     @JoinColumn(name = "idPelicula")
     private Pelicula pelicula;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "nombre_Local")
+    private Locales local;
+
     public Long getId() {
         return id;
     }

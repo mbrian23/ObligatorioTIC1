@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 @Table
 public class Locales {
 
-    @Id
+    @Id()
     @Column(nullable = false, name = "nombre_local")
     @NotNull
     private String name;
