@@ -14,7 +14,7 @@ public class Local {
     private String name;
 
     @ManyToOne
-    @NotBlank
+   // @NotBlank
     @JoinColumn(nullable = false, name = "nombre_cine")
     private Cine cine;
 

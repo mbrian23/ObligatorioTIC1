@@ -45,14 +45,14 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="cinelocal" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="cineLocal" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </GridPane.margin>
                   </TextField>
                </children>
             </GridPane>
-            <Button fx:id="btnaddlocal" mnemonicParsing="false" text="Agregar" onAction="#addLocal" />
+            <Button fx:id="addBtn" mnemonicParsing="false" text="Agregar" onAction="#addLocal" />
          </children>
       </VBox>
    </children>

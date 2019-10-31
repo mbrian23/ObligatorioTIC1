@@ -87,8 +87,8 @@ public class CarteleraLocales implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        locales.setCellValueFactory(new PropertyValueFactory<>("locales"));
-        cines.setCellValueFactory(new PropertyValueFactory<>("cines"));
+        locales.setCellValueFactory(new PropertyValueFactory<>("name"));
+        cines.setCellValueFactory(new PropertyValueFactory<>("cine"));
 
 
         actualizaCartLocales();
