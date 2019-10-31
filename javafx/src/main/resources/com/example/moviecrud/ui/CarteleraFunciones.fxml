@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="984.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.Principal">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="984.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.CarteleraFunciones">
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
@@ -27,17 +27,17 @@
                     <menus>
                       <Menu mnemonicParsing="false" style="-fx-font-weight: bold;" text="Agregar">
                         <items>
-                          <MenuItem fx:id="mItemAgregarPelicula" mnemonicParsing="false" onAction="#agregarPeliculaAction" text="Nueva Pelicula" />
+                          <MenuItem fx:id="mItemAgregarPelicula" mnemonicParsing="false"  text="Nueva Pelicula" />
                         </items>
                       </Menu>
                       <Menu mnemonicParsing="false" style="-fx-font-weight: bold;" text="Eliminar">
                         <items>
-                          <MenuItem fx:id="mItemEliminarPelicula" mnemonicParsing="false" onAction="#eliminarPeliculaAction" text="Delete" />
+                          <MenuItem fx:id="mItemEliminarPelicula" mnemonicParsing="false"  text="Delete" />
                         </items>
                       </Menu>
                       <Menu mnemonicParsing="false" style="-fx-font-weight: bold;" text="Editar">
                         <items>
-                          <MenuItem fx:id="mItemEditarPelicula" mnemonicParsing="false" onAction="#editarPeliculaAction" text="Modificar" />
+                          <MenuItem fx:id="mItemEditarPelicula" mnemonicParsing="false"  text="Modificar" />
                         </items>
                       </Menu>
                     </menus>
@@ -51,17 +51,18 @@
             </HBox>
             <TableView fx:id="tabla" prefHeight="453.0" prefWidth="433.0" VBox.vgrow="ALWAYS">
               <columns>
-                <TableColumn fx:id="titulo" prefWidth="75.0" text="Titulo" />
-                <TableColumn fx:id="genero" prefWidth="79.0" text="Genero" />
-                  <TableColumn fx:id="actores" prefWidth="78.0" text="Actores" />
-                  <TableColumn fx:id="duracion" prefWidth="91.0" text="Duracion" />
-                  <TableColumn fx:id="descripcion" prefWidth="249.0" text="Descrpcion" />
+                <TableColumn fx:id="fechaInicio" prefWidth="75.0" text="Fecha Inicio" />
+                <TableColumn fx:id="fechaFinal" prefWidth="79.0" text="Fecha Final" />
+                  <TableColumn fx:id="hora" prefWidth="78.0" text="Hora" />
+                  <TableColumn fx:id="sala" prefWidth="91.0" text="Sala" />
+                  <TableColumn fx:id="pelicula" prefWidth="249.0" text="Pelicula" />
+                  <TableColumn fx:id="local" prefWidth="75.0" text="Local" />
               </columns>
                <contextMenu>
                   <ContextMenu>
                     <items>
-                      <MenuItem mnemonicParsing="false" onAction="#editarPeliculaAction" text="Editar" />
-                        <MenuItem mnemonicParsing="false" onAction="#eliminarPeliculaAction" text="Eliminar" />
+                      <MenuItem mnemonicParsing="false" text="Editar" />
+                        <MenuItem mnemonicParsing="false"  text="Eliminar" />
                     </items>
                   </ContextMenu>
                </contextMenu>

@@ -1,8 +1,12 @@
 package com.example.moviecrud.ui;
 
 import com.example.moviecrud.MovieCrudApplication;
-import com.example.moviecrud.business.CineMgr;
-import com.example.moviecrud.business.entities.Cine;
+import com.example.moviecrud.business.FuncionMgr;
+import com.example.moviecrud.business.PeliculaMgr;
+import com.example.moviecrud.business.entities.Funcion;
+import com.example.moviecrud.business.entities.Local;
+import com.example.moviecrud.business.entities.Pelicula;
+import com.example.moviecrud.business.entities.Sala;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -22,35 +26,54 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
+import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
 @Controller
-public class CarteleraCines implements Initializable {
+public class CarteleraFunciones implements Initializable {
+
 
     @Autowired
-    CineMgr cineMgr;
+    FuncionMgr funcionMgr;
+
 
     @FXML
     private AnchorPane root;
 
     @FXML
-    private MenuItem mItemAgregarSala;
+    private MenuItem mItemAgregarPelicula;
 
     @FXML
-    private MenuItem mItemEliminarSala;
+    private MenuItem mItemEliminarPelicula;
 
     @FXML
-    private MenuItem mItemEditarSala;
+    private MenuItem mItemEditarPelicula;
 
     @FXML
     private TextField buscador;
 
     @FXML
-    private TableView<Cine> tabla;
+    private TableView<Funcion> tabla;
 
     @FXML
-    private TableColumn<Cine, String> cine;
+    private TableColumn<Funcion, LocalDate> fechaInicio;
+
+    @FXML
+    private TableColumn<Funcion, LocalDate> fechaFinal;
+
+    @FXML
+    private TableColumn<Funcion, Time> hora;
+
+    @FXML
+    private TableColumn<Funcion, Sala> sala;
+
+    @FXML
+    private TableColumn<Funcion, Pelicula> pelicula;
+
+    @FXML
+    private TableColumn<Funcion, Local> local;
 
     @FXML
     private Button btnpeliculas;
@@ -65,14 +88,8 @@ public class CarteleraCines implements Initializable {
     private Button btnlocales;
 
     @FXML
-    private Button btncines;
+    private Button btnCines;
 
-    private ObservableList<Cine> cineList = FXCollections.observableArrayList();
-
-    @FXML
-    void agregarSalaAction(ActionEvent event) {
-
-    }
 
     @FXML
     public void cargaCartPeliculas (ActionEvent event) throws Exception{
@@ -92,18 +109,6 @@ public class CarteleraCines implements Initializable {
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(CarteleraSalas.class.getResourceAsStream("CarteleraSalas.fxml"));
-        Scene inicioScene = new Scene(root, 600,500);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(inicioScene);
-        window.show();
-    }
-
-    @FXML
-    public void cargaCartFunciones (ActionEvent event) throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
-
-        Parent root = fxmlLoader.load(CarteleraFunciones.class.getResourceAsStream("CarteleraFunciones.fxml"));
         Scene inicioScene = new Scene(root, 600,500);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(inicioScene);
@@ -135,23 +140,49 @@ public class CarteleraCines implements Initializable {
     }
 
 
+    @FXML
+    public void cargaCartFunciones (ActionEvent event) throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(CarteleraFunciones.class.getResourceAsStream("CarteleraFunciones.fxml"));
+        Scene inicioScene = new Scene(root, 600,500);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(inicioScene);
+        window.show();
+    }
+
+    private ObservableList<Funcion> funcionesList = FXCollections.observableArrayList();
+
+
+    public void actualizaCart(){
+        funcionesList.clear();
+        funcionesList.addAll(funcionMgr.getAllFunciones());
+        tabla.setItems(funcionesList);
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        cine.setCellValueFactory(new PropertyValueFactory<>("cine"));
 
+        fechaInicio.setCellValueFactory(new PropertyValueFactory<>("fecha Inicio"));
+        fechaFinal.setCellValueFactory(new PropertyValueFactory<>("fecha Final"));
+        hora.setCellValueFactory(new PropertyValueFactory<>("hora"));
+        sala.setCellValueFactory(new PropertyValueFactory<>("sala"));
+        pelicula.setCellValueFactory(new PropertyValueFactory<>("pelicula"));
+        local.setCellValueFactory(new PropertyValueFactory<>("local"));
 
-
-        actualizaCartCine();
+        actualizaCart();
 
 
 
         buscador.textProperty().addListener((((observable, oldValue, newValue) -> {
-            FilteredList<Cine> filteredList = new FilteredList<>(cineList, s -> true);
-            filteredList.setPredicate((Predicate<? super Cine>) (Cine cine) ->{
+            FilteredList<Funcion> filteredList = new FilteredList<>(funcionesList, s -> true);
+            filteredList.setPredicate((Predicate<? super Funcion>) (Funcion funcion) ->{
                 if (newValue.isEmpty() || newValue==null){
                     return true;
-                } else if (cine.getNombre().contains(newValue)){
+                } else if (funcion.getPelicula().getTitulo().contains(newValue)){
+                    return true;
+                } else if (funcion.getLocal().getName().contains(newValue)){
                     return true;
                 }
                 return false;
@@ -162,25 +193,12 @@ public class CarteleraCines implements Initializable {
             tabla.setItems(sortedList);
 
         })));
-        FilteredList<Cine> filteredList = new FilteredList<>(cineList, s -> true);
+        FilteredList<Funcion> filteredList = new FilteredList<>(funcionesList, s -> true);
         SortedList sortedList = new SortedList(filteredList);
         sortedList.comparatorProperty().bind(tabla.comparatorProperty());
         tabla.setItems(sortedList);
+
     }
-
-    public void actualizaCartCine(){
-        cineList.clear();
-        cineList.addAll(cineMgr.getAllCine());
-        tabla.setItems(cineList);
-    }
-
-    //EDICION DE CINES
-    @FXML
-    private TextField nombrecine;
-
-    @FXML
-    private Button btnagregar;
-
 
 
 }

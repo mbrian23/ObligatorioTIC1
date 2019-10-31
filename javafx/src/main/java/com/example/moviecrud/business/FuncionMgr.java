@@ -35,12 +35,12 @@ public class FuncionMgr {
     }
 
 
-    public List<Funcion> getAllPeliculas(){
+    public List<Funcion> getAllFunciones(){
         return (List<Funcion>) funcionRepo.findAll();
     }
 
 
-    public Funcion getPeliculaById(@PathVariable(value = "id") Long funcionId) {
+    public Funcion getFuncionById(@PathVariable(value = "id") Long funcionId) {
         return funcionRepo.findById(funcionId).get();
     }
 

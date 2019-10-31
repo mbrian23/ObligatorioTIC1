@@ -167,6 +167,9 @@ public class Principal implements Initializable {
     @FXML
     private Button btnlocales;
 
+    @FXML
+    private Button btnCines;
+
 
     @FXML
     public void cargaCartPeliculas (ActionEvent event) throws Exception{
@@ -217,17 +220,17 @@ public class Principal implements Initializable {
     }
 
 
-//    @FXML
-//    public void cargaCartFunciones (ActionEvent event) throws Exception{
-//        FXMLLoader fxmlLoader = new FXMLLoader();
-//        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
-//
-//        Parent root = fxmlLoader.load(Principal.class.getResourceAsStream("Cartelera.fxml"));
-//        Scene inicioScene = new Scene(root, 600,500);
-//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        window.setScene(inicioScene);
-//        window.show();
-//    }
+    @FXML
+    public void cargaCartFunciones (ActionEvent event) throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(CarteleraFunciones.class.getResourceAsStream("CarteleraFunciones.fxml"));
+        Scene inicioScene = new Scene(root, 600,500);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(inicioScene);
+        window.show();
+    }
 
 
 
