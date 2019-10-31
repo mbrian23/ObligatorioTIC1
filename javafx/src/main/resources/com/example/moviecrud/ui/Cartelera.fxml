@@ -94,7 +94,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnlocales" mnemonicParsing="false" onAction="#cargaCartCines" prefHeight="27.0" prefWidth="504.0" text="CINES">
+            <Button fx:id="btnCines" mnemonicParsing="false" onAction="#cargaCartCines" prefHeight="27.0" prefWidth="504.0" text="CINES">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>

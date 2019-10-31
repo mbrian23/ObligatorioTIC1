@@ -3,6 +3,8 @@ package com.example.moviecrud.ui;
 import com.example.moviecrud.MovieCrudApplication;
 import com.example.moviecrud.business.CineMgr;
 import com.example.moviecrud.business.entities.Cine;
+import com.example.moviecrud.ui.movie.CineController;
+import com.example.moviecrud.ui.movie.SalaController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -21,6 +23,7 @@ import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -35,13 +38,13 @@ public class CarteleraCines implements Initializable {
     private AnchorPane root;
 
     @FXML
-    private MenuItem mItemAgregarSala;
+    private MenuItem mItemAgregarCine;
 
     @FXML
-    private MenuItem mItemEliminarSala;
+    private MenuItem mItemEliminarCine;
 
     @FXML
-    private MenuItem mItemEditarSala;
+    private MenuItem mItemEditarCine;
 
     @FXML
     private TextField buscador;
@@ -70,9 +73,18 @@ public class CarteleraCines implements Initializable {
     private ObservableList<Cine> cineList = FXCollections.observableArrayList();
 
     @FXML
-    void agregarSalaAction(ActionEvent event) {
+    void agregarCineAction(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(CineController.class.getResourceAsStream("AddCine.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
 
     }
+
+
 
     @FXML
     public void cargaCartPeliculas (ActionEvent event) throws Exception{
@@ -80,6 +92,30 @@ public class CarteleraCines implements Initializable {
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(Principal.class.getResourceAsStream("Cartelera.fxml"));
+        Scene inicioScene = new Scene(root, 600,500);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(inicioScene);
+        window.show();
+    }
+
+    @FXML
+    public void cargaCartCines (ActionEvent event) throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(CarteleraCines.class.getResourceAsStream("CarteleraCines.fxml"));
+        Scene inicioScene = new Scene(root, 600,500);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(inicioScene);
+        window.show();
+    }
+
+    @FXML
+    public void cargaCartLocales (ActionEvent event) throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(CarteleraLocales.class.getResourceAsStream("CarteleraLocales.fxml"));
         Scene inicioScene = new Scene(root, 600,500);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(inicioScene);
@@ -115,11 +151,7 @@ public class CarteleraCines implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         cine.setCellValueFactory(new PropertyValueFactory<>("cine"));
 
-
-
         actualizaCartCine();
-
-
 
         buscador.textProperty().addListener((((observable, oldValue, newValue) -> {
             FilteredList<Cine> filteredList = new FilteredList<>(cineList, s -> true);

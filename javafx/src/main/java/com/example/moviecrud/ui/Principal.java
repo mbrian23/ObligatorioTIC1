@@ -167,6 +167,9 @@ public class Principal implements Initializable {
     @FXML
     private Button btnlocales;
 
+    @FXML
+    private Button btnCines;
+
 
     @FXML
     public void cargaCartPeliculas (ActionEvent event) throws Exception{
