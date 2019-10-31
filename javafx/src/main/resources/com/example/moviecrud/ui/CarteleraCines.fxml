@@ -27,7 +27,7 @@
                     <menus>
                       <Menu mnemonicParsing="false" text="Agregar">
                         <items>
-                          <MenuItem fx:id="mItemAgregarSala" mnemonicParsing="false" onAction="#agregarSalaAction" text="Nueva Sala" />
+                          <MenuItem fx:id="mItemAgregarCine" mnemonicParsing="false" onAction="#agregarCineAction" text="Nuevo Cine" />
                         </items>
                       </Menu>
                       <Menu mnemonicParsing="false" text="Eliminar">
