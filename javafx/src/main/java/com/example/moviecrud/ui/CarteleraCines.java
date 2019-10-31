@@ -146,35 +146,11 @@ public class CarteleraCines implements Initializable {
         window.show();
     }
 
-    @FXML
-    public void cargaCartLocales (ActionEvent event) throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
-
-        Parent root = fxmlLoader.load(CarteleraLocales.class.getResourceAsStream("CarteleraLocales.fxml"));
-        Scene inicioScene = new Scene(root, 600,500);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(inicioScene);
-        window.show();
-    }
-
-    @FXML
-    public void cargaCartCines (ActionEvent event) throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
-
-        Parent root = fxmlLoader.load(CarteleraCines.class.getResourceAsStream("CarteleraCines.fxml"));
-        Scene inicioScene = new Scene(root, 600,500);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(inicioScene);
-        window.show();
-    }
-
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        cine.setCellValueFactory(new PropertyValueFactory<>("cine"));
+        cine.setCellValueFactory(new PropertyValueFactory<>("nombre"));
 
         actualizaCartCine();
 

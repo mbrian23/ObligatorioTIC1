@@ -6,19 +6,24 @@ import com.example.moviecrud.business.exceptions.InformacionInvalida;
 import com.example.moviecrud.business.exceptions.YaExiste;
 import com.example.moviecrud.ui.CarteleraCines;
 import com.example.moviecrud.ui.CarteleraSalas;
+import com.example.moviecrud.ui.Inicio;
+import com.example.moviecrud.ui.Principal;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+@Controller
 public class CineController implements Initializable {
 
 
@@ -27,14 +32,27 @@ public class CineController implements Initializable {
 
     }
 
-    @Autowired
+
     CarteleraCines carteleraCine;
+
+    @Autowired
+    public CineController(CarteleraCines carteleraCine){
+        this.carteleraCine=carteleraCine;
+    }
 
     @Autowired
     CineMgr cineMgr;
 
+    @Autowired
+    Inicio inicio;
+
+
+
     @FXML
-    TextField nombreCine;
+    private TextField nombrecine;
+
+    @FXML
+    private Button btnagregar;
 
 
     private void showAlert(String title, String contextText) {
@@ -53,8 +71,8 @@ public class CineController implements Initializable {
     }
 
     @FXML
-    void addCine(ActionEvent event) throws IOException {
-        if (nombreCine == null || "".equals(nombreCine)){
+    void addCine(ActionEvent event) throws InformacionInvalida, IOException,YaExiste {
+        if (nombrecine == null || "".equals(nombrecine)){
 
             showAlert(
                     "Datos faltantes!",
@@ -62,25 +80,27 @@ public class CineController implements Initializable {
 
         } else {
 
-            String cine = nombreCine.getAccessibleText();
+            String cine = nombrecine.getText();
 
 
-            try {
+          //  try {
                 cineMgr.addCine(cine);
 
                 showAlert("Cine agregado", "Se agrego con exito el cine!");
 
-                carteleraCine.actualizaCartCine();
                 close(event);
-            } catch (InformacionInvalida informacionInvalida) {
-                showAlert(
-                        "Informacion invalida !",
-                        "Se encontro un error en los datos ingresados.");
-            } catch (YaExiste cineYaExiste) {
-                showAlert(
-                        "Nombre de Cine ya registrado !",
-                        "La cadena de cine ya ha sido registrada en el sistema).");
-            }
+                carteleraCine.actualizaCartCine();
+
+        //    }
+//            catch (InformacionInvalida informacionInvalida) {
+//                showAlert(
+//                        "Informacion invalida !",
+//                        "Se encontro un error en los datos ingresados.");
+//            } catch (YaExiste cineYaExiste) {
+//                showAlert(
+//                        "Nombre de Cine ya registrado !",
+//                        "La cadena de cine ya ha sido registrada en el sistema).");
+//            }
 
         }
     }

@@ -24,4 +24,7 @@ public class Cine {
     public Cine(@NotBlank String nombre) {
         this.nombre = nombre;
     }
+
+    public Cine() {
+   }
 }
