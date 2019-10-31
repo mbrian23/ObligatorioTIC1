@@ -122,6 +122,7 @@ public class MovieCrudApplication extends Application {
                     imagen.fitWidthProperty().bind(vb.widthProperty());
                     imagen.fitHeightProperty().bind(vb.heightProperty());
 
+
                     byte [] img = peliculaMgr.getAllPeliculas().get(clave).getMovieImage();
                     ByteArrayInputStream bis = new ByteArrayInputStream(img);
                     BufferedImage bImage = ImageIO.read(bis);

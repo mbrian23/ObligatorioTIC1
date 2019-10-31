@@ -19,11 +19,11 @@
 
 <SplitPane fx:id="sp" dividerPositions="0.44816053511705684" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="bodybg2" stylesheets="/com/example/moviecrud/ui/movie/InfoPelicula.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="262.0">
+    <AnchorPane fx:id="paneImg" minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="262.0">
          <children>
             <VBox fx:id="vb" prefHeight="398.0" prefWidth="265.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <ImageView fx:id="img" fitHeight="401.0" fitWidth="269.0" pickOnBounds="true" VBox.vgrow="ALWAYS" />
+                  <ImageView fx:id="img" fitHeight="401.0" fitWidth="269.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
             <Text fx:id="titulo" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre Pelicula" AnchorPane.topAnchor="20.0">
