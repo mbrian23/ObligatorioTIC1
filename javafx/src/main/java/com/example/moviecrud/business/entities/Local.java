@@ -25,6 +25,16 @@ public class Local {
     public Local() {
     }
 
+    private String nCine;
+
+    public String getnCine() {
+        return nCine;
+    }
+
+    public void setnCine(String nCine) {
+        this.nCine = nCine;
+    }
+
     public String getName() {
         return name;
     }

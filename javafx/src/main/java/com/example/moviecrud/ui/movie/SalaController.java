@@ -1,13 +1,22 @@
 package com.example.moviecrud.ui.movie;
 
+import com.example.moviecrud.business.CineMgr;
+import com.example.moviecrud.business.LocalMgr;
 import com.example.moviecrud.business.SalaManager;
+import com.example.moviecrud.business.entities.Cine;
+import com.example.moviecrud.business.entities.Local;
 import com.example.moviecrud.business.exceptions.InformacionInvalida;
 import com.example.moviecrud.business.exceptions.YaExiste;
 import com.example.moviecrud.ui.CarteleraSalas;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -32,6 +41,12 @@ public class SalaController implements Initializable {
     CarteleraSalas carteleraSalas;
 
     @Autowired
+    LocalMgr localMgr;
+
+    @Autowired
+    CineMgr cineMgr;
+
+    @Autowired
     SalaManager salaManager;
 
     @FXML
@@ -52,6 +67,12 @@ public class SalaController implements Initializable {
     @FXML
     private ComboBox<String> tipoSala;
 
+    @FXML
+    private ComboBox<String> cadenaCine;
+
+    @FXML
+    private ComboBox<String> local;
+
     private void showAlert(String title, String contextText) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -67,8 +88,14 @@ public class SalaController implements Initializable {
         stage.close();
     }
 
+
+
+
     @FXML
     void addSala(ActionEvent event) throws IOException{
+
+
+
         if (nroFilas.getText() == null || nroFilas.getText().equals("") || nroColumnas.getText() == null || nroColumnas.getText().equals("") || nroSala.getText() == null || nroSala.getText().equals("")){
 
             showAlert(

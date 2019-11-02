@@ -7,7 +7,9 @@ import com.example.moviecrud.business.entities.Pelicula;
 import com.example.moviecrud.ui.InfoPelicula;
 import com.example.moviecrud.ui.Inicio;
 import com.example.moviecrud.ui.Principal;
+import com.example.moviecrud.ui.movie.LocalController;
 import com.example.moviecrud.ui.movie.MovieController;
+import com.example.moviecrud.ui.movie.SalaController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -48,6 +50,7 @@ public class MovieCrudApplication extends Application {
 
     @Autowired
     PeliculaMgr peliculaMgr;
+
 
     private static ConfigurableApplicationContext context;
 
@@ -98,9 +101,13 @@ public class MovieCrudApplication extends Application {
 
 
     public EventHandler abrirPaginaPelicula() throws Exception {
+
+
+
         EventHandler handler = new EventHandler() {
             @Override
             public void handle(Event event) {
+
 
                 Parent parent=null;
                 FXMLLoader fxmlLoader=new FXMLLoader();

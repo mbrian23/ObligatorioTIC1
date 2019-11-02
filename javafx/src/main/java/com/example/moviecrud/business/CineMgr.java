@@ -19,7 +19,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-public class CineMgr {
+public class CineMgr  {
     @Autowired
     CineRepo cineRepo;
 
