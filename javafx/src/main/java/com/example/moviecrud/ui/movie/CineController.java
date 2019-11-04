@@ -83,7 +83,7 @@ public class CineController implements Initializable {
             String cine = nombrecine.getText();
 
 
-          //  try {
+            try {
                 cineMgr.addCine(cine);
 
                 showAlert("Cine agregado", "Se agrego con exito el cine!");
@@ -91,16 +91,16 @@ public class CineController implements Initializable {
                 close(event);
                 carteleraCine.actualizaCartCine();
 
-        //    }
-//            catch (InformacionInvalida informacionInvalida) {
-//                showAlert(
-//                        "Informacion invalida !",
-//                        "Se encontro un error en los datos ingresados.");
-//            } catch (YaExiste cineYaExiste) {
-//                showAlert(
-//                        "Nombre de Cine ya registrado !",
-//                        "La cadena de cine ya ha sido registrada en el sistema).");
-//            }
+            }
+            catch (InformacionInvalida informacionInvalida) {
+                showAlert(
+                        "Informacion invalida !",
+                        "Se encontro un error en los datos ingresados.");
+            } catch (YaExiste cineYaExiste) {
+                showAlert(
+                        "Nombre de Cine ya registrado !",
+                        "La cadena de cine ya ha sido registrada en el sistema).");
+            }
 
         }
     }
