@@ -27,7 +27,7 @@
 
          </image>
       </ImageView>
-      <Button fx:id="compra" layoutX="647.0" layoutY="598.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="262.0" style="-fx-background-color: grey; -fx-border-radius: 80px;" text="COMPRAR" />
+      <Button fx:id="compra" onAction="#cargaTicket" layoutX="647.0" layoutY="598.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="262.0" style="-fx-background-color: grey; -fx-border-radius: 80px;" text="COMPRAR" />
       <Label layoutX="40.0" layoutY="558.0" style="-fx-font-weight: bold;" text="Disponible" />
       <Label layoutX="132.0" layoutY="558.0" text="Reservado" />
       <Label layoutX="222.0" layoutY="558.0" text="Seleccionado" />
