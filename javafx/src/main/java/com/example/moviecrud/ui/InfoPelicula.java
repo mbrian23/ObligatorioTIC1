@@ -52,7 +52,7 @@ public class InfoPelicula implements Initializable {
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent paneImg = fxmlLoader.load(Showroom.class.getResourceAsStream("Showroom.fxml"));
-        Scene inicioScene = new Scene(paneImg, 600, 500);
+        Scene inicioScene = new Scene(paneImg, 1200, 1200);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(inicioScene);
         window.show();

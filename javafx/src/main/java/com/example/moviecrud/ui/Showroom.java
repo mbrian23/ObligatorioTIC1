@@ -42,6 +42,15 @@ public class Showroom implements Initializable {
     private Image unavailable = new Image("com/example/moviecrud/ui/images/unavailable.png");
 
     @FXML
+    private ImageView disponible;
+
+    @FXML
+    private ImageView elegido;
+
+    @FXML
+    private ImageView ocupado;
+
+    @FXML
     private GridPane grid;
 
 
@@ -59,7 +68,7 @@ public class Showroom implements Initializable {
 
     private Pelicula pelicula = new Pelicula("tit", "gen", "act", "dur", "des");
 
-    private Sala salapr = new Sala(4l,4l,"sale", 3l);
+    private Sala salapr = new Sala(4l,7l,"sale", 3l);
 
     private Funcion funcionElegida = new Funcion(fechainicio,fechafinal,horario,salapr, pelicula);
 
@@ -70,8 +79,17 @@ public class Showroom implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        available.setFitHeight(25);
-  //      available.setFitWidth(25);
+        disponible.setImage(available);
+        elegido.setImage(selected);
+        ocupado.setImage(unavailable);
+
+
+        disponible.setFitHeight(25);
+        disponible.setFitWidth(25);
+        elegido.setFitWidth(25);
+        elegido.setFitHeight(25);
+        ocupado.setFitHeight(25);
+        ocupado.setFitWidth(25);
 
         grid.setVgap(30);
         grid.setHgap(30);
