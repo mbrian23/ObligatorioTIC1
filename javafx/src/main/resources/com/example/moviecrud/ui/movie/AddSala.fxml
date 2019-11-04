@@ -54,8 +54,12 @@
             <TextField fx:id="nroFilas" layoutX="290.0" layoutY="80.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="Cine" GridPane.rowIndex="5" />
             <Label text="Local" GridPane.rowIndex="6" />
-            <ComboBox prefWidth="150.0" promptText="Cadena de cine" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <ComboBox prefWidth="150.0" promptText="Localidad" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <ComboBox fx:id="cadenaCine" prefWidth="150.0" promptText="Cadena de cine" GridPane.columnIndex="1" GridPane.rowIndex="5" > <items>
+             <FXCollections fx:factory="observableArrayList">
+                 <String fx:id="t" fx:value="pr" />
+             </FXCollections>
+         </items> </ComboBox>
+            <ComboBox fx:id="local" prefWidth="150.0" promptText="Localidad" GridPane.columnIndex="1" GridPane.rowIndex="6" />
          </children>
       </GridPane>
    </children>
