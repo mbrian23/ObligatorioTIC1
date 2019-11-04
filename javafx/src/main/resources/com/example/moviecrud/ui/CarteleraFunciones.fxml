@@ -27,17 +27,17 @@
                     <menus>
                       <Menu mnemonicParsing="false" style="-fx-font-weight: bold;" text="Agregar">
                         <items>
-                          <MenuItem fx:id="mItemAgregarPelicula" mnemonicParsing="false" onAction="#agregarPeliculaAction" text="Nueva Pelicula" />
+                          <MenuItem fx:id="mItemAgregarFuncion" mnemonicParsing="false" onAction="#agregarFuncionAction" text="Nueva Pelicula" />
                         </items>
                       </Menu>
                       <Menu mnemonicParsing="false" style="-fx-font-weight: bold;" text="Eliminar">
                         <items>
-                          <MenuItem fx:id="mItemEliminarPelicula" mnemonicParsing="false" onAction="#eliminarPeliculaAction" text="Delete" />
+                          <MenuItem fx:id="mItemEliminarFuncion" mnemonicParsing="false" onAction="#eliminarFuncionAction" text="Delete" />
                         </items>
                       </Menu>
                       <Menu mnemonicParsing="false" style="-fx-font-weight: bold;" text="Editar">
                         <items>
-                          <MenuItem fx:id="mItemEditarPelicula" mnemonicParsing="false" onAction="#editarPeliculaAction" text="Modificar" />
+                          <MenuItem fx:id="mItemEditarFuncion" mnemonicParsing="false" onAction="#editarFuncionAction" text="Modificar" />
                         </items>
                       </Menu>
                     </menus>
@@ -61,8 +61,8 @@
                <contextMenu>
                   <ContextMenu>
                     <items>
-                      <MenuItem mnemonicParsing="false" onAction="#editarPeliculaAction" text="Editar" />
-                        <MenuItem mnemonicParsing="false" onAction="#eliminarPeliculaAction" text="Eliminar" />
+                      <MenuItem mnemonicParsing="false" onAction="#editarFuncionAction" text="Editar" />
+                        <MenuItem mnemonicParsing="false" onAction="#eliminarFuncionAction" text="Eliminar" />
                     </items>
                   </ContextMenu>
                </contextMenu>
@@ -85,7 +85,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnfunciones" mnemonicParsing="false" prefHeight="27.0" prefWidth="271.0" text="FUNCIONES">
+            <Button fx:id="btnfunciones" mnemonicParsing="false" prefHeight="27.0" prefWidth="271.0" text="FUNCIONES" onAction="#cargaCartFunciones">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>

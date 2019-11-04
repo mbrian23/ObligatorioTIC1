@@ -80,7 +80,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnfunciones" mnemonicParsing="false" prefHeight="27.0" prefWidth="132.0" text="FUNCIONES">
+            <Button fx:id="btnfunciones" mnemonicParsing="false" prefHeight="27.0" prefWidth="132.0" text="FUNCIONES" onAction="#cargaCartFunciones">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>

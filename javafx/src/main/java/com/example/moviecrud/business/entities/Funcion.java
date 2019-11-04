@@ -16,15 +16,14 @@ public class Funcion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+
     @Column(nullable = false)
     private LocalDate fechaInicio;
 
-    @NotBlank
+
     @Column(nullable = false)
     private LocalDate fechaFinal;
 
-    @NotBlank
     @Column(nullable = false)
     private Time horaFuncion;
 
@@ -48,13 +47,11 @@ public class Funcion {
         this.id = id;
     }
 
-    public Funcion(@NotBlank LocalDate fechaInicio, @NotBlank LocalDate fechaFinal, @NotBlank Time horaFuncion, Sala sala, Pelicula pelicula) {
+    public Funcion( LocalDate fechaInicio, LocalDate fechaFinal, Time horaFuncion) {
         this.id = id;
         this.fechaInicio = fechaInicio;
         this.fechaFinal = fechaFinal;
         this.horaFuncion = horaFuncion;
-        this.sala = sala;
-        this.pelicula = pelicula;
     }
 
     public Funcion() {

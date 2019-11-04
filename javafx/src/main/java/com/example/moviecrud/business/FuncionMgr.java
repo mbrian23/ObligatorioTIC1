@@ -1,6 +1,7 @@
 package com.example.moviecrud.business;
 
 import com.example.moviecrud.business.entities.Funcion;
+import com.example.moviecrud.business.entities.Local;
 import com.example.moviecrud.business.entities.Pelicula;
 import com.example.moviecrud.business.entities.Sala;
 import com.example.moviecrud.business.exceptions.InformacionInvalida;
@@ -50,7 +51,7 @@ public class FuncionMgr {
         return ResponseEntity.ok().build();
     }
 
-    public void addFuncion(LocalDate fechaInicio, LocalDate fechaFinal, Time horaFuncion, Sala sala, Pelicula pelicula) throws InformacionInvalida, YaExiste, IOException {
+    public void addFuncion(LocalDate fechaInicio, LocalDate fechaFinal, Time horaFuncion, Sala sala, Pelicula pelicula, Local local) throws InformacionInvalida, YaExiste, IOException {
         if(fechaFinal== null || "".equals(fechaFinal) || fechaInicio == null || "".equals(fechaInicio) || horaFuncion == null || "".equals(horaFuncion) || sala ==null || "".equals(sala) || pelicula == null || "".equals(pelicula) ){
 
             throw new InformacionInvalida("Algun dato ingresado no es correcto");
@@ -59,7 +60,7 @@ public class FuncionMgr {
 
 
 
-        Funcion funcion = new Funcion(fechaInicio, fechaFinal, horaFuncion, sala, pelicula);
+        Funcion funcion = new Funcion(fechaInicio, fechaFinal, horaFuncion);
         funcionRepo.save(funcion);
     }
 

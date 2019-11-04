@@ -70,7 +70,7 @@ public class Showroom implements Initializable {
 
     private Sala salapr = new Sala(4l,7l,"sale", 3l);
 
-    private Funcion funcionElegida = new Funcion(fechainicio,fechafinal,horario,salapr, pelicula);
+   // private Funcion funcionElegida = new Funcion(fechainicio,fechafinal,horario,salapr, pelicula);
 
 
     //prueba
@@ -95,9 +95,9 @@ public class Showroom implements Initializable {
         grid.setHgap(30);
 
 
-        Sala sala = funcionElegida.getSala();
+   //     Sala sala = funcionElegida.getSala();
 
-        addSeats(sala);
+  //      addSeats(sala);
 
     }
 

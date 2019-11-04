@@ -7,6 +7,7 @@ import com.example.moviecrud.business.entities.Funcion;
 import com.example.moviecrud.business.entities.Local;
 import com.example.moviecrud.business.entities.Pelicula;
 import com.example.moviecrud.business.entities.Sala;
+import com.example.moviecrud.ui.movie.SalaController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -43,13 +44,13 @@ public class CarteleraFunciones implements Initializable {
     private AnchorPane root;
 
     @FXML
-    private MenuItem mItemAgregarPelicula;
+    private MenuItem mItemAgregarFuncion;
 
     @FXML
-    private MenuItem mItemEliminarPelicula;
+    private MenuItem mItemEliminarFuncion;
 
     @FXML
-    private MenuItem mItemEditarPelicula;
+    private MenuItem mItemEditarFuncion;
 
     @FXML
     private TextField buscador;
@@ -216,5 +217,24 @@ public class CarteleraFunciones implements Initializable {
 
     }
 
+    @FXML
+    void agregarFuncionAction(ActionEvent event) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
+        Parent root = fxmlLoader.load(SalaController.class.getResourceAsStream("AddFuncion.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
+    void eliminarFuncionAction(){
+
+    }
+
+    @FXML
+    void editarFuncionAction(){
+
+    }
 }

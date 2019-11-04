@@ -11,7 +11,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.example.moviecrud.ui.movie.FuncionController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -88,8 +90,36 @@
       </Label>
       <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="6" GridPane.vgrow="NEVER">
          <children>
-            <ComboBox fx:id="hora" prefWidth="150.0" promptText="Hora" HBox.hgrow="NEVER" />
+            <ComboBox fx:id="hora" prefWidth="150.0" promptText="Hora" HBox.hgrow="NEVER" > <items>
+               <FXCollections fx:factory="observableArrayList">
+                  <String fx:id="1" fx:value="00" />
+                  <String fx:id="2" fx:value="01" />
+                  <String fx:id="3" fx:value="08" />
+                  <String fx:id="4" fx:value="09" />
+                  <String fx:id="5" fx:value="10" />
+                  <String fx:id="6" fx:value="11" />
+                  <String fx:id="7" fx:value="12" />
+                  <String fx:id="8" fx:value="13" />
+                  <String fx:id="9" fx:value="14" />
+                  <String fx:id="10" fx:value="15" />
+                  <String fx:id="11" fx:value="16" />
+                  <String fx:id="12" fx:value="17" />
+                  <String fx:id="13" fx:value="18" />
+                  <String fx:id="14" fx:value="19" />
+                  <String fx:id="15" fx:value="20" />
+                  <String fx:id="16" fx:value="21" />
+                  <String fx:id="17" fx:value="22" />
+                  <String fx:id="18" fx:value="23" />
+               </FXCollections>
+            </items> </ComboBox>
             <ComboBox fx:id="min" prefWidth="150.0" promptText="Min" HBox.hgrow="NEVER">
+               <items>
+                <FXCollections fx:factory="observableArrayList">
+                  <String fx:id="19" fx:value="00"/>
+                  <String fx:id="20" fx:value="15"/>
+                  <String fx:id="21" fx:value="30"/>
+                  <String fx:id="22" fx:value="45"/>
+                </FXCollections></items>
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
@@ -99,7 +129,7 @@
             <Insets right="150.0" top="10.0" />
          </GridPane.margin>
       </HBox>
-      <Button fx:id="add" mnemonicParsing="false" prefHeight="41.0" prefWidth="82.0" text="Agregar" GridPane.columnIndex="1" GridPane.rowIndex="7">
+      <Button fx:id="add" onAction="#addFuncion" mnemonicParsing="false" prefHeight="41.0" prefWidth="82.0" text="Agregar" GridPane.columnIndex="1" GridPane.rowIndex="7">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>

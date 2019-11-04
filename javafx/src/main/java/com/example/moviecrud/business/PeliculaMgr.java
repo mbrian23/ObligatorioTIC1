@@ -1,6 +1,7 @@
 package com.example.moviecrud.business;
 
 import com.example.moviecrud.business.entities.Pelicula;
+import com.example.moviecrud.business.entities.Sala;
 import com.example.moviecrud.business.exceptions.InformacionInvalida;
 import com.example.moviecrud.business.exceptions.NoExiste;
 import com.example.moviecrud.business.exceptions.YaExiste;
@@ -44,6 +45,18 @@ public class PeliculaMgr {
    // @GetMapping("/pelicula/{id}")
     public Pelicula getPeliculaById(@PathVariable(value = "id") Long peliculaId) {
         return peliculaRepository.findById(peliculaId).get();
+    }
+
+    public Pelicula getPeliculaByName(String nPelicula) {
+        List<Pelicula> peliculas = (List<Pelicula>) peliculaRepository.findAll();
+        int l = peliculas.size();
+        Pelicula temp = null;
+        for (int i = 0; i <l ; i++) {
+            if (peliculas.get(i).getTitulo().equals(nPelicula)) {
+                temp = peliculas.get(i);
+            }
+        }
+        return temp;
     }
 
     // Delete a Pelicula by id
