@@ -50,6 +50,14 @@ public class Sala {
     public Sala() {
     }
 
+//    public Sala( Long filas ,Long columnas, String tipo,Long numeroSala) {
+//        this.filas = filas;
+//        this.columnas = columnas;
+//        this.tipo = tipo;
+//        this.numeroSala = numeroSala;
+//        this.matriz = matriz(filas.intValue(), columnas.intValue());
+//    }
+
     public Long getId() {
         return id;
     }

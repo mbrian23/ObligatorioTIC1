@@ -57,6 +57,9 @@ public class Funcion {
         this.pelicula = pelicula;
     }
 
+    public Funcion() {
+    }
+
     public LocalDate getFechaInicio() {
         return fechaInicio;
     }

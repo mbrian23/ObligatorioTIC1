@@ -168,7 +168,7 @@
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
                      <children>
                         <TextField promptText="Cantidad entradas" />
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="147.0" text="Comprar">
+                        <Button fx:id="btncompra" onAction="#loadShowroom" mnemonicParsing="false" prefHeight="25.0" prefWidth="147.0" text="Comprar">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>

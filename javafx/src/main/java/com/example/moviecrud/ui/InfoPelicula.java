@@ -10,10 +10,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -33,9 +35,28 @@ public class InfoPelicula implements Initializable {
 
 
     @FXML
+    AnchorPane paneImg;
+
+    @FXML
     private ComboBox<String> localidad;
 
     private ObservableList<String> cadenas = FXCollections.observableArrayList();
+
+    @FXML
+    private Button btncompra;
+
+
+    @FXML
+    public void loadShowroom (ActionEvent event) throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent paneImg = fxmlLoader.load(Showroom.class.getResourceAsStream("Showroom.fxml"));
+        Scene inicioScene = new Scene(paneImg, 600, 500);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(inicioScene);
+        window.show();
+    }
 
 
     @Override
