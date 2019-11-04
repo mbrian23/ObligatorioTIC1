@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="411.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="181.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="gracias por su compra:">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Text>
+      <Text layoutX="181.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="comprador">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Text>
+      <Text layoutX="182.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Función:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <VBox layoutX="273.0" layoutY="164.0" prefHeight="150.0" prefWidth="148.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Horario">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Local">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cine">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Asiento(s)">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Película">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
+      <Text layoutX="179.0" layoutY="347.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Disfrute de la función.">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
