@@ -90,6 +90,9 @@ public class CarteleraFunciones implements Initializable {
     @FXML
     private Button btnCines;
 
+    @FXML
+    private Button btnVolver;
+
 
     @FXML
     public void cargaCartPeliculas (ActionEvent event) throws Exception{
@@ -110,6 +113,19 @@ public class CarteleraFunciones implements Initializable {
 
         Parent root = fxmlLoader.load(CarteleraSalas.class.getResourceAsStream("CarteleraSalas.fxml"));
         Scene inicioScene = new Scene(root, 600,500);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(inicioScene);
+        window.show();
+    }
+
+    @FXML
+    void cargaInicio (ActionEvent event) throws Exception {
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("Inicio.fxml"));
+        Scene inicioScene = new Scene(root, 600, 500);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(inicioScene);
         window.show();

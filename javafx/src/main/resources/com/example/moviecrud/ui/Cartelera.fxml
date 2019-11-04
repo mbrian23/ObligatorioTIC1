@@ -101,6 +101,6 @@
             </Button>
          </children>
       </VBox>
-      <Button layoutX="52.0" layoutY="44.0" mnemonicParsing="false" text="Volver a incio" />
+      <Button fx:id="btnVolver" layoutX="52.0" layoutY="44.0" mnemonicParsing="false" onAction="#cargaInicio" text="Volver a inicio" />
    </children>
 </AnchorPane>

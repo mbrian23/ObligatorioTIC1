@@ -72,6 +72,9 @@ public class CarteleraLocales implements Initializable {
     @FXML
     private Button btncines;
 
+    @FXML
+    private Button volver;
+
     private ObservableList<Local> localList = FXCollections.observableArrayList();
 
     @FXML
@@ -83,6 +86,19 @@ public class CarteleraLocales implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
+    }
+
+    @FXML
+    void cargaInicio (ActionEvent event) throws Exception {
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("Inicio.fxml"));
+        Scene inicioScene = new Scene(root, 600, 500);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(inicioScene);
+        window.show();
     }
 
     @Override

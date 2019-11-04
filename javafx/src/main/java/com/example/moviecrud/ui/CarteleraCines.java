@@ -125,6 +125,8 @@ public class CarteleraCines implements Initializable {
         window.show();
     }
 
+
+
     @FXML
     public void cargaCartSalas (ActionEvent event) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader();
