@@ -101,5 +101,6 @@
             </Button>
          </children>
       </VBox>
+      <Button layoutX="52.0" layoutY="44.0" mnemonicParsing="false" text="Volver a incio" />
    </children>
 </AnchorPane>
