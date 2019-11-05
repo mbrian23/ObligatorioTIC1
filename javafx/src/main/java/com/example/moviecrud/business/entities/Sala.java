@@ -39,12 +39,7 @@ public class Sala {
         this.columnas = columnas;
         this.tipo = tipo;
         this.numeroSala = numeroSala;
-        this.matriz = matriz(filas.intValue(), columnas.intValue());
-    }
-    private boolean [][] matriz;
 
-    public boolean[][] matriz(int fila,int columna){
-        return new boolean[fila][columna];
     }
 
     public Sala() {

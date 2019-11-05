@@ -39,6 +39,13 @@ public class Funcion {
     @JoinColumn(name = "nombre_Local")
     private Local local;
 
+    private boolean [][] matriz;
+
+
+    public boolean[][] matriz(int fila,int columna){
+        return new boolean[fila][columna];
+    }
+
     public Long getId() {
         return id;
     }
@@ -50,11 +57,12 @@ public class Funcion {
     public Funcion( LocalDate fecha, Time horaFuncion) {
         this.fecha = fecha;
         this.horaFuncion = horaFuncion;
+        this.matriz = matriz(7, 6);
     }
 
 
     public void reservaButaca(int fila, int columna){
-        sala.matriz(sala.getFilas().intValue(),sala.getColumnas().intValue())[fila][columna] = false;
+     //   matriz(sala.getFilas().intValue(),sala.getColumnas().intValue())[fila][columna] = false;
     }
 
     public Funcion() {
