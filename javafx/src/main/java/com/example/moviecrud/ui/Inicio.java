@@ -233,4 +233,22 @@ public class Inicio implements Initializable {
 
 
 
+    // REGISTRO DE USUARIO CLIENTE FINAL
+
+
+    @FXML
+    private TextField usernameRegistro;
+
+    @FXML
+    private TextField emailRegistro;
+
+    @FXML
+    private TextField passwordRegistro;
+
+    @FXML
+    private TextField passwordRepeatRegistro;
+
+
+
+
 }

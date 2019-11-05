@@ -21,7 +21,7 @@ public class UsuarioMgr {
     UsuarioRepository usuarioRepository;
 
     // Create user
-    // @PostMapping("/pelicula")
+    // @PostMapping("/Usuario")
     public void save(Usuario usuario){
         usuarioRepository.save(usuario);
     }
