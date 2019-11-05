@@ -133,7 +133,7 @@ public class FuncionController implements Initializable {
                     Pelicula pel =peliculaMgr.getPeliculaByName(pelicla);
                     funcionMgr.addFuncion(fInicio, fFin, time, sal, pel, loc);
 
-                    showAlert("Local agregado", "Se agrego con exito la funcion!");
+                    showAlert("Funcion agregada", "Se agrego con exito la funcion!");
 
                     carteleraFunciones.actualizaCart();
                     close(event);

@@ -82,7 +82,7 @@ public class Showroom implements Initializable {
 
     private Sala salapr = new Sala(6l, 6l, "sale", 3l);
 
-    private Funcion funcionElegida = new Funcion(fechainicio, fechafinal, horario);
+    private Funcion funcionElegida = new Funcion(fechainicio, horario);
 
 
 
