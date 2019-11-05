@@ -52,6 +52,11 @@ public class Funcion {
         this.horaFuncion = horaFuncion;
     }
 
+
+    public void reservaButaca(int fila, int columna){
+        sala.matriz(sala.getFilas().intValue(),sala.getColumnas().intValue())[fila][columna] = false;
+    }
+
     public Funcion() {
     }
 
