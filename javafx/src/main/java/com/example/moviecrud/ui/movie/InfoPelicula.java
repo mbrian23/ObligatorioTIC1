@@ -1,8 +1,11 @@
-package com.example.moviecrud.ui;
+package com.example.moviecrud.ui.movie;
 
 import com.example.moviecrud.MovieCrudApplication;
 import com.example.moviecrud.business.CineMgr;
 import com.example.moviecrud.business.PeliculaMgr;
+import com.example.moviecrud.ui.CarteleraCines;
+import com.example.moviecrud.ui.Showroom;
+import com.example.moviecrud.ui.movie.CineController;
 import com.example.moviecrud.ui.movie.MovieController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,11 +31,10 @@ import java.util.ResourceBundle;
 public class InfoPelicula implements Initializable {
 
     @Autowired
-    PeliculaMgr peliculaMgr;
-
-    @Autowired
     CineMgr cineMgr;
 
+    @Autowired
+    PeliculaMgr peliculaMgr;
 
     @FXML
     AnchorPane paneImg;
@@ -41,6 +43,9 @@ public class InfoPelicula implements Initializable {
     private ComboBox<String> localidad;
 
     private ObservableList<String> cadenas = FXCollections.observableArrayList();
+
+    @Autowired
+    CarteleraCines carteleraCines;
 
     @FXML
     private Button btncompra;
@@ -61,11 +66,15 @@ public class InfoPelicula implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        int y = cineMgr.getAllCine().size();
-//        for (int i = 0; i <y ; i++) {
-//            String cine = cineMgr.getAllCine().get(i).getNombre();
-//            cadenas.add(i, cine);
-//        }
-//        localidad.setItems(cadenas);
+        setBox();
+    }
+
+    public void setBox(){
+        int y = cineMgr.getAllCine().size();
+        for (int i = 0; i <y ; i++) {
+            String cine = cineMgr.getAllCine().get(i).getNombre();
+            cadenas.add(i, cine);
+        }
+        localidad.setItems(cadenas);
     }
 }

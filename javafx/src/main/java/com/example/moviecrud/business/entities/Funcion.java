@@ -18,24 +18,24 @@ public class Funcion {
 
 
     @Column(nullable = false)
-    private LocalDate fechaInicio;
+    private LocalDate fecha;
 
 
-    @Column(nullable = false)
-    private LocalDate fechaFinal;
+//    @Column(nullable = false)
+//    private LocalDate fechaFinal;
 
     @Column(nullable = false)
     private Time horaFuncion;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "idSala")
     private Sala sala;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "idPelicula")
     private Pelicula pelicula;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "nombre_Local")
     private Local local;
 
@@ -47,10 +47,8 @@ public class Funcion {
         this.id = id;
     }
 
-    public Funcion( LocalDate fechaInicio, LocalDate fechaFinal, Time horaFuncion) {
-        this.id = id;
-        this.fechaInicio = fechaInicio;
-        this.fechaFinal = fechaFinal;
+    public Funcion( LocalDate fecha, Time horaFuncion) {
+        this.fecha = fecha;
         this.horaFuncion = horaFuncion;
     }
 
@@ -58,20 +56,13 @@ public class Funcion {
     }
 
     public LocalDate getFechaInicio() {
-        return fechaInicio;
+        return fecha;
     }
 
     public void setFechaInicio(LocalDate fechaInicio) {
-        this.fechaInicio = fechaInicio;
+        this.fecha = fecha;
     }
 
-    public LocalDate getFechaFinal() {
-        return fechaFinal;
-    }
-
-    public void setFechaFinal(LocalDate fechaFinal) {
-        this.fechaFinal = fechaFinal;
-    }
 
     public Time getHoraFuncion() {
         return horaFuncion;

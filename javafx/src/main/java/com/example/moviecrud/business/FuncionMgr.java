@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 @RestController
@@ -58,10 +59,18 @@ public class FuncionMgr {
 
         }
 
+        Period period = Period.between(fechaInicio, fechaFinal);
+        int dif = period.getDays();
+        LocalDate fecha = fechaInicio.minusDays(1);
+        for (int i = 0; i <= dif; i++) {
 
-
-        Funcion funcion = new Funcion(fechaInicio, fechaFinal, horaFuncion);
-        funcionRepo.save(funcion);
+            fecha = fecha.plusDays(1);
+            Funcion funcion = new Funcion(fecha, horaFuncion);
+            funcion.setLocal(local);
+            funcion.setPelicula(pelicula);
+            funcion.setSala(sala);
+            funcionRepo.save(funcion);
+        }
     }
 
    //public void eliminarFuncion (String titulo)  throws InformacionInvalida, NoExiste {

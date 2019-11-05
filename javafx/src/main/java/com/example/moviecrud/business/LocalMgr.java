@@ -59,6 +59,7 @@ public class LocalMgr {
 
 
         Local local = new Local(name, cine);
+        local.setnCine(cine.getNombre());
         localRepo.save(local);
 
 

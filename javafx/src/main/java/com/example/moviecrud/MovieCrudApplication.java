@@ -3,29 +3,17 @@ package com.example.moviecrud;
 
 
 import com.example.moviecrud.business.PeliculaMgr;
-import com.example.moviecrud.business.entities.Pelicula;
-import com.example.moviecrud.ui.InfoPelicula;
 import com.example.moviecrud.ui.Inicio;
-import com.example.moviecrud.ui.Principal;
-import com.example.moviecrud.ui.movie.LocalController;
+import com.example.moviecrud.ui.movie.InfoPelicula;
 import com.example.moviecrud.ui.movie.MovieController;
-import com.example.moviecrud.ui.movie.SalaController;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.text.*;
@@ -43,13 +31,15 @@ import java.util.logging.Logger;
 import javafx.scene.image.Image;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 
 @SpringBootApplication
 public class MovieCrudApplication extends Application {
 
     @Autowired
     PeliculaMgr peliculaMgr;
+
+    @Autowired
+    InfoPelicula infoPelicula;
 
 
     private static ConfigurableApplicationContext context;
@@ -108,15 +98,18 @@ public class MovieCrudApplication extends Application {
             @Override
             public void handle(Event event) {
 
+               // infoPelicula.setBox();
 
                 Parent parent=null;
                 FXMLLoader fxmlLoader=new FXMLLoader();
+                fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
                 PerspectiveImage pp = (PerspectiveImage) event.getSource();
                 int clave = Integer.valueOf(pp.getId());
                 Stage stage = null;
                 Scene sc = null;
                 try {
-                    parent = (Parent)fxmlLoader.load(MovieController.class.getResourceAsStream("InfoPelicula2.fxml"));
+                    parent = (Parent)fxmlLoader.load(InfoPelicula.class.getResourceAsStream("InfoPelicula2.fxml"));
                     stage = new Stage();
                     sc = new Scene(parent);
                     VBox vb = (VBox) fxmlLoader.getNamespace().get("vb");
