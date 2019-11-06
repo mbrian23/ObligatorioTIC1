@@ -98,7 +98,6 @@ public class MovieCrudApplication extends Application {
             @Override
             public void handle(Event event) {
 
-               // infoPelicula.setBox();
 
                 Parent parent=null;
                 FXMLLoader fxmlLoader=new FXMLLoader();
@@ -141,6 +140,7 @@ public class MovieCrudApplication extends Application {
 
                 stage.setScene(sc);
                 stage.show();
+                infoPelicula.setBox();
             }
         };
         return handler;

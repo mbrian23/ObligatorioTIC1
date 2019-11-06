@@ -2,7 +2,9 @@ package com.example.moviecrud.ui.movie;
 
 import com.example.moviecrud.MovieCrudApplication;
 import com.example.moviecrud.business.CineMgr;
+import com.example.moviecrud.business.FuncionMgr;
 import com.example.moviecrud.business.PeliculaMgr;
+import com.example.moviecrud.business.entities.Funcion;
 import com.example.moviecrud.ui.CarteleraCines;
 import com.example.moviecrud.ui.Showroom;
 import com.example.moviecrud.ui.movie.CineController;
@@ -18,13 +20,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DateCell;
+import javafx.scene.control.DatePicker;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Time;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 @Component
@@ -42,13 +50,36 @@ public class InfoPelicula implements Initializable {
     @FXML
     private ComboBox<String> localidad;
 
-    private ObservableList<String> cadenas = FXCollections.observableArrayList();
+    @FXML
+    private  ComboBox<String> cadena;
+
+    @FXML
+    private ComboBox<Time> horario;
+
+    @FXML
+    private  ComboBox<String> sala;
+
+    @FXML
+    private DatePicker fecha;
+
+    private ObservableList<Funcion> funcionPelicula = FXCollections.observableArrayList();
+
+    private ObservableList<String> tipoSala = FXCollections.observableArrayList();
+
+    private ObservableList<String> local = FXCollections.observableArrayList();
+
+    private ObservableList<String> cines = FXCollections.observableArrayList();
+
+    private ObservableList<Time> hor = FXCollections.observableArrayList();
 
     @Autowired
     CarteleraCines carteleraCines;
 
     @FXML
     private Button btncompra;
+
+    @FXML
+    private Text titulo;
 
 
     @FXML
@@ -66,15 +97,60 @@ public class InfoPelicula implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        setBox();
+
     }
 
+    @Autowired
+    FuncionMgr funcionMgr;
+
+
     public void setBox(){
-        int y = cineMgr.getAllCine().size();
-        for (int i = 0; i <y ; i++) {
-            String cine = cineMgr.getAllCine().get(i).getNombre();
-            cadenas.add(i, cine);
+
+        int f = funcionMgr.getAllFunciones().size();
+        String tit = titulo.getText();
+
+        for (int i = 0; i <f ; i++) {
+            if(funcionMgr.getAllFunciones().get(i).getPelicula().getTitulo().equals(tit)){
+                funcionPelicula.add(funcionMgr.getAllFunciones().get(i));
+            }
         }
-        localidad.setItems(cadenas);
+        int z = funcionPelicula.size();
+
+        for (int i = 0; i <z ; i++) {
+            if(!local.contains(funcionPelicula.get(i).getLocal().getName())){
+                local.add(funcionPelicula.get(i).getLocal().getName());
+            }
+        }
+        localidad.setItems(local);
+
+        for(int i = 0; i <z ; i++){
+            if(!cines.contains(funcionPelicula.get(i).getLocal().getnCine())){
+                cines.add(funcionPelicula.get(i).getLocal().getnCine());
+            }
+        }
+        cadena.setItems(cines);
+
+        for(int i = 0; i <z ; i++){
+            if(!tipoSala.contains(funcionPelicula.get(i).getSala().getTipo())){
+                tipoSala.add(funcionPelicula.get(i).getSala().getTipo());
+            }
+        }
+        sala.setItems(tipoSala);
+
+        for(int i = 0; i <z ; i++){
+            if(!hor.contains(funcionPelicula.get(i).getHoraFuncion())){
+                hor.add(funcionPelicula.get(i).getHoraFuncion());
+            }
+        }
+        horario.setItems(hor);
+
+        fecha.setDayCellFactory(picker -> new DateCell(){
+            @Override
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                LocalDate today = LocalDate.now();
+                setDisable(empty || date.compareTo(today) < 0 );
+            }
+        });
     }
 }

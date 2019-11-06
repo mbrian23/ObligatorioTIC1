@@ -6,7 +6,6 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -126,8 +125,8 @@
                         </Label>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <ComboBox fx:id="localidad" prefWidth="150.0" promptText="Localidad" />
-                              <ComboBox prefWidth="150.0" promptText="Horario">
+                              <ComboBox fx:id="cadena" prefWidth="150.0" promptText="Cadena de cine" />
+                              <ComboBox fx:id="localidad" prefWidth="150.0" promptText="Localidad">
                                  <HBox.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </HBox.margin>
@@ -142,7 +141,7 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <ComboBox prefHeight="25.0" prefWidth="208.0" promptText="Sala">
+                              <ComboBox fx:id="sala" prefHeight="25.0" prefWidth="208.0" promptText="Sala">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -150,7 +149,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </ComboBox>
-                              <DatePicker prefHeight="25.0" prefWidth="206.0" promptText="Fecha">
+                              <DatePicker fx:id="fecha" prefHeight="25.0" prefWidth="206.0" promptText="Fecha">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -167,8 +166,8 @@
                   </VBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
                      <children>
-                        <TextField promptText="Cantidad entradas" />
-                       <Button fx:id="btncompra" onAction="#loadShowroom" mnemonicParsing="false" prefHeight="25.0" prefWidth="147.0" text="Comprar">-->
+                        <ComboBox fx:id="horario" prefWidth="150.0" promptText="Horario" />
+                        <Button fx:id="btncompra" mnemonicParsing="false" onAction="#loadShowroom" prefHeight="25.0" prefWidth="151.0" text="Comprar">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
