@@ -51,7 +51,7 @@ public class LocalMgr {
     }
 
     public void addLocal(String name, Cine cine) throws InformacionInvalida, YaExiste, IOException {
-        if (name == null || "".equals(name) || cine == null || "".equals(cine)) {
+        if (name == null || "".equals(name) || cine.getNombre() == null || "".equals(cine.getNombre())) {
 
             throw new InformacionInvalida("Algun dato ingresado no es correcto");
 

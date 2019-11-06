@@ -34,6 +34,8 @@ public class Sala {
     @JoinColumn(name = "nombre_local")
     private Local local;
 
+    private String nLocal;
+
     public Sala(@NotNull Long filas, @NotNull Long columnas, @NotBlank String tipo, @NotNull Long numeroSala) {
         this.filas = filas;
         this.columnas = columnas;
@@ -42,10 +44,26 @@ public class Sala {
 
     }
 
+    public Sala(@NotNull Long filas, @NotNull Long columnas, @NotBlank String tipo, @NotNull Long numeroSala, Local local) {
+        this.filas = filas;
+        this.columnas = columnas;
+        this.tipo = tipo;
+        this.numeroSala = numeroSala;
+        this.local = local;
+    }
+
     public Sala() {
     }
 
-//    public Sala( Long filas ,Long columnas, String tipo,Long numeroSala) {
+    public String getnLocal() {
+        return nLocal;
+    }
+
+    public void setnLocal(String nLocal) {
+        this.nLocal = nLocal;
+    }
+
+    //    public Sala( Long filas ,Long columnas, String tipo,Long numeroSala) {
 //        this.filas = filas;
 //        this.columnas = columnas;
 //        this.tipo = tipo;

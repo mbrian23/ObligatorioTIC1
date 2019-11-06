@@ -96,7 +96,7 @@ public class CarteleraSalas implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         tipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
         cine.setCellValueFactory(new PropertyValueFactory<>("cine"));
-        local.setCellValueFactory(new PropertyValueFactory<>("locales"));
+        local.setCellValueFactory(new PropertyValueFactory<>("nLocal"));
         columnas.setCellValueFactory(new PropertyValueFactory<>("columnas"));
         filas.setCellValueFactory(new PropertyValueFactory<>("filas"));
 

@@ -58,6 +58,12 @@ public class CineController implements Initializable {
     @FXML
     private Button btnagregar;
 
+    @FXML
+    private TextField email;
+
+    @FXML
+    private TextField password;
+
 
     private void showAlert(String title, String contextText) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -76,7 +82,7 @@ public class CineController implements Initializable {
 
     @FXML
     void addCine(ActionEvent event) throws InformacionInvalida, IOException,YaExiste {
-        if (nombrecine == null || "".equals(nombrecine)){
+        if (nombrecine.getText() == null || "".equals(nombrecine.getText()) || email.getText() == null || "".equals(email.getText()) || password.getText() == null || "".equals(password.getText())){
 
             showAlert(
                     "Datos faltantes!",
@@ -85,9 +91,12 @@ public class CineController implements Initializable {
         } else {
 
             String cine = nombrecine.getText();
-
+            String mail = email.getText();
+            String contra = password.getText();
 
             try {
+
+                usuarioMgr.addUsuarioCine(cine,contra,mail);
 
                 cineMgr.addCine(cine);
 

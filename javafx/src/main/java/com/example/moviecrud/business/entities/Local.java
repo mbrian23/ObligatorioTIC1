@@ -54,5 +54,6 @@ public class Local {
     public Local(@NotNull String name, @NotBlank Cine cine) {
         this.name = name;
         this.cine = cine;
+        this.nCine = cine.getNombre();
     }
 }

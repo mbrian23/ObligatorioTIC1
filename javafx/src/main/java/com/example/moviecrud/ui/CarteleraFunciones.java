@@ -68,7 +68,7 @@ public class CarteleraFunciones implements Initializable {
     private TableColumn<Funcion, Time> hora;
 
     @FXML
-    private TableColumn<Funcion, Sala> sala;
+    private TableColumn<Funcion, Long> sala;
 
     @FXML
     private TableColumn<Funcion, Pelicula> pelicula;
@@ -181,10 +181,10 @@ public class CarteleraFunciones implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        fechaInicio.setCellValueFactory(new PropertyValueFactory<>("fecha Inicio"));
+        fechaInicio.setCellValueFactory(new PropertyValueFactory<>("fecha"));
         fechaFinal.setCellValueFactory(new PropertyValueFactory<>("fecha Final"));
-        hora.setCellValueFactory(new PropertyValueFactory<>("hora"));
-        sala.setCellValueFactory(new PropertyValueFactory<>("sala"));
+        hora.setCellValueFactory(new PropertyValueFactory<>("horaFuncion"));
+        sala.setCellValueFactory(new PropertyValueFactory<>("numSala"));
         pelicula.setCellValueFactory(new PropertyValueFactory<>("pelicula"));
         local.setCellValueFactory(new PropertyValueFactory<>("local"));
 

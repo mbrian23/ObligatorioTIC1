@@ -1,6 +1,7 @@
 package com.example.moviecrud.business;
 
 import com.example.moviecrud.business.entities.Cine;
+import com.example.moviecrud.business.entities.Local;
 import com.example.moviecrud.business.entities.Sala;
 import com.example.moviecrud.business.exceptions.InformacionInvalida;
 import com.example.moviecrud.business.exceptions.YaExiste;
@@ -35,7 +36,7 @@ public class SalaManager {
     }
 
 
-    public void addSala(String tipo, Long nroSala, Long columnas, Long filas) throws YaExiste, IOException, InformacionInvalida {
+    public void addSala(String tipo, Long nroSala, Long columnas, Long filas, Local local) throws YaExiste, IOException, InformacionInvalida {
         if(tipo == null || "".equals(tipo) || nroSala == null || "".equals(nroSala) || columnas == null || "".equals(columnas) || filas == null || "".equals(filas) ){
 
             throw new InformacionInvalida("Algun dato ingresado no es correcto");
@@ -44,7 +45,8 @@ public class SalaManager {
 
         // Ahora hay que ver si la sala existe ya
 
-        Sala sala = new Sala(filas, columnas, tipo, nroSala);
+        Sala sala = new Sala(filas, columnas, tipo, nroSala, local);
+//        sala.setnLocal(local.getName());
         salaRepository.save(sala);
     }
 
