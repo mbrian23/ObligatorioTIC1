@@ -142,6 +142,8 @@ public class Inicio implements Initializable {
         window.show();
     }
 
+
+
     @FXML
     public void filtrado() throws Exception{
         int z = peliculaMgr.getAllPeliculas().size();

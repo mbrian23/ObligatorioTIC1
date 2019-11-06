@@ -92,12 +92,9 @@ public class MovieCrudApplication extends Application {
 
     public EventHandler abrirPaginaPelicula() throws Exception {
 
-
-
         EventHandler handler = new EventHandler() {
             @Override
             public void handle(Event event) {
-
 
                 Parent parent=null;
                 FXMLLoader fxmlLoader=new FXMLLoader();

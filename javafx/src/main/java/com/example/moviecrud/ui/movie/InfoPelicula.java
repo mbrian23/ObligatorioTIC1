@@ -104,53 +104,69 @@ public class InfoPelicula implements Initializable {
     FuncionMgr funcionMgr;
 
 
-    public void setBox(){
+    public void setBox() {
 
         int f = funcionMgr.getAllFunciones().size();
         String tit = titulo.getText();
 
-        for (int i = 0; i <f ; i++) {
-            if(funcionMgr.getAllFunciones().get(i).getPelicula().getTitulo().equals(tit)){
+        funcionPelicula.clear();
+        local.clear();
+        cines.clear();
+        tipoSala.clear();
+        hor.clear();
+        localidad.getItems().clear();
+        horario.getItems().clear();
+        sala.getItems().clear();
+
+
+
+        for (int i = 0; i < f; i++) {
+            if (funcionMgr.getAllFunciones().get(i).getPelicula().getTitulo().equals(tit)) {
                 funcionPelicula.add(funcionMgr.getAllFunciones().get(i));
             }
         }
+
+
         int z = funcionPelicula.size();
 
-        for (int i = 0; i <z ; i++) {
-            if(!local.contains(funcionPelicula.get(i).getLocal().getName())){
-                local.add(funcionPelicula.get(i).getLocal().getName());
-            }
-        }
-        localidad.setItems(local);
+        if (z != 0) {
 
-        for(int i = 0; i <z ; i++){
-            if(!cines.contains(funcionPelicula.get(i).getLocal().getnCine())){
-                cines.add(funcionPelicula.get(i).getLocal().getnCine());
+            for (int i = 0; i < z; i++) {
+                if (!local.contains(funcionPelicula.get(i).getLocal().getName())) {
+                    local.add(funcionPelicula.get(i).getLocal().getName());
+                }
             }
-        }
-        cadena.setItems(cines);
+            localidad.setItems(local);
 
-        for(int i = 0; i <z ; i++){
-            if(!tipoSala.contains(funcionPelicula.get(i).getSala().getTipo())){
-                tipoSala.add(funcionPelicula.get(i).getSala().getTipo());
+            for (int i = 0; i < z; i++) {
+                if (!cines.contains(funcionPelicula.get(i).getLocal().getnCine())) {
+                    cines.add(funcionPelicula.get(i).getLocal().getnCine());
+                }
             }
-        }
-        sala.setItems(tipoSala);
+            cadena.setItems(cines);
 
-        for(int i = 0; i <z ; i++){
-            if(!hor.contains(funcionPelicula.get(i).getHoraFuncion())){
-                hor.add(funcionPelicula.get(i).getHoraFuncion());
+            for (int i = 0; i < z; i++) {
+                if (!tipoSala.contains(funcionPelicula.get(i).getSala().getTipo())) {
+                    tipoSala.add(funcionPelicula.get(i).getSala().getTipo());
+                }
             }
-        }
-        horario.setItems(hor);
+            sala.setItems(tipoSala);
 
-        fecha.setDayCellFactory(picker -> new DateCell(){
-            @Override
-            public void updateItem(LocalDate date, boolean empty) {
-                super.updateItem(date, empty);
-                LocalDate today = LocalDate.now();
-                setDisable(empty || date.compareTo(today) < 0 );
+            for (int i = 0; i < z; i++) {
+                if (!hor.contains(funcionPelicula.get(i).getHoraFuncion())) {
+                    hor.add(funcionPelicula.get(i).getHoraFuncion());
+                }
             }
-        });
+            horario.setItems(hor);
+
+            fecha.setDayCellFactory(picker -> new DateCell() {
+                @Override
+                public void updateItem(LocalDate date, boolean empty) {
+                    super.updateItem(date, empty);
+                    LocalDate today = LocalDate.now();
+                    setDisable(empty || date.compareTo(today) < 0);
+                }
+            });
+        }
     }
 }

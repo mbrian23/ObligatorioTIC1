@@ -34,7 +34,7 @@ import java.util.ResourceBundle;
 public class SalaController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        setBoxes();
     }
 
     @Autowired
@@ -72,6 +72,22 @@ public class SalaController implements Initializable {
 
     @FXML
     private ComboBox<String> local;
+
+    public void setBoxes() {
+        ObservableList<String> locales = FXCollections.observableArrayList();
+        int l = localMgr.getAllLocales().size();
+        for (int i = 0; i < l; i++) {
+            locales.add(localMgr.getAllLocales().get(i).getName());
+        }
+        local.setItems(locales);
+
+        ObservableList<String> cadena = FXCollections.observableArrayList();
+        int c = cineMgr.getAllCine().size();
+        for (int i = 0; i < c; i++) {
+            cadena.add(cineMgr.getAllCine().get(i).getNombre());
+        }
+        cadenaCine.setItems(cadena);
+    }
 
     private void showAlert(String title, String contextText) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
