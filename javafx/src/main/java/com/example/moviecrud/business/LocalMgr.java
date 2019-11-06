@@ -4,11 +4,14 @@ import com.example.moviecrud.business.entities.*;
 import com.example.moviecrud.business.exceptions.InformacionInvalida;
 import com.example.moviecrud.business.exceptions.NoExiste;
 import com.example.moviecrud.business.exceptions.YaExiste;
-import com.example.moviecrud.persistence.LocalRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -17,36 +20,32 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.util.List;
 
-@RestController
+@Service
 public class LocalMgr {
-    @Autowired
-    LocalRepo localRepo;
+    RestTemplate rest = new RestTemplate();
 
 
     public void save(Local local) {
-
-        localRepo.save(local);
         local.setnCine(local.getCine().getNombre());
+        save(rest.postForObject("http://localhost:8080/local", local, Local.class));
     }
 
     public void update(@PathVariable("id") String id, Local local) {
         local.setName(id);
-        localRepo.save(local);
+        save(rest.postForObject("http://localhost:8080/local", local, Local.class));
     }
 
 
     public List<Local> getAllLocales() {
-        return (List<Local>) localRepo.findAll();
+        return (List<Local>) rest.exchange("http://localhost:8080/locales", HttpMethod.GET, null, new ParameterizedTypeReference<List<Local>>() {}).getBody();
     }
 
 
     public Local getLocalById(@PathVariable(value = "id") String localId) {
-        return localRepo.findById(localId).get();
-    }
+        return rest.getForObject("http://localhost:8080/local/{id}", Local.class);    }
 
     public ResponseEntity<?> deleteLocal(@PathVariable(value = "id") String localId) {
-        Local local = localRepo.findById(localId).get();
-        localRepo.delete(local);
+        rest.delete("http://localhost:8080/local/{id}");
         return ResponseEntity.ok().build();
     }
 
@@ -59,7 +58,7 @@ public class LocalMgr {
 
 
         Local local = new Local(name, cine);
-        localRepo.save(local);
+        save(local);
 
 
     }

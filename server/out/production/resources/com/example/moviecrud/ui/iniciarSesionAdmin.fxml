@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: grey; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" stylesheets="/com/example/moviecrud/ui/iniciarSesion.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.InicioAdmiController">
+   <children>
+      <HBox alignment="CENTER" layoutX="32.0" layoutY="23.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bolder; -fx-font-size: 2.4em;" text="MovieCorp Administracion" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="673.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Button fx:id="registrarse" mnemonicParsing="false" style="-fx-border-width: 0px 0px 2px 0px 0px 0px 2px 0px; -fx-font-size: 1.4em; -fx-border-color: black; -fx-font-weight: bold; -fx-background-color: tranparent;" text="Registrarse" />
+                  <Button fx:id="user" mnemonicParsing="false" onAction="#iniciarSesion" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black; -fx-font-size: 1.4em; -fx-font-weight: bold;" text="Usuario">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <VBox layoutX="221.0" layoutY="191.0" prefHeight="200.0" prefWidth="250.0">
+         <children>
+            <HBox alignment="CENTER" style="-fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;" />
+            <HBox alignment="CENTER" prefHeight="23.0" prefWidth="250.0" style="-fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;">
+               <children>
+                  <TextField fx:id="password" prefHeight="0.0" promptText="Password" style="-fx-background-color: transparent; -fx-prompt-text-fill: black;" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <Button fx:id="enter" alignment="CENTER" mnemonicParsing="false" onAction="#adminEmpresa" prefHeight="35.0" prefWidth="250.0" style="-fx-background-color: #2f2f2fa3; -fx-background-radius: 100; -fx-text-fill: black; -fx-font-family: Quicksand; -fx-font-weight: bold;" text="Enter" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets top="40.0" />
+               </VBox.margin></Button>
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" layoutX="82.0" layoutY="321.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #2f2f2fa3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <VBox alignment="CENTER">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.5em; -fx-font-weight: bold;" text="MovieCorp" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.5em; -fx-font-weight: bold;" text="movieCorpContact@gmail.com" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <TextField fx:id="adminID" layoutX="221.0" layoutY="175.0" prefHeight="16.0" prefWidth="250.0" promptText="Username" style="-fx-background-color: transparent; -fx-prompt-text-fill: black;" text="Admin ID" />
+   </children>
+</AnchorPane>

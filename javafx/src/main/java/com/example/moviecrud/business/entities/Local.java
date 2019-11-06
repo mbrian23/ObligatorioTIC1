@@ -4,21 +4,13 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-@Entity
-@Table
 public class Local {
 
-    @Id()
-    @Column(nullable = false, name = "nombre_local")
-    @NotNull
     private String name;
 
-    @ManyToOne
-   // @NotBlank
-    @JoinColumn(nullable = false, name = "nombre_cine")
     private Cine cine;
 
-    public Local(@NotNull String name) {
+    public Local(String name) {
         this.name = name;
     }
 
@@ -51,7 +43,7 @@ public class Local {
         this.cine = cine;
     }
 
-    public Local(@NotNull String name, @NotBlank Cine cine) {
+    public Local(String name, Cine cine) {
         this.name = name;
         this.cine = cine;
     }

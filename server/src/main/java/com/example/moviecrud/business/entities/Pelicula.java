@@ -33,7 +33,7 @@ public class Pelicula {
     private String duracion;
 
     @NotBlank
-    @Column(nullable = false, length = 45)
+    @Column(nullable = false, length = 255)
     private String descripcion;
 
 

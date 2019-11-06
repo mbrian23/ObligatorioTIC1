@@ -7,47 +7,46 @@ import com.example.moviecrud.business.entities.Sala;
 import com.example.moviecrud.business.exceptions.InformacionInvalida;
 import com.example.moviecrud.business.exceptions.NoExiste;
 import com.example.moviecrud.business.exceptions.YaExiste;
-import com.example.moviecrud.persistence.FuncionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.util.List;
 
-@RestController
+@Service
 public class FuncionMgr {
-
-
-
-    @Autowired
-    FuncionRepo funcionRepo;
+    RestTemplate rest = new RestTemplate();
 
 
     public void save(Funcion funcion){
-        funcionRepo.save(funcion);
+
+        save(rest.postForObject("http://localhost:8080/funcion", funcion, Funcion.class));
     }
 
     public void update (@PathVariable("id") Long id, Funcion funcion){
         funcion.setId(id);
-        funcionRepo.save(funcion);
+        save(rest.postForObject("http://localhost:8080/funcion", funcion, Funcion.class));
     }
 
 
     public List<Funcion> getAllFunciones(){
-        return (List<Funcion>) funcionRepo.findAll();
+        return (List<Funcion>) rest.exchange("http://localhost:8080/funciones", HttpMethod.GET, null, new ParameterizedTypeReference<List<Funcion>>() {}).getBody();
     }
 
 
     public Funcion getFuncionById(@PathVariable(value = "id") Long funcionId) {
-        return funcionRepo.findById(funcionId).get();
+        return rest.getForObject("http://localhost:8080/funcion/{id}", Funcion.class);
     }
 
     public ResponseEntity<?> deleteFuncion(@PathVariable(value = "id") Long funcionId) {
-        Funcion funcion= funcionRepo.findById(funcionId).get();
-        funcionRepo.delete(funcion);
+        rest.delete("http://localhost:8080/funcion/{id}");
         return ResponseEntity.ok().build();
     }
 
@@ -61,7 +60,7 @@ public class FuncionMgr {
 
 
         Funcion funcion = new Funcion(fechaInicio, fechaFinal, horaFuncion);
-        funcionRepo.save(funcion);
+        save(funcion);
     }
 
    //public void eliminarFuncion (String titulo)  throws InformacionInvalida, NoExiste {

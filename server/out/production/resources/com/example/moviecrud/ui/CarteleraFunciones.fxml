@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="984.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.CarteleraFunciones">
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+   <children>
+      <VBox layoutX="195.0" layoutY="30.0" prefHeight="468.0" prefWidth="499.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="185.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <HBox prefHeight="31.0" prefWidth="580.0">
+               <children>
+                  <MenuBar prefHeight="29.0" prefWidth="246.0">
+                    <menus>
+                      <Menu mnemonicParsing="false" style="-fx-font-weight: bold;" text="Agregar">
+                        <items>
+                          <MenuItem fx:id="mItemAgregarFuncion" mnemonicParsing="false" onAction="#agregarFuncionAction" text="Nueva Pelicula" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" style="-fx-font-weight: bold;" text="Eliminar">
+                        <items>
+                          <MenuItem fx:id="mItemEliminarFuncion" mnemonicParsing="false" onAction="#eliminarFuncionAction" text="Delete" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" style="-fx-font-weight: bold;" text="Editar">
+                        <items>
+                          <MenuItem fx:id="mItemEditarFuncion" mnemonicParsing="false" onAction="#editarFuncionAction" text="Modificar" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+                  <TextField fx:id="buscador" alignment="TOP_LEFT" prefHeight="27.0" prefWidth="138.0">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="160.0" top="10.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <TableView fx:id="tabla" prefHeight="453.0" prefWidth="433.0" VBox.vgrow="ALWAYS">
+              <columns>
+                <TableColumn fx:id="fechaInicio" prefWidth="75.0" text="Fecha Inicio" />
+                <TableColumn fx:id="fechaFinal" prefWidth="79.0" text="Fecha Final" />
+                  <TableColumn fx:id="hora" prefWidth="78.0" text="Hora" />
+                  <TableColumn fx:id="sala" prefWidth="91.0" text="Sala" />
+                  <TableColumn fx:id="pelicula" prefWidth="249.0" text="Pelicula" />
+                  <TableColumn fx:id="local" prefWidth="75.0" text="Local" />
+              </columns>
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#editarFuncionAction" text="Editar" />
+                        <MenuItem mnemonicParsing="false" onAction="#eliminarFuncionAction" text="Eliminar" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </children>
+      </VBox>
+      <Separator layoutX="188.0" layoutY="-3.0" maxHeight="1.7976931348623157E308" orientation="VERTICAL" prefHeight="759.0" prefWidth="4.0" />
+      <VBox alignment="CENTER" layoutX="1.0" layoutY="69.0" prefHeight="409.0" prefWidth="189.0">
+         <children>
+            <Button fx:id="btnpeliculas" mnemonicParsing="false" onAction="#cargaCartPeliculas" prefHeight="27.0" prefWidth="165.0" style="-fx-border-radius: 50px;" text="PELICULAS">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btnsalas" mnemonicParsing="false" onAction="#cargaCartSalas" prefHeight="27.0" prefWidth="210.0" text="SALAS">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btnfunciones" mnemonicParsing="false" prefHeight="27.0" prefWidth="271.0" text="FUNCIONES" onAction="#cargaCartFunciones">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btnlocales" mnemonicParsing="false" onAction="#cargaCartLocales" prefHeight="27.0" prefWidth="311.0" text="LOCALES">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btnCines" mnemonicParsing="false" onAction="#cargaCartCines" prefHeight="27.0" prefWidth="504.0" text="CINES">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+      <Button fx:id="btnVolver" layoutX="50.0" layoutY="50.0" mnemonicParsing="false" onAction="#cargaInicio" text="Volver a incio" />
+   </children>
+</AnchorPane>

@@ -8,35 +8,20 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.util.Date;
 
-@Entity
-@Table
 public class Funcion {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    @Column(nullable = false)
     private LocalDate fechaInicio;
 
-
-    @Column(nullable = false)
     private LocalDate fechaFinal;
 
-    @Column(nullable = false)
     private Time horaFuncion;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idSala")
     private Sala sala;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idPelicula")
     private Pelicula pelicula;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "nombre_Local")
     private Local local;
 
     public Long getId() {

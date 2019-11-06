@@ -7,39 +7,21 @@ import javax.validation.constraints.NotNull;
 import java.sql.Blob;
 
 
-@Entity
-@Table
 public class Pelicula {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idPelicula")
+
     private Long id;
 
-    @NotBlank
-    @Column(nullable = false, length = 45)
     private String titulo;
 
-    @NotBlank
-    @Column(nullable = false, length = 45)
     private String genero;
 
-    @NotBlank
-    @Column(nullable = false)
     private String actores;
 
-    @NotBlank
-    @Column(nullable = false, length = 45)
     private String duracion;
 
-    @NotBlank
-    @Column(nullable = false, length = 255)
     private String descripcion;
 
-
-    @Lob
-    @Column(nullable = false)
-    @NotNull
     private byte[] movieImage;
 
 
@@ -47,7 +29,7 @@ public class Pelicula {
 
     }
 
-    public Pelicula(@NotBlank String titulo, @NotBlank String genero, @NotBlank String actores, @NotBlank String duracion, @NotBlank String descripcion) {
+    public Pelicula(String titulo, String genero, String actores, String duracion, String descripcion) {
         this.titulo = titulo;
         this.genero = genero;
         this.actores = actores;

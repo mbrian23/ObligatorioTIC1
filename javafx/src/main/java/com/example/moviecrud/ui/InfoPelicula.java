@@ -61,11 +61,11 @@ public class InfoPelicula implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        int y = cineMgr.getAllCine().size();
-//        for (int i = 0; i <y ; i++) {
-//            String cine = cineMgr.getAllCine().get(i).getNombre();
-//            cadenas.add(i, cine);
-//        }
-//        localidad.setItems(cadenas);
+        int y = cineMgr.getAllCine().size();
+        for (int i = 0; i <y ; i++) {
+            String cine = cineMgr.getAllCine().get(i).getNombre();
+            cadenas.add(i, cine);
+        }
+        localidad.setItems(cadenas);
     }
 }
