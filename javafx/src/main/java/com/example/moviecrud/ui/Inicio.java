@@ -3,7 +3,10 @@ package com.example.moviecrud.ui;
 import com.example.moviecrud.DisplayShelf;
 import com.example.moviecrud.MovieCrudApplication;
 import com.example.moviecrud.business.PeliculaMgr;
+import com.example.moviecrud.business.UsuarioMgr;
 import com.example.moviecrud.business.entities.Pelicula;
+import com.example.moviecrud.business.exceptions.InformacionInvalida;
+import com.example.moviecrud.business.exceptions.YaExiste;
 import com.example.moviecrud.ui.movie.MovieController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,6 +34,7 @@ import org.springframework.stereotype.Controller;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -46,6 +50,9 @@ public class Inicio implements Initializable {
 
     @Autowired
     PeliculaMgr peliculaMgr;
+
+    @Autowired
+    UsuarioMgr usuarioMgr;
 
     @FXML
     private AnchorPane root;
@@ -237,6 +244,9 @@ public class Inicio implements Initializable {
 
 
     @FXML
+    Button registro;
+
+    @FXML
     private TextField usernameRegistro;
 
     @FXML
@@ -247,6 +257,26 @@ public class Inicio implements Initializable {
 
     @FXML
     private TextField passwordRepeatRegistro;
+
+
+    public void crearClienteFinal(ActionEvent event) throws InformacionInvalida, YaExiste, IOException {
+        String usernameNuevo = usernameRegistro.getText();
+        String emailNuevo = emailRegistro.getText();
+        String passwordNueva = passwordRegistro.getText();
+
+        usuarioMgr.addUsuarioFinal(usernameNuevo,passwordNueva,emailNuevo);
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("Inicio.fxml"));
+        Scene inicioScene = new Scene(root, 600, 500);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(inicioScene);
+        window.show();
+
+
+    }
 
 
 

@@ -3,9 +3,12 @@ package com.example.moviecrud.business.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
-@Table
+@Table (name = "usuario")
 @Entity
-public class Usuario {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
+
+public abstract class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +31,9 @@ public class Usuario {
         this.username = username;
         this.password = password;
         this.email = email;
+    }
+    public Usuario(){
+
     }
 
     public Long getId() {

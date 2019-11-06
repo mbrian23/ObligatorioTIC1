@@ -2,6 +2,8 @@ package com.example.moviecrud.business;
 
 import com.example.moviecrud.business.entities.Pelicula;
 import com.example.moviecrud.business.entities.Usuario;
+import com.example.moviecrud.business.entities.UsuarioCine;
+import com.example.moviecrud.business.entities.UsuarioFinal;
 import com.example.moviecrud.business.exceptions.InformacionInvalida;
 import com.example.moviecrud.business.exceptions.NoExiste;
 import com.example.moviecrud.business.exceptions.YaExiste;
@@ -65,7 +67,7 @@ public class UsuarioMgr {
         return ResponseEntity.ok().build();
     }
 
-    public void addUsuario(String username, String password, String email) throws InformacionInvalida, YaExiste, IOException {
+    public void addUsuarioCine(String username, String password, String email) throws InformacionInvalida, YaExiste, IOException {
         if(username == null || "".equals(username) || password == null || "".equals(password) || email == null || "".equals(email)  ){
 
             throw new InformacionInvalida("Algun dato ingresado no es correcto");
@@ -78,10 +80,31 @@ public class UsuarioMgr {
         // if (peliculaRepository.findById(peliculaI)
         // problema para hacer el get de un id que se autogenera
 
-        Usuario usuario = new Usuario(username,password,email);
+        UsuarioCine usuario = new UsuarioCine(username,password,email);
 
         usuarioRepository.save(usuario);
     }
+
+
+    public void addUsuarioFinal(String username, String password, String email) throws InformacionInvalida, YaExiste, IOException {
+        if(username == null || "".equals(username) || password == null || "".equals(password) || email == null || "".equals(email)  ){
+
+            throw new InformacionInvalida("Algun dato ingresado no es correcto");
+
+        }
+
+
+
+        // Ahora hay que ver si el usuario existe ya
+        // if (peliculaRepository.findById(peliculaI)
+        // problema para hacer el get de un id que se autogenera
+
+        UsuarioFinal usuario = new UsuarioFinal(username,password,email);
+
+        usuarioRepository.save(usuario);
+    }
+
+
 
     public void eliminarUsuario (String username)  throws InformacionInvalida, NoExiste {
         for (Usuario usuario: getAllUsuarios()) {
@@ -93,7 +116,7 @@ public class UsuarioMgr {
 
     }
 
-    public void editarUsuario (String usernameViejo, String usernameNuevo, String password, String email) throws InformacionInvalida, NoExiste {
+    public void editarUsuarioCine (String usernameViejo, String usernameNuevo, String password, String email) throws InformacionInvalida, NoExiste {
         if(usernameNuevo == null || "".equals(usernameNuevo) || usernameViejo == null || "".equals(usernameViejo)  || password == null || "".equals(password) || email == null || "".equals(email) ){
 
             throw new InformacionInvalida("Algun dato ingresado no es correcto");
@@ -103,9 +126,26 @@ public class UsuarioMgr {
         for (Usuario usuario: getAllUsuarios()) {
             if (usuario.getUsername().equals(usernameViejo)){
                 Long id = usuario.getId();
-                Usuario usuarioActualizado = new Usuario(usernameNuevo,password ,email);
+                UsuarioCine usuarioActualizado = new UsuarioCine(usernameNuevo,password ,email);
                 update(id,usuarioActualizado);
             }
         }
     }
+
+    public void editarUsuarioFinal (String usernameViejo, String usernameNuevo, String password, String email) throws InformacionInvalida, NoExiste {
+        if(usernameNuevo == null || "".equals(usernameNuevo) || usernameViejo == null || "".equals(usernameViejo)  || password == null || "".equals(password) || email == null || "".equals(email) ){
+
+            throw new InformacionInvalida("Algun dato ingresado no es correcto");
+
+        }
+
+        for (Usuario usuario: getAllUsuarios()) {
+            if (usuario.getUsername().equals(usernameViejo)){
+                Long id = usuario.getId();
+                UsuarioFinal usuarioActualizado = new UsuarioFinal(usernameNuevo,password ,email);
+                update(id,usuarioActualizado);
+            }
+        }
+    }
+
 }

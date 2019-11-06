@@ -2,6 +2,7 @@ package com.example.moviecrud.ui.movie;
 
 import com.example.moviecrud.business.CineMgr;
 import com.example.moviecrud.business.SalaManager;
+import com.example.moviecrud.business.UsuarioMgr;
 import com.example.moviecrud.business.exceptions.InformacionInvalida;
 import com.example.moviecrud.business.exceptions.YaExiste;
 import com.example.moviecrud.ui.CarteleraCines;
@@ -44,6 +45,9 @@ public class CineController implements Initializable {
     CineMgr cineMgr;
 
     @Autowired
+    UsuarioMgr usuarioMgr;
+
+    @Autowired
     Inicio inicio;
 
 
@@ -84,6 +88,7 @@ public class CineController implements Initializable {
 
 
             try {
+
                 cineMgr.addCine(cine);
 
                 showAlert("Cine agregado", "Se agrego con exito el cine!");
