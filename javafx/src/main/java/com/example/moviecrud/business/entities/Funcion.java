@@ -39,6 +39,8 @@ public class Funcion {
     @JoinColumn(name = "nombre_Local")
     private Local local;
 
+    private Long numSala;
+
     private boolean [][] matriz;
 
 
@@ -107,5 +109,13 @@ public class Funcion {
 
     public void setLocal(Local local) {
         this.local = local;
+    }
+
+    public Long getNumSala() {
+        return numSala;
+    }
+
+    public void setNumSala(Long numSala) {
+        this.numSala = numSala;
     }
 }

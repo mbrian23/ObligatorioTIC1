@@ -69,6 +69,7 @@ public class FuncionMgr {
             funcion.setLocal(local);
             funcion.setPelicula(pelicula);
             funcion.setSala(sala);
+            funcion.setNumSala(sala.getNumeroSala());
             funcionRepo.save(funcion);
         }
     }
