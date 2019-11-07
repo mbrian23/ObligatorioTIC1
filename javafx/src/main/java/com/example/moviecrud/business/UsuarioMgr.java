@@ -47,7 +47,7 @@ public class UsuarioMgr {
         return usuarioRepository.findById(usuarioId).get();
     }
 
-    public Usuario getUsuarioByName(String nUsuario) {
+    public Usuario getUsuarioByUsername(String nUsuario) {
         List<Usuario> usuarios = (List<Usuario>) usuarioRepository.findAll();
         int l = usuarios.size();
         Usuario temp = null;
