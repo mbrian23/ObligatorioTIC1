@@ -24,7 +24,7 @@ public class PeliculaMgr {
 
     // Create pelicula
     @PostMapping("/pelicula")
-    public void save( Pelicula pelicula){
+    public void save(Pelicula pelicula){
         peliculaRepository.save(pelicula);
     }
 

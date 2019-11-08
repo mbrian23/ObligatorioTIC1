@@ -10,7 +10,6 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
@@ -22,7 +21,7 @@ public class SalaManager {
     RestTemplate rest = new RestTemplate();
 
     public void save(Sala sala){
-        save(rest.postForObject("http://localhost:8080/sala", sala, Sala.class));
+        rest.postForObject("http://localhost:8080/sala", sala, Sala.class);
     }
 
     public Sala getSalaByNumSala(Long numSala) {

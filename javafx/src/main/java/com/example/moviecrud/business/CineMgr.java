@@ -26,7 +26,7 @@ public class CineMgr  {
 
 
     public void save(Cine cine) {
-        save(rest.postForObject("http://localhost:8080/cine", cine, Cine.class));
+        rest.postForObject("http://localhost:8080/cine", cine, Cine.class);
     }
 
     public void update(@PathVariable("id") String id, Cine cine) {

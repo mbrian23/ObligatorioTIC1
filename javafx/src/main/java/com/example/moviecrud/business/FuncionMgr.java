@@ -27,12 +27,12 @@ public class FuncionMgr {
 
     public void save(Funcion funcion){
 
-        save(rest.postForObject("http://localhost:8080/funcion", funcion, Funcion.class));
+        rest.postForObject("http://localhost:8080/funcion", funcion, Funcion.class);
     }
 
     public void update (@PathVariable("id") Long id, Funcion funcion){
         funcion.setId(id);
-        save(rest.postForObject("http://localhost:8080/funcion", funcion, Funcion.class));
+        rest.postForObject("http://localhost:8080/funcion", funcion, Funcion.class);
     }
 
 

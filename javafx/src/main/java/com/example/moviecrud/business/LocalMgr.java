@@ -10,11 +10,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.io.IOException;
 import java.sql.Time;
 import java.time.LocalDate;
@@ -27,7 +24,7 @@ public class LocalMgr {
 
     public void save(Local local) {
         local.setnCine(local.getCine().getNombre());
-        save(rest.postForObject("http://localhost:8080/local", local, Local.class));
+        rest.postForObject("http://localhost:8080/local", local, Local.class);
     }
 
     public void update(@PathVariable("id") String id, Local local) {

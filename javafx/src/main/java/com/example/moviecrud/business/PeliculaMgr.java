@@ -24,7 +24,7 @@ public class PeliculaMgr {
     // Create pelicula
    // @PostMapping("/pelicula")
     public void save( Pelicula pelicula){
-        save(rest.postForObject("http://localhost:8080/pelicula", pelicula, Pelicula.class));
+        rest.postForObject("http://localhost:8080/pelicula", pelicula, Pelicula.class);
     }
 
     //Edit pelicula by id
