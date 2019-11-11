@@ -154,9 +154,9 @@ public class CarteleraFuncionesDelCine implements Initializable {
         fechaInicio.setCellValueFactory(new PropertyValueFactory<>("fecha"));
         fechaFinal.setCellValueFactory(new PropertyValueFactory<>("fecha Final"));
         hora.setCellValueFactory(new PropertyValueFactory<>("horaFuncion"));
-        sala.setCellValueFactory(new PropertyValueFactory<>("numSala"));
-        pelicula.setCellValueFactory(new PropertyValueFactory<>("pelicula"));
-        local.setCellValueFactory(new PropertyValueFactory<>("local"));
+        sala.setCellValueFactory(new PropertyValueFactory<>("numeroSala"));
+        pelicula.setCellValueFactory(new PropertyValueFactory<>("nombrePelicula"));
+        local.setCellValueFactory(new PropertyValueFactory<>("nombreLocal"));
 
         actualizaCart();
 

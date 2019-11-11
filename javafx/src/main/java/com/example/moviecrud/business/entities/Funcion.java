@@ -43,6 +43,26 @@ public class Funcion {
 
     private boolean [][] matriz;
 
+    public Long getNumeroSala() {
+        if (sala.getNumeroSala() != null){
+            return sala.getNumeroSala();
+        }
+        return 0l;
+    }
+
+    public String getNombreLocal(){
+        if (local.getName() != null) {
+            return local.getName();
+        }
+        return "vacio";
+    }
+
+    public String getNombrePelicula(){
+        if (pelicula.getTitulo() != null) {
+            return pelicula.getTitulo();
+        }
+        return "vacio";
+    }
 
     public boolean[][] matriz(int fila,int columna){
         return new boolean[fila][columna];
