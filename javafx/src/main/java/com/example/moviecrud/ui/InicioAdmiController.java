@@ -118,7 +118,7 @@ public class InicioAdmiController {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
-            Parent root = fxmlLoader.load(CarteleraFunciones.class.getResourceAsStream("CarteleraFunciones.fxml"));
+            Parent root = fxmlLoader.load(CarteleraFuncionesDelCine.class.getResourceAsStream("CarteleraFuncionesDelCine.fxml"));
             Scene inicioScene = new Scene(root, 600, 500);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(inicioScene);

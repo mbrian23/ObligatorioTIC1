@@ -2,7 +2,6 @@ package com.example.moviecrud.ui;
 
 import com.example.moviecrud.MovieCrudApplication;
 import com.example.moviecrud.business.FuncionMgr;
-import com.example.moviecrud.business.PeliculaMgr;
 import com.example.moviecrud.business.entities.Funcion;
 import com.example.moviecrud.business.entities.Local;
 import com.example.moviecrud.business.entities.Pelicula;
@@ -33,8 +32,7 @@ import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
 @Controller
-public class CarteleraFunciones implements Initializable {
-
+public class CarteleraFuncionesDelCine implements Initializable {
 
     @Autowired
     FuncionMgr funcionMgr;
@@ -67,7 +65,7 @@ public class CarteleraFunciones implements Initializable {
     private TableColumn<Funcion, Time> hora;
 
     @FXML
-    private TableColumn<Funcion, Long> sala;
+    private TableColumn<Funcion, Sala> sala;
 
     @FXML
     private TableColumn<Funcion, Pelicula> pelicula;
@@ -76,30 +74,40 @@ public class CarteleraFunciones implements Initializable {
     private TableColumn<Funcion, Local> local;
 
     @FXML
-    private Button btnpeliculas;
-
-    @FXML
     private Button btnsalas;
 
     @FXML
     private Button btnfunciones;
 
     @FXML
-    private Button btnlocales;
-
-    @FXML
-    private Button btnCines;
-
-    @FXML
     private Button btnVolver;
 
+    private ObservableList<Funcion> funcionesList = FXCollections.observableArrayList();
+
+
+    public void actualizaCart(){
+        funcionesList.clear();
+        funcionesList.addAll(funcionMgr.getAllFunciones());
+        tabla.setItems(funcionesList);
+    }
 
     @FXML
-    public void cargaCartPeliculas (ActionEvent event) throws Exception{
+    void agregarFuncionAction(ActionEvent event) throws Exception  {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(Principal.class.getResourceAsStream("Cartelera.fxml"));
+        Parent root = fxmlLoader.load(SalaController.class.getResourceAsStream("AddFuncion.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
+    void cargaCartFunciones(ActionEvent event) throws Exception  {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(CarteleraFuncionesDelCine.class.getResourceAsStream("CarteleraFuncionesDelCine.fxml"));
         Scene inicioScene = new Scene(root, 600,500);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(inicioScene);
@@ -107,11 +115,11 @@ public class CarteleraFunciones implements Initializable {
     }
 
     @FXML
-    public void cargaCartSalas (ActionEvent event) throws Exception{
+    void cargaCartSalas(ActionEvent event) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(CarteleraSalas.class.getResourceAsStream("CarteleraSalas.fxml"));
+        Parent root = fxmlLoader.load(CarteleraSalasDelCine.class.getResourceAsStream("CarteleraSalasDelCine.fxml"));
         Scene inicioScene = new Scene(root, 600,500);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(inicioScene);
@@ -119,8 +127,7 @@ public class CarteleraFunciones implements Initializable {
     }
 
     @FXML
-    void cargaInicio (ActionEvent event) throws Exception {
-
+    void cargaInicio(ActionEvent event)  throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
@@ -132,49 +139,13 @@ public class CarteleraFunciones implements Initializable {
     }
 
     @FXML
-    public void cargaCartLocales (ActionEvent event) throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+    void editarFuncionAction(ActionEvent event) throws Exception  {
 
-        Parent root = fxmlLoader.load(CarteleraLocales.class.getResourceAsStream("CarteleraLocales.fxml"));
-        Scene inicioScene = new Scene(root, 600,500);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(inicioScene);
-        window.show();
     }
 
     @FXML
-    public void cargaCartCines (ActionEvent event) throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+    void eliminarFuncionAction(ActionEvent event)throws Exception  {
 
-        Parent root = fxmlLoader.load(CarteleraCines.class.getResourceAsStream("CarteleraCines.fxml"));
-        Scene inicioScene = new Scene(root, 600,500);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(inicioScene);
-        window.show();
-    }
-
-
-    @FXML
-    public void cargaCartFunciones (ActionEvent event) throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
-
-        Parent root = fxmlLoader.load(CarteleraFunciones.class.getResourceAsStream("CarteleraFunciones.fxml"));
-        Scene inicioScene = new Scene(root, 600,500);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(inicioScene);
-        window.show();
-    }
-
-    private ObservableList<Funcion> funcionesList = FXCollections.observableArrayList();
-
-
-    public void actualizaCart(){
-        funcionesList.clear();
-        funcionesList.addAll(funcionMgr.getAllFunciones());
-        tabla.setItems(funcionesList);
     }
 
     @Override
@@ -213,27 +184,6 @@ public class CarteleraFunciones implements Initializable {
         SortedList sortedList = new SortedList(filteredList);
         sortedList.comparatorProperty().bind(tabla.comparatorProperty());
         tabla.setItems(sortedList);
-
-    }
-
-    @FXML
-    void agregarFuncionAction(ActionEvent event) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
-
-        Parent root = fxmlLoader.load(SalaController.class.getResourceAsStream("AddFuncion.fxml"));
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
-
-    @FXML
-    void eliminarFuncionAction(){
-
-    }
-
-    @FXML
-    void editarFuncionAction(){
 
     }
 }
