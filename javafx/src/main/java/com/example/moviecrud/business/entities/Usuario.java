@@ -1,33 +1,17 @@
 package com.example.moviecrud.business.entities;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-
-@Table (name = "usuario")
-@Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 
 public abstract class Usuario {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idUsuario")
     private Long id;
 
-    @NotBlank
-    @Column(nullable = false, length = 45)
     private String username;
 
-    @NotBlank
-    @Column(nullable = false, length = 45)
     private String password;
 
-    @NotBlank
-    @Column(nullable = false, length = 45)
     private String email;
 
-    public Usuario(@NotBlank String username, @NotBlank String password, @NotBlank String email) {
+    public Usuario( String username,String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;

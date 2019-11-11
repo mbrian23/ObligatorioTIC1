@@ -7,11 +7,13 @@ import com.example.moviecrud.business.entities.UsuarioFinal;
 import com.example.moviecrud.business.exceptions.InformacionInvalida;
 import com.example.moviecrud.business.exceptions.NoExiste;
 import com.example.moviecrud.business.exceptions.YaExiste;
-import com.example.moviecrud.persistence.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,51 +21,37 @@ import java.util.List;
 @RestController
 public class UsuarioMgr {
 
-    @Autowired
-    UsuarioRepository usuarioRepository;
-
-    // Create user
-    // @PostMapping("/Usuario")
+    RestTemplate rest = new RestTemplate();
     public void save(Usuario usuario){
-        usuarioRepository.save(usuario);
+        rest.postForObject("http://localhost:8080/usuario", usuario, Usuario.class);
     }
 
-    //Edit usuario by id
-    // @PutMapping("/usuario/{id}")
+
     public void update (@PathVariable("id") Long id, Usuario usuario){
         usuario.setId(id);
-        usuarioRepository.save(usuario);
+        save(rest.postForObject("http://localhost:8080/usuario", usuario, Usuario.class));
     }
 
     //Get all users
     // @GetMapping("/users")
     public List<Usuario> getAllUsuarios(){
-        return (List<Usuario>) usuarioRepository.findAll();
+        return (List<Usuario>) rest.exchange("http://localhost:8080/usuarios", HttpMethod.GET, null, new ParameterizedTypeReference<List<Usuario>>() {}).getBody();
     }
 
     // Get a Single user by id
     // @GetMapping("/usuario/{id}")
     public Usuario getUsuarioById(@PathVariable(value = "id") Long usuarioId) {
-        return usuarioRepository.findById(usuarioId).get();
+        return rest.getForObject("http://localhost:8080/usuario/{id}", Usuario.class);
     }
 
     public Usuario getUsuarioByUsername(String nUsuario) {
-        List<Usuario> usuarios = (List<Usuario>) usuarioRepository.findAll();
-        int l = usuarios.size();
-        Usuario temp = null;
-        for (int i = 0; i <l ; i++) {
-            if (usuarios.get(i).getUsername().equals(nUsuario)) {
-                temp = usuarios.get(i);
-            }
-        }
-        return temp;
+        return rest.getForObject("http://localhost:8080/usuario/{name}", Usuario.class);
     }
 
     // Delete a Usuario by id
     //  @DeleteMapping("/usuario/{id}")
     public ResponseEntity<?> deleteUsuario(@PathVariable(value = "id") Long usuarioId) {
-        Usuario usuario= usuarioRepository.findById(usuarioId).get();
-        usuarioRepository.delete(usuario);
+        rest.delete("http://localhost:8080/usuario/{id}");
         return ResponseEntity.ok().build();
     }
 
@@ -82,7 +70,7 @@ public class UsuarioMgr {
 
         UsuarioCine usuario = new UsuarioCine(username,password,email);
 
-        usuarioRepository.save(usuario);
+        save(usuario);
     }
 
 
@@ -101,7 +89,7 @@ public class UsuarioMgr {
 
         UsuarioFinal usuario = new UsuarioFinal(username,password,email);
 
-        usuarioRepository.save(usuario);
+        save(usuario);
     }
 
 

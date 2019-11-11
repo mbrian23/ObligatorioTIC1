@@ -1,37 +1,22 @@
 package com.example.moviecrud.business.entities;
 
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
-@Entity
-@Table
+
+
 public class Sala {
 
-    @Id()
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idSala")
+
     private Long id;
 
-    @NotNull
-    @Column(nullable = false, length = 30)
     private Long filas;
 
-    @NotNull
-    @Column(nullable = false, length = 30)
     private Long columnas;
 
-    @NotBlank
-    @Column(nullable = false, length = 30)
     private String tipo;
 
-    @NotNull
-    @Column(nullable = false)
     private Long numeroSala;
 
-    @ManyToOne
-    @JoinColumn(name = "nombre_local")
     private Local local;
 
 
@@ -49,7 +34,7 @@ public class Sala {
         return "vacio";
     }
 
-    public Sala(@NotNull Long filas, @NotNull Long columnas, @NotBlank String tipo, @NotNull Long numeroSala) {
+    public Sala(Long filas, Long columnas, String tipo, Long numeroSala) {
         this.filas = filas;
         this.columnas = columnas;
         this.tipo = tipo;
@@ -57,7 +42,7 @@ public class Sala {
 
     }
 
-    public Sala(@NotNull Long filas, @NotNull Long columnas, @NotBlank String tipo, @NotNull Long numeroSala, Local local) {
+    public Sala(Long filas, Long columnas, String tipo, Long numeroSala, Local local) {
         this.filas = filas;
         this.columnas = columnas;
         this.tipo = tipo;

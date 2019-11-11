@@ -1,21 +1,16 @@
 package com.example.moviecrud.business.entities;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-@Entity
-@Table
+
 public class Local {
 
-    @Id()
-    @Column(nullable = false, name = "nombre_local")
+
     @NotNull
     private String name;
 
-    @ManyToOne
-   // @NotBlank
-    @JoinColumn(nullable = false, name = "nombre_cine")
+
     private Cine cine;
 
     public Local(@NotNull String name) {

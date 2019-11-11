@@ -1,42 +1,32 @@
 package com.example.moviecrud.business.entities;
 
-import org.hibernate.annotations.Cascade;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.util.Date;
 
-@Entity
-@Table
+
 public class Funcion {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 
-    @Column(nullable = false)
     private LocalDate fecha;
 
 
 //    @Column(nullable = false)
 //    private LocalDate fechaFinal;
 
-    @Column(nullable = false)
     private Time horaFuncion;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "idSala")
+
     private Sala sala;
 
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "idPelicula")
+
     private Pelicula pelicula;
 
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "nombre_Local")
+
     private Local local;
 
     private Long numSala;
