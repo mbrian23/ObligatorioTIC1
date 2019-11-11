@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="741.0" style="-fx-background-image: url('/com/example/moviecrud/ui/images/montana.jpg'); -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" stylesheets="/com/example/moviecrud/ui/iniciarSesion.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.Inicio">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: grey; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" stylesheets="/com/example/moviecrud/ui/iniciarSesion.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.Inicio">
    <children>
       <HBox alignment="CENTER" layoutX="32.0" layoutY="23.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <padding>
@@ -18,12 +18,8 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bolder; -fx-font-size: 2.4em;" text="MovieCorp" />
             <HBox alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="673.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Button mnemonicParsing="false" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black; -fx-font-size: 1.4em; -fx-font-weight: bold;" text="Iniciar Sesion">
-                     <HBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black; -fx-font-size: 1.4em; -fx-font-weight: bold;" text="Registrarse">
+                  <Button mnemonicParsing="false" onAction="#cargaRegistroUsuario" style="-fx-border-width: 0px 0px 2px 0px 0px 0px 2px 0px; -fx-font-size: 1.4em; -fx-border-color: black; -fx-font-weight: bold; -fx-background-color: tranparent;" text="Registrarse" />
+                  <Button mnemonicParsing="false" onAction="#iniciarSesionAdmin" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black; -fx-font-size: 1.4em; -fx-font-weight: bold;" text="Administracion">
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
@@ -34,23 +30,19 @@
       </HBox>
       <VBox layoutX="221.0" layoutY="191.0" prefHeight="200.0" prefWidth="250.0">
          <children>
-            <HBox alignment="CENTER" style="-fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;">
-               <children>
-                  <TextField prefHeight="0.0" promptText="Username" style="-fx-background-color: transparent; -fx-prompt-text-fill: black;" HBox.hgrow="ALWAYS" />
-               </children>
-            </HBox>
+            <HBox alignment="CENTER" style="-fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;" />
             <HBox alignment="CENTER" prefHeight="23.0" prefWidth="250.0" style="-fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;">
                <children>
                   <TextField prefHeight="0.0" promptText="Password" style="-fx-background-color: transparent; -fx-prompt-text-fill: black;" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="250.0" style="-fx-background-color: #2f2f2fa3; -fx-background-radius: 100; -fx-text-fill: black; -fx-font-family: Quicksand; -fx-font-weight: bold;" text="Enter" textAlignment="CENTER">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#cargaInicio" prefHeight="35.0" prefWidth="250.0" style="-fx-background-color: #2f2f2fa3; -fx-background-radius: 100; -fx-text-fill: black; -fx-font-family: Quicksand; -fx-font-weight: bold;" text="Enter" textAlignment="CENTER">
                <VBox.margin>
                   <Insets top="40.0" />
                </VBox.margin></Button>
          </children>
       </VBox>
-      <HBox alignment="CENTER" layoutX="82.0" layoutY="321.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #2f2f2fa3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox alignment="CENTER" layoutX="82.0" layoutY="321.0" prefHeight="85.0" prefWidth="700.0" style="-fx-background-color: #2f2f2fa3;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <VBox alignment="CENTER">
                <children>
@@ -60,5 +52,6 @@
             </VBox>
          </children>
       </HBox>
+      <TextField layoutX="221.0" layoutY="169.0" prefHeight="16.0" prefWidth="250.0" promptText="Username" style="-fx-background-color: transparent; -fx-prompt-text-fill: black;" />
    </children>
 </AnchorPane>

@@ -2,6 +2,9 @@
     -fx-background-image: url('../images/logo2.png') ;
     -fx-background-size: 100% 100%;
 }
+.bodybg2{
+    -fx-background-color:  #971066;
+}
 
 
 

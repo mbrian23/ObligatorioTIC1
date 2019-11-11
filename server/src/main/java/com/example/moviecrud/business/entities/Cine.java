@@ -9,10 +9,22 @@ import javax.validation.constraints.NotBlank;
 public class Cine {
 
     @Id
-    @Column(name = "idCine")
-    private Long id;
-
     @NotBlank
-    @Column(nullable = false, length = 30)
+    @Column(name = "nombre_cine",nullable = false, length = 30)
     private String nombre;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Cine(@NotBlank String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Cine() {
+   }
 }
