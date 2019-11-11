@@ -58,10 +58,10 @@ public class CarteleraSalasDelCine implements Initializable {
     private TableColumn<Sala, String> tipo;
 
     @FXML
-    private TableColumn<Sala, Local> local;
+    private TableColumn<Sala, String> local;
 
     @FXML
-    private TableColumn<Sala, Cine> cine;
+    private TableColumn<Sala, String> cine;
 
     @FXML
     private TableColumn<Sala, Long> columnas;
@@ -136,8 +136,8 @@ public class CarteleraSalasDelCine implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         tipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-        cine.setCellValueFactory(new PropertyValueFactory<>("cine"));
-        local.setCellValueFactory(new PropertyValueFactory<>("nLocal"));
+        cine.setCellValueFactory(new PropertyValueFactory<>("nombreCine"));
+        local.setCellValueFactory(new PropertyValueFactory<>("nombreLocal"));
         columnas.setCellValueFactory(new PropertyValueFactory<>("columnas"));
         filas.setCellValueFactory(new PropertyValueFactory<>("filas"));
 

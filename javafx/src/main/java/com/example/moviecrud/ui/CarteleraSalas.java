@@ -2,10 +2,7 @@ package com.example.moviecrud.ui;
 
 import com.example.moviecrud.MovieCrudApplication;
 import com.example.moviecrud.business.SalaManager;
-import com.example.moviecrud.business.entities.Cine;
-import com.example.moviecrud.business.entities.Pelicula;
 import com.example.moviecrud.business.entities.Sala;
-import com.example.moviecrud.ui.movie.MovieController;
 import com.example.moviecrud.ui.movie.SalaController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -68,7 +65,7 @@ public class CarteleraSalas implements Initializable {
 
 
     @FXML
-    private TableColumn<Sala, Cine> cine;
+    private TableColumn<Sala, String> cine;
 
     private ObservableList<Sala> salaList = FXCollections.observableArrayList();
 
@@ -95,8 +92,8 @@ public class CarteleraSalas implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         tipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-        cine.setCellValueFactory(new PropertyValueFactory<>("cine"));
-        local.setCellValueFactory(new PropertyValueFactory<>("nLocal"));
+        cine.setCellValueFactory(new PropertyValueFactory<>("nombreCine"));
+        local.setCellValueFactory(new PropertyValueFactory<>("nombreLocal"));
         columnas.setCellValueFactory(new PropertyValueFactory<>("columnas"));
         filas.setCellValueFactory(new PropertyValueFactory<>("filas"));
 

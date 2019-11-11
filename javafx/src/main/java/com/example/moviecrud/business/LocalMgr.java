@@ -26,7 +26,6 @@ public class LocalMgr {
     public void save(Local local) {
 
         localRepo.save(local);
-        local.setnCine(local.getCine().getNombre());
     }
 
     public void update(@PathVariable("id") String id, Local local) {
@@ -59,7 +58,6 @@ public class LocalMgr {
 
 
         Local local = new Local(name, cine);
-        local.setnCine(cine.getNombre());
         localRepo.save(local);
 
 

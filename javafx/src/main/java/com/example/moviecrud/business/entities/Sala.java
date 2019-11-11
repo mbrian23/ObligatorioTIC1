@@ -34,7 +34,20 @@ public class Sala {
     @JoinColumn(name = "nombre_local")
     private Local local;
 
-    private String nLocal;
+
+    public String getNombreCine() {
+        if (local.getCine().getNombre() != null){
+            return local.getCine().getNombre();
+        }
+        return "vacio";
+    }
+
+    public String getNombreLocal(){
+        if (local.getName() != null) {
+            return local.getName();
+        }
+        return "vacio";
+    }
 
     public Sala(@NotNull Long filas, @NotNull Long columnas, @NotBlank String tipo, @NotNull Long numeroSala) {
         this.filas = filas;
@@ -55,13 +68,13 @@ public class Sala {
     public Sala() {
     }
 
-    public String getnLocal() {
-        return nLocal;
-    }
-
-    public void setnLocal(String nLocal) {
-        this.nLocal = nLocal;
-    }
+//    public String getnLocal() {
+//        return nLocal;
+//    }
+//
+//    public void setnLocal(String nLocal) {
+//        this.nLocal = nLocal;
+//    }
 
     //    public Sala( Long filas ,Long columnas, String tipo,Long numeroSala) {
 //        this.filas = filas;

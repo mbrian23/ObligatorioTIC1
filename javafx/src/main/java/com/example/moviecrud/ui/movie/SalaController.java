@@ -125,14 +125,14 @@ public class SalaController implements Initializable {
                 String tipoSalaValue = tipoSala.getValue();
                 Long numeroColumnas = Long.parseLong(nroColumnas.getText());
                 Long numeroFilas = Long.parseLong(nroFilas.getText());
-                Local local = null;
+                Local localAgregar = localMgr.getLocalById(local.getValue()) ;
                       //  localMgr.getLocalById(cadenaCine.getValue());
 
                 try {
 
 
 
-                    salaManager.addSala(tipoSalaValue, numeroSala, numeroFilas, numeroColumnas,local);
+                    salaManager.addSala(tipoSalaValue, numeroSala, numeroFilas, numeroColumnas,localAgregar);
 
                     showAlert("Sala agregada", "Se agrego con exito la Sala!");
 

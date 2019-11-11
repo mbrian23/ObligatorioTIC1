@@ -25,15 +25,12 @@ public class Local {
     public Local() {
     }
 
-    private String nCine;
 
-    public String getnCine() {
-        return nCine;
+
+    public String getNombreCine() {
+        return cine.getNombre();
     }
 
-    public void setnCine(String nCine) {
-        this.nCine = nCine;
-    }
 
     public String getName() {
         return name;
@@ -54,6 +51,5 @@ public class Local {
     public Local(@NotNull String name, @NotBlank Cine cine) {
         this.name = name;
         this.cine = cine;
-        this.nCine = cine.getNombre();
     }
 }

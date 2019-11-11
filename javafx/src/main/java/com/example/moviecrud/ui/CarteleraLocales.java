@@ -55,7 +55,7 @@ public class CarteleraLocales implements Initializable {
     private TableColumn<Local, String> locales;
 
     @FXML
-    private TableColumn<Local, Cine> cines;
+    private TableColumn<Local, String> cines;
 
     @FXML
     private Button btnpeliculas;
@@ -106,7 +106,7 @@ public class CarteleraLocales implements Initializable {
         locales.setCellValueFactory(new PropertyValueFactory<>("name"));
 
 
-        cines.setCellValueFactory(new PropertyValueFactory<>("cine"));
+        cines.setCellValueFactory(new PropertyValueFactory<>("nombreCine"));
 
 
         actualizaCartLocales();
