@@ -1,7 +1,7 @@
 package com.example.moviecrud.business.entities;
 
 
-public abstract class Usuario {
+public class Usuario {
 
     private Long id;
 

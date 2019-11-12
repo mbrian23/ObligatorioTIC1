@@ -1,8 +1,22 @@
 package com.example.moviecrud.business.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type")
+@JsonSubTypes(
+        {
+            @JsonSubTypes.Type(value = UsuarioCine.class, name = "UsuarioCine"),
+            @JsonSubTypes.Type(value = UsuarioAdmin.class, name = "usuarioAdmin"),
+            @JsonSubTypes.Type(value = UsuarioCine.class, name = "UsuarioFinal"),
+})
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table (name = "usuario")
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

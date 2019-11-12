@@ -1,12 +1,11 @@
 package com.example.moviecrud.business;
 
-import com.example.moviecrud.business.entities.Pelicula;
-import com.example.moviecrud.business.entities.Usuario;
-import com.example.moviecrud.business.entities.UsuarioCine;
-import com.example.moviecrud.business.entities.UsuarioFinal;
+import com.example.moviecrud.business.entities.*;
 import com.example.moviecrud.business.exceptions.InformacionInvalida;
 import com.example.moviecrud.business.exceptions.NoExiste;
 import com.example.moviecrud.business.exceptions.YaExiste;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -14,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -22,8 +20,10 @@ import java.util.List;
 public class UsuarioMgr {
 
     RestTemplate rest = new RestTemplate();
+
+
     public void save(Usuario usuario){
-        rest.postForObject("http://localhost:8080/usuario", usuario, Usuario.class);
+            rest.postForObject("http://localhost:8080/usuario", usuario, Usuario.class);
     }
 
 
@@ -32,14 +32,11 @@ public class UsuarioMgr {
         save(rest.postForObject("http://localhost:8080/usuario", usuario, Usuario.class));
     }
 
-    //Get all users
-    // @GetMapping("/users")
     public List<Usuario> getAllUsuarios(){
         return (List<Usuario>) rest.exchange("http://localhost:8080/usuarios", HttpMethod.GET, null, new ParameterizedTypeReference<List<Usuario>>() {}).getBody();
     }
 
-    // Get a Single user by id
-    // @GetMapping("/usuario/{id}")
+
     public Usuario getUsuarioById(@PathVariable(value = "id") Long usuarioId) {
         return rest.getForObject("http://localhost:8080/usuario/{id}", Usuario.class);
     }
@@ -48,8 +45,6 @@ public class UsuarioMgr {
         return rest.getForObject("http://localhost:8080/usuario/{name}", Usuario.class);
     }
 
-    // Delete a Usuario by id
-    //  @DeleteMapping("/usuario/{id}")
     public ResponseEntity<?> deleteUsuario(@PathVariable(value = "id") Long usuarioId) {
         rest.delete("http://localhost:8080/usuario/{id}");
         return ResponseEntity.ok().build();

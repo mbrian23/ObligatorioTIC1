@@ -94,6 +94,7 @@ public class InicioAdmiController {
     public void ingresar (ActionEvent event) throws IOException {
         String username = adminID.getText();
         String contra = password.getText();
+
         List<Usuario> users = usuarioMgr.getAllUsuarios();
         List<Cine> cines = cineMgr.getAllCine();
 
