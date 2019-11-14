@@ -7,22 +7,10 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
-        include = JsonTypeInfo.As.PROPERTY,
-        property = "type")
-@JsonSubTypes(
-        {
-            @JsonSubTypes.Type(value = UsuarioCine.class, name = "UsuarioCine"),
-            @JsonSubTypes.Type(value = UsuarioAdmin.class, name = "usuarioAdmin"),
-            @JsonSubTypes.Type(value = UsuarioCine.class, name = "UsuarioFinal"),
-})
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table (name = "usuario")
-@Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 
-public abstract class Usuario {
+@Entity
+@Table
+public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,10 +29,15 @@ public abstract class Usuario {
     @Column(nullable = false, length = 45)
     private String email;
 
-    public Usuario(@NotBlank String username, @NotBlank String password, @NotBlank String email) {
+    @NotBlank
+    @Column(nullable = false)
+    private boolean adminPrivileges;
+
+    public Usuario(@NotBlank String username, @NotBlank String password, @NotBlank String email, @NotBlank boolean adminPrivileges) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.adminPrivileges = adminPrivileges;
     }
     public Usuario(){
 

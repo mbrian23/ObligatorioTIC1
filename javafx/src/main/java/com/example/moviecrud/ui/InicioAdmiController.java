@@ -5,7 +5,6 @@ import com.example.moviecrud.business.CineMgr;
 import com.example.moviecrud.business.UsuarioMgr;
 import com.example.moviecrud.business.entities.Cine;
 import com.example.moviecrud.business.entities.Usuario;
-import com.example.moviecrud.business.entities.UsuarioFinal;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,7 +52,7 @@ public class InicioAdmiController {
     private Button enter;
 
     @FXML
-    void cargaInicio (ActionEvent event) throws Exception {
+    void cargaInicio(ActionEvent event) throws Exception {
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
@@ -66,19 +65,19 @@ public class InicioAdmiController {
     }
 
     @FXML
-    public void adminEmpresa (ActionEvent event) throws Exception{
+    public void adminEmpresa(ActionEvent event) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(Principal.class.getResourceAsStream("Cartelera.fxml"));
-        Scene inicioScene = new Scene(root, 600,500);
+        Scene inicioScene = new Scene(root, 600, 500);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(inicioScene);
         window.show();
     }
 
     @FXML
-    public void iniciarSesion (ActionEvent event) throws Exception{
+    public void iniciarSesion(ActionEvent event) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
@@ -91,64 +90,62 @@ public class InicioAdmiController {
 
 
     @FXML
-    public void ingresar (ActionEvent event) throws IOException {
+    public void ingresar(ActionEvent event) throws IOException {
         String username = adminID.getText();
+        System.out.println(username);
         String contra = password.getText();
-
         List<Usuario> users = usuarioMgr.getAllUsuarios();
+        System.out.println(users.size());
         List<Cine> cines = cineMgr.getAllCine();
 
         boolean cineEncontrado = false;
 
         int indiceCine = 0;
 
-      //  System.out.println(cines.size()+ "!!!!!!!");
+        //  System.out.println(cines.size()+ "!!!!!!!");
 
-        for (int i = 0; i < cines.size() ; i++) {
-            String nombre =   cines.get(i).getNombre();
+//        for (int i = 0; i < cines.size() ; i++) {
+//            String nombre =   cines.get(i).getNombre();
+//
+//            if (nombre.equals(username)) {
+//                System.out.println("SE ENCONTRO EL CINE");
+//                indiceCine = i;
+//                cineEncontrado = true;
+//            }
+//        }
+//
+//        if (cineEncontrado){
+//
+//            FXMLLoader fxmlLoader = new FXMLLoader();
+//            fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+//
+//            Parent root = fxmlLoader.load(CarteleraFuncionesDelCine.class.getResourceAsStream("CarteleraFuncionesDelCine.fxml"));
+//            Scene inicioScene = new Scene(root, 600, 500);
+//            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//            window.setScene(inicioScene);
+//            window.show();
+//
+// }
+        try {
+        System.out.println(1);
+            Usuario usuario = (Usuario) usuarioMgr.getUsuarioByUsername(username);
+        System.out.println(2);
+            System.out.println(usuario.getUsername());
+        System.out.println(usuario);
+            if (usuario.isAdminPrivileges()) {
+                Alert alert2 = new Alert(Alert.AlertType.WARNING, "Entra en el if");
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
-            if (nombre.equals(username)) {
-                System.out.println("SE ENCONTRO EL CINE");
-                indiceCine = i;
-                cineEncontrado = true;
-            }
-        }
-
-        if (cineEncontrado){
-
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
-
-            Parent root = fxmlLoader.load(CarteleraFuncionesDelCine.class.getResourceAsStream("CarteleraFuncionesDelCine.fxml"));
-            Scene inicioScene = new Scene(root, 600, 500);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(inicioScene);
-            window.show();
-
-
-        } else if (username.equals("root") || username.equals("admin")){
-          //parte admin
-
-
-
-
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
-
-            Parent root = fxmlLoader.load(Principal.class.getResourceAsStream("Cartelera.fxml"));
-            Scene inicioScene = new Scene(root, 600, 500);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(inicioScene);
-            window.show();
-
-
-        } else {
-            //parte cliente final
-            UsuarioFinal usuarioFinal = (UsuarioFinal) usuarioMgr.getUsuarioByUsername(username);
-
-            if (usuarioFinal != null) {
-
-
+                Parent root = fxmlLoader.load(Principal.class.getResourceAsStream("Cartelera.fxml"));
+                Scene inicioScene = new Scene(root, 600, 500);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(inicioScene);
+                window.show();
+            } else {
+                Alert alert2 = new Alert(Alert.AlertType.WARNING, "Entra en el else");
+                alert2.showAndWait();
+                System.out.println(usuario.getClass());
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
@@ -157,13 +154,14 @@ public class InicioAdmiController {
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 window.setScene(inicioScene);
                 window.show();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.WARNING, "Algun dato ingresado no es correcto o no esta asociado a nigun usuario del sistema");
-                alert.showAndWait();
-            }
 
+            }
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, e.getMessage() + "Algun dato ingresado no es correcto o no esta asociado a nigun usuario del sistema");
+            alert.showAndWait();
 
         }
+
     }
 
 }

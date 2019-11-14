@@ -266,7 +266,7 @@ public class Inicio implements Initializable {
         String emailNuevo = emailRegistro.getText();
         String passwordNueva = passwordRegistro.getText();
 
-        usuarioMgr.addUsuarioFinal(usernameNuevo,passwordNueva,emailNuevo);
+        usuarioMgr.addUsuario(usernameNuevo,passwordNueva,emailNuevo, false);
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);

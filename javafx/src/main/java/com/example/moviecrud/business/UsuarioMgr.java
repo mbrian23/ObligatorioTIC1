@@ -24,13 +24,14 @@ public class UsuarioMgr {
 
     public void save(Usuario usuario){
             rest.postForObject("http://localhost:8080/usuario", usuario, Usuario.class);
-    }
+        }
 
 
-    public void update (@PathVariable("id") Long id, Usuario usuario){
-        usuario.setId(id);
+        public void update (@PathVariable("id") Long id, Usuario usuario){
+            usuario.setId(id);
         save(rest.postForObject("http://localhost:8080/usuario", usuario, Usuario.class));
     }
+
 
     public List<Usuario> getAllUsuarios(){
         return (List<Usuario>) rest.exchange("http://localhost:8080/usuarios", HttpMethod.GET, null, new ParameterizedTypeReference<List<Usuario>>() {}).getBody();
@@ -41,8 +42,12 @@ public class UsuarioMgr {
         return rest.getForObject("http://localhost:8080/usuario/{id}", Usuario.class);
     }
 
-    public Usuario getUsuarioByUsername(String nUsuario) {
-        return rest.getForObject("http://localhost:8080/usuario/{name}", Usuario.class);
+    public Usuario getUsuarioByUsername(@PathVariable(value = "name") String name) {
+        System.out.println("UsuarioMNG1"+name);
+
+        Usuario temp= rest.getForObject("http://localhost:8080/usuario/nombre/{name}", Usuario.class, name);
+        System.out.println("UsuarioMNG2");
+        return temp;
     }
 
     public ResponseEntity<?> deleteUsuario(@PathVariable(value = "id") Long usuarioId) {
@@ -50,7 +55,7 @@ public class UsuarioMgr {
         return ResponseEntity.ok().build();
     }
 
-    public void addUsuarioCine(String username, String password, String email) throws InformacionInvalida, YaExiste, IOException {
+    public void addUsuario(String username, String password, String email, boolean adminPrivileges) throws InformacionInvalida, YaExiste, IOException {
         if(username == null || "".equals(username) || password == null || "".equals(password) || email == null || "".equals(email)  ){
 
             throw new InformacionInvalida("Algun dato ingresado no es correcto");
@@ -59,33 +64,12 @@ public class UsuarioMgr {
 
 
 
-        // Ahora hay que ver si el usuario existe ya
-        // if (peliculaRepository.findById(peliculaI)
-        // problema para hacer el get de un id que se autogenera
-
-        UsuarioCine usuario = new UsuarioCine(username,password,email);
+        Usuario usuario = new Usuario(username,password,email, adminPrivileges);
 
         save(usuario);
     }
 
 
-    public void addUsuarioFinal(String username, String password, String email) throws InformacionInvalida, YaExiste, IOException {
-        if(username == null || "".equals(username) || password == null || "".equals(password) || email == null || "".equals(email)  ){
-
-            throw new InformacionInvalida("Algun dato ingresado no es correcto");
-
-        }
-
-
-
-        // Ahora hay que ver si el usuario existe ya
-        // if (peliculaRepository.findById(peliculaI)
-        // problema para hacer el get de un id que se autogenera
-
-        UsuarioFinal usuario = new UsuarioFinal(username,password,email);
-
-        save(usuario);
-    }
 
 
 
@@ -99,8 +83,8 @@ public class UsuarioMgr {
 
     }
 
-    public void editarUsuarioCine (String usernameViejo, String usernameNuevo, String password, String email) throws InformacionInvalida, NoExiste {
-        if(usernameNuevo == null || "".equals(usernameNuevo) || usernameViejo == null || "".equals(usernameViejo)  || password == null || "".equals(password) || email == null || "".equals(email) ){
+    public void editarUsuario (String usernameViejo, String usernameNuevo, String password, String email, boolean adminPrivileges) throws InformacionInvalida, NoExiste {
+        if(usernameNuevo == null || "".equals(usernameNuevo) || usernameViejo == null || "".equals(usernameViejo)  || password == null || "".equals(password) || email == null || "".equals(email)){
 
             throw new InformacionInvalida("Algun dato ingresado no es correcto");
 
@@ -109,23 +93,7 @@ public class UsuarioMgr {
         for (Usuario usuario: getAllUsuarios()) {
             if (usuario.getUsername().equals(usernameViejo)){
                 Long id = usuario.getId();
-                UsuarioCine usuarioActualizado = new UsuarioCine(usernameNuevo,password ,email);
-                update(id,usuarioActualizado);
-            }
-        }
-    }
-
-    public void editarUsuarioFinal (String usernameViejo, String usernameNuevo, String password, String email) throws InformacionInvalida, NoExiste {
-        if(usernameNuevo == null || "".equals(usernameNuevo) || usernameViejo == null || "".equals(usernameViejo)  || password == null || "".equals(password) || email == null || "".equals(email) ){
-
-            throw new InformacionInvalida("Algun dato ingresado no es correcto");
-
-        }
-
-        for (Usuario usuario: getAllUsuarios()) {
-            if (usuario.getUsername().equals(usernameViejo)){
-                Long id = usuario.getId();
-                UsuarioFinal usuarioActualizado = new UsuarioFinal(usernameNuevo,password ,email);
+                Usuario usuarioActualizado = new Usuario(usernameNuevo,password ,email, adminPrivileges);
                 update(id,usuarioActualizado);
             }
         }

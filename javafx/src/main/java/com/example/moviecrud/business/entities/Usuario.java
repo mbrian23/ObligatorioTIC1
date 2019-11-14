@@ -1,7 +1,7 @@
 package com.example.moviecrud.business.entities;
 
 
-public class Usuario {
+public class  Usuario {
 
     private Long id;
 
@@ -11,13 +11,24 @@ public class Usuario {
 
     private String email;
 
-    public Usuario( String username,String password, String email) {
+    private boolean adminPrivileges;
+
+    public Usuario( String username,String password, String email, boolean adminPrivileges) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.adminPrivileges=adminPrivileges;
     }
     public Usuario(){
 
+    }
+
+    public boolean isAdminPrivileges() {
+        return adminPrivileges;
+    }
+
+    public void setAdminPrivileges(boolean adminPrivileges) {
+        this.adminPrivileges = adminPrivileges;
     }
 
     public Long getId() {
