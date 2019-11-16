@@ -16,6 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import com.example.moviecrud.ui.movie.CustomComboBox?>
 <SplitPane fx:id="sp" dividerPositions="0.44816053511705684" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="bodybg2" stylesheets="/com/example/moviecrud/ui/movie/InfoPelicula.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.movie.InfoPelicula">
   <items>
     <AnchorPane fx:id="paneImg" minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="262.0">
@@ -126,11 +127,11 @@
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <ComboBox fx:id="cadena" prefWidth="150.0" promptText="Cadena de cine" />
-                              <ComboBox fx:id="localidad" prefWidth="150.0" promptText="Localidad">
+                              <CustomComboBox fx:id="localidad" prefWidth="150.0" promptText="Localidad" onAction="#sbox" >
                                  <HBox.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </HBox.margin>
-                              </ComboBox>
+                              </CustomComboBox>
                            </children>
                            <opaqueInsets>
                               <Insets />
@@ -141,14 +142,14 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <ComboBox fx:id="sala" prefHeight="25.0" prefWidth="208.0" promptText="Sala">
+                              <CustomComboBox fx:id="sala" prefHeight="25.0" prefWidth="208.0" promptText="Sala" >
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
-                              </ComboBox>
+                              </CustomComboBox>
                               <DatePicker fx:id="fecha" prefHeight="25.0" prefWidth="206.0" promptText="Fecha">
                                  <opaqueInsets>
                                     <Insets />

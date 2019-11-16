@@ -5,12 +5,15 @@ import com.example.moviecrud.business.CineMgr;
 import com.example.moviecrud.business.FuncionMgr;
 import com.example.moviecrud.business.PeliculaMgr;
 import com.example.moviecrud.business.entities.Funcion;
+import com.example.moviecrud.business.entities.Pelicula;
 import com.example.moviecrud.ui.CarteleraCines;
 import com.example.moviecrud.ui.Showroom;
 import com.example.moviecrud.ui.movie.CineController;
 import com.example.moviecrud.ui.movie.MovieController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,10 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DateCell;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -33,7 +33,9 @@ import java.net.URL;
 import java.sql.Time;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 @Component
 public class InfoPelicula implements Initializable {
@@ -48,7 +50,7 @@ public class InfoPelicula implements Initializable {
     AnchorPane paneImg;
 
     @FXML
-    private ComboBox<String> localidad;
+    private CustomComboBox<String> localidad;
 
     @FXML
     private  ComboBox<String> cadena;
@@ -57,7 +59,7 @@ public class InfoPelicula implements Initializable {
     private ComboBox<Time> horario;
 
     @FXML
-    private  ComboBox<String> sala;
+    private  CustomComboBox<String> sala;
 
     @FXML
     private DatePicker fecha;
@@ -97,7 +99,7 @@ public class InfoPelicula implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        //setBoxesFiltered();
     }
 
     @Autowired
@@ -117,6 +119,7 @@ public class InfoPelicula implements Initializable {
         localidad.getItems().clear();
         horario.getItems().clear();
         sala.getItems().clear();
+        cadena.getItems().clear();
 
 
 
@@ -152,6 +155,7 @@ public class InfoPelicula implements Initializable {
             for (int i = 0; i < z; i++) {
                 if (!hor.contains(funcionPelicula.get(i).getHoraFuncion())) {
                     hor.add(funcionPelicula.get(i).getHoraFuncion());
+
                 }
             }
             horario.setItems(hor);
@@ -166,4 +170,254 @@ public class InfoPelicula implements Initializable {
             });
         }
     }
+
+    private ObservableList<Funcion> filteredList = FXCollections.observableArrayList();
+
+    public void setBoxesFiltered(){
+
+
+        String loc = localidad.getValue();
+        String sl = sala.getValue();
+
+        if(loc != null){
+
+            for (Funcion funcion : funcionPelicula) {
+                if (funcion.getLocal().getName().equals(loc)) {
+                    filteredList.add(funcion);
+                }
+            }
+            int z = filteredList.size();
+            int f = funcionPelicula.size();
+            int min = Math.min(f,z);
+
+            for (int i = 0; i < min; i++) {
+                if (!local.contains(filteredList.get(i).getLocal().getName())) {
+                    local.add(filteredList.get(i).getLocal().getName());
+                }
+            }
+            localidad.setItems(local);
+
+            if(sala.getValue() == null){
+
+                sala.getItems().clear();
+                tipoSala.clear();
+                for (int i = 0; i < min; i++) {
+                    if (!tipoSala.contains(filteredList.get(i).getSala().getTipo())) {
+                        tipoSala.add(filteredList.get(i).getSala().getTipo());
+                    }
+                }
+                sala.setItems(tipoSala);
+            }
+        }
+
+        if(sl != null){
+            local.clear();
+            localidad.getItems().clear();
+
+            for (Funcion funcion: funcionPelicula) {
+                if (funcion.getSala().getTipo().equals(sl)){
+                    filteredList.add(funcion);
+                }
+            }
+            int z = filteredList.size();
+
+            int f = funcionPelicula.size();
+
+            int min = Math.min(f,z);
+
+            for (int i = 0; i < min; i++) {
+                if (!local.contains(filteredList.get(i).getLocal().getName())) {
+                    local.add(filteredList.get(i).getLocal().getName());
+                }
+            }
+            localidad.setItems(local);
+
+            for (int i = 0; i < min; i++) {
+                if (!tipoSala.contains(filteredList.get(i).getSala().getTipo())) {
+                    tipoSala.add(filteredList.get(i).getSala().getTipo());
+                }
+            }
+            sala.setItems(tipoSala);
+        }
+    }
+
+//    public void sfb(){
+//        localidad.setCellFactory(lv -> {
+//            ListCell<String> cell = new ListCell<String>() {
+//                @Override
+//                protected void updateItem(String item, boolean empty) {
+//                    super.updateItem(item, empty);
+//                    setText(empty ? null : item);
+//                }
+//            };
+//            cell.setOnMousePressed(e -> {
+//                if (! cell.isEmpty()) {
+//                    if(sala.getValue() == null){
+//                        int z = filteredList.size();
+//                        sala.getItems().clear();
+//                        tipoSala.clear();
+//                        for (int i = 0; i < z; i++) {
+//                            if (!tipoSala.contains(filteredList.get(i).getSala().getTipo())) {
+//                                tipoSala.add(filteredList.get(i).getSala().getTipo());
+//                            }
+//                        }
+//                        sala.setItems(tipoSala);
+//
+//                    }
+//                    if(horario.getValue() == null){
+//                        int z = filteredList.size();
+//                        horario.getItems().clear();
+//                        hor.clear();
+//                        for (int i = 0; i < z; i++) {
+//                            if (!hor.contains(filteredList.get(i).getHoraFuncion())) {
+//                                hor.add(filteredList.get(i).getHoraFuncion());
+//                            }
+//                        }
+//                        horario.setItems(hor);
+//                    }
+//                    if(cadena.getValue() == null){
+//                        int z = filteredList.size();
+//                        cadena.getItems().clear();
+//                        cines.clear();
+//                        for (int i = 0; i < z; i++) {
+//                            if (!cines.contains(filteredList.get(i).getLocal().getnCine())) {
+//                                cines.add(filteredList.get(i).getLocal().getnCine());
+//                            }
+//                        }
+//                        cadena.setItems(cines);
+//                    }
+//
+//                }
+//            });
+//            return cell ;
+//        });
+//
+//        cadena.setCellFactory(lv -> {
+//            ListCell<String> cell = new ListCell<String>() {
+//                @Override
+//                protected void updateItem(String item, boolean empty) {
+//                    super.updateItem(item, empty);
+//                    setText(empty ? null : item);
+//                }
+//            };
+//            cell.setOnMousePressed(e -> {
+//                if (! cell.isEmpty()) {
+//                    if(sala.getValue() == null){
+//                        int z = filteredList.size();
+//                        sala.getItems().clear();
+//                        tipoSala.clear();
+//                        for (int i = 0; i < z; i++) {
+//                            if (!tipoSala.contains(filteredList.get(i).getSala().getTipo())) {
+//                                tipoSala.add(filteredList.get(i).getSala().getTipo());
+//                            }
+//                        }
+//                        sala.setItems(tipoSala);
+//
+//                    }
+//                    if(horario.getValue() == null){
+//                        int z = filteredList.size();
+//                        horario.getItems().clear();
+//                        hor.clear();
+//                        for (int i = 0; i < z; i++) {
+//                            if (!hor.contains(filteredList.get(i).getHoraFuncion())) {
+//                                hor.add(filteredList.get(i).getHoraFuncion());
+//                            }
+//                        }
+//                        horario.setItems(hor);
+//                    }
+//                    if(localidad.getValue() == null){
+//                        int z = filteredList.size();
+//                        localidad.getItems().clear();
+//                        local.clear();
+//                        for (int i = 0; i < z; i++) {
+//                            if (!local.contains(filteredList.get(i).getLocal().getnCine())) {
+//                                local.add(filteredList.get(i).getLocal().getnCine());
+//                            }
+//                        }
+//                        localidad.setItems(local);
+//                    }
+//
+//                }
+//            });
+//            return cell ;
+//        });
+//
+//        sala.setCellFactory(lv -> {
+//            ListCell<String> cell = new ListCell<String>() {
+//                @Override
+//                protected void updateItem(String item, boolean empty) {
+//                    super.updateItem(item, empty);
+//                    setText(empty ? null : item);
+//                }
+//            };
+//            cell.setOnMousePressed(e -> {
+//                if (! cell.isEmpty()) {
+//                    if(localidad.getValue() == null){
+//                        int z = filteredList.size();
+//                        localidad.getItems().clear();
+//                        local.clear();
+//                        for (int i = 0; i < z; i++) {
+//                            if (!local.contains(filteredList.get(i).getSala().getTipo())) {
+//                                local.add(filteredList.get(i).getSala().getTipo());
+//                            }
+//                        }
+//                        localidad.setItems(local);
+//
+//                    }
+//                    if(horario.getValue() == null){
+//                        int z = filteredList.size();
+//                        horario.getItems().clear();
+//                        hor.clear();
+//                        for (int i = 0; i < z; i++) {
+//                            if (!hor.contains(filteredList.get(i).getHoraFuncion())) {
+//                                hor.add(filteredList.get(i).getHoraFuncion());
+//                            }
+//                        }
+//                        horario.setItems(hor);
+//                    }
+//                    if(cadena.getValue() == null){
+//                        int z = filteredList.size();
+//                        cadena.getItems().clear();
+//                        cines.clear();
+//                        for (int i = 0; i < z; i++) {
+//                            if (!cines.contains(filteredList.get(i).getLocal().getnCine())) {
+//                                cines.add(filteredList.get(i).getLocal().getnCine());
+//                            }
+//                        }
+//                        cadena.setItems(cines);
+//                    }
+//
+//                }
+//            });
+//            return cell ;
+//        });
+//    }
+
+    public void sbox(){
+        funcionPelicula.setAll(funcionMgr.getAllFunciones());
+        ArrayList<String> salasDePel = new ArrayList<>();
+        localidad.setCellFactory(lv -> new ListCell<String>(){
+
+            {
+                disableProperty().bind(localidad.valueProperty().isEqualTo(itemProperty()));
+                for (Funcion funcion : funcionPelicula) {
+                    if (funcion.getLocal().getName().equals(localidad.getValue())) {
+                        salasDePel.add(funcion.getSala().getTipo());
+                        System.out.println(localidad.getValue());
+                    }
+                }
+                int j = salasDePel.size();
+                for (int i = 0; i < j ; i++) {
+                    if(!tipoSala.contains(salasDePel.get(i))){
+                        sala.setDisabledItems(salasDePel.get(i));
+                    }
+                }
+            }
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(item);
+            }
+        });
+    }
+
 }
