@@ -30,10 +30,10 @@ public class Usuario {
     private String email;
 
     @NotBlank
-    @Column(nullable = false)
-    private boolean adminPrivileges;
+    @Column(nullable = false, length = 45)
+    private String adminPrivileges;
 
-    public Usuario(@NotBlank String username, @NotBlank String password, @NotBlank String email, @NotBlank boolean adminPrivileges) {
+    public Usuario(@NotBlank String username, @NotBlank String password, @NotBlank String email, @NotBlank String adminPrivileges) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -73,5 +73,13 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getAdminPrivileges() {
+        return adminPrivileges;
+    }
+
+    public void setAdminPrivileges(String adminPrivileges) {
+        this.adminPrivileges = adminPrivileges;
     }
 }

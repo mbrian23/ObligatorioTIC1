@@ -132,8 +132,20 @@ public class InicioAdmiController {
         System.out.println(2);
             System.out.println(usuario.getUsername());
         System.out.println(usuario);
-            if (usuario.isAdminPrivileges()) {
+            if (usuario.getAdminPrivileges().equals("cine") ) {
                 Alert alert2 = new Alert(Alert.AlertType.WARNING, "Entra en el if");
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+                Parent root = fxmlLoader.load(CarteleraFuncionesDelCine.class.getResourceAsStream("CarteleraFuncionesDelCine.fxml"));
+                Scene inicioScene = new Scene(root, 600, 500);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(inicioScene);
+                window.show();
+            } else if (usuario.getAdminPrivileges().equals("admin")){
+                Alert alert2 = new Alert(Alert.AlertType.WARNING, "Entra en el else");
+                alert2.showAndWait();
+                System.out.println(usuario.getClass());
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
@@ -142,19 +154,9 @@ public class InicioAdmiController {
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 window.setScene(inicioScene);
                 window.show();
+
             } else {
-                Alert alert2 = new Alert(Alert.AlertType.WARNING, "Entra en el else");
-                alert2.showAndWait();
-                System.out.println(usuario.getClass());
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
-
-                Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("Inicio.fxml"));
-                Scene inicioScene = new Scene(root, 600, 500);
-                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                window.setScene(inicioScene);
-                window.show();
-
+                Alert alert = new Alert(Alert.AlertType.WARNING,  "Algun dato ingresado no es correcto o no esta asociado a nigun cine o administrador del sistema");
             }
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.WARNING, e.getMessage() + "Algun dato ingresado no es correcto o no esta asociado a nigun usuario del sistema");

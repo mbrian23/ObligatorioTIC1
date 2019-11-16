@@ -2,8 +2,7 @@ package com.example.moviecrud.business.entities;
 
 public class Ticket {
 
-    //funcion?
-    //fecha
-    //hora
-    //pelicula
+    //Funcion:
+    // hora, pelicula, sala , cine, local
+    // cantidad
 }

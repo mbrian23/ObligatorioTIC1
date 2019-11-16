@@ -11,9 +11,11 @@ public class  Usuario {
 
     private String email;
 
-    private boolean adminPrivileges;
+    private String adminPrivileges;
 
-    public Usuario( String username,String password, String email, boolean adminPrivileges) {
+
+
+    public Usuario( String username,String password, String email, String adminPrivileges) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -23,11 +25,11 @@ public class  Usuario {
 
     }
 
-    public boolean isAdminPrivileges() {
+    public String getAdminPrivileges() {
         return adminPrivileges;
     }
 
-    public void setAdminPrivileges(boolean adminPrivileges) {
+    public void setAdminPrivileges(String adminPrivileges) {
         this.adminPrivileges = adminPrivileges;
     }
 

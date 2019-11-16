@@ -55,7 +55,7 @@ public class UsuarioMgr {
         return ResponseEntity.ok().build();
     }
 
-    public void addUsuario(String username, String password, String email, boolean adminPrivileges) throws InformacionInvalida, YaExiste, IOException {
+    public void addUsuario(String username, String password, String email, String adminPrivileges) throws InformacionInvalida, YaExiste, IOException {
         if(username == null || "".equals(username) || password == null || "".equals(password) || email == null || "".equals(email)  ){
 
             throw new InformacionInvalida("Algun dato ingresado no es correcto");
@@ -83,7 +83,7 @@ public class UsuarioMgr {
 
     }
 
-    public void editarUsuario (String usernameViejo, String usernameNuevo, String password, String email, boolean adminPrivileges) throws InformacionInvalida, NoExiste {
+    public void editarUsuario (String usernameViejo, String usernameNuevo, String password, String email, String adminPrivileges) throws InformacionInvalida, NoExiste {
         if(usernameNuevo == null || "".equals(usernameNuevo) || usernameViejo == null || "".equals(usernameViejo)  || password == null || "".equals(password) || email == null || "".equals(email)){
 
             throw new InformacionInvalida("Algun dato ingresado no es correcto");
