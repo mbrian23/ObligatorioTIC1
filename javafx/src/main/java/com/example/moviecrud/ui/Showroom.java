@@ -1,8 +1,7 @@
 package com.example.moviecrud.ui;
 
 import com.example.moviecrud.MovieCrudApplication;
-import com.example.moviecrud.business.FuncionMgr;
-import com.example.moviecrud.business.SalaManager;
+import com.example.moviecrud.business.*;
 import com.example.moviecrud.business.entities.*;
 import com.example.moviecrud.ui.movie.InfoPelicula;
 import javafx.collections.ObservableList;
@@ -40,6 +39,14 @@ public class Showroom implements Initializable {
     @Autowired
     SalaManager salaManager;
 
+    @Autowired
+    LocalMgr localMgr;
+
+    @Autowired
+    PeliculaMgr peliculaMgr;
+    @Autowired
+    CineMgr cineMgr;
+
     @FXML
     private AnchorPane root;
 
@@ -72,17 +79,17 @@ public class Showroom implements Initializable {
 
     private LocalDate fechafinal = LocalDate.of(1000, 5, 5);
 
-    private Cine cine = new Cine("movie");
+    private Cine cine;
 
-    private Local local = new Local("local", cine);
+    private Local local ;
+    private Time horario;
 
-    private Time horario = new Time(12);
+    private Pelicula pelicula;
 
-    private Pelicula pelicula = new Pelicula("tit", "gen", "act", "dur", "des");
 
-    private Sala salapr = new Sala(6l, 6l, "sale", 3l);
+    private Sala salapr;
 
-    private Funcion funcionElegida = new Funcion(fechainicio, horario);
+    private Funcion funcionElegida = new Funcion();
 
 
 
@@ -92,9 +99,18 @@ public class Showroom implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try {
+            getInfoFunc();
+        } catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.WARNING,  "error en la carga de los datos de la pelicula");
+        }
+
         funcionElegida.setSala(salapr);
-        funcionElegida.setPelicula(pelicula);
         funcionElegida.setLocal(local);
+        funcionElegida.setPelicula(pelicula);
+        funcionElegida.setFechaInicio(fechainicio);
+        funcionElegida.setHoraFuncion(horario);
+
 
         disponible.setImage(available);
         elegido.setImage(selected);
@@ -229,7 +245,16 @@ public class Showroom implements Initializable {
 
     @FXML
     public void comprar (ActionEvent event) throws IOException{
-
+        ImageView imageView = new ImageView();
+        for (int i = 0; i < salapr.getFilas() ; i++) {
+            for (int j = 0; j < salapr.getColumnas() ; j++){
+                imageView = (ImageView) getNodeByRowColumnIndex(i,j,grid);
+                if (imageView.getImage().equals(selected)){
+                    funcionElegida.reservaButaca(i,j);
+                    funcionMgr.update(funcionElegida.getId(),funcionElegida);
+                }
+            }
+        }
     }
 
     public void getInfoFunc() throws IOException {
@@ -244,11 +269,19 @@ public class Showroom implements Initializable {
         sc = new Scene(parent);
 
         ComboBox sala = (ComboBox)fxmlLoader.getNamespace().get("sala");
-        ComboBox local = (ComboBox)fxmlLoader.getNamespace().get("localidad");
+        ComboBox localAgregar = (ComboBox)fxmlLoader.getNamespace().get("localidad");
         ComboBox cadena = (ComboBox)fxmlLoader.getNamespace().get("cadena");
-        Text pelicula = (Text) fxmlLoader.getNamespace().get("titulo");
-        ComboBox horario = (ComboBox)fxmlLoader.getNamespace().get("horario");
+        Text peliculaFuncion = (Text) fxmlLoader.getNamespace().get("titulo");
+        ComboBox horarioAgregar = (ComboBox)fxmlLoader.getNamespace().get("horario");
         DatePicker fecha = (DatePicker)fxmlLoader.getNamespace().get("fecha");
+
+
+        salapr = salaManager.getSalaByNumSala( (Long) sala.getValue());
+        local = localMgr.getLocalById((String) localAgregar.getValue());
+        cine = cineMgr.getCineById((String) cadena.getValue());
+        pelicula = peliculaMgr.getPeliculaByName( peliculaFuncion.getText());
+        horario = (Time) horarioAgregar.getValue();
+        fechainicio = fecha.getValue();
 
     }
 
