@@ -24,6 +24,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -65,7 +66,14 @@ public class Inicio implements Initializable {
 
 
     @FXML
+    private ImageView logo;
+
+
+    @FXML
     private TextField buscadorInicio;
+
+
+    private Image logoAgregar = new Image("com/example/moviecrud/ui/images/logo2.png");
 
     private boolean bool1 = false;
     private boolean bool2 = false;
@@ -73,7 +81,10 @@ public class Inicio implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
         try {
+            logo.setImage(logoAgregar);
             pane.getChildren().add(movieCrudApplication.createContent());
         } catch (Exception e) {
             e.printStackTrace();

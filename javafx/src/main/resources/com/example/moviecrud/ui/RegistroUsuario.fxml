@@ -9,7 +9,7 @@
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" stylesheets="/com/example/moviecrud/ui/Styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.Inicio">
    <children>
-      <Pane layoutX="-12.0" prefHeight="492.0" prefWidth="200.0" style="-fx-background-color: #DC9656;">
+      <Pane layoutX="-12.0" prefHeight="492.0" prefWidth="219.0" style="-fx-background-color: #DC9656;">
          <children>
             <Label layoutX="31.0" layoutY="75.0" prefHeight="31.0" prefWidth="161.0" style="-fx-font-size: 2em;" text="Registrarse" />
          </children>
@@ -19,7 +19,7 @@
       <TextField fx:id="passwordRegistro" layoutX="227.0" layoutY="219.0" prefHeight="27.0" prefWidth="308.0" promptText="Contraseña..." style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black; -fx-prompt-text-fill: black;" />
       <Button layoutX="510.0" layoutY="332.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="118.0" styleClass="botonInicio" text="Continuar" />
       <Text layoutX="240.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.4em;" text="Datos de Usuario" />
-      <TextField editable="false" layoutX="208.0" layoutY="29.0" prefHeight="23.0" prefWidth="430.0" style="-fx-background-color: tranparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black;" />
+      <TextField editable="false" layoutX="226.0" layoutY="29.0" prefHeight="29.0" prefWidth="412.0" style="-fx-background-color: tranparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black;" />
       <TextField fx:id="passwordRepeatRegistro" layoutX="227.0" layoutY="268.0" prefHeight="27.0" prefWidth="308.0" promptText="Repetir contraseña..." style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black; -fx-prompt-text-fill: black;" />
       <Button fx:id="registro" layoutX="233.0" layoutY="331.0" mnemonicParsing="false" onAction="#crearClienteFinal" prefHeight="31.0" prefWidth="118.0" styleClass="botonInicio" text="Volver atrás" />
    </children>

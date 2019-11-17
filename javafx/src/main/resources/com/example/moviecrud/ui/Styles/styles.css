@@ -1,5 +1,5 @@
 #root{
-    -fx-font-family: Quicksand;
+    -fx-font-family: "Andale Mono";
 }
 
 /* Estilos Inicio */
@@ -14,5 +14,6 @@
 .filtradoCarousel{
     -fx-prompt-text-fill: grey;
 }
+
 
 
