@@ -42,7 +42,7 @@ public class PeliculaMgr {
     }
 
     public Pelicula getPeliculaByName(String nPelicula) {
-        return rest.getForObject("http://localhost:8080/pelicula/{name}", Pelicula.class);
+        return rest.getForObject("http://localhost:8080/pelicula/nombre/{name}\"", Pelicula.class);
     }
 
     // Delete a Pelicula by id

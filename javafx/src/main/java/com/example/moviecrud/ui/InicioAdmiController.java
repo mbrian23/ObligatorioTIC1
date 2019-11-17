@@ -157,6 +157,7 @@ public class InicioAdmiController {
 
             } else {
                 Alert alert = new Alert(Alert.AlertType.WARNING,  "Algun dato ingresado no es correcto o no esta asociado a nigun cine o administrador del sistema");
+
             }
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.WARNING, e.getMessage() + "Algun dato ingresado no es correcto o no esta asociado a nigun usuario del sistema");

@@ -47,7 +47,7 @@ public class PeliculaMgr {
         return peliculaRepository.findById(peliculaId).get();
     }
 
-    @GetMapping("/pelicula/{name}")
+    @GetMapping("/pelicula/nombre/{name}")
     public Pelicula getPeliculaByName(String nPelicula) {
         List<Pelicula> peliculas = (List<Pelicula>) peliculaRepository.findAll();
         int l = peliculas.size();
