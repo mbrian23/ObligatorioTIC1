@@ -22,7 +22,7 @@ public class LocalMgr {
     LocalRepo localRepo;
 
     @PostMapping("/local")
-    public void save(Local local) {
+    public void save(@RequestBody Local local) {
 
         localRepo.save(local);
         local.setnCine(local.getCine().getNombre());

@@ -27,7 +27,7 @@ public class FuncionMgr {
     FuncionRepo funcionRepo;
 
     @PostMapping("/funcion")
-    public void save(Funcion funcion){
+    public void save(@RequestBody Funcion funcion){
         funcionRepo.save(funcion);
     }
 

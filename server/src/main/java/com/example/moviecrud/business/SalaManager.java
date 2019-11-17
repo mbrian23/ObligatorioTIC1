@@ -20,7 +20,7 @@ public class SalaManager {
     SalaRepository salaRepository;
 
     @PostMapping("/sala")
-    public void save( Sala sala){
+    public void save(@RequestBody Sala sala){
         salaRepository.save(sala);
     }
 

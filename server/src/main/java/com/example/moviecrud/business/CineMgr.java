@@ -23,7 +23,7 @@ public class CineMgr  {
     CineRepo cineRepo;
 
     @PostMapping("/cine")
-    public void save(Cine cine) {
+    public void save(@RequestBody Cine cine) {
         cineRepo.save(cine);
     }
 

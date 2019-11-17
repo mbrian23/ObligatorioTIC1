@@ -20,7 +20,7 @@ public class UsuarioMgr {
 
     // Create user
     @PostMapping("/usuario")
-    public void save(Usuario usuario) {
+    public void save(@RequestBody Usuario usuario) {
         usuarioRepository.save(usuario);
     }
 

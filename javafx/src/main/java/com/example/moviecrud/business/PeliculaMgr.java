@@ -22,7 +22,9 @@ public class PeliculaMgr {
 
 
     public void save( Pelicula pelicula){
+        System.out.println(pelicula.getTitulo()+pelicula.getActores()+pelicula.getDuracion()+" I am in save before post");
         rest.postForObject("http://localhost:8080/pelicula", pelicula, Pelicula.class);
+        System.out.println(pelicula.getTitulo()+pelicula.getActores()+pelicula.getDuracion()+" I am hereafter post");
     }
 
 
@@ -65,9 +67,11 @@ public class PeliculaMgr {
         // if (peliculaRepository.findById(peliculaI)
         // problema para hacer el get de un id que se autogenera
 
-        Pelicula pelicula = new Pelicula(titulo,genero,actores,duracion ,descripcion);
+        Pelicula pelicula = new Pelicula(titulo,genero,actores,duracion,descripcion);
         pelicula.setMovieImage(movieImage);
+        System.out.println(pelicula.getTitulo()+pelicula.getActores()+pelicula.getDuracion()+" I am here");
         save(pelicula);
+        System.out.println(pelicula.getTitulo()+pelicula.getActores()+pelicula.getDuracion()+" I am here after save");
     }
     
     public void eliminarPelicula (String titulo)  throws InformacionInvalida, NoExiste {
