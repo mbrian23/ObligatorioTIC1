@@ -36,7 +36,7 @@
                   <TextField fx:id="password" prefHeight="0.0" promptText="Password" style="-fx-background-color: transparent; -fx-prompt-text-fill: black;" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
-            <Button fx:id="enter" alignment="CENTER" mnemonicParsing="false" onAction="#ingresar" prefHeight="35.0" prefWidth="250.0" style="-fx-background-color: #2f2f2fa3; -fx-background-radius: 100; -fx-text-fill: black; -fx-font-family: Quicksand; -fx-font-weight: bold;" textAlignment="CENTER" text="ENTER">
+            <Button fx:id="enter" alignment="CENTER" mnemonicParsing="false" onAction="#ingresar" prefHeight="35.0" prefWidth="250.0" style="-fx-background-color: #2f2f2fa3; -fx-background-radius: 100; -fx-text-fill: black; -fx-font-family: Quicksand; -fx-font-weight: bold;" text="ENTER" textAlignment="CENTER">
                <VBox.margin>
                   <Insets top="40.0" />
                </VBox.margin></Button>
@@ -52,6 +52,6 @@
             </VBox>
          </children>
       </HBox>
-      <TextField fx:id="adminID" layoutX="221.0" layoutY="175.0" prefHeight="16.0" prefWidth="250.0" promptText="Username" style="-fx-background-color: transparent; -fx-prompt-text-fill: black;"/>
+      <TextField fx:id="adminID" layoutX="221.0" layoutY="168.0" prefHeight="16.0" prefWidth="250.0" promptText="Username" style="-fx-background-color: transparent; -fx-prompt-text-fill: black;" />
    </children>
 </AnchorPane>

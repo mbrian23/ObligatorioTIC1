@@ -108,7 +108,7 @@ public class CarteleraFuncionesDelCine implements Initializable {
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(CarteleraFuncionesDelCine.class.getResourceAsStream("CarteleraFuncionesDelCine.fxml"));
-        Scene inicioScene = new Scene(root, 600,500);
+        Scene inicioScene = new Scene(root, 1000,750);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(inicioScene);
         window.show();
@@ -120,7 +120,7 @@ public class CarteleraFuncionesDelCine implements Initializable {
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(CarteleraSalasDelCine.class.getResourceAsStream("CarteleraSalasDelCine.fxml"));
-        Scene inicioScene = new Scene(root, 600,500);
+        Scene inicioScene = new Scene(root, 1000,750);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(inicioScene);
         window.show();
@@ -132,7 +132,7 @@ public class CarteleraFuncionesDelCine implements Initializable {
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("Inicio.fxml"));
-        Scene inicioScene = new Scene(root, 600, 500);
+        Scene inicioScene = new Scene(root, 1000,750);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(inicioScene);
         window.show();

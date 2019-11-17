@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="984.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.Principal">
+<AnchorPane fx:id="root" stylesheets="/com/example/moviecrud/ui/Styles/styles.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="984.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.Principal">
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
@@ -23,7 +23,7 @@
          <children>
             <HBox prefHeight="31.0" prefWidth="580.0">
                <children>
-                  <MenuBar prefHeight="29.0" prefWidth="246.0">
+                  <MenuBar prefHeight="29.0" prefWidth="246.0" styleClass="menuBarCartelera">
                     <menus>
                       <Menu mnemonicParsing="false" style="-fx-font-weight: bold;" text="Agregar">
                         <items>
@@ -74,33 +74,33 @@
       <Separator layoutX="188.0" layoutY="-3.0" maxHeight="1.7976931348623157E308" orientation="VERTICAL" prefHeight="759.0" prefWidth="4.0" />
       <VBox alignment="CENTER" layoutX="1.0" layoutY="69.0" prefHeight="409.0" prefWidth="189.0">
          <children>
-            <Button fx:id="btnpeliculas" mnemonicParsing="false" onAction="#cargaCartPeliculas" prefHeight="27.0" prefWidth="165.0" style="-fx-border-radius: 50px;" text="PELICULAS">
+            <Button fx:id="btnpeliculas" mnemonicParsing="false" onAction="#cargaCartPeliculas" prefHeight="27.0" prefWidth="165.0"  styleClass="botonInicio" text="PELICULAS">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnsalas" mnemonicParsing="false" onAction="#cargaCartSalas" prefHeight="27.0" prefWidth="210.0" text="SALAS">
+            <Button fx:id="btnsalas" mnemonicParsing="false" onAction="#cargaCartSalas" prefHeight="27.0" prefWidth="210.0" styleClass="botonInicio" text="SALAS">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnfunciones" mnemonicParsing="false" onAction="#cargaCartFunciones" prefHeight="27.0" prefWidth="271.0" text="FUNCIONES">
+            <Button fx:id="btnfunciones" mnemonicParsing="false" onAction="#cargaCartFunciones" prefHeight="27.0" prefWidth="271.0" styleClass="botonInicio" text="FUNCIONES">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnlocales" mnemonicParsing="false" onAction="#cargaCartLocales" prefHeight="27.0" prefWidth="311.0" text="LOCALES">
+            <Button fx:id="btnlocales" mnemonicParsing="false" onAction="#cargaCartLocales" prefHeight="27.0" prefWidth="311.0" styleClass="botonInicio" text="LOCALES">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnCines" mnemonicParsing="false" onAction="#cargaCartCines" prefHeight="27.0" prefWidth="504.0" text="CINES">
+            <Button fx:id="btnCines" mnemonicParsing="false" onAction="#cargaCartCines" prefHeight="27.0" prefWidth="504.0" styleClass="botonInicio" text="CINES">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
          </children>
       </VBox>
-      <Button fx:id="btnVolver" layoutX="52.0" layoutY="44.0" mnemonicParsing="false" onAction="#cargaInicio" text="Volver a inicio" />
+      <Button fx:id="btnVolver" layoutX="52.0" layoutY="44.0" mnemonicParsing="false" onAction="#cargaInicio" styleClass="botonInicio" text="Volver a inicio" />
    </children>
 </AnchorPane>
