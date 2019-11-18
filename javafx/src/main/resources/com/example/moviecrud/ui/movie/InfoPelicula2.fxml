@@ -54,7 +54,7 @@
                            <children>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label text="Genero:" textFill="WHITE">
+                                    <Label text="Genero:" styleClass="dato" textFill="WHITE">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -68,7 +68,7 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label text="Actores:" textFill="WHITE">
+                                    <Label text="Actores:" styleClass="dato"  textFill="WHITE">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -82,7 +82,7 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label text="Duracion:" textFill="WHITE">
+                                    <Label text="Duracion:" styleClass="dato"  textFill="WHITE">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -103,7 +103,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <children>
-                        <Label text="Descripcion:" textFill="WHITE" />
+                        <Label text="Descripcion:" styleClass="dato"  textFill="WHITE" />
                         <Text fx:id="Descripcion" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="desc" wrappingWidth="245.13671875">
                            <HBox.margin>
                               <Insets left="5.0" />
