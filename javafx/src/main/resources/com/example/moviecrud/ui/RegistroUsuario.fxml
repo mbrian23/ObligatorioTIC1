@@ -17,10 +17,10 @@
       <TextField fx:id="usernameRegistro" layoutX="227.0" layoutY="107.0" prefHeight="27.0" prefWidth="308.0" promptText="Nombre de usuario..." style="-fx-background-color: tranparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-prompt-text-fill: black;" />
       <TextField fx:id="emailRegistro" layoutX="227.0" layoutY="163.0" prefHeight="27.0" prefWidth="308.0" promptText="Email..." style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black; -fx-prompt-text-fill: black;" />
       <TextField fx:id="passwordRegistro" layoutX="227.0" layoutY="219.0" prefHeight="27.0" prefWidth="308.0" promptText="Contraseña..." style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black; -fx-prompt-text-fill: black;" />
-      <Button layoutX="510.0" layoutY="332.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="118.0" styleClass="botonInicio" text="Continuar" />
+      <Button fx:id="registro" layoutX="510.0" layoutY="332.0" mnemonicParsing="false" onAction="#crearClienteFinal" prefHeight="31.0" prefWidth="118.0" styleClass="botonInicio" text="Continuar" />
       <Text layoutX="240.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1.4em;" text="Datos de Usuario" />
       <TextField editable="false" layoutX="226.0" layoutY="29.0" prefHeight="29.0" prefWidth="412.0" style="-fx-background-color: tranparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black;" />
       <TextField fx:id="passwordRepeatRegistro" layoutX="227.0" layoutY="268.0" prefHeight="27.0" prefWidth="308.0" promptText="Repetir contraseña..." style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: black; -fx-prompt-text-fill: black;" />
-      <Button fx:id="registro" layoutX="233.0" layoutY="331.0" mnemonicParsing="false" onAction="#crearClienteFinal" prefHeight="31.0" prefWidth="118.0" styleClass="botonInicio" text="Volver atrás" />
+      <Button fx:id="volver" layoutX="233.0" layoutY="331.0" mnemonicParsing="false" onAction="#cargaInicio" prefHeight="31.0" prefWidth="118.0" styleClass="botonInicio" text="Volver atrás" />
    </children>
 </AnchorPane>

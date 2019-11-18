@@ -58,7 +58,7 @@ public class InicioAdmiController {
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("Inicio.fxml"));
-        Scene inicioScene = new Scene(root, 600, 500);
+        Scene inicioScene = new Scene(root, 800, 550);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(inicioScene);
         window.show();
@@ -70,7 +70,7 @@ public class InicioAdmiController {
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(Principal.class.getResourceAsStream("Cartelera.fxml"));
-        Scene inicioScene = new Scene(root, 600, 500);
+        Scene inicioScene = new Scene(root, 800, 550);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(inicioScene);
         window.show();
@@ -82,7 +82,7 @@ public class InicioAdmiController {
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("iniciarSesion.fxml"));
-        Scene inicioScene = new Scene(root, 600, 500);
+        Scene inicioScene = new Scene(root, 800, 550);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(inicioScene);
         window.show();
@@ -133,7 +133,6 @@ public class InicioAdmiController {
             System.out.println(usuario.getUsername());
         System.out.println(usuario);
             if (usuario.getAdminPrivileges().equals("cine") ) {
-                Alert alert2 = new Alert(Alert.AlertType.WARNING, "Entra en el if");
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 

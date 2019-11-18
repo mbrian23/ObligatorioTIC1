@@ -91,6 +91,7 @@ public class Funcion {
         return fecha;
     }
 
+
     public void setFechaInicio(LocalDate fechaInicio) {
         this.fecha = fecha;
     }
