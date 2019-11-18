@@ -66,6 +66,7 @@ public class FuncionMgr {
             funcion.setPelicula(pelicula);
             funcion.setSala(sala);
             funcion.setNumSala(sala.getNumeroSala());
+            funcion.setMatriz(new boolean[sala.getFilas().intValue()][sala.getColumnas().intValue()]);
             funcion.setFechaInicio(fechaInicio);
             funcion.setHoraFuncion(horaFuncion);
             save(funcion);
