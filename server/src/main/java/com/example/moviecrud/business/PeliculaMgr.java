@@ -49,13 +49,13 @@ public class PeliculaMgr {
         return peliculaRepository.findById(peliculaId).get();
     }
 
-    @GetMapping("/pelicula/nombre/{name}")
-    public Pelicula getPeliculaByName(String nPelicula) {
+    @GetMapping("/pelicula")
+    public Pelicula getPeliculaByName(@RequestParam(value = "titulo") @RequestBody String titulo) {
         List<Pelicula> peliculas = (List<Pelicula>) peliculaRepository.findAll();
         int l = peliculas.size();
         Pelicula temp = null;
         for (int i = 0; i <l ; i++) {
-            if (peliculas.get(i).getTitulo().equals(nPelicula)) {
+            if (peliculas.get(i).getTitulo().equals(titulo)) {
                 temp = peliculas.get(i);
             }
         }

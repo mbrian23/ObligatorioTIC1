@@ -43,8 +43,8 @@ public class PeliculaMgr {
         return rest.getForObject("http://localhost:8080/pelicula/{id}", Pelicula.class, id);
     }
 
-    public Pelicula getPeliculaByName(String name) {
-        return rest.getForObject("http://localhost:8080/pelicula/nombre/{name}\"", Pelicula.class, name);
+    public Pelicula getPeliculaByName(@PathVariable(value = "titulo") String titulo) {
+        return rest.getForObject("http://localhost:8080/pelicula?titulo={titulo}", Pelicula.class, titulo);
     }
 
     // Delete a Pelicula by id

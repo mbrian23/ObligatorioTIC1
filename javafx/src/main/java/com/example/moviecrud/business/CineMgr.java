@@ -25,6 +25,7 @@ public class CineMgr  {
     RestTemplate rest = new RestTemplate();
 
     public void save(Cine cine) {
+
         rest.postForObject("http://localhost:8080/cine", cine, Cine.class);
     }
 

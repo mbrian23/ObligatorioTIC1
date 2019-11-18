@@ -26,6 +26,7 @@ public class FuncionMgr {
 
 
     public void save(Funcion funcion){
+
         rest.postForObject("http://localhost:8080/funcion", funcion, Funcion.class);
     }
 
@@ -36,7 +37,7 @@ public class FuncionMgr {
 
 
     public List<Funcion> getAllFunciones(){
-        return (List<Funcion>) rest.exchange("http://localhost:8080/funciones", HttpMethod.GET, null, new ParameterizedTypeReference<List<Funcion>>() {}).getBody();
+        return rest.exchange("http://localhost:8080/funciones", HttpMethod.GET, null, new ParameterizedTypeReference<List<Funcion>>() {}).getBody();
     }
 
 
@@ -50,7 +51,7 @@ public class FuncionMgr {
     }
 
     public void addFuncion(LocalDate fechaInicio, LocalDate fechaFinal, Time horaFuncion, Sala sala, Pelicula pelicula, Local local) throws InformacionInvalida, YaExiste, IOException {
-        if(fechaFinal== null || "".equals(fechaFinal) || fechaInicio == null || "".equals(fechaInicio) || horaFuncion == null || "".equals(horaFuncion) || sala ==null || "".equals(sala) || pelicula == null || "".equals(pelicula) ){
+        if(fechaFinal== null || fechaInicio == null ||  horaFuncion == null ||  sala ==null ||  pelicula == null ){
 
             throw new InformacionInvalida("Algun dato ingresado no es correcto");
 
@@ -58,16 +59,17 @@ public class FuncionMgr {
 
         Period period = Period.between(fechaInicio, fechaFinal);
         int dif = period.getDays();
-        LocalDate fecha = fechaInicio.minusDays(1);
         for (int i = 0; i <= dif; i++) {
 
-            fecha = fecha.plusDays(1);
-            Funcion funcion = new Funcion(fecha, horaFuncion);
+            Funcion funcion = new Funcion();
             funcion.setLocal(local);
             funcion.setPelicula(pelicula);
             funcion.setSala(sala);
             funcion.setNumSala(sala.getNumeroSala());
+            funcion.setFechaInicio(fechaInicio);
+            funcion.setHoraFuncion(horaFuncion);
             save(funcion);
+            fechaInicio = fechaInicio.plusDays(1);
         }
     }
 
