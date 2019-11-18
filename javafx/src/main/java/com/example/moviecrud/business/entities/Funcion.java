@@ -72,6 +72,13 @@ public class Funcion {
         this.matriz = matriz(7, 6);
     }
 
+    public boolean[][] getMatriz() {
+        return matriz;
+    }
+
+    public void setMatriz(boolean[][] matriz) {
+        this.matriz = matriz;
+    }
 
     public void reservaButaca(int fila, int columna){
      //   matriz(sala.getFilas().intValue(),sala.getColumnas().intValue())[fila][columna] = false;
