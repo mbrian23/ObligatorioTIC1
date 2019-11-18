@@ -39,8 +39,8 @@ public class LocalMgr {
         return (List<Local>) localRepo.findAll();
     }
 
-    @DeleteMapping("/local/{id}")
-    public Local getLocalById(@PathVariable(value = "id") String localId) {
+    @GetMapping("/local/{id}")
+    public Local getLocalById(@PathVariable(value = "id") @RequestBody String localId) {
         return localRepo.findById(localId).get();
     }
 

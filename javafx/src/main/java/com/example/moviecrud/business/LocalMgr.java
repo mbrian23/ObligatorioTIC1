@@ -40,8 +40,8 @@ public class LocalMgr {
 
 
     public Local getLocalById(@PathVariable(value = "id") String id) {
-
-            return rest.getForObject("http://localhost:8080/local/{id}", Local.class, id);    }
+            return rest.getForObject("http://localhost:8080/local/{id}", Local.class, id);
+    }
 
     public ResponseEntity<?> deleteLocal(@PathVariable(value = "id") String localId) {
         rest.delete("http://localhost:8080/local/{id}");
