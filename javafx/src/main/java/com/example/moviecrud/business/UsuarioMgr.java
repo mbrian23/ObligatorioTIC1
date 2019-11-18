@@ -43,10 +43,8 @@ public class UsuarioMgr {
     }
 
     public Usuario getUsuarioByUsername(@PathVariable(value = "name") String name) {
-        System.out.println("UsuarioMNG1"+name);
 
         Usuario temp= rest.getForObject("http://localhost:8080/usuario/nombre/{name}", Usuario.class, name);
-        System.out.println("UsuarioMNG2");
         return temp;
     }
 

@@ -39,8 +39,8 @@ public class CineMgr  {
     }
 
 
-    public Cine getCineById(@PathVariable(value = "id") String cineId) {
-        return rest.getForObject("http://localhost:8080/cine/{id}", Cine.class);
+    public Cine getCineById(@PathVariable(value = "id") String id) {
+        return rest.getForObject("http://localhost:8080/cine/{id}", Cine.class, id);
     }
 
     public ResponseEntity<?> deleteCine(@PathVariable(value = "id") String cineId) {

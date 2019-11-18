@@ -25,7 +25,7 @@ public class SalaManager {
     }
 
     public Sala getSalaByNumSala( Long numSala) {
-        return rest.getForObject("http://localhost:8080/sala/{num}", Sala.class);
+        return rest.getForObject("http://localhost:8080/sala/{num}", Sala.class, numSala);
     }
 
 

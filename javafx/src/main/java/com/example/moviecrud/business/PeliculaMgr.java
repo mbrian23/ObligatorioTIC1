@@ -22,9 +22,9 @@ public class PeliculaMgr {
 
 
     public void save( Pelicula pelicula){
-        System.out.println(pelicula.getTitulo()+pelicula.getActores()+pelicula.getDuracion()+" I am in save before post");
+
         rest.postForObject("http://localhost:8080/pelicula", pelicula, Pelicula.class);
-        System.out.println(pelicula.getTitulo()+pelicula.getActores()+pelicula.getDuracion()+" I am hereafter post");
+
     }
 
 
@@ -39,12 +39,12 @@ public class PeliculaMgr {
 
     // Get a Single pelicula by id
    // @GetMapping("/pelicula/{id}")
-    public Pelicula getPeliculaById(@PathVariable(value = "id") Long peliculaId) {
-        return rest.getForObject("http://localhost:8080/pelicula/{id}", Pelicula.class);
+    public Pelicula getPeliculaById(@PathVariable(value = "id") Long id) {
+        return rest.getForObject("http://localhost:8080/pelicula/{id}", Pelicula.class, id);
     }
 
-    public Pelicula getPeliculaByName(String nPelicula) {
-        return rest.getForObject("http://localhost:8080/pelicula/nombre/{name}\"", Pelicula.class);
+    public Pelicula getPeliculaByName(String name) {
+        return rest.getForObject("http://localhost:8080/pelicula/nombre/{name}\"", Pelicula.class, name);
     }
 
     // Delete a Pelicula by id

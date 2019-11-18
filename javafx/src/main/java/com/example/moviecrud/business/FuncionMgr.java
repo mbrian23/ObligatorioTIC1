@@ -40,8 +40,8 @@ public class FuncionMgr {
     }
 
 
-    public Funcion getFuncionById(@PathVariable(value = "id") Long funcionId) {
-        return rest.getForObject("http://localhost:8080/funcion/{id}", Funcion.class);
+    public Funcion getFuncionById(@PathVariable(value = "id") Long id) {
+        return rest.getForObject("http://localhost:8080/funcion/{id}", Funcion.class, id);
     }
 
     public ResponseEntity<?> deleteFuncion(@PathVariable(value = "id") Long funcionId) {
