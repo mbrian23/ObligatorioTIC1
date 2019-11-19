@@ -1,10 +1,8 @@
 package com.example.moviecrud.business.entities;
 
 
-import javax.validation.constraints.NotBlank;
 import java.sql.Time;
 import java.time.LocalDate;
-import java.util.Date;
 
 
 public class Funcion {
@@ -92,7 +90,7 @@ public class Funcion {
     }
 
     public void setFechaInicio(LocalDate fechaInicio) {
-        this.fecha = fecha;
+        this.fecha = fechaInicio;
     }
 
 

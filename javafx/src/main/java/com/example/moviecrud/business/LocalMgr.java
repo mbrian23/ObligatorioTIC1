@@ -35,7 +35,7 @@ public class LocalMgr {
 
 
     public List<Local> getAllLocales() {
-        return (List<Local>) rest.exchange("http://localhost:8080/locales", HttpMethod.GET, null, new ParameterizedTypeReference<List<Local>>() {}).getBody();
+        return rest.exchange("http://localhost:8080/locales", HttpMethod.GET, null, new ParameterizedTypeReference<List<Local>>() {}).getBody();
     }
 
 

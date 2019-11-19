@@ -75,7 +75,7 @@ public class Funcion {
     }
 
     public void setFechaInicio(LocalDate fechaInicio) {
-        this.fecha = fecha;
+        this.fecha = fechaInicio;
     }
 
 

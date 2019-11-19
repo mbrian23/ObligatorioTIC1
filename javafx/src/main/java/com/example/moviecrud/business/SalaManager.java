@@ -24,8 +24,8 @@ public class SalaManager {
         rest.postForObject("http://localhost:8080/sala", sala, Sala.class);
     }
 
-    public Sala getSalaByNumSala(@PathVariable(value = "id") Long id ) {
-        return rest.getForObject("http://localhost:8080/sala/{id}", Sala.class, id);
+    public Sala getSalaByNumSala(@PathVariable(value = "numeroSala") Long numeroSala ) {
+        return rest.getForObject("http://localhost:8080/sala?numeroSala={numeroSala}", Sala.class, numeroSala);
     }
 
 

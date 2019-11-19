@@ -24,13 +24,13 @@ public class SalaManager {
         salaRepository.save(sala);
     }
 
-    @GetMapping("/sala/{id}")
-    public Sala getSalaByNumSala(@PathVariable(value = "id") @RequestBody Long id) {
+    @GetMapping("/sala")
+    public Sala getSalaByNumSala(@RequestParam(value = "numeroSala") @RequestBody Long numeroSala) {
        List<Sala> salas = (List<Sala>) salaRepository.findAll();
        int l = salas.size();
        Sala temp = null;
         for (int i = 0; i <l ; i++) {
-            if (salas.get(i).getNumeroSala().equals(id)) {
+            if (salas.get(i).getNumeroSala().equals(numeroSala)) {
                 temp = salas.get(i);
             }
         }
