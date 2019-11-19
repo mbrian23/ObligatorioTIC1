@@ -237,7 +237,7 @@ public class Showroom implements Initializable {
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(TicketController.class.getResourceAsStream("ticket.fxml"));
-        Scene inicioScene = new Scene(root, 600, 500);
+        Scene inicioScene = new Scene(root, 800, 550);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(inicioScene);
         window.show();

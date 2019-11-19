@@ -99,7 +99,7 @@ public class Inicio implements Initializable {
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("Inicio.fxml"));
-        Scene inicioScene = new Scene(root, 600, 500);
+        Scene inicioScene = new Scene(root, 800, 550);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(inicioScene);
         window.show();
@@ -111,7 +111,7 @@ public class Inicio implements Initializable {
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(Principal.class.getResourceAsStream("Cartelera.fxml"));
-        Scene inicioScene = new Scene(root, 600, 500);
+        Scene inicioScene = new Scene(root, 800, 550);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(inicioScene);
         window.show();
@@ -123,7 +123,7 @@ public class Inicio implements Initializable {
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("iniciarSesion.fxml"));
-        Scene inicioScene = new Scene(root, 600, 500);
+        Scene inicioScene = new Scene(root, 800, 550);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(inicioScene);
         window.show();
@@ -135,7 +135,7 @@ public class Inicio implements Initializable {
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(InicioAdmiController.class.getResourceAsStream("iniciarSesionAdmin.fxml"));
-        Scene inicioScene = new Scene(root, 600,500);
+        Scene inicioScene = new Scene(root, 800, 550);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(inicioScene);
         window.show();
@@ -147,7 +147,7 @@ public class Inicio implements Initializable {
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("RegistroUsuario.fxml"));
-        Scene inicioScene = new Scene(root, 600,500);
+        Scene inicioScene = new Scene(root, 800, 550);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(inicioScene);
         window.show();
@@ -260,6 +260,9 @@ public class Inicio implements Initializable {
     Button registro;
 
     @FXML
+    Button volver;
+
+    @FXML
     private TextField usernameRegistro;
 
     @FXML
@@ -277,17 +280,23 @@ public class Inicio implements Initializable {
         String emailNuevo = emailRegistro.getText();
         String passwordNueva = passwordRegistro.getText();
 
-        usuarioMgr.addUsuario(usernameNuevo,passwordNueva,emailNuevo, "cliente");
+        if (usernameNuevo == null || passwordNueva==null || emailNuevo== null ||
+                usernameNuevo.equals("") || passwordNueva.equals("") || emailNuevo.equals("")) {
 
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Algun dato no es correcto!");
 
-        Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("Inicio.fxml"));
-        Scene inicioScene = new Scene(root, 600, 500);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(inicioScene);
-        window.show();
+        } else {
+            usuarioMgr.addUsuario(usernameNuevo, passwordNueva, emailNuevo, "cliente");
 
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+            Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("Inicio.fxml"));
+            Scene inicioScene = new Scene(root, 800, 550);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(inicioScene);
+            window.show();
+        }
 
     }
 
