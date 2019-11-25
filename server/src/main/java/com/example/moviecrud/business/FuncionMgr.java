@@ -31,8 +31,8 @@ public class FuncionMgr {
          funcionRepo.save(funcion);
     }
 
-    @PutMapping("/funcion/{id}")
-    public void update (@PathVariable("id") Long id, Funcion funcion){
+    @PutMapping("/funcion")
+    public void update (@RequestParam(value = "id")@RequestBody Long id, Funcion funcion){
         funcion.setId(id);
         funcionRepo.save(funcion);
     }
