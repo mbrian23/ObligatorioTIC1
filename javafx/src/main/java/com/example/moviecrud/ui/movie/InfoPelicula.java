@@ -50,7 +50,7 @@ public class InfoPelicula implements Initializable {
     AnchorPane paneImg;
 
     @FXML
-    SplitPane sp;
+    SplitPane root;
 
     @FXML
     private CustomComboBox<String> localidad;
@@ -92,8 +92,8 @@ public class InfoPelicula implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
-        Parent sp = fxmlLoader.load(Showroom.class.getResourceAsStream("Showroom.fxml"));
-        Scene inicioScene = new Scene(sp, 1200, 1200);
+        Parent root = fxmlLoader.load(Showroom.class.getResourceAsStream("Showroom.fxml"));
+        Scene inicioScene = new Scene(root, 1200, 1200);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(inicioScene);
         window.show();

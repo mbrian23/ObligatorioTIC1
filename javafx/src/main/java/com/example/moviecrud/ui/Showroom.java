@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 
 @Controller
@@ -89,7 +90,7 @@ public class Showroom implements Initializable {
 
     private Sala salapr;
 
-    private Funcion funcionElegida = new Funcion();
+    private Funcion funcionElegida;
 
 
 
@@ -102,14 +103,24 @@ public class Showroom implements Initializable {
         try {
             getInfoFunc();
         } catch (Exception e){
+
             Alert alert = new Alert(Alert.AlertType.WARNING,  "error en la carga de los datos de la pelicula");
+            alert.show();
         }
 
-        funcionElegida.setSala(salapr);
-        funcionElegida.setLocal(local);
-        funcionElegida.setPelicula(pelicula);
-        funcionElegida.setFechaInicio(fechainicio);
-        funcionElegida.setHoraFuncion(horario);
+//        funcionElegida.setSala(salapr);
+//        funcionElegida.setLocal(local);
+//        funcionElegida.setPelicula(pelicula);
+//        funcionElegida.setFechaInicio(fechainicio);
+//        funcionElegida.setHoraFuncion(horario);
+
+        List<Funcion> lista = funcionMgr.getAllFunciones();
+
+        for (int i = 0; i < lista.size(); i++) {
+            if (salapr == lista.get(i).getSala() && local == lista.get(i).getLocal() && pelicula == lista.get(i).getPelicula() && fechainicio == lista.get(i).getFechaInicio() ){
+                funcionElegida = lista.get(i);
+            }
+        }
 
 
         disponible.setImage(available);
@@ -127,10 +138,8 @@ public class Showroom implements Initializable {
         grid.setVgap(30);
         grid.setHgap(30);
 
-
-        Sala sala = funcionElegida.getSala();
-
-        addSeats(sala);
+     //  System.out.println(local.getName());
+        addSeats(salapr);
 
     }
 
@@ -257,16 +266,17 @@ public class Showroom implements Initializable {
         }
     }
 
-    public void getInfoFunc() throws IOException {
-        Parent parent=null;
+    public void getInfoFunc() throws IOException{
         Stage stage = null;
         Scene sc = null;
+
         FXMLLoader fxmlLoader=new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
-        parent = (Parent)fxmlLoader.load(InfoPelicula.class.getResourceAsStream("InfoPelicula2.fxml"));
+        Parent root = (Parent)fxmlLoader.load(InfoPelicula.class.getResourceAsStream("InfoPelicula2.fxml"));
         stage = new Stage();
-        sc = new Scene(parent);
+        sc = new Scene(root);
+
 
         ComboBox sala = (ComboBox)fxmlLoader.getNamespace().get("sala");
         ComboBox localAgregar = (ComboBox)fxmlLoader.getNamespace().get("localidad");
@@ -276,7 +286,10 @@ public class Showroom implements Initializable {
         DatePicker fecha = (DatePicker)fxmlLoader.getNamespace().get("fecha");
 
 
+
+
         salapr = salaManager.getSalaByNumSala( (Long) sala.getValue());
+        System.out.println(salapr);
         local = localMgr.getLocalById((String) localAgregar.getValue());
         cine = cineMgr.getCineById((String) cadena.getValue());
         pelicula = peliculaMgr.getPeliculaByName( peliculaFuncion.getText());
