@@ -66,16 +66,9 @@ public class TicketMgr {
         return listaTickets;
     }
 
-    // Delete a Usuario by id
-    @DeleteMapping("/usuario/{id}")
-    public ResponseEntity<?> deleteUsuario(@PathVariable(value = "id") Long usuarioId) {
-        Usuario usuario = usuarioRepository.findById(usuarioId).get();
-        usuarioRepository.delete(usuario);
-        return ResponseEntity.ok().build();
-    }
 
 
-    public void addTicket(Funcion funcion, Usuario usuario, List<String> ascientos, int precio) throws InformacionInvalida, YaExiste, IOException {
+    public void addTicket(Funcion funcion, Usuario usuario, String ascientos, int precio) throws InformacionInvalida, YaExiste, IOException {
         if (funcion == null || usuario == null || ascientos == null || precio==0 ) {
 
             throw new InformacionInvalida("Algun dato ingresado no es correcto");

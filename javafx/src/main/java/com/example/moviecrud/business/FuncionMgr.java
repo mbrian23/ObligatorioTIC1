@@ -30,9 +30,9 @@ public class FuncionMgr {
         rest.postForObject("http://localhost:8080/funcion", funcion, Funcion.class);
     }
 
-    public void update (@PathVariable("id") Long id, Funcion funcion){
+    public void update (@PathVariable(value = "id") Long id, Funcion funcion){
         funcion.setId(id);
-        rest.postForObject("http://localhost:8080/funcion", funcion, Funcion.class);
+        rest.postForObject("http://localhost:8080/funcion/{id}", id, Funcion.class);
     }
 
 
@@ -66,7 +66,11 @@ public class FuncionMgr {
             funcion.setPelicula(pelicula);
             funcion.setSala(sala);
             funcion.setNumSala(sala.getNumeroSala());
-            funcion.setMatriz(new boolean[sala.getFilas().intValue()][sala.getColumnas().intValue()]);
+
+            int tempColumnas = sala.getColumnas().intValue();
+            int tempFilas = sala.getFilas().intValue();
+            boolean [] [] matri = new boolean[tempFilas][6];
+            funcion.setMatriz(matri);
             funcion.setFechaInicio(fechaInicio);
             funcion.setHoraFuncion(horaFuncion);
             save(funcion);

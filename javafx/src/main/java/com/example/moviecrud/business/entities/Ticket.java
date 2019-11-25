@@ -10,7 +10,7 @@ public class Ticket {
 
     private Usuario usuario;
 
-    private List<String> asientos;
+    private String asientos;
 
     private int precio;
 
@@ -38,14 +38,6 @@ public class Ticket {
         this.usuario = usuario;
     }
 
-    public List<String> getAsientos() {
-        return asientos;
-    }
-
-    public void setAsientos(List<String> asientos) {
-        this.asientos = asientos;
-    }
-
     public int getPrecio() {
         return precio;
     }
@@ -54,7 +46,15 @@ public class Ticket {
         this.precio = precio;
     }
 
-    public Ticket(Integer id, Funcion funcion, Usuario usuario, List<String> asientos, int precio) {
+    public String getAsientos() {
+        return asientos;
+    }
+
+    public void setAsientos(String asientos) {
+        this.asientos = asientos;
+    }
+
+    public Ticket(Integer id, Funcion funcion, Usuario usuario, String asientos, int precio) {
         this.id = id;
         this.funcion = funcion;
         this.usuario = usuario;

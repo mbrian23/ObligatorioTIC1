@@ -29,7 +29,7 @@ public class Funcion {
 
     private Long numSala;
 
-    private boolean [][] matriz;
+    private boolean[][] matriz;
 
     public Long getNumeroSala() {
         if (sala.getNumeroSala() != null){
@@ -52,9 +52,6 @@ public class Funcion {
         return "vacio";
     }
 
-    public boolean[][] matriz(int fila,int columna){
-        return new boolean[fila][columna];
-    }
 
     public Long getId() {
         return id;
@@ -67,7 +64,6 @@ public class Funcion {
     public Funcion( LocalDate fecha, Time horaFuncion) {
         this.fecha = fecha;
         this.horaFuncion = horaFuncion;
-        this.matriz = matriz(7, 6);
     }
 
     public boolean[][] getMatriz() {
