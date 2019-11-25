@@ -134,4 +134,12 @@ public class Funcion {
     public void setNumSala(Long numSala) {
         this.numSala = numSala;
     }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
 }

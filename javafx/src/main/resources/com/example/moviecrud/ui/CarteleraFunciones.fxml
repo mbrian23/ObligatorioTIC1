@@ -51,8 +51,7 @@
             </HBox>
             <TableView fx:id="tabla" prefHeight="453.0" prefWidth="433.0" VBox.vgrow="ALWAYS">
               <columns>
-                <TableColumn fx:id="fechaInicio" prefWidth="75.0" text="Fecha Inicio" />
-                <TableColumn fx:id="fechaFinal" prefWidth="79.0" text="Fecha Final" />
+                <TableColumn fx:id="fechaInicio" prefWidth="75.0" text="Fecha" />
                   <TableColumn fx:id="hora" prefWidth="78.0" text="Hora" />
                   <TableColumn fx:id="sala" prefWidth="91.0" text="Sala" />
                   <TableColumn fx:id="pelicula" prefWidth="249.0" text="Pelicula" />

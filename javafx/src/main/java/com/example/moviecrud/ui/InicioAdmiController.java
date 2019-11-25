@@ -142,8 +142,6 @@ public class InicioAdmiController {
                 window.setScene(inicioScene);
                 window.show();
             } else if (usuario.getAdminPrivileges().equals("admin")){
-                Alert alert2 = new Alert(Alert.AlertType.WARNING, "Entra en el else");
-                alert2.showAndWait();
                 System.out.println(usuario.getClass());
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);

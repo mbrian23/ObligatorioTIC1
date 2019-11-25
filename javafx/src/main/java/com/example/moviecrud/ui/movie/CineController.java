@@ -96,7 +96,7 @@ public class CineController implements Initializable {
 
             try {
 
-                cineMgr.addCine(cine);
+                cineMgr.addCine(cine, mail,contra);
 
                 showAlert("Cine agregado", "Se agrego con exito el cine!");
 

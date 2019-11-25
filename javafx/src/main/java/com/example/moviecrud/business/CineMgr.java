@@ -22,6 +22,9 @@ import java.util.List;
 @RestController
 public class CineMgr  {
 
+    @Autowired
+    UsuarioMgr usuarioMgr;
+
     RestTemplate rest = new RestTemplate();
 
     public void save(Cine cine) {
@@ -49,13 +52,15 @@ public class CineMgr  {
         return ResponseEntity.ok().build();
     }
 
-    public void addCine(String name) throws InformacionInvalida, YaExiste, IOException {
-        if (name == null || "".equals(name)) {
+    public void addCine(String name,String mail,String contra) throws InformacionInvalida, YaExiste, IOException {
+        if (name == null || "".equals(name) || mail == null || "".equals(mail) || contra == null || "".equals(contra) ) {
 
             throw new InformacionInvalida("Algun dato ingresado no es correcto");
 
         }
 
+        Usuario cineUsr = new Usuario(name,contra,mail, "cine");
+        usuarioMgr.save(cineUsr);
 
         Cine cine = new Cine(name);
         save(cine);
