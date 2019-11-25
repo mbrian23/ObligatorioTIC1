@@ -75,7 +75,7 @@ public class Funcion {
     }
 
     public void reservaButaca(int fila, int columna){
-     //   matriz(sala.getFilas().intValue(),sala.getColumnas().intValue())[fila][columna] = false;
+      matriz[fila][columna] = false;
     }
 
     public Funcion() {

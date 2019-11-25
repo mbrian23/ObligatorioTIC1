@@ -1,14 +1,14 @@
 package com.example.moviecrud.ui.movie;
 
 import com.example.moviecrud.MovieCrudApplication;
-import com.example.moviecrud.business.CineMgr;
-import com.example.moviecrud.business.FuncionMgr;
-import com.example.moviecrud.business.PeliculaMgr;
-import com.example.moviecrud.business.entities.Funcion;
+import com.example.moviecrud.business.*;
+import com.example.moviecrud.business.entities.*;
 import com.example.moviecrud.ui.CarteleraCines;
+import com.example.moviecrud.ui.TicketController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,20 +16,37 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 @Component
 public class InfoPelicula implements Initializable {
+
+    @Autowired
+    FuncionMgr funcionMgr;
+
+    @Autowired
+    SalaManager salaManager;
+
+    @Autowired
+    LocalMgr localMgr;
+
+
 
     @Autowired
     CineMgr cineMgr;
@@ -68,6 +85,13 @@ public class InfoPelicula implements Initializable {
 
     private ObservableList<Time> hor = FXCollections.observableArrayList();
 
+    private Image available = new Image("com/example/moviecrud/ui/images/available.png"); 
+
+    private Image selected = new Image("com/example/moviecrud/ui/images/selectedSeat.png");
+
+    private Image unavailable = new Image("com/example/moviecrud/ui/images/unavailable.png");
+
+
     @Autowired
     CarteleraCines carteleraCines;
 
@@ -78,17 +102,6 @@ public class InfoPelicula implements Initializable {
     private Text titulo;
 
 
-    @FXML
-    public void loadShowroom (ActionEvent event) throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
-
-        Parent root = fxmlLoader.load(Showroom.class.getResourceAsStream("Showroom.fxml"));
-        Scene inicioScene = new Scene(root, 1200, 1200);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(inicioScene);
-        window.show();
-    }
 
 
     @Override
@@ -96,8 +109,6 @@ public class InfoPelicula implements Initializable {
         //setBoxesFiltered();
     }
 
-    @Autowired
-    FuncionMgr funcionMgr;
 
 
     public void setBox() {
@@ -416,5 +427,217 @@ public class InfoPelicula implements Initializable {
             }
         });
     }
+
+
+    /// PARTE DE SHOWROOM:
+
+    private Sala salaAgregar;
+    private Pelicula peliculaAgregar;
+    private LocalDate fechaAgregar;
+    private Time horarioAgr;
+    private Local localAgr;
+    private Cine cineAgr;
+
+    private Funcion funcionElegida;
+
+    @FXML
+    private Button compra;
+    @FXML
+    private AnchorPane root2;
+
+    static {
+
+        System.setProperty("java.awt.headless", "false");
+    }
+
+
+
+    @FXML
+    public void loadShowroom (ActionEvent event) throws Exception{
+        salaAgregar = salaManager.getSalaByNumSala(3l);
+        peliculaAgregar = peliculaMgr.getPeliculaByName(titulo.getText());
+        fechaAgregar = fecha.getValue();
+        horarioAgr = horario.getValue();
+        localAgr = localMgr.getLocalById(localidad.getValue());
+        cineAgr = cineMgr.getCineById(cadena.getValue());
+
+        List<Funcion> lista = funcionMgr.getAllFunciones();
+
+        for (int i = 0; i < lista.size(); i++) {
+            if (salaAgregar == lista.get(i).getSala() && localAgr == lista.get(i).getLocal() && peliculaAgregar == lista.get(i).getPelicula() && fechaAgregar == lista.get(i).getFechaInicio() ){
+                funcionElegida = lista.get(i);
+            }
+        }
+
+
+        disponible.setImage(available);
+        elegido.setImage(selected);
+        ocupado.setImage(unavailable);
+
+
+        disponible.setFitHeight(25);
+        disponible.setFitWidth(25);
+        elegido.setFitWidth(25);
+        elegido.setFitHeight(25);
+        ocupado.setFitHeight(25);
+        ocupado.setFitWidth(25);
+
+        grid.setVgap(30);
+        grid.setHgap(30);
+
+        addSeats(funcionElegida.getSala());
+
+
+        Stage stage = null;
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(InfoPelicula.class.getResourceAsStream("Showroom.fxml"));
+        Scene inicioScene = new Scene(root, 1200, 1200);
+        stage = new Stage();
+        stage.setScene(inicioScene);
+        stage.show();
+    }
+
+    @FXML
+    private ImageView disponible;
+
+    @FXML
+    private ImageView elegido;
+
+    @FXML
+    private ImageView ocupado;
+
+    @FXML
+    private GridPane grid;
+
+
+    public void addSeats(Sala sala) {
+        grid.getChildren().clear();
+
+        for (int i = 0; i < sala.getFilas(); i++) {
+            for (int j = 0; j < sala.getColumnas(); j++) {
+//                ImageView imageView = new ImageView(available);
+//                imageView.setFitHeight(25);
+//                imageView.setFitWidth(25);
+//
+//                grid.add(imageView,i,j);
+
+                if (!funcionElegida.getMatriz()[i][j]) {
+                    ImageView imageView = new ImageView(available);
+                    imageView.setFitHeight(25);
+                    imageView.setFitWidth(25);
+
+                    grid.add(imageView, i, j);
+                    imageView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            if (imageView.getImage().equals(unavailable)) {
+                                Alert alert = new Alert(Alert.AlertType.WARNING, "El asciento ya esta ocupado", ButtonType.OK);
+                                alert.showAndWait();
+                                if (alert.getResult() == ButtonType.OK) {
+                                    alert.close();
+                                }
+
+                            } else {
+                                if (imageView.getImage().equals(selected)) {
+                                    imageView.setImage(available);
+                                } else {
+                                    imageView.setImage(selected);
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    ImageView imageView = new ImageView(unavailable);
+                    imageView.setFitHeight(25);
+                    imageView.setFitWidth(25);
+
+                    grid.add(imageView, i, j);
+                    imageView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            if (imageView.getImage().equals(unavailable)) {
+                                Alert alert = new Alert(Alert.AlertType.WARNING, "El asciento ya esta ocupado", ButtonType.OK);
+                                alert.showAndWait();
+                                if (alert.getResult() == ButtonType.OK) {
+                                    alert.close();
+                                }
+
+                            } else {
+                                if (imageView.getImage().equals(selected)) {
+                                    imageView.setImage(available);
+                                } else {
+                                    imageView.setImage(selected);
+                                }
+                            }
+                        }
+                    });
+                }
+
+            }
+        }
+
+    }
+
+
+
+
+    public Node getNodeByRowColumnIndex (final int row, final int column, GridPane gridPane){
+        Node result = null;
+        ObservableList<Node> childrens = gridPane.getChildren();
+
+        for (Node node: childrens){
+            if (gridPane.getRowIndex(node) == row && gridPane.getColumnIndex(node) == column){
+                result = node;
+                break;
+            }
+        }
+        return result;
+    }
+
+
+    @FXML
+    public void cargaTicket (ActionEvent event) throws Exception {
+//        for (int i = 0; i < sala.getValue().getFilas() ; i++) {
+//            for (int j = 0; j < salapr.getColumnas(); j++){
+//                ImageView imageView = (ImageView) getNodeByRowColumnIndex(i,j,grid);
+//                if (imageView.getImage().equals(selected)){
+//                    ImageView ocupado = (ImageView) getNodeByRowColumnIndex(i,j,grid);
+//                    ocupado.setImage(unavailable);
+//                    // operacion que cambie este lugar de la matriz a no dispoble
+//                    funcionElegida.reservaButaca(i,j);
+//                    funcionMgr.save(funcionElegida);
+//                }
+//            }
+//        }
+//
+//
+//
+//        FXMLLoader fxmlLoader = new FXMLLoader();
+//        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+//
+//        Parent root = fxmlLoader.load(TicketController.class.getResourceAsStream("ticket.fxml"));
+//        Scene inicioScene = new Scene(root, 800, 550);
+//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        window.setScene(inicioScene);
+//        window.show();
+    }
+
+    @FXML
+    public void comprar (ActionEvent event) throws IOException {
+        ImageView imageView = new ImageView();
+        for (int i = 0; i < salaAgregar.getFilas() ; i++) {
+            for (int j = 0; j < salaAgregar.getColumnas() ; j++){
+                imageView = (ImageView) getNodeByRowColumnIndex(i,j,grid);
+                if (imageView.getImage().equals(selected)){
+                    funcionElegida.reservaButaca(i,j);
+                    funcionMgr.update(funcionElegida.getId(),funcionElegida);
+                }
+            }
+        }
+    }
+
 
 }

@@ -40,7 +40,7 @@ public class LocalMgr {
     }
 
     @GetMapping("/local")
-    public Local getLocalById(@RequestParam(value = "id") @RequestBody String localId) {
+    public Local getLocalById(@RequestParam(value = "nombre_local") @RequestBody String localId) {
         return localRepo.findById(localId).get();
     }
 

@@ -144,70 +144,70 @@ public class Showroom implements Initializable {
     }
 
     public void addSeats(Sala sala) {
-        grid.getChildren().clear();
-
-        for (int i = 0; i < sala.getFilas(); i++) {
-            for (int j = 0; j < sala.getColumnas(); j++) {
-//                ImageView imageView = new ImageView(available);
-//                imageView.setFitHeight(25);
-//                imageView.setFitWidth(25);
+//        grid.getChildren().clear();
 //
-//                grid.add(imageView,i,j);
-
-                if (!funcionElegida.getMatriz()[i][j]) {
-                    ImageView imageView = new ImageView(available);
-                    imageView.setFitHeight(25);
-                    imageView.setFitWidth(25);
-
-                    grid.add(imageView, i, j);
-                    imageView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-                            if (imageView.getImage().equals(unavailable)) {
-                                Alert alert = new Alert(Alert.AlertType.WARNING, "El asciento ya esta ocupado", ButtonType.OK);
-                                alert.showAndWait();
-                                if (alert.getResult() == ButtonType.OK) {
-                                    alert.close();
-                                }
-
-                            } else {
-                                if (imageView.getImage().equals(selected)) {
-                                    imageView.setImage(available);
-                                } else {
-                                    imageView.setImage(selected);
-                                }
-                            }
-                        }
-                    });
-                } else {
-                    ImageView imageView = new ImageView(unavailable);
-                    imageView.setFitHeight(25);
-                    imageView.setFitWidth(25);
-
-                    grid.add(imageView, i, j);
-                    imageView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-                            if (imageView.getImage().equals(unavailable)) {
-                                Alert alert = new Alert(Alert.AlertType.WARNING, "El asciento ya esta ocupado", ButtonType.OK);
-                                alert.showAndWait();
-                                if (alert.getResult() == ButtonType.OK) {
-                                    alert.close();
-                                }
-
-                            } else {
-                                if (imageView.getImage().equals(selected)) {
-                                    imageView.setImage(available);
-                                } else {
-                                    imageView.setImage(selected);
-                                }
-                            }
-                        }
-                    });
-                }
-
-            }
-        }
+//        for (int i = 0; i < sala.getFilas(); i++) {
+//            for (int j = 0; j < sala.getColumnas(); j++) {
+////                ImageView imageView = new ImageView(available);
+////                imageView.setFitHeight(25);
+////                imageView.setFitWidth(25);
+////
+////                grid.add(imageView,i,j);
+//
+//                if (!funcionElegida.getMatriz()[i][j]) {
+//                    ImageView imageView = new ImageView(available);
+//                    imageView.setFitHeight(25);
+//                    imageView.setFitWidth(25);
+//
+//                    grid.add(imageView, i, j);
+//                    imageView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+//                        @Override
+//                        public void handle(MouseEvent event) {
+//                            if (imageView.getImage().equals(unavailable)) {
+//                                Alert alert = new Alert(Alert.AlertType.WARNING, "El asciento ya esta ocupado", ButtonType.OK);
+//                                alert.showAndWait();
+//                                if (alert.getResult() == ButtonType.OK) {
+//                                    alert.close();
+//                                }
+//
+//                            } else {
+//                                if (imageView.getImage().equals(selected)) {
+//                                    imageView.setImage(available);
+//                                } else {
+//                                    imageView.setImage(selected);
+//                                }
+//                            }
+//                        }
+//                    });
+//                } else {
+//                    ImageView imageView = new ImageView(unavailable);
+//                    imageView.setFitHeight(25);
+//                    imageView.setFitWidth(25);
+//
+//                    grid.add(imageView, i, j);
+//                    imageView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+//                        @Override
+//                        public void handle(MouseEvent event) {
+//                            if (imageView.getImage().equals(unavailable)) {
+//                                Alert alert = new Alert(Alert.AlertType.WARNING, "El asciento ya esta ocupado", ButtonType.OK);
+//                                alert.showAndWait();
+//                                if (alert.getResult() == ButtonType.OK) {
+//                                    alert.close();
+//                                }
+//
+//                            } else {
+//                                if (imageView.getImage().equals(selected)) {
+//                                    imageView.setImage(available);
+//                                } else {
+//                                    imageView.setImage(selected);
+//                                }
+//                            }
+//                        }
+//                    });
+//                }
+//
+//            }
+//        }
 
     }
 
@@ -271,7 +271,7 @@ public class Showroom implements Initializable {
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
 
-        Parent parent = (Parent)fxmlLoader.load(InfoPelicula.class.getResourceAsStream("InfoPelicula2.fxml"));
+        root = (AnchorPane) fxmlLoader.load(InfoPelicula.class.getResourceAsStream("InfoPelicula2.fxml"));
 
         System.out.println("xdcvbvnmnbfvdz");
 
