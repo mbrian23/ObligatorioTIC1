@@ -75,7 +75,7 @@ public class Funcion {
     }
 
     public void reservaButaca(int fila, int columna){
-      matriz[fila][columna] = false;
+      matriz[fila][columna] = true;
     }
 
     public Funcion() {

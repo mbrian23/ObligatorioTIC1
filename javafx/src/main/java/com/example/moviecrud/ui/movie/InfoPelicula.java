@@ -31,6 +31,7 @@ import java.net.URL;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -45,6 +46,8 @@ public class InfoPelicula implements Initializable {
 
     @Autowired
     LocalMgr localMgr;
+
+
 
 
 
@@ -106,7 +109,6 @@ public class InfoPelicula implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //setBoxesFiltered();
     }
 
 
@@ -138,6 +140,21 @@ public class InfoPelicula implements Initializable {
         int z = funcionPelicula.size();
 
         if (z != 0) {
+            localidad.setDisable(true);
+            sala.setDisable(true);
+            horario.setDisable(true);
+            fecha.setDisable(true);
+
+
+                for (int i = 0; i < z; i++) {
+                    if (!cines.contains(funcionPelicula.get(i).getLocal().getCine().getNombre())) {
+                        cines.add(funcionPelicula.get(i).getLocal().getCine().getNombre());
+                    }
+                }
+                cadena.setItems(cines);
+
+
+
 
             for (int i = 0; i < z; i++) {
                 if (!local.contains(funcionPelicula.get(i).getLocal().getName())) {
@@ -145,13 +162,6 @@ public class InfoPelicula implements Initializable {
                 }
             }
             localidad.setItems(local);
-
-            for (int i = 0; i < z; i++) {
-                if (!cines.contains(funcionPelicula.get(i).getLocal().getCine().getNombre())) {
-                    cines.add(funcionPelicula.get(i).getLocal().getCine().getNombre());
-                }
-            }
-            cadena.setItems(cines);
 
             for (int i = 0; i < z; i++) {
                 if (!tipoSala.contains(funcionPelicula.get(i).getSala().getTipo())) {
@@ -177,6 +187,54 @@ public class InfoPelicula implements Initializable {
                 }
             });
         }
+
+
+    }
+    @FXML
+    public void enableLoc (ActionEvent event){
+        int tamano = localMgr.getAllLocales().size();
+        localidad.getItems().clear();
+        ArrayList<Local> locales = (ArrayList<Local>) localMgr.getAllLocales();
+
+        for (int i = 0; i < tamano ; i++) {
+            if (cadena.getValue().equals(locales.get(i).getCine().getNombre())){
+                local.add(locales.get(i).getName());
+            }
+        }
+        localidad.setItems(local);
+        localidad.setDisable(false);
+    }
+
+    @FXML
+    public void enableSala (ActionEvent event){
+        int tamano = salaManager.getAllSalas().size();
+        sala.getItems().clear();
+        ArrayList<Sala> salas = (ArrayList<Sala>) salaManager.getAllSalas();
+
+        for (int i = 0; i < tamano ; i++) {
+            if (sala.getValue().equals(salas.get(i).getTipo())){
+                tipoSala.add(salas.get(i).getTipo());
+            }
+        }
+        sala.setItems(tipoSala);
+
+        sala.setDisable(false);
+    }
+    @FXML
+    public void enableHorario (ActionEvent event){
+       ArrayList<Funcion> funciones = (ArrayList<Funcion>) funcionMgr.getAllFunciones();
+        for (int i = 0; i < funciones.size() ; i++) {
+            if (funciones.get(i).getLocal().getName().equals(localidad.getValue()) && funciones.get(i).getFecha().equals(fecha.getValue()) && funciones.get(i).getSala().getTipo().equals(sala.getValue())){
+                hor.add(funciones.get(i).getHoraFuncion());
+            }
+        }
+        // problema de que quedan cargadas
+        horario.setItems(hor);
+        horario.setDisable(false);
+    }
+    @FXML
+    public void enableFecha (ActionEvent event){
+        fecha.setDisable(false);
     }
 
     private ObservableList<Funcion> filteredList = FXCollections.observableArrayList();
@@ -426,6 +484,7 @@ public class InfoPelicula implements Initializable {
                 setText(item);
             }
         });
+        sala.setDisable(false);
     }
 
 
@@ -605,11 +664,11 @@ public class InfoPelicula implements Initializable {
             for (int j = 0; j < funcionElegida.getSala().getColumnas(); j++){
                 ImageView imageView = (ImageView) getNodeByRowColumnIndex(i,j,grid);
                 if (imageView.getImage().equals(selected)){
-                    ImageView ocupado = (ImageView) getNodeByRowColumnIndex(i,j,grid);
-                    ocupado.setImage(unavailable);
+//                    ImageView ocupado = (ImageView) getNodeByRowColumnIndex(i,j,grid);
+                    ((ImageView) getNodeByRowColumnIndex(i,j,grid)).setImage(unavailable);
                     // operacion que cambie este lugar de la matriz a no dispoble
                     funcionElegida.reservaButaca(i,j);
-                    funcionMgr.save(funcionElegida);
+                    funcionMgr.update(funcionElegida.getId(),funcionElegida);
                 }
             }
         }
@@ -641,5 +700,43 @@ public class InfoPelicula implements Initializable {
 //        cargaTicket(event);
     }
 
+    public CustomComboBox<String> getLocalidad() {
+        return localidad;
+    }
 
+    public void setLocalidad(CustomComboBox<String> localidad) {
+        this.localidad = localidad;
+    }
+
+    public ComboBox<String> getCadena() {
+        return cadena;
+    }
+
+    public void setCadena(ComboBox<String> cadena) {
+        this.cadena = cadena;
+    }
+
+    public ComboBox<Time> getHorario() {
+        return horario;
+    }
+
+    public void setHorario(ComboBox<Time> horario) {
+        this.horario = horario;
+    }
+
+    public CustomComboBox<String> getSala() {
+        return sala;
+    }
+
+    public void setSala(CustomComboBox<String> sala) {
+        this.sala = sala;
+    }
+
+    public DatePicker getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(DatePicker fecha) {
+        this.fecha = fecha;
+    }
 }

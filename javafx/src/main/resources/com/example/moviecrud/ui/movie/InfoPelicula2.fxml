@@ -126,8 +126,8 @@
                         </Label>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <ComboBox fx:id="cadena" prefWidth="150.0" promptText="Cadena de cine" />
-                              <CustomComboBox fx:id="localidad" prefWidth="150.0" promptText="Localidad" onAction="#sbox" >
+                              <ComboBox fx:id="cadena" onAction="#enableLoc" prefWidth="150.0" promptText="Cadena de cine" />
+                              <CustomComboBox fx:id="localidad"  prefWidth="150.0" promptText="Localidad" onAction="#sbox" >
                                  <HBox.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </HBox.margin>
@@ -142,7 +142,7 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <CustomComboBox fx:id="sala" prefHeight="25.0" prefWidth="208.0" promptText="Sala" >
+                              <CustomComboBox fx:id="sala" onAction="#enableFecha" prefHeight="25.0" prefWidth="208.0" promptText="Sala" >
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -150,7 +150,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </CustomComboBox>
-                              <DatePicker fx:id="fecha" prefHeight="25.0" prefWidth="206.0" promptText="Fecha">
+                              <DatePicker fx:id="fecha" onAction="#enableHorario" prefHeight="25.0" prefWidth="206.0" promptText="Fecha">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>

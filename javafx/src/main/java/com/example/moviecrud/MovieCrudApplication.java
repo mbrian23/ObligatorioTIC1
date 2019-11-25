@@ -138,6 +138,7 @@ public class MovieCrudApplication extends Application {
                 stage.setScene(sc);
                 stage.show();
                 infoPelicula.setBox();
+
             }
         };
         return handler;
