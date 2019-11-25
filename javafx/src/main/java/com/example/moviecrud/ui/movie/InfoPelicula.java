@@ -85,7 +85,7 @@ public class InfoPelicula implements Initializable {
 
     private ObservableList<Time> hor = FXCollections.observableArrayList();
 
-    private Image available = new Image("com/example/moviecrud/ui/images/available.png"); 
+    private Image available = new Image("com/example/moviecrud/ui/images/available.png");
 
     private Image selected = new Image("com/example/moviecrud/ui/images/selectedSeat.png");
 
@@ -445,6 +445,19 @@ public class InfoPelicula implements Initializable {
     @FXML
     private AnchorPane root2;
 
+    @FXML
+    private ImageView disponible;
+
+    @FXML
+    private ImageView elegido;
+
+    @FXML
+    private ImageView ocupado;
+
+    @FXML
+    private GridPane grid;
+
+
     static {
 
         System.setProperty("java.awt.headless", "false");
@@ -464,10 +477,21 @@ public class InfoPelicula implements Initializable {
         List<Funcion> lista = funcionMgr.getAllFunciones();
 
         for (int i = 0; i < lista.size(); i++) {
-            if (salaAgregar == lista.get(i).getSala() && localAgr == lista.get(i).getLocal() && peliculaAgregar == lista.get(i).getPelicula() && fechaAgregar == lista.get(i).getFechaInicio() ){
+            if (salaAgregar.getId().equals(lista.get(i).getSala().getId()) && localAgr.getName().equals(lista.get(i).getLocal().getName()) && peliculaAgregar.getTitulo().equals(lista.get(i).getPelicula().getTitulo()) && fechaAgregar.equals(lista.get(i).getFechaInicio()) ){
                 funcionElegida = lista.get(i);
             }
         }
+
+        Stage stage = null;
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(InfoPelicula.class.getResourceAsStream("Showroom.fxml"));
+        Scene inicioScene = new Scene(root, 1200, 1200);
+        stage = new Stage();
+        stage.setScene(inicioScene);
+        stage.show();
 
 
         disponible.setImage(available);
@@ -486,31 +510,8 @@ public class InfoPelicula implements Initializable {
         grid.setHgap(30);
 
         addSeats(funcionElegida.getSala());
-
-
-        Stage stage = null;
-
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
-
-        Parent root = fxmlLoader.load(InfoPelicula.class.getResourceAsStream("Showroom.fxml"));
-        Scene inicioScene = new Scene(root, 1200, 1200);
-        stage = new Stage();
-        stage.setScene(inicioScene);
-        stage.show();
     }
 
-    @FXML
-    private ImageView disponible;
-
-    @FXML
-    private ImageView elegido;
-
-    @FXML
-    private ImageView ocupado;
-
-    @FXML
-    private GridPane grid;
 
 
     public void addSeats(Sala sala) {
@@ -600,43 +601,44 @@ public class InfoPelicula implements Initializable {
 
     @FXML
     public void cargaTicket (ActionEvent event) throws Exception {
-//        for (int i = 0; i < sala.getValue().getFilas() ; i++) {
-//            for (int j = 0; j < salapr.getColumnas(); j++){
-//                ImageView imageView = (ImageView) getNodeByRowColumnIndex(i,j,grid);
-//                if (imageView.getImage().equals(selected)){
-//                    ImageView ocupado = (ImageView) getNodeByRowColumnIndex(i,j,grid);
-//                    ocupado.setImage(unavailable);
-//                    // operacion que cambie este lugar de la matriz a no dispoble
-//                    funcionElegida.reservaButaca(i,j);
-//                    funcionMgr.save(funcionElegida);
-//                }
-//            }
-//        }
-//
-//
-//
-//        FXMLLoader fxmlLoader = new FXMLLoader();
-//        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
-//
-//        Parent root = fxmlLoader.load(TicketController.class.getResourceAsStream("ticket.fxml"));
-//        Scene inicioScene = new Scene(root, 800, 550);
-//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        window.setScene(inicioScene);
-//        window.show();
-    }
-
-    @FXML
-    public void comprar (ActionEvent event) throws IOException {
-        ImageView imageView = new ImageView();
-        for (int i = 0; i < salaAgregar.getFilas() ; i++) {
-            for (int j = 0; j < salaAgregar.getColumnas() ; j++){
-                imageView = (ImageView) getNodeByRowColumnIndex(i,j,grid);
+        for (int i = 0; i <  funcionElegida.getSala().getFilas() ; i++) {
+            for (int j = 0; j < funcionElegida.getSala().getColumnas(); j++){
+                ImageView imageView = (ImageView) getNodeByRowColumnIndex(i,j,grid);
                 if (imageView.getImage().equals(selected)){
+                    ImageView ocupado = (ImageView) getNodeByRowColumnIndex(i,j,grid);
+                    ocupado.setImage(unavailable);
+                    // operacion que cambie este lugar de la matriz a no dispoble
                     funcionElegida.reservaButaca(i,j);
-                    funcionMgr.update(funcionElegida.getId(),funcionElegida);
+                    funcionMgr.save(funcionElegida);
                 }
             }
         }
+
+
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(TicketController.class.getResourceAsStream("ticket.fxml"));
+        Scene inicioScene = new Scene(root, 800, 550);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(inicioScene);
+        window.show();
+    }
+
+    @FXML
+    public void comprar (ActionEvent event) throws Exception {
+//        ImageView imageView = new ImageView();
+//        for (int i = 0; i < salaAgregar.getFilas() ; i++) {
+//            for (int j = 0; j < salaAgregar.getColumnas() ; j++){
+//                imageView = (ImageView) getNodeByRowColumnIndex(i,j,grid);
+//                if (imageView.getImage().equals(selected)){
+//                    funcionElegida.reservaButaca(i,j);
+//                    funcionMgr.update(funcionElegida.getId(),funcionElegida);
+//                }
+//            }
+//        }
+//        cargaTicket(event);
     }
 
 
