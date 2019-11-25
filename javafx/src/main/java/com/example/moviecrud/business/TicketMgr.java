@@ -2,6 +2,7 @@ package com.example.moviecrud.business;
 
 import com.example.moviecrud.business.entities.Funcion;
 import com.example.moviecrud.business.entities.Ticket;
+import com.example.moviecrud.business.entities.Usuario;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,5 +33,11 @@ public class TicketMgr {
 
     public Ticket getTicketById(@PathVariable(value = "id") Integer id) {
         return rest.getForObject("http://localhost:8080/ticket/{id}", Ticket.class, id);
+    }
+
+
+    //polemico
+    public List<Ticket> getTicketByUsuario(@PathVariable(value = "usuario")Usuario usuario){
+        return rest.getForObject("http://localhost:8080/ticket/{usuario}", List.class, usuario);
     }
 }

@@ -7,16 +7,22 @@ import com.example.moviecrud.business.entities.Usuario;
 import com.example.moviecrud.business.exceptions.InformacionInvalida;
 import com.example.moviecrud.business.exceptions.YaExiste;
 import com.example.moviecrud.persistence.TicketRepository;
+import com.example.moviecrud.persistence.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 @RestController
 public class TicketMgr {
     @Autowired
     TicketRepository ticketRepository;
+
+    @Autowired
+    UsuarioRepository usuarioRepository;
 
     // Create user
     @PostMapping("/ticket")
@@ -41,6 +47,31 @@ public class TicketMgr {
     @GetMapping("/ticket/{id}")
     public Ticket getTicketById(@PathVariable(value = "id") Integer ticketId) {
         return ticketRepository.findById(ticketId).get();
+    }
+
+    @GetMapping("/ticket/usuario/{usuario}")
+    public List<Ticket> getTicketByUsuario(@PathVariable(value = "usuario")Usuario usuario) {
+
+        List<Ticket> listaTickets = new LinkedList<Ticket>();
+        List<Ticket> todos = (List<Ticket>) ticketRepository.findAll();
+        int l = todos.size();
+        Usuario temp = null;
+        System.out.println("UsuarioMNG2server");
+        for (int i = 0; i < l; i++) {
+            if (todos.get(i).getUsuario().equals(usuario)) {
+                listaTickets.add(todos.get(i));
+            }
+        }
+
+        return listaTickets;
+    }
+
+    // Delete a Usuario by id
+    @DeleteMapping("/usuario/{id}")
+    public ResponseEntity<?> deleteUsuario(@PathVariable(value = "id") Long usuarioId) {
+        Usuario usuario = usuarioRepository.findById(usuarioId).get();
+        usuarioRepository.delete(usuario);
+        return ResponseEntity.ok().build();
     }
 
 
