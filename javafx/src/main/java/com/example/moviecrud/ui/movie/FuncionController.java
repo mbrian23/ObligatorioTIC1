@@ -149,7 +149,7 @@ public class FuncionController implements Initializable {
                 int mn = Integer.parseInt((String) min.getValue());
                 LocalDate fInicio = fechaInicio.getValue();
                 LocalDate fFin = fechaFin.getValue();
-                Time time = new Time(hs-3,mn, 0);
+                Time time = new Time(hs,mn, 0);
 
                 try {
 
