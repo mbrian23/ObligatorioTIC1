@@ -1,10 +1,7 @@
 package com.example.moviecrud.ui.movie;
 
 
-import com.example.moviecrud.business.FuncionMgr;
-import com.example.moviecrud.business.LocalMgr;
-import com.example.moviecrud.business.PeliculaMgr;
-import com.example.moviecrud.business.SalaManager;
+import com.example.moviecrud.business.*;
 import com.example.moviecrud.business.entities.Cine;
 import com.example.moviecrud.business.entities.Local;
 import com.example.moviecrud.business.entities.Pelicula;
@@ -19,10 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -36,6 +30,9 @@ import java.util.ResourceBundle;
 
 @Component
 public class FuncionController implements Initializable {
+
+    public FuncionController() {
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -56,6 +53,9 @@ public class FuncionController implements Initializable {
 
     @Autowired
     PeliculaMgr peliculaMgr;
+
+    @Autowired
+    CineMgr cineMgr;
 
     @FXML
     private ComboBox local;
@@ -79,22 +79,48 @@ public class FuncionController implements Initializable {
     private ComboBox min;
 
     @FXML
+    private ComboBox cadena;
+
+    @FXML
     private Button add;
 
-    public void setBoxes(){
+    public void fltrLocales(){
         ObservableList<String> locales  = FXCollections.observableArrayList();
         int l = localMgr.getAllLocales().size();
         for (int i = 0; i < l; i++) {
-            locales.add(localMgr.getAllLocales().get(i).getName());
+            if(localMgr.getAllLocales().get(i).getCine().getNombre().equals(cadena.getValue())){
+                locales.add(localMgr.getAllLocales().get(i).getName());
+            }
         }
         local.setItems(locales);
+    }
 
+    public void fltrSalas(){
         ObservableList<Long> salas  = FXCollections.observableArrayList();
         int j = salaManager.getAllSalas().size();
         for (int i = 0; i <j ; i++) {
-            salas.add(salaManager.getAllSalas().get(i).getNumeroSala());
+            if(salaManager.getAllSalas().get(i).getLocal().getCine().getNombre().equals(cadena.getValue()) && salaManager.getAllSalas().get(i).getLocal().getName().equals(local.getValue())){
+
+                salas.add(salaManager.getAllSalas().get(i).getNumeroSala());
+            }
         }
         sala.setItems(salas);
+    }
+
+    public void setBoxes(){
+        ObservableList<String> cadenas = FXCollections.observableArrayList();
+        int c = cineMgr.getAllCine().size();
+        for (int i = 0; i <c ; i++) {
+            cadenas.add(cineMgr.getAllCine().get(i).getNombre());
+        }
+        cadena.setItems(cadenas);
+
+//        ObservableList<Long> salas  = FXCollections.observableArrayList();
+//        int j = salaManager.getAllSalas().size();
+//        for (int i = 0; i <j ; i++) {
+//            salas.add(salaManager.getAllSalas().get(i).getNumeroSala());
+//        }
+//        sala.setItems(salas);
 
         ObservableList<String> peliculas  = FXCollections.observableArrayList();
         int z = peliculaMgr.getAllPeliculas().size();
