@@ -44,8 +44,12 @@ public class Funcion {
     private boolean [][] matriz;
 
 
-    public boolean[][] matriz(int fila,int columna){
-        return new boolean[fila][columna];
+    public boolean[][] getMatriz() {
+        return matriz;
+    }
+
+    public void setMatriz(boolean[][] matriz) {
+        this.matriz = matriz;
     }
 
     public Long getId() {
@@ -59,7 +63,6 @@ public class Funcion {
     public Funcion( LocalDate fecha, Time horaFuncion) {
         this.fecha = fecha;
         this.horaFuncion = horaFuncion;
-        this.matriz = matriz(7, 6);
     }
 
 

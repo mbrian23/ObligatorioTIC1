@@ -72,6 +72,8 @@ public class FuncionMgr {
             funcion.setPelicula(pelicula);
             funcion.setSala(sala);
             funcion.setNumSala(sala.getNumeroSala());
+            boolean[][] matri = new boolean[sala.getFilas().intValue()][sala.getColumnas().intValue()];
+            funcion.setMatriz(matri);
             funcionRepo.save(funcion);
         }
     }
