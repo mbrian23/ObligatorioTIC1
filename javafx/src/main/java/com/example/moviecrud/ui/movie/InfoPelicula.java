@@ -5,15 +5,9 @@ import com.example.moviecrud.business.CineMgr;
 import com.example.moviecrud.business.FuncionMgr;
 import com.example.moviecrud.business.PeliculaMgr;
 import com.example.moviecrud.business.entities.Funcion;
-import com.example.moviecrud.business.entities.Pelicula;
 import com.example.moviecrud.ui.CarteleraCines;
-import com.example.moviecrud.ui.Showroom;
-import com.example.moviecrud.ui.movie.CineController;
-import com.example.moviecrud.ui.movie.MovieController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,14 +22,11 @@ import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Time;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.function.Predicate;
 
 @Component
 public class InfoPelicula implements Initializable {

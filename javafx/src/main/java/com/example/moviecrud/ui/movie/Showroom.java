@@ -1,8 +1,9 @@
-package com.example.moviecrud.ui;
+package com.example.moviecrud.ui.movie;
 
 import com.example.moviecrud.MovieCrudApplication;
 import com.example.moviecrud.business.*;
 import com.example.moviecrud.business.entities.*;
+import com.example.moviecrud.ui.TicketController;
 import com.example.moviecrud.ui.movie.InfoPelicula;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -103,7 +104,6 @@ public class Showroom implements Initializable {
         try {
             getInfoFunc();
         } catch (Exception e){
-
             Alert alert = new Alert(Alert.AlertType.WARNING,  "error en la carga de los datos de la pelicula");
             alert.show();
         }
@@ -266,19 +266,18 @@ public class Showroom implements Initializable {
         }
     }
 
-    public void getInfoFunc() throws IOException{
-        Stage stage = null;
-        Scene sc = null;
-
+    public void getInfoFunc() throws IOException {
         FXMLLoader fxmlLoader=new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
-        Parent root = (Parent)fxmlLoader.load(InfoPelicula.class.getResourceAsStream("InfoPelicula2.fxml"));
-        stage = new Stage();
-        sc = new Scene(root);
 
+        Parent parent = (Parent)fxmlLoader.load(InfoPelicula.class.getResourceAsStream("InfoPelicula2.fxml"));
+
+        System.out.println("xdcvbvnmnbfvdz");
 
         ComboBox sala = (ComboBox)fxmlLoader.getNamespace().get("sala");
+
+        System.out.println(sala.getValue());
         ComboBox localAgregar = (ComboBox)fxmlLoader.getNamespace().get("localidad");
         ComboBox cadena = (ComboBox)fxmlLoader.getNamespace().get("cadena");
         Text peliculaFuncion = (Text) fxmlLoader.getNamespace().get("titulo");
@@ -286,10 +285,7 @@ public class Showroom implements Initializable {
         DatePicker fecha = (DatePicker)fxmlLoader.getNamespace().get("fecha");
 
 
-
-
         salapr = salaManager.getSalaByNumSala( (Long) sala.getValue());
-        System.out.println(salapr);
         local = localMgr.getLocalById((String) localAgregar.getValue());
         cine = cineMgr.getCineById((String) cadena.getValue());
         pelicula = peliculaMgr.getPeliculaByName( peliculaFuncion.getText());

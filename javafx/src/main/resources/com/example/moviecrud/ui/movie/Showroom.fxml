@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Ellipse?>
 
-<AnchorPane fx:id="root" stylesheets="/com/example/moviecrud/ui/Styles/styles.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="683.0" prefWidth="956.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.Showroom">
+<AnchorPane fx:id="root" stylesheets="/com/example/moviecrud/ui/Styles/styles.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="683.0" prefWidth="956.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.movie.Showroom">
    <children>
       <Ellipse fill="#d70303" layoutX="304.0" layoutY="51.0" radiusX="392.0" radiusY="37.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="94.0" />
       <Label layoutX="422.0" layoutY="33.0" prefHeight="36.0" prefWidth="96.0" style="-fx-font-size: 2.2em;" text="Screen" />
