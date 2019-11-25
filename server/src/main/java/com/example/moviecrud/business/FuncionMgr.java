@@ -28,7 +28,7 @@ public class FuncionMgr {
 
     @PostMapping("/funcion")
     public void save(@RequestBody Funcion funcion){
-        funcionRepo.save(funcion);
+         funcionRepo.save(funcion);
     }
 
     @PutMapping("/funcion/{id}")

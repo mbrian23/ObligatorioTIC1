@@ -142,6 +142,9 @@ public class InfoPelicula implements Initializable {
             localidad.setItems(local);
 
             for (int i = 0; i < z; i++) {
+                if (!cines.contains(funcionPelicula.get(i).getLocal().getName())) {
+                    cines.add(funcionPelicula.get(i).getLocal().getName());
+                }
             }
             cadena.setItems(cines);
 
