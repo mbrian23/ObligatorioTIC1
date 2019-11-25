@@ -145,7 +145,7 @@ public class Showroom implements Initializable {
 //
 //                grid.add(imageView,i,j);
 
-                if (!funcionElegida.matriz(sala.getFilas().intValue(), sala.getColumnas().intValue())[i][j]) {
+                if (!funcionElegida.getMatriz()[i][j]) {
                     ImageView imageView = new ImageView(available);
                     imageView.setFitHeight(25);
                     imageView.setFitWidth(25);

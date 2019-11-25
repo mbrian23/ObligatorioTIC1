@@ -115,12 +115,6 @@ public class FuncionController implements Initializable {
         }
         cadena.setItems(cadenas);
 
-//        ObservableList<Long> salas  = FXCollections.observableArrayList();
-//        int j = salaManager.getAllSalas().size();
-//        for (int i = 0; i <j ; i++) {
-//            salas.add(salaManager.getAllSalas().get(i).getNumeroSala());
-//        }
-//        sala.setItems(salas);
 
         ObservableList<String> peliculas  = FXCollections.observableArrayList();
         int z = peliculaMgr.getAllPeliculas().size();
