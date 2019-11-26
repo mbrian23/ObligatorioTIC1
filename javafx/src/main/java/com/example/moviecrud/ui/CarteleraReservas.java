@@ -213,8 +213,7 @@ public class CarteleraReservas implements Initializable {
         sala.setCellValueFactory(new PropertyValueFactory<>("numeroSalaFuncion"));
         pelicula.setCellValueFactory(new PropertyValueFactory<>("peliculaFuncion"));
         local.setCellValueFactory(new PropertyValueFactory<>("localFuncion"));
-        usuario.setCellValueFactory(new PropertyValueFactory<>("usernameU" +
-                "suario"));
+        usuario.setCellValueFactory(new PropertyValueFactory<>("usernameUsuario"));
         asiento.setCellValueFactory(new PropertyValueFactory<>("asientos"));
 
         actualizaCart();
