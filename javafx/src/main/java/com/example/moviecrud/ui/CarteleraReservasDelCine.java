@@ -1,6 +1,7 @@
 package com.example.moviecrud.ui;
 
 import com.example.moviecrud.business.CineMgr;
+import javafx.scene.text.Text;
 import org.springframework.stereotype.Controller;
 
 
@@ -42,6 +43,9 @@ public class CarteleraReservasDelCine implements Initializable {
 
     @Autowired
     CineMgr cineMgr;
+
+    @Autowired
+    InicioAdmiController inicioAdmiController;
 
     @FXML
     private AnchorPane root;
@@ -94,6 +98,8 @@ public class CarteleraReservasDelCine implements Initializable {
 
     @FXML
     private Button btnVolver;
+
+    private String usActivo;
 
     @FXML
     void agregarFuncionAction(ActionEvent event) {
@@ -150,9 +156,26 @@ public class CarteleraReservasDelCine implements Initializable {
 
     private ObservableList<Ticket> ticketList = FXCollections.observableArrayList();
 
+    @FXML
+    Text userActivo;
+
+    public void loadUsData (String us){
+        try {
+            userActivo.setText(us);
+
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void actualizaCart(){
         ticketList.clear();
-        ticketList.addAll(ticketMgr.getAllTickets());
+        for (int i = 0; i < ticketMgr.getAllTickets().size() ; i++) {
+            if (ticketMgr.getAllTickets().get(i).getFuncion().getLocal().getCine().getNombre().equals(userActivo.getText())){
+            ticketList.add(ticketMgr.getAllTickets().get(i));
+            }
+        }
+       // ticketList.addAll(ticketMgr.getAllTickets());
         tabla.setItems(ticketList);
     }
 
@@ -168,6 +191,10 @@ public class CarteleraReservasDelCine implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        usActivo =  inicioAdmiController.getUs();
+        loadUsData(usActivo);
+
         fechaInicio.setCellValueFactory(new PropertyValueFactory<>("fechaFuncion"));
         hora.setCellValueFactory(new PropertyValueFactory<>("horaFuncion"));
         sala.setCellValueFactory(new PropertyValueFactory<>("numeroSalaFuncion"));

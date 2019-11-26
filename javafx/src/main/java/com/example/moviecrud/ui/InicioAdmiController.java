@@ -50,6 +50,7 @@ public class InicioAdmiController {
 
     @FXML
     private Button enter;
+    private String us;
 
     @FXML
     void cargaInicio(ActionEvent event) throws Exception {
@@ -131,16 +132,20 @@ public class InicioAdmiController {
             Usuario usuario = (Usuario) usuarioMgr.getUsuarioByUsername(username);
         System.out.println(2);
             System.out.println(usuario.getUsername());
-        System.out.println(usuario);
-            if (usuario.getAdminPrivileges().equals("cine") ) {
+        System.out.println(usuario.getAdminPrivileges());
+            if (usuario.getAdminPrivileges().equals("cine")) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+                us = usuario.getUsername();
 
                 Parent root = fxmlLoader.load(CarteleraFuncionesDelCine.class.getResourceAsStream("CarteleraFuncionesDelCine.fxml"));
                 Scene inicioScene = new Scene(root, 600, 500);
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 window.setScene(inicioScene);
                 window.show();
+
+
             } else if (usuario.getAdminPrivileges().equals("admin")){
                 System.out.println(usuario.getClass());
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -157,11 +162,18 @@ public class InicioAdmiController {
 
             }
         } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.WARNING, e.getMessage() + "Algun dato ingresado no es correcto o no esta asociado a nigun usuario del sistema");
+            Alert alert = new Alert(Alert.AlertType.WARNING, e.getMessage() + "Algun dato ingresado no es correeeeeecto o no esta asociado a nigun usuario del sistema");
             alert.showAndWait();
 
         }
 
     }
 
+    public String getUs() {
+        return us;
+    }
+
+    public void setUs(String us) {
+        this.us = us;
+    }
 }

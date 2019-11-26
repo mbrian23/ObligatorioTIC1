@@ -20,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +35,9 @@ public class CarteleraSalasDelCine implements Initializable {
 
     @Autowired
     SalaManager salaManager;
+
+    @Autowired
+    InicioAdmiController inicioAdmiController;
 
 
     @FXML
@@ -106,9 +110,27 @@ public class CarteleraSalasDelCine implements Initializable {
         stage.show();
     }
 
+    @FXML
+    Text userActivo;
+
+    public void loadUsData (String us){
+        try {
+            userActivo.setText(us);
+
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public void actualizaCartSala(){
         salaList.clear();
-        salaList.addAll(salaManager.getAllSalas());
+        for (int i = 0; i < salaManager.getAllSalas().size() ; i++) {
+            if (salaManager.getAllSalas().get(i).getLocal().getCine().getNombre().equals(userActivo.getText())){
+                salaList.add(salaManager.getAllSalas().get(i));
+            }
+        }
+        // ticketList.addAll(ticketMgr.getAllTickets());
         tabla.setItems(salaList);
     }
 
@@ -148,8 +170,14 @@ public class CarteleraSalasDelCine implements Initializable {
         window.show();
     }
 
+    private String usActivo;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        usActivo =  inicioAdmiController.getUs();
+        loadUsData(usActivo);
+
         tipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
         cine.setCellValueFactory(new PropertyValueFactory<>("nombreCine"));
         local.setCellValueFactory(new PropertyValueFactory<>("nombreLocal"));

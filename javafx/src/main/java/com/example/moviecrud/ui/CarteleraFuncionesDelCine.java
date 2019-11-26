@@ -21,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,9 @@ public class CarteleraFuncionesDelCine implements Initializable {
 
     @Autowired
     FuncionMgr funcionMgr;
+
+    @Autowired
+    InicioAdmiController inicioAdmiController;
 
     @FXML
     private AnchorPane root;
@@ -81,10 +85,27 @@ public class CarteleraFuncionesDelCine implements Initializable {
 
     private ObservableList<Funcion> funcionesList = FXCollections.observableArrayList();
 
+    @FXML
+    Text userActivo;
+
+    public void loadUsData (String us){
+        try {
+            userActivo.setText(us);
+
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void actualizaCart(){
         funcionesList.clear();
-        funcionesList.addAll(funcionMgr.getAllFunciones());
+        for (int i = 0; i < funcionMgr.getAllFunciones().size() ; i++) {
+            if (funcionMgr.getAllFunciones().get(i).getLocal().getCine().equals(userActivo.getText())){
+                funcionesList.add(funcionMgr.getAllFunciones().get(i));
+            }
+        }
+        // ticketList.addAll(ticketMgr.getAllTickets());
         tabla.setItems(funcionesList);
     }
 
@@ -160,8 +181,13 @@ public class CarteleraFuncionesDelCine implements Initializable {
 
     }
 
+    private String usNameActivo;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        usNameActivo =  inicioAdmiController.getUs();
+        loadUsData(usNameActivo);
 
         fechaInicio.setCellValueFactory(new PropertyValueFactory<>("fecha"));
         hora.setCellValueFactory(new PropertyValueFactory<>("horaFuncion"));
