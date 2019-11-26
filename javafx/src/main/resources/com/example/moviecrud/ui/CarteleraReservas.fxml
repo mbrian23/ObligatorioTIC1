@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="984.0" style="-fx-background-color: grey;" stylesheets="/com/example/moviecrud/ui/Styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.CarteleraFuncionesDelCine">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="984.0" style="-fx-background-color: grey;" stylesheets="/com/example/moviecrud/ui/Styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.CarteleraReservas">
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
@@ -56,8 +56,8 @@
                   <TableColumn fx:id="sala" prefWidth="91.0" text="Sala" />
                   <TableColumn fx:id="pelicula" prefWidth="249.0" text="Pelicula" />
                   <TableColumn fx:id="local" prefWidth="75.0" text="Local" />
-                  <TableColumn prefWidth="75.0" text="Usuario" />
-                  <TableColumn prefWidth="75.0" text="Asientos" />
+                  <TableColumn fx:id="usuario" prefWidth="75.0" text="Usuario" />
+                  <TableColumn fx:id="asiento" prefWidth="75.0" text="Asientos" />
               </columns>
                <contextMenu>
                   <ContextMenu>
@@ -76,6 +76,11 @@
       <Separator layoutX="188.0" layoutY="-3.0" maxHeight="1.7976931348623157E308" orientation="VERTICAL" prefHeight="759.0" prefWidth="4.0" />
       <VBox alignment="CENTER" layoutX="1.0" layoutY="69.0" prefHeight="409.0" prefWidth="189.0">
          <children>
+            <Button fx:id="btnpeliculas" mnemonicParsing="false" onAction="#cargaCartPeliculas" prefHeight="27.0" prefWidth="165.0" styleClass="botonInicio" text="PELICULAS">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
             <Button fx:id="btnsalas" mnemonicParsing="false" onAction="#cargaCartSalas" prefHeight="27.0" prefWidth="210.0" styleClass="botonInicio" text="SALAS">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -86,7 +91,21 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="310.0" text="RESERVAS" />
+            <Button fx:id="btnlocales" mnemonicParsing="false" onAction="#cargaCartLocales" prefHeight="27.0" prefWidth="311.0" styleClass="botonInicio" text="LOCALES">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btnCines" mnemonicParsing="false" onAction="#cargaCartCines" prefHeight="27.0" prefWidth="504.0" styleClass="botonInicio" text="CINES">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btnReservas" onAction="#cargaCartReservas" mnemonicParsing="false" prefHeight="27.0" prefWidth="169.0" text="RESERVAS">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
       <Button fx:id="btnVolver" layoutX="50.0" layoutY="50.0" mnemonicParsing="false" onAction="#cargaInicio" styleClass="botonInicio" text="Volver a incio" />
