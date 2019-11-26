@@ -208,13 +208,14 @@ public class CarteleraReservas implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        fechaInicio.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+        fechaInicio.setCellValueFactory(new PropertyValueFactory<>("fechaFuncion"));
         hora.setCellValueFactory(new PropertyValueFactory<>("horaFuncion"));
-        sala.setCellValueFactory(new PropertyValueFactory<>("numeroSala"));
-        pelicula.setCellValueFactory(new PropertyValueFactory<>("nombrePelicula"));
-        local.setCellValueFactory(new PropertyValueFactory<>("nombreLocal"));
-        usuario.setCellValueFactory(new PropertyValueFactory<>("usuario"));
-        asiento.setCellValueFactory(new PropertyValueFactory<>("ascientos"));
+        sala.setCellValueFactory(new PropertyValueFactory<>("numeroSalaFuncion"));
+        pelicula.setCellValueFactory(new PropertyValueFactory<>("peliculaFuncion"));
+        local.setCellValueFactory(new PropertyValueFactory<>("localFuncion"));
+        usuario.setCellValueFactory(new PropertyValueFactory<>("usernameU" +
+                "suario"));
+        asiento.setCellValueFactory(new PropertyValueFactory<>("asientos"));
 
         actualizaCart();
 
