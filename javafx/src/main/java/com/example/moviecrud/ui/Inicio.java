@@ -27,6 +27,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -68,6 +69,12 @@ public class Inicio implements Initializable {
     @FXML
     private ImageView logo;
 
+    @FXML
+    private Text userActivo;
+
+
+
+
 
     @FXML
     private TextField buscadorInicio;
@@ -94,6 +101,8 @@ public class Inicio implements Initializable {
 
     @FXML
     void cargaInicio (ActionEvent event) throws Exception {
+        String us = usernameRegistro.getText();
+
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
@@ -103,6 +112,18 @@ public class Inicio implements Initializable {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(inicioScene);
         window.show();
+
+        Inicio inicio = fxmlLoader.getController();
+        inicio.loadUsData(us);
+    }
+
+    public void loadUsData (String us){
+        try {
+            userActivo.setText(us);
+
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -275,6 +296,8 @@ public class Inicio implements Initializable {
     private TextField passwordRepeatRegistro;
 
 
+
+
     public void crearClienteFinal(ActionEvent event) throws InformacionInvalida, YaExiste, IOException {
         String usernameNuevo = usernameRegistro.getText();
         String emailNuevo = emailRegistro.getText();
@@ -287,6 +310,7 @@ public class Inicio implements Initializable {
 
         } else {
             usuarioMgr.addUsuario(usernameNuevo, passwordNueva, emailNuevo, "cliente");
+
 
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
