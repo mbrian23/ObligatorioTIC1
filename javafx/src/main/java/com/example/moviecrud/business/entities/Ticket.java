@@ -1,5 +1,7 @@
 package com.example.moviecrud.business.entities;
 
+import java.sql.Time;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Ticket {
@@ -17,6 +19,36 @@ public class Ticket {
     private boolean editando = false;
     private Integer idTemp;
     private String titViejo;
+
+
+    public LocalDate getFechaFuncion (){
+        return funcion.getFecha();
+    }
+
+    public Time getHoraFuncion (){
+        return funcion.getHoraFuncion();
+    }
+
+    public Long getNumeroSalaFuncion() {
+        if (funcion.getSala().getNumeroSala() != null){
+            return funcion.getSala().getNumeroSala();
+        }
+        return 3l;
+    }
+
+    public String getPeliculaFuncion (){
+        return funcion.getPelicula().getTitulo();
+    }
+
+    public String getLocalFuncion (){
+        return funcion.getLocal().getName();
+    }
+    public String getUsernameUsuario (){
+        return usuario.getUsername();
+    }
+
+
+
 
     public Integer getId() {
         return id;
