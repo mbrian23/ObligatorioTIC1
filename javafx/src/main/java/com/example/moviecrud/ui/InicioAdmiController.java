@@ -103,36 +103,9 @@ public class InicioAdmiController {
 
         int indiceCine = 0;
 
-        //  System.out.println(cines.size()+ "!!!!!!!");
-
-//        for (int i = 0; i < cines.size() ; i++) {
-//            String nombre =   cines.get(i).getNombre();
-//
-//            if (nombre.equals(username)) {
-//                System.out.println("SE ENCONTRO EL CINE");
-//                indiceCine = i;
-//                cineEncontrado = true;
-//            }
-//        }
-//
-//        if (cineEncontrado){
-//
-//            FXMLLoader fxmlLoader = new FXMLLoader();
-//            fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
-//
-//            Parent root = fxmlLoader.load(CarteleraFuncionesDelCine.class.getResourceAsStream("CarteleraFuncionesDelCine.fxml"));
-//            Scene inicioScene = new Scene(root, 600, 500);
-//            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            window.setScene(inicioScene);
-//            window.show();
-//
-// }
         try {
-        System.out.println(1);
             Usuario usuario = (Usuario) usuarioMgr.getUsuarioByUsername(username);
-        System.out.println(2);
-            System.out.println(usuario.getUsername());
-        System.out.println(usuario.getAdminPrivileges());
+            System.out.println(usuario.getAdminPrivileges());
             if (usuario.getAdminPrivileges().equals("cine")) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
