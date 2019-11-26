@@ -12,12 +12,11 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "idFuncion")
     private Funcion funcion;
 
-    @ManyToOne(cascade = CascadeType.ALL
-    )
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
 

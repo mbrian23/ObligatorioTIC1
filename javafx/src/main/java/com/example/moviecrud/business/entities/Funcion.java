@@ -35,7 +35,7 @@ public class Funcion {
         if (sala.getNumeroSala() != null){
             return sala.getNumeroSala();
         }
-        return 0l;
+        return 3l;
     }
 
     public String getNombreLocal(){
