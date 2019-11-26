@@ -100,8 +100,11 @@ public class Inicio implements Initializable {
     private String us;
 
     @FXML
+    private TextField userIngreso;
+
+    @FXML
     void cargaInicio (ActionEvent event) throws Exception {
-         us = usernameRegistro.getText();
+         us = userIngreso.getText();
 
 
         FXMLLoader fxmlLoader = new FXMLLoader();

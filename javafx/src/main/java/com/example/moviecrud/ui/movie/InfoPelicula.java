@@ -118,14 +118,15 @@ public class InfoPelicula implements Initializable {
     private Text userActivo;
 
 
-    private String usuarioActivo;
+    private Usuario usuarioActivo;
+    private String usNameActivo;
 
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        usuarioActivo =  inicio.getUs();
-        loadUsData(usuarioActivo);
+        usNameActivo =  inicio.getUs();
+        loadUsData(usNameActivo);
     }
 
 
@@ -448,7 +449,12 @@ public class InfoPelicula implements Initializable {
         grid.setVgap(30);
         grid.setHgap(30);
 
-        addSeats(funcionElegida.getSala());
+        if (funcionElegida != null){
+            addSeats(funcionElegida.getSala());
+        } else{
+            showAlert("Le erraste a la funcion", "BP");
+        }
+
     }
 
 
@@ -553,7 +559,7 @@ public class InfoPelicula implements Initializable {
                 }
             }
         }
-        usuarioActivo =  usuarioMgr.getUsuarioByUsername("admin");
+        usuarioActivo =  usuarioMgr.getUsuarioByUsername(usNameActivo);
         if (usuarioActivo != null) {
 
             Ticket ticket = new Ticket(funcionElegida, usuarioActivo,"asiento", 10 );

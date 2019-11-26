@@ -41,13 +41,13 @@
                   <Label text="Fecha" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
                   <Label text="Horario" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
                   <Label text="Sala" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                  <TextField fx:id="user" GridPane.columnIndex="1" />
-                  <TextField fx:id="peli" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="local" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="cine" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="sala" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="fecha" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <TextField fx:id="hora" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <TextField fx:id="user" styleClass="botonInicio" GridPane.columnIndex="1" />
+                  <TextField fx:id="peli" styleClass="botonInicio" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="local" styleClass="botonInicio" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="cine" styleClass="botonInicio" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="sala" styleClass="botonInicio" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="fecha" styleClass="botonInicio" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="hora" styleClass="botonInicio" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                </children>
             </GridPane>
             <HBox prefHeight="100.0" prefWidth="200.0">

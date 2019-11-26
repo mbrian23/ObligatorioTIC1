@@ -1,5 +1,6 @@
 package com.example.moviecrud.ui;
 
+import com.example.moviecrud.MovieCrudApplication;
 import com.example.moviecrud.business.FuncionMgr;
 import com.example.moviecrud.business.TicketMgr;
 import com.example.moviecrud.business.UsuarioMgr;
@@ -13,8 +14,11 @@ import com.example.moviecrud.ui.movie.InfoPelicula;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -158,9 +162,15 @@ public class TicketController implements Initializable {
 
 
                         showAlert("Ticket agregado", "Se agrego con exito el Ticket!");
-
-
                         close(event);
+                        FXMLLoader fxmlLoader = new FXMLLoader();
+                        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+                        Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("Inicio.fxml"));
+                        Scene inicioScene = new Scene(root, 800, 550);
+                        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        window.setScene(inicioScene);
+                        window.show();
 
                     } else {
 

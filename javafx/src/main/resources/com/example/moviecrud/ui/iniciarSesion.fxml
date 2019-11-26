@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="root" stylesheets="/com/example/moviecrud/ui/Styles/styles.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: grey; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;"  xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.Inicio">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: grey; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" stylesheets="/com/example/moviecrud/ui/Styles/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.Inicio">
    <children>
       <HBox alignment="CENTER" layoutX="32.0" layoutY="23.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <padding>
@@ -52,6 +52,6 @@
             </VBox>
          </children>
       </HBox>
-      <TextField layoutX="221.0" layoutY="169.0" prefHeight="16.0" prefWidth="250.0" promptText="Username" style="-fx-background-color: transparent; -fx-prompt-text-fill: black;" />
+      <TextField fx:id="userIngreso" layoutX="221.0" layoutY="169.0" prefHeight="16.0" prefWidth="250.0" promptText="Username" style="-fx-background-color: transparent; -fx-prompt-text-fill: black;" />
    </children>
 </AnchorPane>
