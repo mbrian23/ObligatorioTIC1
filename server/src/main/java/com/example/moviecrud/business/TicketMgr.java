@@ -60,7 +60,6 @@ public class TicketMgr {
         List<Ticket> todos = (List<Ticket>) ticketRepository.findAll();
         int l = todos.size();
         Usuario temp = null;
-        System.out.println("UsuarioMNG2server");
         for (int i = 0; i < l; i++) {
             if (todos.get(i).getUsuario().equals(usuario)) {
                 listaTickets.add(todos.get(i));

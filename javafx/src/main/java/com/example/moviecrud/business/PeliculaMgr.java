@@ -46,11 +46,9 @@ public class PeliculaMgr {
         return rest.getForObject("http://localhost:8080/pelicula?titulo={titulo}", Pelicula.class, titulo);
     }
 
-    // Delete a Pelicula by id
-  //  @DeleteMapping("/pelicula/{id}")
-    public ResponseEntity<?> deletePelicula(@PathVariable(value = "id") Long peliculaId) {
-        rest.delete("http://localhost:8080/pelicula/{id}");
-        return ResponseEntity.ok().build();
+
+    public void deletePelicula(Pelicula pelicula) {
+        rest.delete("http://localhost:8080/pelicula" + "/" + pelicula.getId());
     }
 
     public void addPelicula(String titulo, String genero, String actores, String duracion, String descripcion, byte[] movieImage) throws InformacionInvalida, YaExiste, IOException {
@@ -76,8 +74,7 @@ public class PeliculaMgr {
     public void eliminarPelicula (String titulo)  throws InformacionInvalida, NoExiste {
         for (Pelicula pelicula: getAllPeliculas()) {
             if (pelicula.getTitulo().equals(titulo)){
-               Long id = pelicula.getId();
-               deletePelicula(id);
+               deletePelicula(pelicula);
             }
         }
         

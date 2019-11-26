@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class PeliculaMgr {
@@ -77,12 +79,9 @@ public class PeliculaMgr {
         return temp;
     }
 
-    // Delete a Pelicula by id
-    @DeleteMapping("/pelicula/{id}")
-    public ResponseEntity<?> deletePelicula(@PathVariable(value = "id") Long peliculaId) {
-        Pelicula pelicula= peliculaRepository.findById(peliculaId).get();
-        peliculaRepository.delete(pelicula);
-        return ResponseEntity.ok().build();
+    @DeleteMapping(value = "/pelicula/{id}")
+    public void deletePelicula(@PathVariable Long id) {
+        peliculaRepository.delete(peliculaRepository.findById(id).get());
     }
 
 
