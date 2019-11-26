@@ -20,7 +20,6 @@ public class TicketMgr {
     RestTemplate rest = new RestTemplate();
 
     public void save(Ticket ticket){
-
         rest.postForObject("http://localhost:8080/ticket", ticket, Ticket.class);
     }
 

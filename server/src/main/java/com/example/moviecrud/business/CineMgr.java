@@ -38,9 +38,9 @@ public class CineMgr  {
         return (List<Cine>) cineRepo.findAll();
     }
 
-    @GetMapping("/cine/{id}")
-    public Cine getCineById(@PathVariable(value = "id") String cineId) {
-        return cineRepo.findById(cineId).get();
+    @GetMapping("/cine")
+    public Cine getCineById(@RequestParam(value = "id")@RequestBody String id) {
+        return cineRepo.findById(id).get();
     }
 
     @DeleteMapping("/cine/{id}")
