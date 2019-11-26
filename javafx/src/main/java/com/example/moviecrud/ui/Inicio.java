@@ -97,11 +97,11 @@ public class Inicio implements Initializable {
             e.printStackTrace();
         }
     }
-
+    private String us;
 
     @FXML
     void cargaInicio (ActionEvent event) throws Exception {
-        String us = usernameRegistro.getText();
+         us = usernameRegistro.getText();
 
 
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -324,7 +324,11 @@ public class Inicio implements Initializable {
 
     }
 
+    public String getUs() {
+        return us;
+    }
 
-
-
+    public void setUs(String us) {
+        this.us = us;
+    }
 }

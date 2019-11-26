@@ -4,6 +4,7 @@ import com.example.moviecrud.MovieCrudApplication;
 import com.example.moviecrud.business.*;
 import com.example.moviecrud.business.entities.*;
 import com.example.moviecrud.ui.CarteleraCines;
+import com.example.moviecrud.ui.Inicio;
 import com.example.moviecrud.ui.TicketController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -52,6 +53,9 @@ public class InfoPelicula implements Initializable {
 
     @Autowired
     UsuarioMgr usuarioMgr;
+
+    @Autowired
+    Inicio inicio;
 
 
 
@@ -110,14 +114,28 @@ public class InfoPelicula implements Initializable {
     @FXML
     private Text titulo;
 
+    @FXML
+    private Text userActivo;
 
-    private Usuario usuarioActivo;
+
+    private String usuarioActivo;
 
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        usuarioActivo = null;
+        usuarioActivo =  inicio.getUs();
+        loadUsData(usuarioActivo);
+    }
+
+
+    public void loadUsData (String us){
+        try {
+            userActivo.setText(us);
+
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -530,7 +548,8 @@ public class InfoPelicula implements Initializable {
                     ((ImageView) getNodeByRowColumnIndex(i,j,grid)).setImage(unavailable);
                     // operacion que cambie este lugar de la matriz a no dispoble
                     funcionElegida.reservaButaca(i,j);
-                    funcionMgr.update(idTemp,funcionElegida);
+                    funcionElegida.setId(idTemp);
+                    funcionMgr.update(funcionElegida);
                 }
             }
         }

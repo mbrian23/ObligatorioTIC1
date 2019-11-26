@@ -93,6 +93,7 @@ public class Showroom implements Initializable {
 
     private Funcion funcionElegida;
 
+    private Long idTemp;
 
 
     //prueba
@@ -119,6 +120,7 @@ public class Showroom implements Initializable {
         for (int i = 0; i < lista.size(); i++) {
             if (salapr == lista.get(i).getSala() && local == lista.get(i).getLocal() && pelicula == lista.get(i).getPelicula() && fechainicio == lista.get(i).getFechaInicio() ){
                 funcionElegida = lista.get(i);
+                idTemp = lista.get(i).getId();
             }
         }
 
@@ -260,7 +262,8 @@ public class Showroom implements Initializable {
                 imageView = (ImageView) getNodeByRowColumnIndex(i,j,grid);
                 if (imageView.getImage().equals(selected)){
                     funcionElegida.reservaButaca(i,j);
-                    funcionMgr.update(funcionElegida.getId(),funcionElegida);
+                    funcionElegida.setId(idTemp);
+                    funcionMgr.update(funcionElegida);
                 }
             }
         }
