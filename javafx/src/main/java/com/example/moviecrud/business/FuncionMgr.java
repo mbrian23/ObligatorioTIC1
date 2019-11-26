@@ -30,9 +30,8 @@ public class FuncionMgr {
         rest.postForObject("http://localhost:8080/funcion", funcion, Funcion.class);
     }
 
-    public void update (@PathVariable(value = "id") Long id, Funcion funcion){
-        funcion.setId(id);
-        rest.postForObject("http://localhost:8080/funcion?id={id}", id, Funcion.class);
+    public void update ( Funcion funcion){
+        rest.postForObject("http://localhost:8080/funcion", funcion, Funcion.class);
     }
 
 

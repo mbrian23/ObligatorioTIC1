@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.sql.Time;
 import java.time.LocalDate;
@@ -32,9 +33,17 @@ public class FuncionMgr {
     }
 
     @PutMapping("/funcion")
-    public void update (@RequestParam(value = "id")@RequestBody Long id, Funcion funcion){
-        funcion.setId(id);
-        funcionRepo.save(funcion);
+    public ResponseEntity<Funcion> update (@Valid @RequestBody Funcion funcion){
+        Funcion func = funcionRepo.findById(funcion.getId()).get();
+        func.setMatriz(funcion.getMatriz());
+        func.setHoraFuncion(funcion.getHoraFuncion());
+        func.setFechaInicio(funcion.getFechaInicio());
+        func.setSala(funcion.getSala());
+        func.setPelicula(funcion.getPelicula());
+        func.setLocal(funcion.getLocal());
+        func.setNumSala(funcion.getNumSala());
+        final Funcion funcionPronta = funcionRepo.save(func);
+        return ResponseEntity.ok(funcionPronta);
     }
 
     @GetMapping("/funciones")

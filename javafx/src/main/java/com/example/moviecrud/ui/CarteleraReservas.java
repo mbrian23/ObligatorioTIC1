@@ -6,7 +6,7 @@ import com.example.moviecrud.business.PeliculaMgr;
 import com.example.moviecrud.business.TicketMgr;
 import com.example.moviecrud.business.entities.*;
 import com.example.moviecrud.ui.movie.SalaController;
-import com.sun.imageio.plugins.tiff.TIFFAttrInfo;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
