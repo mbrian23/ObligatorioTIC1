@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
@@ -25,10 +26,12 @@ public class UsuarioMgr {
     }
 
     //Edit usuario by id
-    @PutMapping("/usuario/{id}")
-    public void update(@PathVariable("id") Long id, Usuario usuario) {
-        usuario.setId(id);
-        usuarioRepository.save(usuario);
+    @PutMapping("/usuario")
+    public ResponseEntity<Usuario> update(@Valid @RequestBody Usuario usuario) {
+        Usuario usr = usuarioRepository.findById(usuario.getId()).get();
+        usr.setPassword(usuario.getPassword());
+        final Usuario usuarioPronto = usuarioRepository.save(usr);
+        return ResponseEntity.ok(usuarioPronto);
     }
 
     //Get all users
@@ -108,7 +111,8 @@ public class UsuarioMgr {
             if (usuario.getUsername().equals(usernameViejo)) {
                 Long id = usuario.getId();
                 Usuario usuarioActualizado = new Usuario(usernameNuevo, password, email, adminPrivileges);
-                update(id, usuarioActualizado);
+                usuarioActualizado.setId(id);
+                update(usuarioActualizado);
             }
         }
     }

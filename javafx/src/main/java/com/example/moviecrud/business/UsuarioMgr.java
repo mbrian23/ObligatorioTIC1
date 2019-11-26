@@ -24,12 +24,10 @@ public class UsuarioMgr {
 
     public void save(Usuario usuario){
             rest.postForObject("http://localhost:8080/usuario", usuario, Usuario.class);
-        }
+    }
 
-
-        public void update (@PathVariable("id") Long id, Usuario usuario){
-            usuario.setId(id);
-        save(rest.postForObject("http://localhost:8080/usuario", usuario, Usuario.class));
+    public void update ( Usuario usuario){
+        rest.postForObject("http://localhost:8080/usuario", usuario, Usuario.class);
     }
 
 
@@ -92,7 +90,8 @@ public class UsuarioMgr {
             if (usuario.getUsername().equals(usernameViejo)){
                 Long id = usuario.getId();
                 Usuario usuarioActualizado = new Usuario(usernameNuevo,password ,email, adminPrivileges);
-                update(id,usuarioActualizado);
+                usuarioActualizado.setId(id);
+                update(usuarioActualizado);
             }
         }
     }

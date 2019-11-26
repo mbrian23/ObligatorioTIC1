@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
@@ -62,5 +63,14 @@ public class SalaManager {
     @GetMapping("/salas")
     public List<Sala> getAllSalas(){
         return (List<Sala>) salaRepository.findAll();
+    }
+
+    @PutMapping("/sala")
+    public ResponseEntity<Sala> update(@Valid @RequestBody Sala sala){
+        Sala sl = salaRepository.findById(sala.getId()).get();
+        sl.setTipo(sala.getTipo());
+        sl.setNumeroSala(sala.getNumeroSala());
+        final Sala salaPronta = salaRepository.save(sl);
+        return ResponseEntity.ok(salaPronta);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.moviecrud.business;
 
 import com.example.moviecrud.business.entities.Cine;
+import com.example.moviecrud.business.entities.Funcion;
 import com.example.moviecrud.business.entities.Local;
 import com.example.moviecrud.business.entities.Sala;
 import com.example.moviecrud.business.exceptions.InformacionInvalida;
@@ -45,5 +46,9 @@ public class SalaManager {
 
     public List<Sala> getAllSalas(){
         return (List<Sala>) rest.exchange("http://localhost:8080/salas", HttpMethod.GET, null, new ParameterizedTypeReference<List<Sala>>() {}).getBody();
+    }
+
+    public void update ( Sala sala){
+        rest.postForObject("http://localhost:8080/sala", sala, Sala.class);
     }
 }
