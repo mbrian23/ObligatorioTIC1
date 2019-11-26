@@ -40,9 +40,9 @@ public class UsuarioMgr {
         return rest.getForObject("http://localhost:8080/usuario/{id}", Usuario.class);
     }
 
-    public Usuario getUsuarioByUsername(@PathVariable(value = "name") String name) {
+    public Usuario getUsuarioByUsername(@PathVariable(value = "username") String username) {
 
-        Usuario temp= rest.getForObject("http://localhost:8080/usuario/nombre/{name}", Usuario.class, name);
+        Usuario temp= rest.getForObject("http://localhost:8080/usuario/nombre?username={username}", Usuario.class, username);
         return temp;
     }
 

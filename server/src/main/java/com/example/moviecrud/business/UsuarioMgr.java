@@ -46,21 +46,16 @@ public class UsuarioMgr {
         return usuarioRepository.findById(usuarioId).get();
     }
 
-    @GetMapping("/usuario/nombre/{name}")
-    public Usuario getUsuarioByUsername(@PathVariable(value = "name")String name) {
-        System.out.println("UsuarioMNG1server");
-        System.out.println("name"+ name);
+    @GetMapping("/usuario/nombre")
+    public Usuario getUsuarioByUsername(@RequestParam(value = "username")@RequestBody String username) {
         List<Usuario> usuarios = (List<Usuario>) usuarioRepository.findAll();
         int l = usuarios.size();
         Usuario temp = null;
-        System.out.println("UsuarioMNG2server");
         for (int i = 0; i < l; i++) {
-            if (usuarios.get(i).getUsername().equals(name)) {
+            if (usuarios.get(i).getUsername().equals(username)) {
                 temp = usuarios.get(i);
             }
         }
-        System.out.println("UsuarioMNG3server");
-        System.out.println(temp);
         return temp;
     }
 
