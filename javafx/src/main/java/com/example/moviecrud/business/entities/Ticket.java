@@ -14,6 +14,10 @@ public class Ticket {
 
     private int precio;
 
+    private boolean editando = false;
+    private Integer idTemp;
+    private String titViejo;
+
     public Integer getId() {
         return id;
     }
@@ -62,6 +66,19 @@ public class Ticket {
         this.precio = precio;
     }
 
+    public Ticket(Funcion funcion, Usuario usuario, String asientos, int precio) {
+        this.funcion = funcion;
+        this.usuario = usuario;
+        this.asientos = asientos;
+        this.precio = precio;
+    }
+
     public Ticket() {
+    }
+
+    public Ticket(Funcion funcion, Usuario usuario, String asientos) {
+        this.funcion = funcion;
+        this.usuario = usuario;
+        this.asientos = asientos;
     }
 }

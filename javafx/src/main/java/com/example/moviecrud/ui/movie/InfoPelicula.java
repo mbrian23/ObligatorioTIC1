@@ -47,6 +47,12 @@ public class InfoPelicula implements Initializable {
     @Autowired
     LocalMgr localMgr;
 
+    @Autowired
+    TicketController ticketController;
+
+    @Autowired
+    UsuarioMgr usuarioMgr;
+
 
 
 
@@ -105,10 +111,13 @@ public class InfoPelicula implements Initializable {
     private Text titulo;
 
 
+    private Usuario usuarioActivo;
+
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        usuarioActivo = null;
     }
 
 
@@ -672,18 +681,35 @@ public class InfoPelicula implements Initializable {
                 }
             }
         }
+        usuarioActivo =  usuarioMgr.getUsuarioByUsername("admin");
+        if (usuarioActivo != null) {
 
+            Ticket ticket = new Ticket(funcionElegida, usuarioActivo,"asiento", 10 );
 
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+            Parent root = fxmlLoader.load(TicketController.class.getResourceAsStream("ticket2.fxml"));
+            Scene inicioScene = new Scene(root, 800, 550);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(inicioScene);
+            window.show();
 
-        Parent root = fxmlLoader.load(TicketController.class.getResourceAsStream("ticket.fxml"));
-        Scene inicioScene = new Scene(root, 800, 550);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(inicioScene);
-        window.show();
+            TicketController ticketController = fxmlLoader.getController();
+            ticketController.loadTicketData(ticket);
+        } else {
+            showAlert("No hay usuario Activo", "Inicie Sesion");
+        }
+
+    }    private void showAlert(String title, String contextText) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(contextText);
+        alert.showAndWait();
     }
+
+
 
     @FXML
     public void comprar (ActionEvent event) throws Exception {

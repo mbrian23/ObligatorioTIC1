@@ -73,6 +73,12 @@ public class Ticket {
         this.precio = precio;
     }
 
+    public Ticket(Funcion funcion, Usuario usuario, String asientos) {
+        this.funcion = funcion;
+        this.usuario = usuario;
+        this.asientos = asientos;
+    }
+
     public Ticket() {
     }
 }

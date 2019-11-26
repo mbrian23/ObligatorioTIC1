@@ -6,6 +6,7 @@ import com.example.moviecrud.business.entities.Ticket;
 import com.example.moviecrud.business.entities.Usuario;
 import com.example.moviecrud.business.exceptions.InformacionInvalida;
 import com.example.moviecrud.business.exceptions.YaExiste;
+import com.example.moviecrud.persistence.FuncionRepo;
 import com.example.moviecrud.persistence.TicketRepository;
 import com.example.moviecrud.persistence.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class TicketMgr {
 
     @Autowired
     UsuarioRepository usuarioRepository;
+
+    @Autowired
+    FuncionRepo funcionRepo;
 
     // Create user
     @PostMapping("/ticket")

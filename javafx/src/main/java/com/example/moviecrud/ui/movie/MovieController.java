@@ -127,6 +127,7 @@ public class MovieController implements Initializable {
     //parte del editar
     private boolean editando = false;
     private Long idTemp;
+    private String titViejo;
 
 
 
@@ -321,6 +322,7 @@ public class MovieController implements Initializable {
         }
         idTemp = pelicula.getId();
         editando = true;
+        titViejo = pelicula.getTitulo();
     }
 
     //Filtrado

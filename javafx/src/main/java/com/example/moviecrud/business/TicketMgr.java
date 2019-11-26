@@ -1,14 +1,18 @@
 package com.example.moviecrud.business;
 
-import com.example.moviecrud.business.entities.Funcion;
-import com.example.moviecrud.business.entities.Ticket;
-import com.example.moviecrud.business.entities.Usuario;
+import com.example.moviecrud.business.entities.*;
+import com.example.moviecrud.business.exceptions.InformacionInvalida;
+import com.example.moviecrud.business.exceptions.YaExiste;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 @RestController
@@ -39,5 +43,15 @@ public class TicketMgr {
     //polemico
     public List<Ticket> getTicketByUsuario(@PathVariable(value = "usuario")Usuario usuario){
         return rest.getForObject("http://localhost:8080/ticket/{usuario}", List.class, usuario);
+    }
+
+    public void addTicket(Funcion funcion, Usuario usuario, String asientos, Integer precio) throws InformacionInvalida, YaExiste, IOException {
+        if(funcion== null || usuario == null ||  asientos == null ||  precio ==null ){
+
+            throw new InformacionInvalida("Algun dato ingresado no es correcto");
+
+        }
+        Ticket ticket = new Ticket(funcion,usuario,asientos,precio);
+        save(ticket);
     }
 }
