@@ -28,17 +28,16 @@ public class PeliculaMgr {
     }
 
 
-    public void update (@PathVariable("id") Long id, Pelicula pelicula){
-        pelicula.setId(id);
-        save(rest.postForObject("http://localhost:8080/pelicula", pelicula, Pelicula.class));
+    public void update ( Pelicula pelicula){
+        rest.postForObject("http://localhost:8080/pelicula", pelicula, Pelicula.class);
+
     }
 
     public List<Pelicula> getAllPeliculas(){
         return (List<Pelicula>) rest.exchange("http://localhost:8080/peliculas", HttpMethod.GET, null, new ParameterizedTypeReference<List<Pelicula>>() {}).getBody();
     }
 
-    // Get a Single pelicula by id
-   // @GetMapping("/pelicula/{id}")
+
     public Pelicula getPeliculaById(@PathVariable(value = "id") Long id) {
         return rest.getForObject("http://localhost:8080/pelicula/{id}", Pelicula.class, id);
     }
@@ -94,8 +93,17 @@ public class PeliculaMgr {
        for (Pelicula pelicula: getAllPeliculas()) {
             if (pelicula.getTitulo().equals(tituloViejo)){
                 Long id = pelicula.getId();
-                Pelicula peliculaActualizada = new Pelicula(tituloNuevo,genero ,actores,duracion ,descripcion);
-                update(id,peliculaActualizada);
+               // Pelicula peliculaActualizada = new Pelicula(tituloNuevo,genero ,actores,duracion ,descripcion);
+                //update(peliculaActualizada);
+
+//                RestTemplate restTemplate = new RestTemplate();
+//               restTemplate.put(
+//                        "http://localHost:8080/pelicula/" + id+ "/" + tituloNuevo + "/" + actores + "/" + genero + "/" +descripcion + "/" + duracion,
+//                        HttpMethod.PUT,
+//                        null,
+//                        new ParameterizedTypeReference<String>() {
+//                        });
+
             }
         }
     }

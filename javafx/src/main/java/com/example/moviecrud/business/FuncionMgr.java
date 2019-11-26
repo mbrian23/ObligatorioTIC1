@@ -35,10 +35,6 @@ public class FuncionMgr {
         rest.postForObject("http://localhost:8080/funcion?id={id}", id, Funcion.class);
     }
 
-    public void update2(Funcion funcion, Long id){
-
-    }
-
 
     public List<Funcion> getAllFunciones(){
         return rest.exchange("http://localhost:8080/funciones", HttpMethod.GET, null, new ParameterizedTypeReference<List<Funcion>>() {}).getBody();

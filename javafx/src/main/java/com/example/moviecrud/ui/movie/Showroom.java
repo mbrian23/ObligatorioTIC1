@@ -101,12 +101,12 @@ public class Showroom implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
-            getInfoFunc();
-        } catch (Exception e){
-            Alert alert = new Alert(Alert.AlertType.WARNING,  "error en la carga de los datos de la pelicula");
-            alert.show();
-        }
+//        try {
+//            getInfoFunc();
+//        } catch (Exception e){
+//            Alert alert = new Alert(Alert.AlertType.WARNING,  "error en la carga de los datos de la pelicula");
+//            alert.show();
+//        }
 
 //        funcionElegida.setSala(salapr);
 //        funcionElegida.setLocal(local);
@@ -139,7 +139,7 @@ public class Showroom implements Initializable {
         grid.setHgap(30);
 
      //  System.out.println(local.getName());
-        addSeats(salapr);
+       // addSeats(salapr);
 
     }
 

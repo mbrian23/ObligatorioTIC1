@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
@@ -25,17 +27,30 @@ public class PeliculaMgr {
     // Create pelicula
     @PostMapping("/pelicula")
     public void save(@RequestBody Pelicula pelicula){
-        System.out.println(pelicula+"am i there"+pelicula.getId() + pelicula.getActores()+pelicula.getTitulo());
         peliculaRepository.save(pelicula);
         peliculaRepository.count();
     }
 
-    //Edit pelicula by id
-    @PutMapping("/pelicula/{id}")
-    public void update (@PathVariable("id") Long id, Pelicula pelicula){
-        pelicula.setId(id);
-        peliculaRepository.save(pelicula);
+
+    @PutMapping("/pelicula")
+    public ResponseEntity<Pelicula> update (
+                                            @Valid @RequestBody Pelicula pelicula){
+        Pelicula pel = peliculaRepository.findById(pelicula.getId()).get();
+        pel.setMovieImage(pelicula.getMovieImage());
+        pel.setActores(pelicula.getActores());
+        pel.setDescripcion(pelicula.getDescripcion());
+        pel.setDuracion(pelicula.getDuracion());
+        pel.setGenero(pelicula.getGenero());
+        pel.setTitulo(pelicula.getTitulo());
+        final Pelicula peliculaPronta = peliculaRepository.save(pel);
+        return ResponseEntity.ok(peliculaPronta);
+
     }
+//    @PutMapping("/pelicula")
+//    public void update(@RequestBody Pelicula pelicula){
+//        peliculaRepository.save(pelicula);
+//    }
+
 
     //Get all peliculas
     @GetMapping("/peliculas")

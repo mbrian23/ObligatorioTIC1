@@ -21,12 +21,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.*;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collections;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
@@ -166,6 +170,8 @@ public class MovieController implements Initializable {
                     if(!editando) {
                         peliculaMgr.addPelicula(tituloAgregar, generoAgregar, actoresAgregar, duracionAgregar, descripcionAgregar, movieImage);
 
+
+
                         showAlert("Pelicula agregada", "Se agrego con exito la Pelicula!");
 
 
@@ -174,8 +180,19 @@ public class MovieController implements Initializable {
                     } else {
 
 
-                            Pelicula peliculaActualizada = new Pelicula(tituloAgregar,generoAgregar ,actoresAgregar,duracionAgregar ,descripcionAgregar);
-                            peliculaMgr.update(idTemp,peliculaActualizada);
+                        Pelicula peliculaActualizada = new Pelicula(tituloAgregar,generoAgregar ,actoresAgregar,duracionAgregar ,descripcionAgregar);
+                        peliculaActualizada.setMovieImage(movieImage);
+                        peliculaActualizada.setId(idTemp);
+
+                        RestTemplate restTemplate = new RestTemplate();
+//                        HttpEntity<Pelicula> body = new HttpEntity<>(peliculaActualizada);
+//                        ResponseEntity<Pelicula> temp = restTemplate.exchange(
+//                                "http://localHost:8080/pelicula/" + peliculaActualizada + "/" + idTemp,
+//                                HttpMethod.PUT,
+//                                body,
+//                                Pelicula.class);
+
+                             peliculaMgr.update(peliculaActualizada);
 
                             showAlert("Pelicula Editada", "Se edito con exito la Pelicula!");
                             close(event);
