@@ -73,7 +73,24 @@ public class CarteleraCines implements Initializable {
     @FXML
     private Button btninicio;
 
+
+
     private ObservableList<Cine> cineList = FXCollections.observableArrayList();
+
+    @FXML
+    private Button btnReservas;
+
+    @FXML
+    public void cargaCartReservas (ActionEvent event) throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(CarteleraReservas.class.getResourceAsStream("CarteleraReservas.fxml"));
+        Scene inicioScene = new Scene(root, 800, 550);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(inicioScene);
+        window.show();
+    }
 
     @FXML
     void agregarCineAction(ActionEvent event) throws IOException {

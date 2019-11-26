@@ -78,6 +78,21 @@ public class CarteleraLocales implements Initializable {
     private ObservableList<Local> localList = FXCollections.observableArrayList();
 
     @FXML
+    private Button btnReservas;
+
+    @FXML
+    public void cargaCartReservas (ActionEvent event) throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(CarteleraReservas.class.getResourceAsStream("CarteleraReservas.fxml"));
+        Scene inicioScene = new Scene(root, 800, 550);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(inicioScene);
+        window.show();
+    }
+
+    @FXML
     void agregarLocalAction(ActionEvent event) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);

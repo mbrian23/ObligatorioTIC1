@@ -71,6 +71,11 @@ public class Principal implements Initializable {
     @FXML
     private Button btnVolver;
 
+
+    @FXML
+    private Button btnReservas;
+
+
     @FXML
     void agregarPeliculaAction(ActionEvent event) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -179,6 +184,18 @@ public class Principal implements Initializable {
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(Principal.class.getResourceAsStream("Cartelera.fxml"));
+        Scene inicioScene = new Scene(root, 800, 550);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(inicioScene);
+        window.show();
+    }
+
+    @FXML
+    public void cargaCartReservas (ActionEvent event) throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(CarteleraReservas.class.getResourceAsStream("CarteleraReservas.fxml"));
         Scene inicioScene = new Scene(root, 800, 550);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(inicioScene);

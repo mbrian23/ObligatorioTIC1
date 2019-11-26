@@ -95,6 +95,11 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
+            <Button fx:id="btnReservas" onAction="#cargaCartReservas" mnemonicParsing="false" styleClass="botonInicio" text="RESERVAS">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
       <Separator layoutX="143.0" layoutY="-3.0" orientation="VERTICAL" prefHeight="675.0" prefWidth="0.0" />
