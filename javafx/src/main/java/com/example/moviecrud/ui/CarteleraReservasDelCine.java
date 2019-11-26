@@ -137,7 +137,7 @@ public class CarteleraReservasDelCine implements Initializable {
     }
 
     @FXML
-    void cargaCartCine(ActionEvent event) throws Exception{
+    void cargaCartReservasCine(ActionEvent event) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
