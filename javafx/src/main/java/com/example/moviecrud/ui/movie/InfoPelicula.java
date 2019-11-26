@@ -146,15 +146,15 @@ public class InfoPelicula implements Initializable {
         int f = funcionMgr.getAllFunciones().size();
         String tit = titulo.getText();
 
-        funcionPelicula.clear();
-        local.clear();
-        cines.clear();
-        tipoSala.clear();
-        hor.clear();
-        localidad.getItems().clear();
-        horario.getItems().clear();
-        sala.getItems().clear();
-        cadena.getItems().clear();
+//        funcionPelicula.clear();
+//        local.clear();
+//        cines.clear();
+//        tipoSala.clear();
+//        hor.clear();
+//        localidad.getItems().clear();
+//        horario.getItems().clear();
+//        sala.getItems().clear();
+//        cadena.getItems().clear();
 
 
 
@@ -221,6 +221,7 @@ public class InfoPelicula implements Initializable {
     @FXML
     public void enableLoc (ActionEvent event){
         int tamano = localMgr.getAllLocales().size();
+        local.clear();
         localidad.getItems().clear();
         ArrayList<Local> locales = (ArrayList<Local>) localMgr.getAllLocales();
 
@@ -237,6 +238,7 @@ public class InfoPelicula implements Initializable {
     public void enableSala (ActionEvent event){
         int tamano = salaManager.getAllSalas().size();
         sala.getItems().clear();
+        tipoSala.clear();
         ArrayList<Sala> salas = (ArrayList<Sala>) salaManager.getAllSalas();
 
         for (int i = 0; i < tamano ; i++) {
@@ -251,6 +253,8 @@ public class InfoPelicula implements Initializable {
     @FXML
     public void enableHorario (ActionEvent event){
        ArrayList<Funcion> funciones = (ArrayList<Funcion>) funcionMgr.getAllFunciones();
+       horario.getItems().clear();
+       hor.clear();
         for (int i = 0; i < funciones.size() ; i++) {
             if (funciones.get(i).getLocal().getName().equals(localidad.getValue()) && funciones.get(i).getFecha().equals(fecha.getValue()) && funciones.get(i).getSala().getTipo().equals(sala.getValue())){
                 hor.add(funciones.get(i).getHoraFuncion());
@@ -266,75 +270,6 @@ public class InfoPelicula implements Initializable {
     }
 
     private ObservableList<Funcion> filteredList = FXCollections.observableArrayList();
-
-    public void setBoxesFiltered(){
-
-
-        String loc = localidad.getValue();
-        String sl = sala.getValue();
-
-        if(loc != null){
-
-            for (Funcion funcion : funcionPelicula) {
-                if (funcion.getLocal().getName().equals(loc)) {
-                    filteredList.add(funcion);
-                }
-            }
-            int z = filteredList.size();
-            int f = funcionPelicula.size();
-            int min = Math.min(f,z);
-
-            for (int i = 0; i < min; i++) {
-                if (!local.contains(filteredList.get(i).getLocal().getName())) {
-                    local.add(filteredList.get(i).getLocal().getName());
-                }
-            }
-            localidad.setItems(local);
-
-            if(sala.getValue() == null){
-
-                sala.getItems().clear();
-                tipoSala.clear();
-                for (int i = 0; i < min; i++) {
-                    if (!tipoSala.contains(filteredList.get(i).getSala().getTipo())) {
-                        tipoSala.add(filteredList.get(i).getSala().getTipo());
-                    }
-                }
-                sala.setItems(tipoSala);
-            }
-        }
-
-        if(sl != null){
-            local.clear();
-            localidad.getItems().clear();
-
-            for (Funcion funcion: funcionPelicula) {
-                if (funcion.getSala().getTipo().equals(sl)){
-                    filteredList.add(funcion);
-                }
-            }
-            int z = filteredList.size();
-
-            int f = funcionPelicula.size();
-
-            int min = Math.min(f,z);
-
-            for (int i = 0; i < min; i++) {
-                if (!local.contains(filteredList.get(i).getLocal().getName())) {
-                    local.add(filteredList.get(i).getLocal().getName());
-                }
-            }
-            localidad.setItems(local);
-
-            for (int i = 0; i < min; i++) {
-                if (!tipoSala.contains(filteredList.get(i).getSala().getTipo())) {
-                    tipoSala.add(filteredList.get(i).getSala().getTipo());
-                }
-            }
-            sala.setItems(tipoSala);
-        }
-    }
-
 
     public void sbox(){
         funcionPelicula.setAll(funcionMgr.getAllFunciones());
@@ -452,7 +387,7 @@ public class InfoPelicula implements Initializable {
         if (funcionElegida != null){
             addSeats(funcionElegida.getSala());
         } else{
-            showAlert("Le erraste a la funcion", "BP");
+            showAlert("Le erraste a la funcion", "LE ERRASTE A LA FUNCION, BP.");
         }
 
     }

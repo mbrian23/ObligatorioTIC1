@@ -14,6 +14,7 @@ public class Funcion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idFuncion")
     private Long id;
 
 
@@ -71,6 +72,27 @@ public class Funcion {
     }
 
     public Funcion() {
+    }
+
+    public Long getNumeroSala() {
+        if (sala.getNumeroSala() != null){
+            return sala.getNumeroSala();
+        }
+        return 0l;
+    }
+
+    public String getNombreLocal(){
+        if (local.getName() != null) {
+            return local.getName();
+        }
+        return "vacio";
+    }
+
+    public String getNombrePelicula(){
+        if (pelicula.getTitulo() != null) {
+            return pelicula.getTitulo();
+        }
+        return "vacio";
     }
 
     public LocalDate getFechaInicio() {

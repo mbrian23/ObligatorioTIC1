@@ -40,9 +40,9 @@ public class TicketMgr {
 
 
     //polemico
-    public List<Ticket> getTicketByUsuario(@PathVariable(value = "usuario")Usuario usuario){
-        return rest.getForObject("http://localhost:8080/ticket/{usuario}", List.class, usuario);
-    }
+//    public List<Ticket> getTicketByUsuario(@PathVariable(value = "usuario")Usuario usuario){
+//        return rest.getForObject("http://localhost:8080/ticket/{usuario}", List.class, usuario);
+//    }
 
     public void addTicket(Funcion funcion, Usuario usuario, String asientos, Integer precio) throws InformacionInvalida, YaExiste, IOException {
         if(funcion== null || usuario == null ||  asientos == null ||  precio ==null ){

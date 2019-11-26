@@ -9,16 +9,16 @@ import java.util.List;
 public class Ticket {
 
     @Id
-    @NotBlank
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idFuncion")
     private Funcion funcion;
 
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id")
+    @ManyToOne(cascade = CascadeType.ALL
+    )
+    @JoinColumn(name = "idUsuario")
     private Usuario usuario;
 
     private String asientos;

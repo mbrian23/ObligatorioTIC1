@@ -102,10 +102,10 @@ public class TicketController implements Initializable {
     public void loadTicketData (Ticket ticket){
         try {
             user.setText(ticket.getUsuario().getUsername());
-            peli.setText(ticket.getFuncion().getNombrePelicula());
-            local.setText(ticket.getFuncion().getNombreLocal());
+            peli.setText(ticket.getFuncion().getPelicula().getTitulo());
+            local.setText(ticket.getFuncion().getLocal().getName());
             cine.setText(ticket.getFuncion().getLocal().getNombreCine());
-            sala.setText(ticket.getFuncion().getNumeroSala().toString());
+            sala.setText(ticket.getFuncion().getSala().getNumeroSala().toString());
             fecha.setText(ticket.getFuncion().getFechaInicio().toString());
             hora.setText(ticket.getFuncion().getHoraFuncion().toString());
         } catch (NumberFormatException e){
@@ -152,7 +152,7 @@ public class TicketController implements Initializable {
 
                         for (int i = 0; i < funciones.size() ; i++) {
                             if (funciones.get(i).getPelicula().getTitulo().equals(peliAgregar) && funciones.get(i).getLocal().getNombreCine().equals(cineAgregar)&&
-                            funciones.get(i).getNombreLocal().equals(localAgregar)&& funciones.get(i).getSala().getTipo().equals(salaAgregar) &&
+                            funciones.get(i).getLocal().getName().equals(localAgregar)&& funciones.get(i).getSala().getNumeroSala().toString().equals(salaAgregar) &&
                             funciones.get(i).getFecha().toString().equals(fechaAgregar)){
                                 funcionAgregar = funciones.get(i);
                             }
