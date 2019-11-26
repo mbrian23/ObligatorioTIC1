@@ -32,10 +32,7 @@ public class Funcion {
     private boolean[][] matriz;
 
     public Long getNumeroSala() {
-        if (sala.getNumeroSala() != null){
-            return sala.getNumeroSala();
-        }
-        return 3l;
+        return this.sala.getNumeroSala();
     }
 
     public String getNombreLocal(){
