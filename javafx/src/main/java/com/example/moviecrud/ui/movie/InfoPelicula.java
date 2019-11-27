@@ -244,7 +244,7 @@ public class InfoPelicula implements Initializable {
         }
         local.clear();
         for (int i = 0; i <funcionPelicula.size() ; i++) {
-            if(!local.contains(funcionPelicula.get(i).getLocal().getName())) {
+            if(!local.contains(funcionPelicula.get(i).getLocal().getName()) && funcionPelicula.get(i).getLocal().getCine().getNombre().equals(cadena.getValue())) {
                 local.add(funcionPelicula.get(i).getLocal().getName());
             }
         }
@@ -279,7 +279,7 @@ public class InfoPelicula implements Initializable {
         System.out.println(funcionPelicula.size());
         tipoSala.clear();
         for (int i = 0; i <funcionPelicula.size() ; i++) {
-            if(!tipoSala.contains(funcionPelicula.get(i).getSala().getTipo())) {
+            if(!tipoSala.contains(funcionPelicula.get(i).getSala().getTipo()) && funcionPelicula.get(i).getLocal().getName().equals(localidad.getValue()) ) {
                 tipoSala.add(funcionPelicula.get(i).getSala().getTipo());
             }
         }
@@ -312,7 +312,7 @@ public class InfoPelicula implements Initializable {
         }
         hor.clear();
         for (int i = 0; i <funcionPelicula.size() ; i++) {
-            if(!hor.contains(funcionPelicula.get(i).getHoraFuncion())) {
+            if(!hor.contains(funcionPelicula.get(i).getHoraFuncion()) && funcionPelicula.get(i).getFecha().equals(fecha.getValue())  ) {
                 hor.add(funcionPelicula.get(i).getHoraFuncion());
             }
         }
@@ -350,7 +350,7 @@ public class InfoPelicula implements Initializable {
         System.out.println(funcionPelicula.size());
 
         for (int i = 0; i < funcionPelicula.size() ; i++) {
-            if (!fechas.contains(funcionPelicula.get(i).getFecha())){
+            if (!fechas.contains(funcionPelicula.get(i).getFecha()) && funcionPelicula.get(i).getSala().getTipo().equals(sala.getValue())){
                 fechas.add(funcionPelicula.get(i).getFecha());
             }
         }
