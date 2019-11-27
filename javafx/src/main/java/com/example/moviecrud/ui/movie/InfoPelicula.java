@@ -596,9 +596,7 @@ public class InfoPelicula implements Initializable {
 
         for (int i = 0; i <  funcionElegida.getSala().getFilas() ; i++) {
             for (int j = 0; j < funcionElegida.getSala().getColumnas(); j++){
-//                ImageView imageView = (ImageView) getNodeByRowColumnIndex(i,j,grid);
-//                Image im = null;
-                ImageView ids = (ImageView)grid.getChildren().get(i+j);
+                ImageView ids = (ImageView)grid.getChildren().get((int) (funcionElegida.getSala().getFilas()*j+i));
                 Image im = ids.getImage();
 
                 if (im.equals(selected)){
@@ -615,21 +613,16 @@ public class InfoPelicula implements Initializable {
 
                 for (int i = 0; i < funcionElegida.getSala().getFilas(); i++) {
                     for (int j = 0; j < funcionElegida.getSala().getColumnas(); j++) {
-                       // ImageView imageView = (ImageView) getNodeByRowColumnIndex(i, j, grid);
-                        ImageView ids = (ImageView)grid.getChildren().get(i+j);
+                        ImageView ids = (ImageView)grid.getChildren().get((int) (funcionElegida.getSala().getFilas()*j+i));
                         Image im = ids.getImage();
                         if (im.equals(selected)) {
-//                    ImageView ocupado = (ImageView) getNodeByRowColumnIndex(i,j,grid);
-                           // ((ImageView) getNodeByRowColumnIndex(i, j, grid)).setImage(unavailable);
-                            ((ImageView) grid.getChildren().get(i+j)).setImage(unavailable);
-                            // operacion que cambie este lugar de la matriz a no dispoble
+                            ((ImageView) grid.getChildren().get((int) (funcionElegida.getSala().getFilas()*j+i))).setImage(unavailable);
                             funcionElegida.reservaButaca(i, j);
-                            //funcionElegida.setId(idTemp);
                             funcionElegida.setFecha(fecha.getValue().plusDays(1));
-                            funcionMgr.update(funcionElegida);
                         }
                     }
                 }
+                funcionMgr.update(funcionElegida);
 
                 Ticket ticket = new Ticket(funcionElegida, usuarioActivo, "asiento", 10);
 

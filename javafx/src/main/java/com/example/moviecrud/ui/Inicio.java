@@ -116,7 +116,7 @@ public class Inicio implements Initializable {
     private TextField userPass;
 
     @FXML
-    void ingresoNormal (ActionEvent event) {
+    void cargaInicio (ActionEvent event) {
         us = userIngreso.getText();
         String pass= userPass.getText();
 
@@ -144,35 +144,7 @@ public class Inicio implements Initializable {
         }
     }
 
-    @FXML
-    void cargaInicio (ActionEvent event) throws Exception {
-        us = userIngreso.getText();
-//        String pass= userPass.getText();
-//        try {
-//            Usuario usuario = (Usuario) usuarioMgr.getUsuarioByUsername(us);
-//            if (BCrypt.checkpw(pass, usuario.getPassword())) {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("Inicio.fxml"));
-        Scene inicioScene = new Scene(root, 800, 550);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(inicioScene);
-        window.show();
-
-        Inicio inicio = fxmlLoader.getController();
-        setUsStatic(us);
-        inicio.loadUsData(us);
-//    } else {
-//        Alert alert = new Alert(Alert.AlertType.WARNING, "Contrasena incorrecta");
-//        alert.showAndWait();
-//    }
-//
-//} catch (Exception e) {
-//        Alert alert = new Alert(Alert.AlertType.WARNING, e.getMessage() + "Algun dato ingresado no es correcto o no esta asociado a nigun usuario del sistema");
-//        alert.showAndWait();
-//        }
-    }
 
     public void loadUsData (String us){
         try {
