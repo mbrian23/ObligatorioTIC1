@@ -27,6 +27,8 @@ public class LocalMgr {
 
     String ip = InetAddress.getLocalHost().getHostAddress();
 
+   // String ip = "10.252.61.196";
+
     public LocalMgr() throws UnknownHostException {
     }
 

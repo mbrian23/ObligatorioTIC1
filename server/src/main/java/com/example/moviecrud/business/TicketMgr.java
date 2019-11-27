@@ -89,4 +89,9 @@ public class TicketMgr {
         ticketRepository.save(ticket);
     }
 
+    @DeleteMapping(value = "/ticket/{id}")
+    public void deleteTicket(@PathVariable Integer id) {
+        ticketRepository.delete(ticketRepository.findById(id).get());
+    }
+
 }

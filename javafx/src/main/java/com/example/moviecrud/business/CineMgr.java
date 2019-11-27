@@ -27,8 +27,9 @@ public class CineMgr  {
     @Autowired
     UsuarioMgr usuarioMgr;
 
-    //String ip = "192.168.0.107";
+
     String ip = InetAddress.getLocalHost().getHostAddress();
+    //String ip = "10.252.61.196";
 
     RestTemplate rest = new RestTemplate();
 
@@ -55,9 +56,9 @@ public class CineMgr  {
         return rest.getForObject("http://"+ip+":8080/cine?id={id}", Cine.class, id);
     }
 
-    public ResponseEntity<?> deleteCine(@PathVariable(value = "id") String cineId) {
-        rest.delete("http://"+ip+":8080/cine/{id}");
-        return ResponseEntity.ok().build();
+    public void deleteCine(Cine cine) {
+        rest.delete("http://"+ip+":8080/cine" + "/" +cine.getNombre() );
+
     }
 
     public void addCine(String name,String mail,String contra) throws InformacionInvalida, YaExiste, IOException {
@@ -78,7 +79,7 @@ public class CineMgr  {
     public void eliminarCine (String titulo)  throws InformacionInvalida, NoExiste {
         for (Cine cine: getAllCine()) {
             if (cine.getNombre().equals(titulo)){
-                deleteCine(titulo);
+                deleteCine(cine);
             }
         }
 

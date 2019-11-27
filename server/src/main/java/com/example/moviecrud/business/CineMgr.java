@@ -43,11 +43,10 @@ public class CineMgr  {
         return cineRepo.findById(id).get();
     }
 
-    @DeleteMapping("/cine/{id}")
-    public ResponseEntity<?> deleteCine(@PathVariable(value = "id") String cineId) {
+    @DeleteMapping(value = "/cine/{id}")
+    public void deleteCine(@PathVariable String cineId) {
         Cine cine = cineRepo.findById(cineId).get();
         cineRepo.delete(cine);
-        return ResponseEntity.ok().build();
     }
 
     public void addCine(String name) throws InformacionInvalida, YaExiste, IOException {

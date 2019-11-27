@@ -26,7 +26,9 @@ import java.util.List;
 public class FuncionMgr {
     RestTemplate rest = new RestTemplate();
 
-    String ip = InetAddress.getLocalHost().getHostAddress();
+  String ip = InetAddress.getLocalHost().getHostAddress();
+
+  //  String ip = "10.252.61.196";
 
     public FuncionMgr() throws UnknownHostException {
     }

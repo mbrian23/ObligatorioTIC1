@@ -44,10 +44,11 @@ public class LocalMgr {
         return localRepo.findById(localId).get();
     }
 
-    public ResponseEntity<?> deleteLocal(@PathVariable(value = "id") String localId) {
+    @DeleteMapping(value = "/local/{id}")
+    public void deleteLocal(@PathVariable String localId) {
         Local local = localRepo.findById(localId).get();
         localRepo.delete(local);
-        return ResponseEntity.ok().build();
+
     }
 
     public void addLocal(String name, Cine cine) throws InformacionInvalida, YaExiste, IOException {

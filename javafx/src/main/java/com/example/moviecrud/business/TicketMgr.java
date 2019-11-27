@@ -21,7 +21,8 @@ import java.util.List;
 public class TicketMgr {
     RestTemplate rest = new RestTemplate();
 
-    String ip = InetAddress.getLocalHost().getHostAddress();
+   String ip = InetAddress.getLocalHost().getHostAddress();
+   //String ip = "10.252.61.196";
 
     public TicketMgr() throws UnknownHostException {
     }

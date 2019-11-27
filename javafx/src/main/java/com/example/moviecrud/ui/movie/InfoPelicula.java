@@ -302,17 +302,24 @@ public class InfoPelicula implements Initializable {
     }
     @FXML
     public void enableHorario (ActionEvent event){
-        int tamano1 = funcionPelicula.size();
+        hor.clear();
+        funcionPelicula.clear();
+
+        for (int i = 0; i < funcionMgr.getAllFunciones().size(); i++) {
+            funcionPelicula.add(funcionMgr.getAllFunciones().get(i));
+        }
         int u = 0;
-        for (int i = 0; i < tamano1 - u ; i++) {
-            if(!(funcionPelicula.get(i).getHoraFuncion()).equals(horario.getValue())){
-                funcionPelicula.remove(i);
+        for (int j = 0; j < funcionPelicula.size() - u ; j++) {
+            if(!funcionPelicula.get(j).getPelicula().getTitulo().equals(titulo.getText())){
+                funcionPelicula.remove(j);
                 u++;
             }
         }
-        hor.clear();
+
+
+       // hor.clear();
         for (int i = 0; i <funcionPelicula.size() ; i++) {
-            if(!hor.contains(funcionPelicula.get(i).getHoraFuncion()) /* && funcionPelicula.get(i).getFecha().equals(fecha.getValue()) */  ) {
+            if(!hor.contains(funcionPelicula.get(i).getHoraFuncion())  && funcionPelicula.get(i).getFecha().equals(fecha.getValue())  ) {
                 hor.add(funcionPelicula.get(i).getHoraFuncion());
             }
         }
@@ -626,6 +633,8 @@ public class InfoPelicula implements Initializable {
 
                 Ticket ticket = new Ticket(funcionElegida, usuarioActivo, "asiento", 10);
 
+                close(event);
+
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
@@ -637,6 +646,7 @@ public class InfoPelicula implements Initializable {
 
                 TicketController ticketController = fxmlLoader.getController();
                 ticketController.loadTicketData(ticket);
+
             } else {
                 showAlert("No hay usuario Activo", "Inicie Sesion");
             }
@@ -651,6 +661,14 @@ public class InfoPelicula implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(contextText);
         alert.showAndWait();
+    }
+
+
+    @FXML
+    void close(ActionEvent actionEvent) {
+        Node source = (Node)  actionEvent.getSource();
+        Stage stage  = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 
 
