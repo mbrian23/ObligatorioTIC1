@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
 
 @RestController
@@ -21,12 +23,18 @@ public class SalaManager {
 
     RestTemplate rest = new RestTemplate();
 
+    String ip = InetAddress.getLocalHost().getHostAddress();
+
+    public SalaManager() throws UnknownHostException {
+    }
+
+
     public void save( Sala sala){
-        rest.postForObject("http://localhost:8080/sala", sala, Sala.class);
+        rest.postForObject("http://"+ip+":8080/sala", sala, Sala.class);
     }
 
     public Sala getSalaByNumSala(@PathVariable(value = "numeroSala") Long numeroSala ) {
-        return rest.getForObject("http://localhost:8080/sala?numeroSala={numeroSala}", Sala.class, numeroSala);
+        return rest.getForObject("http://"+ip+":8080/sala?numeroSala={numeroSala}", Sala.class, numeroSala);
     }
 
 
@@ -45,10 +53,10 @@ public class SalaManager {
     }
 
     public List<Sala> getAllSalas(){
-        return (List<Sala>) rest.exchange("http://localhost:8080/salas", HttpMethod.GET, null, new ParameterizedTypeReference<List<Sala>>() {}).getBody();
+        return (List<Sala>) rest.exchange("http://"+ip+":8080/salas", HttpMethod.GET, null, new ParameterizedTypeReference<List<Sala>>() {}).getBody();
     }
 
     public void update ( Sala sala){
-        rest.postForObject("http://localhost:8080/sala", sala, Sala.class);
+        rest.postForObject("http://"+ip+":8080/sala", sala, Sala.class);
     }
 }

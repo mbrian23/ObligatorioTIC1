@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.Period;
@@ -24,28 +26,32 @@ import java.util.List;
 public class FuncionMgr {
     RestTemplate rest = new RestTemplate();
 
+    String ip = InetAddress.getLocalHost().getHostAddress();
+
+    public FuncionMgr() throws UnknownHostException {
+    }
 
     public void save(Funcion funcion){
 
-        rest.postForObject("http://localhost:8080/funcion", funcion, Funcion.class);
+        rest.postForObject("http://"+ip+":8080/funcion", funcion, Funcion.class);
     }
 
     public void update ( Funcion funcion){
-        rest.postForObject("http://localhost:8080/funcion", funcion, Funcion.class);
+        rest.postForObject("http://"+ip+":8080/funcion", funcion, Funcion.class);
     }
 
 
     public List<Funcion> getAllFunciones(){
-        return rest.exchange("http://localhost:8080/funciones", HttpMethod.GET, null, new ParameterizedTypeReference<List<Funcion>>() {}).getBody();
+        return rest.exchange("http://"+ip+":8080/funciones", HttpMethod.GET, null, new ParameterizedTypeReference<List<Funcion>>() {}).getBody();
     }
 
 
     public Funcion getFuncionById(@PathVariable(value = "id") Long id) {
-        return rest.getForObject("http://localhost:8080/funcion/{id}", Funcion.class, id);
+        return rest.getForObject("http://"+ip+":8080/funcion/{id}", Funcion.class, id);
     }
 
     public ResponseEntity<?> deleteFuncion(@PathVariable(value = "id") Long funcionId) {
-        rest.delete("http://localhost:8080/funcion/{id}");
+        rest.delete("http://"+ip+":8080/funcion/{id}");
         return ResponseEntity.ok().build();
     }
 

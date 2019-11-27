@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
 
 @RestController
@@ -20,35 +22,40 @@ public class PeliculaMgr {
 
     RestTemplate rest = new RestTemplate();
 
+    String ip = InetAddress.getLocalHost().getHostAddress();
+
+    public PeliculaMgr() throws UnknownHostException {
+    }
+
 
     public void save( Pelicula pelicula){
 
-        rest.postForObject("http://localhost:8080/pelicula", pelicula, Pelicula.class);
+        rest.postForObject("http://"+ip+":8080/pelicula", pelicula, Pelicula.class);
 
     }
 
 
     public void update ( Pelicula pelicula){
-        rest.postForObject("http://localhost:8080/pelicula", pelicula, Pelicula.class);
+        rest.postForObject("http://"+ip+":8080/pelicula", pelicula, Pelicula.class);
 
     }
 
     public List<Pelicula> getAllPeliculas(){
-        return (List<Pelicula>) rest.exchange("http://localhost:8080/peliculas", HttpMethod.GET, null, new ParameterizedTypeReference<List<Pelicula>>() {}).getBody();
+        return (List<Pelicula>) rest.exchange("http://"+ip+":8080/peliculas", HttpMethod.GET, null, new ParameterizedTypeReference<List<Pelicula>>() {}).getBody();
     }
 
 
     public Pelicula getPeliculaById(@PathVariable(value = "id") Long id) {
-        return rest.getForObject("http://localhost:8080/pelicula/{id}", Pelicula.class, id);
+        return rest.getForObject("http://"+ip+":8080/pelicula/{id}", Pelicula.class, id);
     }
 
     public Pelicula getPeliculaByName(@PathVariable(value = "titulo") String titulo) {
-        return rest.getForObject("http://localhost:8080/pelicula?titulo={titulo}", Pelicula.class, titulo);
+        return rest.getForObject("http://"+ip+":8080/pelicula?titulo={titulo}", Pelicula.class, titulo);
     }
 
 
     public void deletePelicula(Pelicula pelicula) {
-        rest.delete("http://localhost:8080/pelicula" + "/" + pelicula.getId());
+        rest.delete("http://"+ip+":8080/pelicula" + "/" + pelicula.getId());
     }
 
     public void addPelicula(String titulo, String genero, String actores, String duracion, String descripcion, byte[] movieImage) throws InformacionInvalida, YaExiste, IOException {

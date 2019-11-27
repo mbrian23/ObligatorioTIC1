@@ -15,9 +15,11 @@ import org.springframework.web.client.RestTemplate;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.util.List;
+import java.net.InetAddress;
 
 @RestController
 public class CineMgr  {
@@ -25,30 +27,36 @@ public class CineMgr  {
     @Autowired
     UsuarioMgr usuarioMgr;
 
+    //String ip = "192.168.0.107";
+    String ip = InetAddress.getLocalHost().getHostAddress();
+
     RestTemplate rest = new RestTemplate();
+
+    public CineMgr() throws UnknownHostException {
+    }
 
     public void save(Cine cine) {
 
-        rest.postForObject("http://localhost:8080/cine", cine, Cine.class);
+        rest.postForObject("http://"+ip+":8080/cine", cine, Cine.class);
     }
 
     public void update(@PathVariable("id") String id, Cine cine) {
         cine.setNombre(id);
-        save(rest.postForObject("http://localhost:8080/cine", cine, Cine.class));
+        save(rest.postForObject("http://"+ip+":8080/cine", cine, Cine.class));
     }
 
 
     public List<Cine> getAllCine() {
-        return (List<Cine>) rest.exchange("http://localhost:8080/cines", HttpMethod.GET, null, new ParameterizedTypeReference<List<Cine>>() {}).getBody();
+        return (List<Cine>) rest.exchange("http://"+ip+":8080/cines", HttpMethod.GET, null, new ParameterizedTypeReference<List<Cine>>() {}).getBody();
     }
 
 
     public Cine getCineById(@PathVariable(value = "id") String id) {
-        return rest.getForObject("http://localhost:8080/cine?id={id}", Cine.class, id);
+        return rest.getForObject("http://"+ip+":8080/cine?id={id}", Cine.class, id);
     }
 
     public ResponseEntity<?> deleteCine(@PathVariable(value = "id") String cineId) {
-        rest.delete("http://localhost:8080/cine/{id}");
+        rest.delete("http://"+ip+":8080/cine/{id}");
         return ResponseEntity.ok().build();
     }
 
