@@ -19,7 +19,7 @@
                </image>
             </ImageView>
             <HBox prefHeight="30.0" prefWidth="310.0" />
-            <Text fx:id="userActivo" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="85.2060546875" />
+            <Text fx:id="userActivo" styleClass="botonInicio" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="85.2060546875" />
          </children>
          <opaqueInsets>
             <Insets />

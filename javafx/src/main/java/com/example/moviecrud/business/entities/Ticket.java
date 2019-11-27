@@ -21,31 +21,30 @@ public class Ticket {
     private String titViejo;
 
 
-    public LocalDate getFechaFuncion (){
-        return funcion.getFecha();
-    }
-
-    public Time getHoraFuncion (){
-        return funcion.getHoraFuncion();
-    }
-
-    public Long getNumeroSalaFuncion() {
-        if (funcion.getSala().getNumeroSala() != null){
-            return funcion.getSala().getNumeroSala();
-        }
-        return 3l;
-    }
-
-    public String getPeliculaFuncion (){
-        return funcion.getPelicula().getTitulo();
-    }
-
-    public String getLocalFuncion (){
-        return funcion.getLocal().getName();
-    }
-    public String getUsernameUsuario (){
-        return usuario.getUsername();
-    }
+//    public LocalDate getFechaFuncion (){
+//        return funcion.getFecha();
+//    }
+//
+//    public Time getHoraFuncion (){
+//        return funcion.getHoraFuncion();
+//    }
+//
+//    public Long getNumeroSalaFuncion() {
+//        if (funcion.getSala().getNumeroSala() != null){
+//            return funcion.getSala().getNumeroSala();
+//        }
+//        return 3l;
+//    }
+//    public String getPeliculaFuncion (){
+//        return this.funcion.getPelicula().getTitulo();
+//    }
+//
+//    public String getLocalFuncion (){
+//        return this.funcion.getLocal().getName();
+//    }
+//    public String getUsernameUsuario (){
+//        return this.usuario.getUsername();
+//    }
 
 
 

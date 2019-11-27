@@ -1,11 +1,13 @@
 package com.example.moviecrud.business.entities;
 
 
+import javax.naming.NamingException;
 import java.sql.Time;
 import java.time.LocalDate;
 
 
 public class Funcion {
+
 
     private Long id;
 
@@ -31,23 +33,26 @@ public class Funcion {
 
     private boolean[][] matriz;
 
-    public Long getNumeroSala() {
-        return this.sala.getNumeroSala();
-    }
-
-    public String getNombreLocal(){
-        if (local.getName() != null) {
-            return local.getName();
-        }
-        return "vacio";
-    }
-
-    public String getNombrePelicula(){
-        if (pelicula.getTitulo() != null) {
-            return pelicula.getTitulo();
-        }
-        return "vacio";
-    }
+//    public Long getNumeroSala() {
+//        if (this.sala.getNumeroSala() != null){
+//            return this.sala.getNumeroSala();
+//        }
+//        return 3l;
+//    }
+//
+//    public String getNombreLocal(){
+//        if (this.local.getName() != null) {
+//            return this.local.getName();
+//        }
+//        return "vacio";
+//    }
+//
+//    public String getNombrePelicula(){
+//        if (this.pelicula.getTitulo() != null) {
+//            return this.pelicula.getTitulo();
+//        }
+//        return "vacio";
+//    }
 
 
     public Long getId() {
@@ -78,7 +83,7 @@ public class Funcion {
     public Funcion() {
     }
 
-    public LocalDate getFechaInicio() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
@@ -128,9 +133,6 @@ public class Funcion {
         this.numSala = numSala;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
-    }
 
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;

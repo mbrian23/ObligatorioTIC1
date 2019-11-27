@@ -37,7 +37,7 @@ public class FuncionMgr {
         Funcion func = funcionRepo.findById(funcion.getId()).get();
         func.setMatriz(funcion.getMatriz());
         func.setHoraFuncion(funcion.getHoraFuncion());
-        func.setFechaInicio(funcion.getFechaInicio());
+        func.setFecha(funcion.getFecha());
         func.setSala(funcion.getSala());
         func.setPelicula(funcion.getPelicula());
         func.setLocal(funcion.getLocal());

@@ -51,6 +51,7 @@ public class TicketMgr {
 
         }
         Ticket ticket = new Ticket(funcion,usuario,asientos,precio);
+
         save(ticket);
     }
 }

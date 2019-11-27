@@ -106,7 +106,7 @@ public class TicketController implements Initializable {
             local.setText(ticket.getFuncion().getLocal().getName());
             cine.setText(ticket.getFuncion().getLocal().getNombreCine());
             sala.setText(ticket.getFuncion().getSala().getNumeroSala().toString());
-            fecha.setText(ticket.getFuncion().getFechaInicio().toString());
+            fecha.setText(ticket.getFuncion().getFecha().toString());
             hora.setText(ticket.getFuncion().getHoraFuncion().toString());
         } catch (NumberFormatException e){
             e.printStackTrace();
@@ -157,7 +157,8 @@ public class TicketController implements Initializable {
                                 funcionAgregar = funciones.get(i);
                             }
                         }
-
+                        System.out.println(funcionAgregar);
+                        System.out.println(user);
                         ticketMgr.addTicket(funcionAgregar,user,asiento,precio);
 
 

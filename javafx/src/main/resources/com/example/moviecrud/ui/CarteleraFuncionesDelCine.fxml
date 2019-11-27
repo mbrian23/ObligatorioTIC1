@@ -89,7 +89,7 @@
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin></Button>
-             <Text fx:id="userActivo" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="85.2060546875" >
+             <Text fx:id="userActivo" styleClass="botonInicio" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="85.2060546875" >
                  <VBox.margin>
                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                  </VBox.margin></Text>

@@ -131,6 +131,7 @@ public class InfoPelicula implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         usNameActivo =  inicio.getUs();
         loadUsData(usNameActivo);
+
     }
 
     public String getUsNameActivo() {
@@ -252,8 +253,8 @@ public class InfoPelicula implements Initializable {
         }
         local.clear();
         for (int i = 0; i <funcionPelicula.size() ; i++) {
-            if(!local.contains(funcionPelicula.get(i).getNombreLocal())) {
-                local.add(funcionPelicula.get(i).getNombreLocal());
+            if(!local.contains(funcionPelicula.get(i).getLocal().getName())) {
+                local.add(funcionPelicula.get(i).getLocal().getName());
             }
         }
 
@@ -466,7 +467,7 @@ public class InfoPelicula implements Initializable {
         List<Funcion> lista = funcionMgr.getAllFunciones();
 
         for (int i = 0; i < lista.size(); i++) {
-            if (salaAgregar.getId().equals(lista.get(i).getSala().getId()) && localAgr.getName().equals(lista.get(i).getLocal().getName()) && peliculaAgregar.getTitulo().equals(lista.get(i).getPelicula().getTitulo()) && fechaAgregar.equals(lista.get(i).getFechaInicio()) ){
+            if (salaAgregar.getId().equals(lista.get(i).getSala().getId()) && localAgr.getName().equals(lista.get(i).getLocal().getName()) && peliculaAgregar.getTitulo().equals(lista.get(i).getPelicula().getTitulo()) && fechaAgregar.equals(lista.get(i).getFecha()) ){
                 funcionElegida = lista.get(i);
                 idTemp = lista.get(i).getId();
             }
@@ -597,6 +598,7 @@ public class InfoPelicula implements Initializable {
     @FXML
     public void cargaTicket (ActionEvent event) throws Exception {
        int contador =0;
+
         for (int i = 0; i <  funcionElegida.getSala().getFilas() ; i++) {
             for (int j = 0; j < funcionElegida.getSala().getColumnas(); j++){
                 ImageView imageView = (ImageView) getNodeByRowColumnIndex(i,j,grid);
@@ -605,7 +607,10 @@ public class InfoPelicula implements Initializable {
                 }
             }
         }
+        System.out.println(usNameActivo);
         usuarioActivo =  usuarioMgr.getUsuarioByUsername(usNameActivo);
+
+
         if (contador != 0) {
             if (usuarioActivo != null) {
 

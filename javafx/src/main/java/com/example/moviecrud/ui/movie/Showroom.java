@@ -118,7 +118,7 @@ public class Showroom implements Initializable {
         List<Funcion> lista = funcionMgr.getAllFunciones();
 
         for (int i = 0; i < lista.size(); i++) {
-            if (salapr == lista.get(i).getSala() && local == lista.get(i).getLocal() && pelicula == lista.get(i).getPelicula() && fechainicio == lista.get(i).getFechaInicio() ){
+            if (salapr == lista.get(i).getSala() && local == lista.get(i).getLocal() && pelicula == lista.get(i).getPelicula() && fechainicio == lista.get(i).getFecha() ){
                 funcionElegida = lista.get(i);
                 idTemp = lista.get(i).getId();
             }

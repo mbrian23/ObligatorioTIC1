@@ -67,39 +67,41 @@ public class Funcion {
     }
 
 
+
+
     public void reservaButaca(int fila, int columna){
-     //   matriz(sala.getFilas().intValue(),sala.getColumnas().intValue())[fila][columna] = false;
+     matriz[fila][columna] = false;
     }
 
     public Funcion() {
     }
 
-    public Long getNumeroSala() {
-        if (sala.getNumeroSala() != null){
-            return sala.getNumeroSala();
-        }
-        return 0l;
-    }
+//    public Long getNumeroSala() {
+//        if (this.sala.getNumeroSala() != null){
+//            return this.sala.getNumeroSala();
+//        }
+//        return 3l;
+//    }
+//
+//    public String getNombreLocal(){
+//        if (this.local.getName() != null) {
+//            return this.local.getName();
+//        }
+//        return "vacio";
+//    }
+//
+//    public String getNombrePelicula(){
+//        if (this.pelicula.getTitulo() != null) {
+//            return this.pelicula.getTitulo();
+//        }
+//        return "vacio";
+//    }
 
-    public String getNombreLocal(){
-        if (local.getName() != null) {
-            return local.getName();
-        }
-        return "vacio";
-    }
-
-    public String getNombrePelicula(){
-        if (pelicula.getTitulo() != null) {
-            return pelicula.getTitulo();
-        }
-        return "vacio";
-    }
-
-    public LocalDate getFechaInicio() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFechaInicio(LocalDate fechaInicio) {
+    public void setFecha(LocalDate fechaInicio) {
         this.fecha = fechaInicio;
     }
 
