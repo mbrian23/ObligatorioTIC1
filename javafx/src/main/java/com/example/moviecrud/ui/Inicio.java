@@ -147,6 +147,10 @@ public class Inicio implements Initializable {
     @FXML
     void cargaInicio (ActionEvent event) throws Exception {
         us = userIngreso.getText();
+//        String pass= userPass.getText();
+//        try {
+//            Usuario usuario = (Usuario) usuarioMgr.getUsuarioByUsername(us);
+//            if (BCrypt.checkpw(pass, usuario.getPassword())) {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
@@ -157,7 +161,17 @@ public class Inicio implements Initializable {
         window.show();
 
         Inicio inicio = fxmlLoader.getController();
+//        setUsStatic(us);
         inicio.loadUsData(us);
+//    } else {
+//        Alert alert = new Alert(Alert.AlertType.WARNING, "Contrasena incorrecta");
+//        alert.showAndWait();
+//    }
+//
+//} catch (Exception e) {
+//        Alert alert = new Alert(Alert.AlertType.WARNING, e.getMessage() + "Algun dato ingresado no es correcto o no esta asociado a nigun usuario del sistema");
+//        alert.showAndWait();
+//        }
     }
 
     public void loadUsData (String us){
@@ -314,11 +328,6 @@ public class Inicio implements Initializable {
 
     @FXML
     Button prueba;
-
-
-
-    // REGISTRO DE USUARIO CLIENTE FINAL
-
 
     @FXML
     Button registro;
