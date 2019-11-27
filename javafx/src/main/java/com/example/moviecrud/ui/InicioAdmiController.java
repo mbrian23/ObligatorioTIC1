@@ -17,6 +17,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -93,10 +94,8 @@ public class InicioAdmiController {
     @FXML
     public void ingresar(ActionEvent event) throws IOException {
         String username = adminID.getText();
-        System.out.println(username);
         String contra = password.getText();
         List<Usuario> users = usuarioMgr.getAllUsuarios();
-        System.out.println(users.size());
         List<Cine> cines = cineMgr.getAllCine();
 
         boolean cineEncontrado = false;
@@ -105,40 +104,48 @@ public class InicioAdmiController {
 
         try {
             Usuario usuario = (Usuario) usuarioMgr.getUsuarioByUsername(username);
-            System.out.println(usuario.getAdminPrivileges());
-            if (usuario.getAdminPrivileges().equals("cine")) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+            if (BCrypt.checkpw("skere", "$2a$12$oy7WjtDGEw8g8fsGujweGO1FZQARlNspOggA8WPW2nWpQlreZqPDu")){
+                System.out.println("Son skere");
+            }
+            if (BCrypt.checkpw(contra, usuario.getPassword())) {
+                if (usuario.getAdminPrivileges().equals("cine")) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
-                us = usuario.getUsername();
+                    us = usuario.getUsername();
 
-                Parent root = fxmlLoader.load(CarteleraFuncionesDelCine.class.getResourceAsStream("CarteleraFuncionesDelCine.fxml"));
-                Scene inicioScene = new Scene(root, 600, 500);
-                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                window.setScene(inicioScene);
-                window.show();
+                    Parent root = fxmlLoader.load(CarteleraFuncionesDelCine.class.getResourceAsStream("CarteleraFuncionesDelCine.fxml"));
+                    Scene inicioScene = new Scene(root, 600, 500);
+                    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    window.setScene(inicioScene);
+                    window.show();
 
 
-            } else if (usuario.getAdminPrivileges().equals("admin")){
-                System.out.println(usuario.getClass());
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+                } else if (usuario.getAdminPrivileges().equals("admin")) {
+                    System.out.println(usuario.getClass());
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
-                Parent root = fxmlLoader.load(Principal.class.getResourceAsStream("Cartelera.fxml"));
-                Scene inicioScene = new Scene(root, 600, 500);
-                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                window.setScene(inicioScene);
-                window.show();
+                    Parent root = fxmlLoader.load(Principal.class.getResourceAsStream("Cartelera.fxml"));
+                    Scene inicioScene = new Scene(root, 600, 500);
+                    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    window.setScene(inicioScene);
+                    window.show();
 
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.WARNING, "Su cuenta no tiene privilegios para acceder aquí");
+                    alert.showAndWait();
+                }
             } else {
-                Alert alert = new Alert(Alert.AlertType.WARNING,  "Algun dato ingresado no es correcto o no esta asociado a nigun cine o administrador del sistema");
-
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Contrasena incorrecta");
+                alert.showAndWait();
             }
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.WARNING, e.getMessage() + "Algun dato ingresado no es correeeeeecto o no esta asociado a nigun usuario del sistema");
             alert.showAndWait();
 
         }
+
 
     }
 

@@ -23,6 +23,7 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	compile group: 'org.mindrot', name: 'jbcrypt', version: '0.4'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'com.thoughtworks.xstream:xstream:1.4.11.1'
 	compile 'com.google.code.gson:gson:2.8.5'
