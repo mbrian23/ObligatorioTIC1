@@ -33,7 +33,7 @@
             <HBox alignment="CENTER" style="-fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;" />
             <HBox alignment="CENTER" prefHeight="23.0" prefWidth="250.0" style="-fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;">
                <children>
-                  <TextField prefHeight="0.0" promptText="Password" style="-fx-background-color: transparent; -fx-prompt-text-fill: black;" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="userPass" prefHeight="0.0" promptText="Password" style="-fx-background-color: transparent; -fx-prompt-text-fill: black;" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <Button alignment="CENTER" mnemonicParsing="false" onAction="#cargaInicio" prefHeight="35.0" prefWidth="250.0" style="-fx-background-color: #2f2f2fa3; -fx-background-radius: 100; -fx-text-fill: black; -fx-font-family: Quicksand; -fx-font-weight: bold;" text="Enter" textAlignment="CENTER">

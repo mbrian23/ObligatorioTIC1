@@ -66,9 +66,7 @@ public class PeliculaMgr {
 
         Pelicula pelicula = new Pelicula(titulo,genero,actores,duracion,descripcion);
         pelicula.setMovieImage(movieImage);
-        System.out.println(pelicula.getTitulo()+pelicula.getActores()+pelicula.getDuracion()+" I am here");
         save(pelicula);
-        System.out.println(pelicula.getTitulo()+pelicula.getActores()+pelicula.getDuracion()+" I am here after save");
     }
     
     public void eliminarPelicula (String titulo)  throws InformacionInvalida, NoExiste {

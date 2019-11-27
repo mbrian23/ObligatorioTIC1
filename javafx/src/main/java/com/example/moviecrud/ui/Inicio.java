@@ -5,6 +5,7 @@ import com.example.moviecrud.MovieCrudApplication;
 import com.example.moviecrud.business.PeliculaMgr;
 import com.example.moviecrud.business.UsuarioMgr;
 import com.example.moviecrud.business.entities.Pelicula;
+import com.example.moviecrud.business.entities.Usuario;
 import com.example.moviecrud.business.exceptions.InformacionInvalida;
 import com.example.moviecrud.business.exceptions.YaExiste;
 import com.example.moviecrud.ui.movie.MovieController;
@@ -29,6 +30,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -72,7 +74,15 @@ public class Inicio implements Initializable {
     @FXML
     private Text userActivo;
 
+    public static void setUsStatic(String usStatic) {
+        Inicio.usStatic = usStatic;
+    }
 
+    public static String getUsStatic() {
+        return usStatic;
+    }
+
+    private static String usStatic;
 
 
 
@@ -103,10 +113,40 @@ public class Inicio implements Initializable {
     private TextField userIngreso;
 
     @FXML
+    private TextField userPass;
+
+    @FXML
+    void ingresoNormal (ActionEvent event) {
+        us = userIngreso.getText();
+        String pass= userPass.getText();
+
+        try {
+            Usuario usuario = (Usuario) usuarioMgr.getUsuarioByUsername(us);
+            if (BCrypt.checkpw(pass, usuario.getPassword())) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+                Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("Inicio.fxml"));
+                Scene inicioScene = new Scene(root, 800, 550);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(inicioScene);
+                window.show();
+                Inicio inicio = fxmlLoader.getController();
+                setUsStatic(us);
+                inicio.loadUsData(us);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Contrasena incorrecta");
+                alert.showAndWait();
+            }
+
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, e.getMessage() + "Algun dato ingresado no es correcto o no esta asociado a nigun usuario del sistema");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
     void cargaInicio (ActionEvent event) throws Exception {
-         us = userIngreso.getText();
-
-
+        us = userIngreso.getText();
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
@@ -306,10 +346,16 @@ public class Inicio implements Initializable {
         String emailNuevo = emailRegistro.getText();
         String passwordNueva = passwordRegistro.getText();
 
+        if(passwordRegistro != passwordRepeatRegistro){
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Contrasena y repetir contrasena son diferentes");
+            alert.showAndWait();
+        }
+
         if (usernameNuevo == null || passwordNueva==null || emailNuevo== null ||
                 usernameNuevo.equals("") || passwordNueva.equals("") || emailNuevo.equals("")) {
 
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Algun dato no es correcto!");
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Algun dato ya existe!");
+            alert.showAndWait();
 
         } else {
             usuarioMgr.addUsuario(usernameNuevo, passwordNueva, emailNuevo, "cliente");

@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import com.example.moviecrud.ui.Inicio;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -97,16 +98,13 @@ public class InicioAdmiController {
         String contra = password.getText();
         List<Usuario> users = usuarioMgr.getAllUsuarios();
         List<Cine> cines = cineMgr.getAllCine();
-
         boolean cineEncontrado = false;
 
         int indiceCine = 0;
 
         try {
             Usuario usuario = (Usuario) usuarioMgr.getUsuarioByUsername(username);
-            if (BCrypt.checkpw("skere", "$2a$12$oy7WjtDGEw8g8fsGujweGO1FZQARlNspOggA8WPW2nWpQlreZqPDu")){
-                System.out.println("Son skere");
-            }
+
             if (BCrypt.checkpw(contra, usuario.getPassword())) {
                 if (usuario.getAdminPrivileges().equals("cine")) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
@@ -132,7 +130,7 @@ public class InicioAdmiController {
                     window.setScene(inicioScene);
                     window.show();
 
-                } else {
+                } else if (usuario.getAdminPrivileges().equals("cliente")){
                     Alert alert = new Alert(Alert.AlertType.WARNING, "Su cuenta no tiene privilegios para acceder aquí");
                     alert.showAndWait();
                 }
