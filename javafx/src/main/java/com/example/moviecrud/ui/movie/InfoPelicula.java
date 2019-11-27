@@ -98,6 +98,10 @@ public class InfoPelicula implements Initializable {
 
     private ObservableList<Time> hor = FXCollections.observableArrayList();
 
+    private ObservableList<LocalDate> fechas = FXCollections.observableArrayList();
+
+
+
     private Image available = new Image("com/example/moviecrud/ui/images/available.png");
 
     private Image selected = new Image("com/example/moviecrud/ui/images/selectedSeat.png");
@@ -280,6 +284,7 @@ public class InfoPelicula implements Initializable {
                 u++;
             }
         }
+        System.out.println(funcionPelicula.size());
         tipoSala.clear();
         for (int i = 0; i <funcionPelicula.size() ; i++) {
             if(!tipoSala.contains(funcionPelicula.get(i).getSala().getTipo())) {
@@ -336,6 +341,45 @@ public class InfoPelicula implements Initializable {
     }
     @FXML
     public void enableFecha (ActionEvent event){
+        fechas.clear();
+        funcionPelicula.clear();
+
+        for (int i = 0; i < funcionMgr.getAllFunciones().size(); i++) {
+                funcionPelicula.add(funcionMgr.getAllFunciones().get(i));
+        }
+        int u = 0;
+        for (int j = 0; j < funcionPelicula.size() - u ; j++) {
+            if(!funcionPelicula.get(j).getPelicula().getTitulo().equals(titulo.getText())){
+                funcionPelicula.remove(j);
+                u++;
+            }
+        }
+
+        System.out.println(funcionPelicula.size());
+
+        for (int i = 0; i < funcionPelicula.size() ; i++) {
+            if (!fechas.contains(funcionPelicula.get(i).getFecha())){
+                fechas.add(funcionPelicula.get(i).getFecha());
+            }
+        }
+
+        fecha.setDayCellFactory(picker -> new DateCell() {
+                @Override
+                public void updateItem(LocalDate date, boolean empty) {
+                    super.updateItem(date, empty);
+
+                   // LocalDate today = LocalDate.now();
+
+                        if (!fechas.contains(date)){
+                        setDisable(true);
+                        } else {
+                            setDisable(false);
+                        }
+
+                   // setDisable(empty || date.compareTo(today) < 0);
+                }
+            });
+
         fecha.setDisable(false);
         sala.setDisable(true);
     }
