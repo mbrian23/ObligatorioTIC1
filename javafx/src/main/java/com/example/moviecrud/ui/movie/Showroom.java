@@ -74,12 +74,13 @@ public class Showroom implements Initializable {
     @FXML
     private GridPane grid;
 
+    private Funcion funcionElegida;
 
 
-    //prueba
-    private LocalDate fechainicio = LocalDate.now();
-
-    private LocalDate fechafinal = LocalDate.of(1000, 5, 5);
+    // prueba
+    private LocalDate fechainicio;
+//
+//    private LocalDate fechafinal;
 
     private Cine cine;
 
@@ -91,7 +92,6 @@ public class Showroom implements Initializable {
 
     private Sala salapr;
 
-    private Funcion funcionElegida;
 
     private Long idTemp;
 
@@ -99,6 +99,9 @@ public class Showroom implements Initializable {
     //prueba
 
     private ImageView imageView = new ImageView();
+
+    @Autowired
+    InfoPelicula infoPelicula;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -117,13 +120,14 @@ public class Showroom implements Initializable {
 
         List<Funcion> lista = funcionMgr.getAllFunciones();
 
-        for (int i = 0; i < lista.size(); i++) {
-            if (salapr == lista.get(i).getSala() && local == lista.get(i).getLocal() && pelicula == lista.get(i).getPelicula() && fechainicio == lista.get(i).getFecha() ){
-                funcionElegida = lista.get(i);
-                idTemp = lista.get(i).getId();
-            }
-        }
+//        for (int i = 0; i < lista.size(); i++) {
+//            if (salapr == lista.get(i).getSala() && local == lista.get(i).getLocal() && pelicula == lista.get(i).getPelicula() && fechainicio == lista.get(i).getFecha() ){
+//                funcionElegida = lista.get(i);
+//                idTemp = lista.get(i).getId();
+//            }
+//        }
 
+        funcionElegida = infoPelicula.getFuncionElegida();
 
         disponible.setImage(available);
         elegido.setImage(selected);
@@ -229,8 +233,8 @@ public class Showroom implements Initializable {
 
     @FXML
     public void cargaTicket (ActionEvent event) throws Exception {
-        for (int i = 0; i < salapr.getFilas() ; i++) {
-            for (int j = 0; j < salapr.getColumnas(); j++){
+        for (int i = 0; i < funcionElegida.getSala().getFilas() ; i++) {
+            for (int j = 0; j < funcionElegida.getSala().getColumnas(); j++){
                 ImageView imageView = (ImageView) getNodeByRowColumnIndex(i,j,grid);
                 if (imageView.getImage().equals(selected)){
                     ImageView ocupado = (ImageView) getNodeByRowColumnIndex(i,j,grid);
@@ -256,13 +260,12 @@ public class Showroom implements Initializable {
 
     @FXML
     public void comprar (ActionEvent event) throws IOException{
-        ImageView imageView = new ImageView();
-        for (int i = 0; i < salapr.getFilas() ; i++) {
-            for (int j = 0; j < salapr.getColumnas() ; j++){
+        for (int i = 0; i < funcionElegida.getSala().getFilas() ; i++) {
+            for (int j = 0; j < funcionElegida.getSala().getColumnas() ; j++){
                 imageView = (ImageView) getNodeByRowColumnIndex(i,j,grid);
                 if (imageView.getImage().equals(selected)){
                     funcionElegida.reservaButaca(i,j);
-                    funcionElegida.setId(idTemp);
+                   // funcionElegida.setId(idTemp);
                     funcionMgr.update(funcionElegida);
                 }
             }
@@ -276,7 +279,6 @@ public class Showroom implements Initializable {
 
         root = (AnchorPane) fxmlLoader.load(InfoPelicula.class.getResourceAsStream("InfoPelicula2.fxml"));
 
-        System.out.println("xdcvbvnmnbfvdz");
 
         ComboBox sala = (ComboBox)fxmlLoader.getNamespace().get("sala");
 

@@ -624,7 +624,8 @@ public class InfoPelicula implements Initializable {
                             ((ImageView) grid.getChildren().get(i+j)).setImage(unavailable);
                             // operacion que cambie este lugar de la matriz a no dispoble
                             funcionElegida.reservaButaca(i, j);
-                            funcionElegida.setId(idTemp);
+                            //funcionElegida.setId(idTemp);
+                            funcionElegida.setFecha(fecha.getValue().plusDays(1));
                             funcionMgr.update(funcionElegida);
                         }
                     }
