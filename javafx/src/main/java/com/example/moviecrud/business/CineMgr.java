@@ -27,8 +27,9 @@ public class CineMgr  {
     @Autowired
     UsuarioMgr usuarioMgr;
 
-    //String ip = "192.168.0.107";
+
     String ip = InetAddress.getLocalHost().getHostAddress();
+    //String ip = "10.252.61.196";
 
     RestTemplate rest = new RestTemplate();
 

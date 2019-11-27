@@ -23,7 +23,9 @@ public class UsuarioMgr {
 
     RestTemplate rest = new RestTemplate();
 
-    String ip = InetAddress.getLocalHost().getHostAddress();
+   String ip = InetAddress.getLocalHost().getHostAddress();
+
+   // String ip = "10.252.61.196";
 
     public UsuarioMgr() throws UnknownHostException {
     }

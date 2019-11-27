@@ -641,6 +641,8 @@ public class InfoPelicula implements Initializable {
 
                 Ticket ticket = new Ticket(funcionElegida, usuarioActivo, "asiento", 10);
 
+                close(event);
+
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
@@ -652,6 +654,7 @@ public class InfoPelicula implements Initializable {
 
                 TicketController ticketController = fxmlLoader.getController();
                 ticketController.loadTicketData(ticket);
+
             } else {
                 showAlert("No hay usuario Activo", "Inicie Sesion");
             }
@@ -666,6 +669,14 @@ public class InfoPelicula implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(contextText);
         alert.showAndWait();
+    }
+
+
+    @FXML
+    void close(ActionEvent actionEvent) {
+        Node source = (Node)  actionEvent.getSource();
+        Stage stage  = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 
 

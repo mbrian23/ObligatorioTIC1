@@ -22,6 +22,8 @@ public class SalaManager {
 
     String ip = InetAddress.getLocalHost().getHostAddress();
 
+    //String ip = "10.252.61.196";
+
     public SalaManager() throws UnknownHostException {
     }
 

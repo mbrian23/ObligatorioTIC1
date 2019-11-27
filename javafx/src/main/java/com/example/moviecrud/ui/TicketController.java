@@ -166,14 +166,14 @@ public class TicketController implements Initializable {
 
                         showAlert("Ticket agregado", "Se agrego con exito el Ticket!");
                         close(event);
-                        FXMLLoader fxmlLoader = new FXMLLoader();
-                        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
-
-                        Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("Inicio.fxml"));
-                        Scene inicioScene = new Scene(root, 800, 550);
-                        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        window.setScene(inicioScene);
-                        window.show();
+//                        FXMLLoader fxmlLoader = new FXMLLoader();
+//                        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+//
+//                        Parent root = fxmlLoader.load(Inicio.class.getResourceAsStream("Inicio.fxml"));
+//                        Scene inicioScene = new Scene(root, 800, 550);
+//                        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//                        window.setScene(inicioScene);
+//                        window.show();
 
                     } else {
 
@@ -206,6 +206,8 @@ public class TicketController implements Initializable {
             }
         }
     }
+
+
 
     private void showAlert(String title, String contextText) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
