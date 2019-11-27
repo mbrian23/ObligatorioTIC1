@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.Period;
@@ -19,23 +21,29 @@ import java.util.List;
 public class TicketMgr {
     RestTemplate rest = new RestTemplate();
 
+    String ip = InetAddress.getLocalHost().getHostAddress();
+
+    public TicketMgr() throws UnknownHostException {
+    }
+
+
     public void save(Ticket ticket){
-        rest.postForObject("http://localhost:8080/ticket", ticket, Ticket.class);
+        rest.postForObject("http://"+ip+":8080/ticket", ticket, Ticket.class);
     }
 
     public void update (@PathVariable("id") Integer id, Ticket ticket){
         ticket.setId(id);
-        rest.postForObject("http://localhost:8080/ticket", ticket, Ticket.class);
+        rest.postForObject("http://"+ip+":8080/ticket", ticket, Ticket.class);
     }
 
 
     public List<Ticket> getAllTickets(){
-        return rest.exchange("http://localhost:8080/tickets", HttpMethod.GET, null, new ParameterizedTypeReference<List<Ticket>>() {}).getBody();
+        return rest.exchange("http://"+ip+":8080/tickets", HttpMethod.GET, null, new ParameterizedTypeReference<List<Ticket>>() {}).getBody();
     }
 
 
     public Ticket getTicketById(@PathVariable(value = "id") Integer id) {
-        return rest.getForObject("http://localhost:8080/ticket/{id}", Ticket.class, id);
+        return rest.getForObject("http://"+ip+":8080/ticket/{id}", Ticket.class, id);
     }
 
 

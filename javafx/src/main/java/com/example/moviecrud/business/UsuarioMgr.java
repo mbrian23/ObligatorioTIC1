@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
 
 @RestController
@@ -21,33 +23,38 @@ public class UsuarioMgr {
 
     RestTemplate rest = new RestTemplate();
 
+    String ip = InetAddress.getLocalHost().getHostAddress();
+
+    public UsuarioMgr() throws UnknownHostException {
+    }
+
 
     public void save(Usuario usuario){
-            rest.postForObject("http://localhost:8080/usuario", usuario, Usuario.class);
+            rest.postForObject("http://"+ip+":8080/usuario", usuario, Usuario.class);
     }
 
     public void update ( Usuario usuario){
-        rest.postForObject("http://localhost:8080/usuario", usuario, Usuario.class);
+        rest.postForObject("http://"+ip+":8080/usuario", usuario, Usuario.class);
     }
 
 
     public List<Usuario> getAllUsuarios(){
-        return (List<Usuario>) rest.exchange("http://localhost:8080/usuarios", HttpMethod.GET, null, new ParameterizedTypeReference<List<Usuario>>() {}).getBody();
+        return (List<Usuario>) rest.exchange("http://"+ip+":8080/usuarios", HttpMethod.GET, null, new ParameterizedTypeReference<List<Usuario>>() {}).getBody();
     }
 
 
     public Usuario getUsuarioById(@PathVariable(value = "id") Long usuarioId) {
-        return rest.getForObject("http://localhost:8080/usuario/{id}", Usuario.class);
+        return rest.getForObject("http://"+ip+":8080/usuario/{id}", Usuario.class);
     }
 
     public Usuario getUsuarioByUsername(@PathVariable(value = "username") String username) {
 
-        Usuario temp= rest.getForObject("http://localhost:8080/usuario/nombre?username={username}", Usuario.class, username);
-        return temp;
+        return rest.getForObject("http://"+ip+":8080/usuario/nombre?username={username}", Usuario.class, username);
+
     }
 
     public ResponseEntity<?> deleteUsuario(@PathVariable(value = "id") Long usuarioId) {
-        rest.delete("http://localhost:8080/usuario/{id}");
+        rest.delete("http://"+ip+":8080/usuario/{id}");
         return ResponseEntity.ok().build();
     }
 

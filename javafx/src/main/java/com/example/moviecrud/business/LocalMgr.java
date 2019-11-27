@@ -15,6 +15,8 @@ import org.springframework.web.client.RestTemplate;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.util.List;
@@ -23,28 +25,33 @@ import java.util.List;
 public class LocalMgr {
     RestTemplate rest = new RestTemplate();
 
+    String ip = InetAddress.getLocalHost().getHostAddress();
+
+    public LocalMgr() throws UnknownHostException {
+    }
+
 
     public void save(Local local) {
-        rest.postForObject("http://localhost:8080/local", local, Local.class);
+        rest.postForObject("http://"+ip+":8080/local", local, Local.class);
     }
 
     public void update(@PathVariable("id") String id, Local local) {
         local.setName(id);
-        save(rest.postForObject("http://localhost:8080/local", local, Local.class));
+        save(rest.postForObject("http://"+ip+":8080/local", local, Local.class));
     }
 
 
     public List<Local> getAllLocales() {
-        return rest.exchange("http://localhost:8080/locales", HttpMethod.GET, null, new ParameterizedTypeReference<List<Local>>() {}).getBody();
+        return rest.exchange("http://"+ip+":8080/locales", HttpMethod.GET, null, new ParameterizedTypeReference<List<Local>>() {}).getBody();
     }
 
 
     public Local getLocalById(@PathVariable(value = "nombre_local") String nombre_local) {
-            return rest.getForObject("http://localhost:8080/local?nombre_local={nombre_local}", Local.class, nombre_local);
+            return rest.getForObject("http://"+ip+":8080/local?nombre_local={nombre_local}", Local.class, nombre_local);
     }
 
     public ResponseEntity<?> deleteLocal(@PathVariable(value = "id") String localId) {
-        rest.delete("http://localhost:8080/local/{id}");
+        rest.delete("http://"+ip+":8080/local/{id}");
         return ResponseEntity.ok().build();
     }
 
