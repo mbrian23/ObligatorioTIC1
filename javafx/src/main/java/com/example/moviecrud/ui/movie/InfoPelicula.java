@@ -191,89 +191,143 @@ public class InfoPelicula implements Initializable {
 
 
 
-            for (int i = 0; i < z; i++) {
-                if (!local.contains(funcionPelicula.get(i).getLocal().getName())) {
-                    local.add(funcionPelicula.get(i).getLocal().getName());
-                }
-            }
-            localidad.setItems(local);
-
-            for (int i = 0; i < z; i++) {
-                if (!tipoSala.contains(funcionPelicula.get(i).getSala().getTipo())) {
-                    tipoSala.add(funcionPelicula.get(i).getSala().getTipo());
-                }
-            }
-            sala.setItems(tipoSala);
-
-            for (int i = 0; i < z; i++) {
-                if (!hor.contains(funcionPelicula.get(i).getHoraFuncion())) {
-                    hor.add(funcionPelicula.get(i).getHoraFuncion());
-
-                }
-            }
-            horario.setItems(hor);
-
-            fecha.setDayCellFactory(picker -> new DateCell() {
-                @Override
-                public void updateItem(LocalDate date, boolean empty) {
-                    super.updateItem(date, empty);
-                    LocalDate today = LocalDate.now();
-                    setDisable(empty || date.compareTo(today) < 0);
-                }
-            });
+//            for (int i = 0; i < z; i++) {
+//                if (!local.contains(funcionPelicula.get(i).getLocal().getName())) {
+//                    local.add(funcionPelicula.get(i).getLocal().getName());
+//                }
+//            }
+//            localidad.setItems(local);
+//
+//            for (int i = 0; i < z; i++) {
+//                if (!tipoSala.contains(funcionPelicula.get(i).getSala().getTipo())) {
+//                    tipoSala.add(funcionPelicula.get(i).getSala().getTipo());
+//                }
+//            }
+//            sala.setItems(tipoSala);
+//
+//            for (int i = 0; i < z; i++) {
+//                if (!hor.contains(funcionPelicula.get(i).getHoraFuncion())) {
+//                    hor.add(funcionPelicula.get(i).getHoraFuncion());
+//
+//                }
+//            }
+//            horario.setItems(hor);
+//
+//            fecha.setDayCellFactory(picker -> new DateCell() {
+//                @Override
+//                public void updateItem(LocalDate date, boolean empty) {
+//                    super.updateItem(date, empty);
+//                    LocalDate today = LocalDate.now();
+//                    setDisable(empty || date.compareTo(today) < 0);
+//                }
+//            });
         }
 
 
     }
     @FXML
     public void enableLoc (ActionEvent event){
-        int tamano = localMgr.getAllLocales().size();
-        local.clear();
-        localidad.getItems().clear();
-        ArrayList<Local> locales = (ArrayList<Local>) localMgr.getAllLocales();
 
-        for (int i = 0; i < tamano ; i++) {
-            if (cadena.getValue().equals(locales.get(i).getCine().getNombre())){
-                local.add(locales.get(i).getName());
+        int tamano1 = funcionPelicula.size();
+        int u = 0;
+        for (int i = 0; i < tamano1 - u ; i++) {
+            if(!funcionPelicula.get(i).getLocal().getCine().getNombre().equals(cadena.getValue())){
+                funcionPelicula.remove(i);
+                u++;
             }
         }
+        local.clear();
+        for (int i = 0; i <funcionPelicula.size() ; i++) {
+            if(!local.contains(funcionPelicula.get(i).getNombreLocal())) {
+                local.add(funcionPelicula.get(i).getNombreLocal());
+            }
+        }
+
+//        int tamano = localMgr.getAllLocales().size();
+//        local.clear();
+//        localidad.getItems().clear();
+//        ArrayList<Local> locales = (ArrayList<Local>) localMgr.getAllLocales();
+//
+//        for (int i = 0; i < tamano ; i++) {
+//            if (cadena.getValue().equals(locales.get(i).getCine().getNombre()) && !local.contains(locales.get(i).getName())){
+//                local.add(locales.get(i).getName());
+//            }
+//        }
         localidad.setItems(local);
+
         localidad.setDisable(false);
+        cadena.setDisable(true);
+
     }
 
     @FXML
     public void enableSala (ActionEvent event){
-        int tamano = salaManager.getAllSalas().size();
-        sala.getItems().clear();
-        tipoSala.clear();
-        ArrayList<Sala> salas = (ArrayList<Sala>) salaManager.getAllSalas();
-
-        for (int i = 0; i < tamano ; i++) {
-            if (sala.getValue().equals(salas.get(i).getTipo())){
-                tipoSala.add(salas.get(i).getTipo());
+        int tamano1 = funcionPelicula.size();
+        int u = 0;
+        for (int i = 0; i < tamano1 - u ; i++) {
+            if(!funcionPelicula.get(i).getSala().getTipo().equals(sala.getValue())){
+                funcionPelicula.remove(i);
+                u++;
             }
         }
+        tipoSala.clear();
+        for (int i = 0; i <funcionPelicula.size() ; i++) {
+            if(!tipoSala.contains(funcionPelicula.get(i).getSala().getTipo())) {
+                tipoSala.add(funcionPelicula.get(i).getSala().getTipo());
+            }
+        }
+
+
+//        int tamano = salaManager.getAllSalas().size();
+//        sala.getItems().clear();
+//        tipoSala.clear();
+//        ArrayList<Sala> salas = (ArrayList<Sala>) salaManager.getAllSalas();
+//
+//        for (int i = 0; i < tamano ; i++) {
+//            if (sala.getValue().equals(salas.get(i).getTipo()) ){
+//                tipoSala.add(salas.get(i).getTipo());
+//            }
+//        }
         sala.setItems(tipoSala);
 
         sala.setDisable(false);
+        localidad.setDisable(true);
     }
     @FXML
     public void enableHorario (ActionEvent event){
-       ArrayList<Funcion> funciones = (ArrayList<Funcion>) funcionMgr.getAllFunciones();
-       horario.getItems().clear();
-       hor.clear();
-        for (int i = 0; i < funciones.size() ; i++) {
-            if (funciones.get(i).getLocal().getName().equals(localidad.getValue()) && funciones.get(i).getFecha().equals(fecha.getValue()) && funciones.get(i).getSala().getTipo().equals(sala.getValue())){
-                hor.add(funciones.get(i).getHoraFuncion());
+        int tamano1 = funcionPelicula.size();
+        int u = 0;
+        for (int i = 0; i < tamano1 - u ; i++) {
+            if(!funcionPelicula.get(i).getHoraFuncion().equals(horario.getValue())){
+                funcionPelicula.remove(i);
+                u++;
             }
         }
-        // problema de que quedan cargadas
+        hor.clear();
+        for (int i = 0; i <funcionPelicula.size() ; i++) {
+            if(!hor.contains(funcionPelicula.get(i).getHoraFuncion())) {
+                hor.add(funcionPelicula.get(i).getHoraFuncion());
+            }
+        }
+
+//        ArrayList<Funcion> funciones = (ArrayList<Funcion>) funcionMgr.getAllFunciones();
+//       horario.getItems().clear();
+//       hor.clear();
+//        for (int i = 0; i < funciones.size() ; i++) {
+//            if (funciones.get(i).getLocal().getName().equals(localidad.getValue()) && funciones.get(i).getFecha().equals(fecha.getValue()) && funciones.get(i).getSala().getTipo().equals(sala.getValue())
+//                    && !hor.contains(funciones.get(i).getHoraFuncion()) ){
+//                hor.add(funciones.get(i).getHoraFuncion());
+//            }
+//        }
+//        // problema de que quedan cargadas
         horario.setItems(hor);
         horario.setDisable(false);
+
     }
     @FXML
     public void enableFecha (ActionEvent event){
         fecha.setDisable(false);
+        sala.setDisable(true);
     }
 
     private ObservableList<Funcion> filteredList = FXCollections.observableArrayList();
@@ -488,38 +542,53 @@ public class InfoPelicula implements Initializable {
 
     @FXML
     public void cargaTicket (ActionEvent event) throws Exception {
+       int contador =0;
         for (int i = 0; i <  funcionElegida.getSala().getFilas() ; i++) {
             for (int j = 0; j < funcionElegida.getSala().getColumnas(); j++){
                 ImageView imageView = (ImageView) getNodeByRowColumnIndex(i,j,grid);
                 if (imageView.getImage().equals(selected)){
-//                    ImageView ocupado = (ImageView) getNodeByRowColumnIndex(i,j,grid);
-                    ((ImageView) getNodeByRowColumnIndex(i,j,grid)).setImage(unavailable);
-                    // operacion que cambie este lugar de la matriz a no dispoble
-                    funcionElegida.reservaButaca(i,j);
-                    funcionElegida.setId(idTemp);
-                    funcionMgr.update(funcionElegida);
+                    contador++;
                 }
             }
         }
         usuarioActivo =  usuarioMgr.getUsuarioByUsername(usNameActivo);
-        if (usuarioActivo != null) {
+        if (contador != 0) {
+            if (usuarioActivo != null) {
 
-            Ticket ticket = new Ticket(funcionElegida, usuarioActivo,"asiento", 10 );
+                for (int i = 0; i < funcionElegida.getSala().getFilas(); i++) {
+                    for (int j = 0; j < funcionElegida.getSala().getColumnas(); j++) {
+                        ImageView imageView = (ImageView) getNodeByRowColumnIndex(i, j, grid);
+                        if (imageView.getImage().equals(selected)) {
+//                    ImageView ocupado = (ImageView) getNodeByRowColumnIndex(i,j,grid);
+                            ((ImageView) getNodeByRowColumnIndex(i, j, grid)).setImage(unavailable);
+                            // operacion que cambie este lugar de la matriz a no dispoble
+                            funcionElegida.reservaButaca(i, j);
+                            funcionElegida.setId(idTemp);
+                            funcionMgr.update(funcionElegida);
+                        }
+                    }
+                }
 
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+                Ticket ticket = new Ticket(funcionElegida, usuarioActivo, "asiento", 10);
 
-            Parent root = fxmlLoader.load(TicketController.class.getResourceAsStream("ticket2.fxml"));
-            Scene inicioScene = new Scene(root, 800, 550);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(inicioScene);
-            window.show();
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
 
-            TicketController ticketController = fxmlLoader.getController();
-            ticketController.loadTicketData(ticket);
+                Parent root = fxmlLoader.load(TicketController.class.getResourceAsStream("ticket2.fxml"));
+                Scene inicioScene = new Scene(root, 800, 550);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(inicioScene);
+                window.show();
+
+                TicketController ticketController = fxmlLoader.getController();
+                ticketController.loadTicketData(ticket);
+            } else {
+                showAlert("No hay usuario Activo", "Inicie Sesion");
+            }
         } else {
-            showAlert("No hay usuario Activo", "Inicie Sesion");
+            showAlert("Ningun asiento elegido", "Elija");
         }
+
 
     }    private void showAlert(String title, String contextText) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
