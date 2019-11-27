@@ -30,16 +30,6 @@
                           <MenuItem fx:id="mItemAgregarCine" mnemonicParsing="false" onAction="#agregarCineAction" text="Nuevo Cine" />
                         </items>
                       </Menu>
-                      <Menu mnemonicParsing="false" text="Eliminar">
-                        <items>
-                          <MenuItem fx:id="mItemEliminarSala" mnemonicParsing="false" text="Delete" />
-                        </items>
-                      </Menu>
-                      <Menu mnemonicParsing="false" text="Editar">
-                        <items>
-                          <MenuItem fx:id="mItemEditarSala" mnemonicParsing="false" text="Modificar" />
-                        </items>
-                      </Menu>
                     </menus>
                   </MenuBar>
                   <TextField fx:id="buscador" alignment="TOP_LEFT" prefHeight="11.0" prefWidth="167.0">

@@ -27,17 +27,7 @@
                     <menus>
                       <Menu mnemonicParsing="false" style="-fx-font-weight: bold;" text="Agregar">
                         <items>
-                          <MenuItem fx:id="mItemAgregarFuncion" mnemonicParsing="false" onAction="#agregarFuncionAction" text="Nueva Pelicula" />
-                        </items>
-                      </Menu>
-                      <Menu mnemonicParsing="false" style="-fx-font-weight: bold;" text="Eliminar">
-                        <items>
-                          <MenuItem fx:id="mItemEliminarFuncion" mnemonicParsing="false" onAction="#eliminarFuncionAction" text="Delete" />
-                        </items>
-                      </Menu>
-                      <Menu mnemonicParsing="false" style="-fx-font-weight: bold;" text="Editar">
-                        <items>
-                          <MenuItem fx:id="mItemEditarFuncion" mnemonicParsing="false" onAction="#editarFuncionAction" text="Modificar" />
+                          <MenuItem fx:id="mItemAgregarFuncion" mnemonicParsing="false" onAction="#agregarFuncionAction" text="Nueva Funcion" />
                         </items>
                       </Menu>
                     </menus>

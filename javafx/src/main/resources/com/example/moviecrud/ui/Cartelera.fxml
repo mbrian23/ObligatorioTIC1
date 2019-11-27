@@ -30,16 +30,6 @@
                           <MenuItem fx:id="mItemAgregarPelicula" mnemonicParsing="false" onAction="#agregarPeliculaAction" text="Nueva Pelicula" />
                         </items>
                       </Menu>
-                      <Menu mnemonicParsing="false" style="-fx-font-weight: bold;" text="Eliminar">
-                        <items>
-                          <MenuItem fx:id="mItemEliminarPelicula" mnemonicParsing="false" onAction="#eliminarPeliculaAction" text="Delete" />
-                        </items>
-                      </Menu>
-                      <Menu mnemonicParsing="false" style="-fx-font-weight: bold;" text="Editar">
-                        <items>
-                          <MenuItem fx:id="mItemEditarPelicula" mnemonicParsing="false" onAction="#editarPeliculaAction" text="Modificar" />
-                        </items>
-                      </Menu>
                     </menus>
                   </MenuBar>
                   <TextField fx:id="buscador" alignment="TOP_LEFT" prefHeight="27.0" prefWidth="138.0">

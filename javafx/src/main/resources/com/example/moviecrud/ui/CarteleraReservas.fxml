@@ -23,25 +23,6 @@
          <children>
             <HBox prefHeight="31.0" prefWidth="580.0">
                <children>
-                  <MenuBar prefHeight="29.0" prefWidth="246.0" styleClass="menuBarCartelera">
-                    <menus>
-                      <Menu mnemonicParsing="false" style="-fx-font-weight: bold;" text="Agregar">
-                        <items>
-                          <MenuItem fx:id="mItemAgregarFuncion" mnemonicParsing="false" onAction="#agregarFuncionAction" text="Nueva Pelicula" />
-                        </items>
-                      </Menu>
-                      <Menu mnemonicParsing="false" style="-fx-font-weight: bold;" text="Eliminar">
-                        <items>
-                          <MenuItem fx:id="mItemEliminarFuncion" mnemonicParsing="false" onAction="#eliminarFuncionAction" text="Delete" />
-                        </items>
-                      </Menu>
-                      <Menu mnemonicParsing="false" style="-fx-font-weight: bold;" text="Editar">
-                        <items>
-                          <MenuItem fx:id="mItemEditarFuncion" mnemonicParsing="false" onAction="#editarFuncionAction" text="Modificar" />
-                        </items>
-                      </Menu>
-                    </menus>
-                  </MenuBar>
                   <TextField fx:id="buscador" alignment="TOP_LEFT" prefHeight="27.0" prefWidth="138.0">
                      <HBox.margin>
                         <Insets bottom="10.0" left="160.0" top="10.0" />
