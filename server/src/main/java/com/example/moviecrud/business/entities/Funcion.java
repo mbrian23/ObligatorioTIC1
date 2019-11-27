@@ -76,26 +76,26 @@ public class Funcion {
     public Funcion() {
     }
 
-//    public Long getNumeroSala() {
-//        if (this.sala.getNumeroSala() != null){
-//            return this.sala.getNumeroSala();
-//        }
-//        return 3l;
-//    }
-//
-//    public String getNombreLocal(){
-//        if (this.local.getName() != null) {
-//            return this.local.getName();
-//        }
-//        return "vacio";
-//    }
-//
-//    public String getNombrePelicula(){
-//        if (this.pelicula.getTitulo() != null) {
-//            return this.pelicula.getTitulo();
-//        }
-//        return "vacio";
-//    }
+    public Long getNumeroSala() {
+        if (this.sala.getNumeroSala() != null){
+            return this.sala.getNumeroSala();
+        }
+        return 3l;
+    }
+
+    public String getNombreLocal(){
+        if (this.local.getName() != null) {
+            return this.local.getName();
+        }
+        return "vacio";
+    }
+
+    public String getNombrePelicula(){
+        if (this.pelicula.getTitulo() != null) {
+            return this.pelicula.getTitulo();
+        }
+        return "vacio";
+    }
 
     public LocalDate getFecha() {
         return fecha;

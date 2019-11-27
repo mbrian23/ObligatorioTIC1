@@ -312,7 +312,7 @@ public class InfoPelicula implements Initializable {
         }
         hor.clear();
         for (int i = 0; i <funcionPelicula.size() ; i++) {
-            if(!hor.contains(funcionPelicula.get(i).getHoraFuncion()) && funcionPelicula.get(i).getFecha().equals(fecha.getValue())  ) {
+            if(!hor.contains(funcionPelicula.get(i).getHoraFuncion()) /* && funcionPelicula.get(i).getFecha().equals(fecha.getValue()) */  ) {
                 hor.add(funcionPelicula.get(i).getHoraFuncion());
             }
         }
