@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.hibernate.annotations.Type;
-
+import org.mindrot.jbcrypt.BCrypt;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
@@ -22,7 +22,7 @@ public class Usuario {
     private String username;
 
     @NotBlank
-    @Column(nullable = false, length = 45)
+    @Column(nullable = false, length = 60)
     private String password;
 
     @NotBlank
@@ -35,7 +35,7 @@ public class Usuario {
 
     public Usuario(@NotBlank String username, @NotBlank String password, @NotBlank String email, @NotBlank String adminPrivileges) {
         this.username = username;
-        this.password = password;
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt(12));
         this.email = email;
         this.adminPrivileges = adminPrivileges;
     }
@@ -64,7 +64,7 @@ public class Usuario {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt(12));
     }
 
     public String getEmail() {
