@@ -2,7 +2,9 @@ package com.example.moviecrud.ui;
 
 import com.example.moviecrud.MovieCrudApplication;
 import com.example.moviecrud.business.SalaManager;
+import com.example.moviecrud.business.entities.Pelicula;
 import com.example.moviecrud.business.entities.Sala;
+import com.example.moviecrud.ui.movie.MovieController;
 import com.example.moviecrud.ui.movie.SalaController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -237,5 +239,23 @@ public class CarteleraSalas implements Initializable {
         window.show();
     }
 
+
+
+    @FXML
+    void editarSalaAction(ActionEvent event) throws Exception {
+        Sala sala = tabla.getSelectionModel().getSelectedItem();
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(MovieController.class.getResourceAsStream("AddSala.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+
+        SalaController salaController = fxmlLoader.getController();
+        salaController.loadSalaData(sala);
+
+    }
 
 }

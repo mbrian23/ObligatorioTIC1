@@ -73,4 +73,9 @@ public class SalaManager {
         final Sala salaPronta = salaRepository.save(sl);
         return ResponseEntity.ok(salaPronta);
     }
+
+    @GetMapping("/sala")
+    public Sala findSalaById(@RequestParam(value = "id") @RequestBody Long id){
+        return salaRepository.findById(id).get();
+    }
 }

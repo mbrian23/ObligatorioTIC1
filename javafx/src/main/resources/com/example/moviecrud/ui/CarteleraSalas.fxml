@@ -60,7 +60,7 @@
                <contextMenu>
                   <ContextMenu>
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Editar" />
+                      <MenuItem mnemonicParsing="false" text="Editar" onAction="#editarSalaAction" />
                         <MenuItem mnemonicParsing="false" text="Eliminar" />
                     </items>
                   </ContextMenu>

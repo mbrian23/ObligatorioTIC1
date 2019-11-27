@@ -448,7 +448,7 @@ public class InfoPelicula implements Initializable {
     @FXML
     public void loadShowroom (ActionEvent event) throws Exception{
 
-        salaAgregar = salaManager.getSalaByNumSala(3l);
+        salaAgregar = salaManager.getSalaByNumSala(1l);
         peliculaAgregar = peliculaMgr.getPeliculaByName(titulo.getText());
         fechaAgregar = fecha.getValue();
         horarioAgr = horario.getValue();

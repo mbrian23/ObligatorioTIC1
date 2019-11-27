@@ -1,9 +1,6 @@
 package com.example.moviecrud.business;
 
-import com.example.moviecrud.business.entities.Cine;
-import com.example.moviecrud.business.entities.Funcion;
-import com.example.moviecrud.business.entities.Local;
-import com.example.moviecrud.business.entities.Sala;
+import com.example.moviecrud.business.entities.*;
 import com.example.moviecrud.business.exceptions.InformacionInvalida;
 import com.example.moviecrud.business.exceptions.YaExiste;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,5 +55,9 @@ public class SalaManager {
 
     public void update ( Sala sala){
         rest.postForObject("http://"+ip+":8080/sala", sala, Sala.class);
+    }
+
+    public Sala findSalaById(@PathVariable(value = "id") Long id){
+        return rest.getForObject("http://"+ip+":8080/sala?id={id}", Sala.class, id);
     }
 }

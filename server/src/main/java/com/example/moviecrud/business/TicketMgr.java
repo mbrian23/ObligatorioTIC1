@@ -32,6 +32,7 @@ public class TicketMgr {
     @PostMapping("/ticket")
     public void save(@RequestBody Ticket ticket) {
         ticketRepository.save(ticket);
+        ticketRepository.count();
     }
 
     //Edit usuario by id

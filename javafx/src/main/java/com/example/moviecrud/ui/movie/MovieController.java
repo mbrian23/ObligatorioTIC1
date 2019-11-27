@@ -184,14 +184,6 @@ public class MovieController implements Initializable {
                         peliculaActualizada.setMovieImage(movieImage);
                         peliculaActualizada.setId(idTemp);
 
-                        RestTemplate restTemplate = new RestTemplate();
-//                        HttpEntity<Pelicula> body = new HttpEntity<>(peliculaActualizada);
-//                        ResponseEntity<Pelicula> temp = restTemplate.exchange(
-//                                "http://localHost:8080/pelicula/" + peliculaActualizada + "/" + idTemp,
-//                                HttpMethod.PUT,
-//                                body,
-//                                Pelicula.class);
-
                              peliculaMgr.update(peliculaActualizada);
 
                             showAlert("Pelicula Editada", "Se edito con exito la Pelicula!");

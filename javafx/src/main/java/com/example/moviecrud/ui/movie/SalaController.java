@@ -5,6 +5,8 @@ import com.example.moviecrud.business.LocalMgr;
 import com.example.moviecrud.business.SalaManager;
 import com.example.moviecrud.business.entities.Cine;
 import com.example.moviecrud.business.entities.Local;
+import com.example.moviecrud.business.entities.Pelicula;
+import com.example.moviecrud.business.entities.Sala;
 import com.example.moviecrud.business.exceptions.InformacionInvalida;
 import com.example.moviecrud.business.exceptions.YaExiste;
 import com.example.moviecrud.ui.CarteleraSalas;
@@ -129,15 +131,25 @@ public class SalaController implements Initializable {
                       //  localMgr.getLocalById(cadenaCine.getValue());
 
                 try {
+                    if(!editando) {
 
 
+                        salaManager.addSala(tipoSalaValue, numeroSala, numeroFilas, numeroColumnas, localAgregar);
 
-                    salaManager.addSala(tipoSalaValue, numeroSala, numeroFilas, numeroColumnas,localAgregar);
+                        showAlert("Sala agregada", "Se agrego con exito la Sala!");
 
-                    showAlert("Sala agregada", "Se agrego con exito la Sala!");
+                        carteleraSalas.actualizaCartSala();
+                        close(event);
+                    }else{
+                        Sala salaActulizada = new Sala(numeroFilas, numeroColumnas, tipoSalaValue, numeroSala, localAgregar);
+                        salaActulizada.setId(idTemp);
+                        salaManager.update(salaActulizada);
 
-                    carteleraSalas.actualizaCartSala();
-                    close(event);
+                        showAlert("Sala Editada", "Se edito con exito la Sala!");
+                        close(event);
+                        carteleraSalas.actualizaCartSala();
+                        editando = false;
+                    }
                 } catch (InformacionInvalida informacionInvalida) {
                 showAlert(
                         "Informacion invalida !",
@@ -156,5 +168,20 @@ public class SalaController implements Initializable {
 
             }
         }
+    }
+
+    private Long idTemp;
+    private boolean editando = false;
+
+    public void loadSalaData (Sala sala){
+
+        nroSala.setText(String.valueOf(sala.getNumeroSala()));
+        nroFilas.setText(String.valueOf(sala.getFilas()));
+        nroFilas.setDisable(true);
+        nroColumnas.setText(String.valueOf(sala.getColumnas()));
+        nroColumnas.setDisable(true);
+
+        idTemp = sala.getId();
+        editando = true;
     }
 }

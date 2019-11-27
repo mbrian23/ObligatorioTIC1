@@ -67,10 +67,6 @@ public class PeliculaMgr {
 
 
 
-        // Ahora hay que ver si la pelicula existe ya
-        // if (peliculaRepository.findById(peliculaI)
-        // problema para hacer el get de un id que se autogenera
-
         Pelicula pelicula = new Pelicula(titulo,genero,actores,duracion,descripcion);
         pelicula.setMovieImage(movieImage);
         save(pelicula);
@@ -95,16 +91,7 @@ public class PeliculaMgr {
        for (Pelicula pelicula: getAllPeliculas()) {
             if (pelicula.getTitulo().equals(tituloViejo)){
                 Long id = pelicula.getId();
-               // Pelicula peliculaActualizada = new Pelicula(tituloNuevo,genero ,actores,duracion ,descripcion);
-                //update(peliculaActualizada);
 
-//                RestTemplate restTemplate = new RestTemplate();
-//               restTemplate.put(
-//                        "http://localHost:8080/pelicula/" + id+ "/" + tituloNuevo + "/" + actores + "/" + genero + "/" +descripcion + "/" + duracion,
-//                        HttpMethod.PUT,
-//                        null,
-//                        new ParameterizedTypeReference<String>() {
-//                        });
 
             }
         }
