@@ -161,7 +161,7 @@ public class Inicio implements Initializable {
         window.show();
 
         Inicio inicio = fxmlLoader.getController();
-//        setUsStatic(us);
+        setUsStatic(us);
         inicio.loadUsData(us);
 //    } else {
 //        Alert alert = new Alert(Alert.AlertType.WARNING, "Contrasena incorrecta");
