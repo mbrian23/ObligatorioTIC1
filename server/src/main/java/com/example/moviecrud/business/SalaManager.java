@@ -74,8 +74,4 @@ public class SalaManager {
         return ResponseEntity.ok(salaPronta);
     }
 
-    @GetMapping("/sala")
-    public Sala findSalaById(@RequestParam(value = "id") @RequestBody Long id){
-        return salaRepository.findById(id).get();
-    }
 }

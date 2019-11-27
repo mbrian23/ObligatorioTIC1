@@ -418,6 +418,10 @@ public class InfoPelicula implements Initializable {
 
     private Funcion funcionElegida;
 
+    public Funcion getFuncionElegida() {
+        return funcionElegida;
+    }
+
     @FXML
     private Button compra;
     @FXML
@@ -448,7 +452,7 @@ public class InfoPelicula implements Initializable {
     @FXML
     public void loadShowroom (ActionEvent event) throws Exception{
 
-        salaAgregar = salaManager.getSalaByNumSala(1l);
+      //  salaAgregar = salaManager.getSalaByNumSala(1l);
         peliculaAgregar = peliculaMgr.getPeliculaByName(titulo.getText());
         fechaAgregar = fecha.getValue();
         horarioAgr = horario.getValue();
@@ -458,7 +462,7 @@ public class InfoPelicula implements Initializable {
         List<Funcion> lista = funcionMgr.getAllFunciones();
 
         for (int i = 0; i < lista.size(); i++) {
-            if (salaAgregar.getId().equals(lista.get(i).getSala().getId()) && localAgr.getName().equals(lista.get(i).getLocal().getName()) && peliculaAgregar.getTitulo().equals(lista.get(i).getPelicula().getTitulo()) && fechaAgregar.equals(lista.get(i).getFecha()) ){
+            if (sala.getValue().equals(lista.get(i).getSala().getTipo()) && localAgr.getName().equals(lista.get(i).getLocal().getName()) && peliculaAgregar.getTitulo().equals(lista.get(i).getPelicula().getTitulo()) && fechaAgregar.equals(lista.get(i).getFecha()) ){
                 funcionElegida = lista.get(i);
                 idTemp = lista.get(i).getId();
             }
@@ -494,7 +498,7 @@ public class InfoPelicula implements Initializable {
         if (funcionElegida != null){
             addSeats(funcionElegida.getSala());
         } else{
-            showAlert("Le erraste a la funcion", "LE ERRASTE A LA FUNCION, BP.");
+            showAlert("Le erraste a la funcion", "LE ERRASTE A LA FUNCION.");
         }
 
     }
@@ -577,7 +581,7 @@ public class InfoPelicula implements Initializable {
         ObservableList<Node> childrens = gridPane.getChildren();
 
         for (Node node: childrens){
-            if (gridPane.getRowIndex(node) == row && gridPane.getColumnIndex(node) == column){
+            if (gridPane.getRowIndex(node)+1 == row && gridPane.getColumnIndex(node)+1 == column){
                 result = node;
                 break;
             }
@@ -592,8 +596,12 @@ public class InfoPelicula implements Initializable {
 
         for (int i = 0; i <  funcionElegida.getSala().getFilas() ; i++) {
             for (int j = 0; j < funcionElegida.getSala().getColumnas(); j++){
-                ImageView imageView = (ImageView) getNodeByRowColumnIndex(i,j,grid);
-                if (imageView.getImage().equals(selected)){
+//                ImageView imageView = (ImageView) getNodeByRowColumnIndex(i,j,grid);
+//                Image im = null;
+                ImageView ids = (ImageView)grid.getChildren().get(i+j);
+                Image im = ids.getImage();
+
+                if (im.equals(selected)){
                     contador++;
                 }
             }
@@ -607,10 +615,13 @@ public class InfoPelicula implements Initializable {
 
                 for (int i = 0; i < funcionElegida.getSala().getFilas(); i++) {
                     for (int j = 0; j < funcionElegida.getSala().getColumnas(); j++) {
-                        ImageView imageView = (ImageView) getNodeByRowColumnIndex(i, j, grid);
-                        if (imageView.getImage().equals(selected)) {
+                       // ImageView imageView = (ImageView) getNodeByRowColumnIndex(i, j, grid);
+                        ImageView ids = (ImageView)grid.getChildren().get(i+j);
+                        Image im = ids.getImage();
+                        if (im.equals(selected)) {
 //                    ImageView ocupado = (ImageView) getNodeByRowColumnIndex(i,j,grid);
-                            ((ImageView) getNodeByRowColumnIndex(i, j, grid)).setImage(unavailable);
+                           // ((ImageView) getNodeByRowColumnIndex(i, j, grid)).setImage(unavailable);
+                            ((ImageView) grid.getChildren().get(i+j)).setImage(unavailable);
                             // operacion que cambie este lugar de la matriz a no dispoble
                             funcionElegida.reservaButaca(i, j);
                             funcionElegida.setId(idTemp);

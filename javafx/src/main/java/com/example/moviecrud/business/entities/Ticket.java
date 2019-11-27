@@ -33,7 +33,7 @@ public class Ticket {
         if (funcion.getSala().getNumeroSala() != null){
             return funcion.getSala().getNumeroSala();
         }
-        return 3l;
+        return null;
     }
     public String getPeliculaFuncion (){
         return this.funcion.getPelicula().getTitulo();

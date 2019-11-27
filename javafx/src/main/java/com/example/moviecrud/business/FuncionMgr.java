@@ -66,6 +66,7 @@ public class FuncionMgr {
         int dif = period.getDays();
         for (int i = 0; i <= dif; i++) {
 
+            fechaInicio = fechaInicio.plusDays(1);
             Funcion funcion = new Funcion();
             funcion.setLocal(local);
             funcion.setPelicula(pelicula);
@@ -79,7 +80,6 @@ public class FuncionMgr {
             funcion.setFechaInicio(fechaInicio);
             funcion.setHoraFuncion(horaFuncion);
             save(funcion);
-            fechaInicio = fechaInicio.plusDays(1);
         }
     }
 

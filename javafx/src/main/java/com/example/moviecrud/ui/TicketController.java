@@ -115,6 +115,8 @@ public class TicketController implements Initializable {
 
     }
 
+
+
     @FXML
     void confirmarComprar(ActionEvent event) throws IOException {
         if (user.getText() == null || user.getText().equals("") || peli.getText() == null || peli.getText().equals("")
@@ -150,16 +152,16 @@ public class TicketController implements Initializable {
 
                         ArrayList<Funcion> funciones = (ArrayList<Funcion>) funcionMgr.getAllFunciones();
 
-                        for (int i = 0; i < funciones.size() ; i++) {
-                            if (funciones.get(i).getPelicula().getTitulo().equals(peliAgregar) && funciones.get(i).getLocal().getNombreCine().equals(cineAgregar)&&
-                            funciones.get(i).getLocal().getName().equals(localAgregar)&& funciones.get(i).getSala().getNumeroSala().toString().equals(salaAgregar) &&
-                            funciones.get(i).getFecha().toString().equals(fechaAgregar)){
-                                funcionAgregar = funciones.get(i);
-                            }
-                        }
-                        System.out.println(funcionAgregar);
-                        System.out.println(user);
-                        ticketMgr.addTicket(funcionAgregar,user,asiento,precio);
+//                        for (int i = 0; i < funciones.size() ; i++) {
+//                            if (funciones.get(i).getPelicula().getTitulo().equals(peliAgregar) && funciones.get(i).getLocal().getNombreCine().equals(cineAgregar)&&
+//                            funciones.get(i).getLocal().getName().equals(localAgregar)&& funciones.get(i).getSala().getNumeroSala().toString().equals(salaAgregar) &&
+//                            funciones.get(i).getFecha().toString().equals(fechaAgregar)){
+//                                funcionAgregar = funciones.get(i);
+//                            }
+//                        }
+
+
+                        ticketMgr.addTicket(infoPelicula.getFuncionElegida(),user,asiento,precio);
 
 
                         showAlert("Ticket agregado", "Se agrego con exito el Ticket!");
