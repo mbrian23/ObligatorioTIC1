@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane fx:id="root2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moviecrud.ui.movie.CineController">
+   <children>
+      <Text layoutX="136.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cine a Eliminar" wrappingWidth="324.2060546875" />
+      <TextField fx:id="cineEliminar" layoutX="118.0" layoutY="79.0" prefHeight="27.0" prefWidth="240.0" />
+      <Button fx:id="btnEliminar" onAction="#eliminarCine" layoutX="179.0" layoutY="144.0" mnemonicParsing="false" text="Eliminar" />
+   </children>
+</AnchorPane>

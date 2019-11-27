@@ -61,10 +61,9 @@ public class UsuarioMgr {
 
     // Delete a Usuario by id
     @DeleteMapping("/usuario/{id}")
-    public ResponseEntity<?> deleteUsuario(@PathVariable(value = "id") Long usuarioId) {
+    public void deleteUsuario(@PathVariable Long usuarioId) {
         Usuario usuario = usuarioRepository.findById(usuarioId).get();
         usuarioRepository.delete(usuario);
-        return ResponseEntity.ok().build();
     }
 
     public void addUsuario(String username, String password, String email, String adminPrivileges) throws InformacionInvalida, YaExiste, IOException {

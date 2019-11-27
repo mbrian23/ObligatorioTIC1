@@ -2,8 +2,13 @@ package com.example.moviecrud.ui;
 
 import com.example.moviecrud.MovieCrudApplication;
 import com.example.moviecrud.business.CineMgr;
+import com.example.moviecrud.business.FuncionMgr;
+import com.example.moviecrud.business.SalaManager;
+import com.example.moviecrud.business.UsuarioMgr;
 import com.example.moviecrud.business.entities.Cine;
+import com.example.moviecrud.business.exceptions.InformacionInvalida;
 import com.example.moviecrud.ui.movie.CineController;
+import com.example.moviecrud.ui.movie.MovieController;
 import com.example.moviecrud.ui.movie.SalaController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,6 +38,15 @@ public class CarteleraCines implements Initializable {
 
     @Autowired
     CineMgr cineMgr;
+
+    @Autowired
+    UsuarioMgr usuarioMgr;
+
+    @Autowired
+    FuncionMgr funcionMgr;
+
+    @Autowired
+    SalaManager salaManager;
 
     @FXML
     private AnchorPane root;
@@ -224,6 +238,32 @@ public class CarteleraCines implements Initializable {
     @FXML
     private Button btnagregar;
 
+
+    @FXML
+    void close(ActionEvent actionEvent) {
+        Node source = (Node)  actionEvent.getSource();
+        Stage stage  = (Stage) source.getScene().getWindow();
+        stage.close();
+    }
+    private void showAlert(String title, String contextText) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(contextText);
+        alert.showAndWait();
+    }
+
+    @FXML
+    void eliminarCineAction(ActionEvent event) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+
+        Parent root2 = fxmlLoader.load(CineController.class.getResourceAsStream("DeleteCine2"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root2));
+        stage.show();
+
+    }
 
 
 

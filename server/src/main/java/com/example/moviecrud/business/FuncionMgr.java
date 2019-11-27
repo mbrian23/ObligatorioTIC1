@@ -57,10 +57,10 @@ public class FuncionMgr {
     }
 
     @DeleteMapping("/funcion/{id}")
-    public ResponseEntity<?> deleteFuncion(@PathVariable(value = "id") Long funcionId) {
+    public void deleteFuncion(@PathVariable Long funcionId) {
         Funcion funcion= funcionRepo.findById(funcionId).get();
         funcionRepo.delete(funcion);
-        return ResponseEntity.ok().build();
+
     }
 
     public void addFuncion(LocalDate fechaInicio, LocalDate fechaFinal, Time horaFuncion, Sala sala, Pelicula pelicula, Local local) throws InformacionInvalida, YaExiste, IOException {
