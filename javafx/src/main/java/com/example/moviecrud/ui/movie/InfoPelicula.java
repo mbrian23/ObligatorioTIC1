@@ -180,6 +180,16 @@ public class InfoPelicula implements Initializable {
             horario.setDisable(true);
             fecha.setDisable(true);
 
+            int tamano1 = funcionPelicula.size();
+            int u = 0;
+            for (int i = 0; i < tamano1 - u ; i++) {
+                if(!funcionPelicula.get(i).getPelicula().getTitulo().equals(titulo.getText())){
+                    funcionPelicula.remove(i);
+                    u++;
+                }
+            }
+
+
 
                 for (int i = 0; i < z; i++) {
                     if (!cines.contains(funcionPelicula.get(i).getLocal().getCine().getNombre())) {
